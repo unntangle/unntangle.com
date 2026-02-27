@@ -1,0 +1,195 @@
+/* Services Section - Pinned Stack Reveal */
+
+.services {
+    position: relative;
+    height: 450vh;
+    background-color: var(--bg-light);
+    padding: 0 !important;
+    /* Override global section padding */
+    display: block !important;
+    /* Override global section flex */
+    /* Remove parent padding to ensure sticky lock happens at start */
+    overflow-y: visible !important;
+    /* Critical for sticky to work */
+}
+
+.stickyStage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 0 20px;
+    /* Internal padding for the visual gap */
+    z-index: 10;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+}
+
+.header h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.header p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardStack {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cardWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    height: 500px;
+    background-color: #111;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    transform-origin: top center;
+    will-change: transform, opacity;
+}
+
+.imageWrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.cardBg {
+    object-fit: cover;
+    filter: none !important;
+    /* Force no blur */
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+    /* Lighter gradient for more clarity */
+}
+
+.cardContent {
+    position: relative;
+    z-index: 1;
+    padding: 36px 50px;
+    color: white;
+}
+
+.titleArea h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.titleArea p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 680px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.servicesGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.serviceItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.exploreBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.exploreBtn:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services {
+        height: 450vh;
+    }
+
+    .card {
+        height: 440px;
+    }
+
+    .cardContent {
+        padding: 24px 20px;
+    }
+
+    .titleArea h3 {
+        font-size: 22px;
+    }
+
+    .titleArea p {
+        font-size: 13px;
+    }
+}

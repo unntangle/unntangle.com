@@ -1,0 +1,79 @@
+.stats {
+    background-color: var(--bg-light);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+}
+
+.headerContent {
+    max-width: 600px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.card {
+    padding: 48px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px var(--primary-glow);
+}
+
+.dark {
+    background-color: var(--bg-dark);
+    color: white;
+}
+
+.lime {
+    background-color: var(--primary);
+    color: var(--bg-dark);
+}
+
+.value {
+    font-size: 84px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 32px;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.description {
+    font-size: 15px;
+    opacity: 0.8;
+    max-width: 100%;
+}
+
+.dark .description {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.lime .description {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+}

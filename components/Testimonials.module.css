@@ -1,0 +1,102 @@
+.testimonials {
+    padding: 100px 0;
+    background-color: var(--bg-light);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    width: 90%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 15px 0;
+    letter-spacing: -0.02em;
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card {
+    background-color: white;
+    padding: 50px;
+    border-radius: 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.quoteIcon {
+    opacity: 0.15;
+    margin-bottom: 30px;
+}
+
+.quoteText {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text-main);
+    font-weight: 500;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.role {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 30px;
+    }
+
+    .quoteText {
+        font-size: 18px;
+    }
+}

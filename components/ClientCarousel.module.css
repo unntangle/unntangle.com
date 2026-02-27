@@ -1,0 +1,85 @@
+.carouselSection {
+    background-color: #000000;
+    /* Assuming black/very dark bg */
+    padding: 80px 0;
+    overflow: hidden;
+    /* Hide the scrolling overflow */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 64px;
+    line-height: 1.2;
+}
+
+.carouselContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Space between the two rows */
+}
+
+.scrollWrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    /* Full width bleed out of container */
+    position: relative;
+    overflow: hidden;
+    /* Optional: Add a subtle fade on the edges so they don't pop in/out abruptly */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.scrollTrack {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    padding: 0 12px;
+    /* Slight padding so box shadows/edges aren't cut off */
+}
+
+.card {
+    background-color: #1a1a1a;
+    /* Dark gray from screenshot */
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    flex-shrink: 0;
+}
+
+.logoPlaceholder {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+/* Fallback aesthetics until real logos are provided */
+.logoText {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.label {
+    color: #a0a0a0;
+    /* Light gray text for the label below */
+    font-size: 13px;
+    font-weight: 500;
+}
