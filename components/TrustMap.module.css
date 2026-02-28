@@ -1,0 +1,115 @@
+.mapSection {
+    padding: 100px 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.header {
+    max-width: 600px;
+    margin-bottom: 60px;
+}
+
+.label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: #111111;
+}
+
+.description {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.visualContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -100px;
+}
+
+.globeWrapper {
+    position: relative;
+    width: 800px;
+    height: 800px;
+}
+
+.globeImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(1) drop-shadow(0 20px 80px rgba(0, 210, 255, 0.1));
+}
+
+.pulseNode {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #00d2ff;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #00d2ff;
+}
+
+.pulseNode::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00d2ff;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .visualContainer {
+        margin-top: 40px;
+        justify-content: center;
+    }
+
+    .globeWrapper {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        aspect-ratio: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        text-align: center;
+        margin: 0 auto 40px;
+    }
+}

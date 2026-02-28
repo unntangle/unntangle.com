@@ -1,0 +1,139 @@
+.awardsSection {
+    padding: 100px 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    max-width: 600px;
+}
+
+.accent {
+    color: #00d2ff;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+}
+
+.navBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #eeeeee;
+    background: transparent;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navBtn:hover {
+    background: #f5f5f5;
+    border-color: #00d2ff;
+    color: #00d2ff;
+}
+
+.awardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.awardCard {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.imageWrapper {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.awardLogo {
+    max-height: 100%;
+    max-width: 100%;
+    filter: grayscale(1);
+    opacity: 0.7;
+}
+
+.provider {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #00d2ff;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.awardName {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.year {
+    font-size: 14px;
+    color: #999;
+}
+
+.awardCard:hover {
+    transform: translateY(-10px);
+    border-color: #00d2ff;
+    box-shadow: 0 10px 40px rgba(0, 210, 255, 0.05);
+}
+
+.awardCard:hover .awardLogo {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .awardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .awardsSection {
+        padding: 60px 0;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .awardsGrid {
+        grid-template-columns: 1fr;
+    }
+}

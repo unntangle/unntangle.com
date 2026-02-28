@@ -1,172 +1,37 @@
 .faqSection {
     background-color: #ffffff;
-    color: #111111;
-    padding: 80px 0;
+    padding: 120px 0;
+    color: #1a1a1a;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    width: 90%;
+    padding: 0 40px;
 }
 
 .mainTitle {
-    text-align: center;
-    font-size: clamp(28px, 4vw, 36px);
-    margin-bottom: 40px;
-    font-weight: 600;
-    color: #111111;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 60px;
+    text-align: left;
 }
 
 .contentWrapper {
+    width: 100%;
+}
+
+.accordionFull {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-}
-
-@media (min-width: 1024px) {
-    .contentWrapper {
-        flex-direction: row;
-        align-items: stretch;
-    }
-}
-
-/* --- Left Column: Form Card --- */
-.formCard {
-    background-color: #4a55c2;
-    /* Purplish blue from screenshot */
-    border-radius: 12px;
-    padding: 32px;
-    flex: 1;
-    /* Give form half space */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.formCard h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    font-weight: 700;
-    color: white;
-}
-
-.formDescription {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
-    margin-bottom: 32px;
-    line-height: 1.5;
-}
-
-.contactForm {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.inputRow {
-    display: flex;
-    gap: 24px;
-}
-
-.inputGroup {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.inputGroup label {
-    font-size: 11px;
-    text-transform: capitalize;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.required {
-    color: #ff4d4d;
-    /* Subtle red for requirement */
-    font-size: 12px;
-}
-
-.inputGroup input,
-.inputGroup select,
-.inputGroup textarea {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 8px 0;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.inputGroup select {
-    appearance: none;
-}
-
-.inputGroup select option {
-    background: #4a55c2;
-    color: white;
-}
-
-.inputGroup input::placeholder,
-.inputGroup select::placeholder,
-.inputGroup textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.inputGroup input:focus,
-.inputGroup select:focus,
-.inputGroup textarea:focus {
-    border-bottom-color: white;
-}
-
-
-.submitRow {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 16px;
-}
-
-.submitButton {
-    background-color: white;
-    color: #4a55c2;
-    padding: 12px 40px;
-    border-radius: 24px;
-    font-weight: 600;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.submitButton:hover {
-    background-color: #f0f0f0;
-}
-
-
-/* --- Right Column: Accordion Card --- */
-.accordionCard {
-    flex: 1.2;
-    /* Slightly wider than form */
-    background-color: #FAF9F6;
-    /* Off-white from screenshot */
-    border-radius: 12px;
-    padding: 16px 24px;
-    color: #111;
 }
 
 .item {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #eeeeee;
 }
 
-.item:last-child {
-    border-bottom: none;
+.item:first-child {
+    border-top: 1px solid #eeeeee;
 }
 
 .question {
@@ -174,74 +39,53 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 8px;
-    background: none;
+    padding: 32px 0;
+    background: transparent;
     border: none;
-    text-align: left;
-    font-size: 15px;
-    font-weight: 600;
-    color: #222;
     cursor: pointer;
-    transition: color 0.3s ease;
+    text-align: left;
 }
 
 .questionContent {
     display: flex;
-    align-items: flex-start;
-    gap: 24px;
+    align-items: center;
+    gap: 32px;
 }
 
 .faqNumber {
-    color: #666;
-    font-weight: 600;
-    font-size: 13px;
-    width: 24px;
-    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #999;
 }
 
 .questionText {
-    flex: 1;
-    line-height: 1.4;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
 }
 
 .chevron {
-    color: #666;
-    flex-shrink: 0;
-    margin-left: 16px;
-}
-
-.answerWrapper {
-    overflow: hidden;
+    color: #999;
 }
 
 .answer {
-    padding: 0 8px 24px 56px;
-    color: #555;
+    padding: 0 0 32px 64px;
+    font-size: 16px;
     line-height: 1.6;
-    font-size: 14px;
+    color: #666;
+    max-width: 800px;
 }
 
 @media (max-width: 768px) {
-    .inputRow {
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .submitRow {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .submitButton {
-        width: 100%;
+    .container {
+        padding: 0 24px;
     }
 
     .questionContent {
-        gap: 16px;
+        gap: 20px;
     }
 
     .answer {
-        padding-left: 40px;
+        padding-left: 44px;
     }
 }

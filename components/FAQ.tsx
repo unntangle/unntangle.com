@@ -41,60 +41,8 @@ export default function FAQ() {
                 <h2 className={styles.mainTitle}>Frequently Asked Questions</h2>
 
                 <div className={styles.contentWrapper}>
-                    {/* Left Panel: Contact Form */}
-                    <div className={styles.formCard}>
-                        <h3>Interested in Our Solutions?</h3>
-                        <p className={styles.formDescription}>
-                            Let us know what you're looking for! Fill out the form below and our team will get back to you with tailored offerings.
-                        </p>
-
-                        <form className={styles.contactForm}>
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
-                                    <label>Full Name<span className={styles.required}>*</span></label>
-                                    <input type="text" placeholder="Enter Your Full Name" required />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Email Address<span className={styles.required}>*</span></label>
-                                    <input type="email" placeholder="Enter Your Email Address" required />
-                                </div>
-                            </div>
-
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
-                                    <label>Phone Number<span className={styles.required}>*</span></label>
-                                    <input type="text" placeholder="Enter Your Number" required />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Company/Role</label>
-                                    <input type="text" placeholder="Enter Company/Designation" />
-                                </div>
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label>What are you looking for?<span className={styles.required}>*</span></label>
-                                <select defaultValue="" required>
-                                    <option value="" disabled>Select a Solution</option>
-                                    <option value="digital">Digital Solutions</option>
-                                    <option value="ai">AI Solutions</option>
-                                    <option value="cloud">Cloud Solutions</option>
-                                    <option value="smart">Smart Living Solutions</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label>Project Brief</label>
-                                <textarea rows={1} placeholder="Tell us about your project..."></textarea>
-                            </div>
-
-                            <div className={styles.submitRow}>
-                                <button type="button" className={styles.submitButton}>Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    {/* Right Panel: Accordion */}
-                    <div className={styles.accordionCard}>
+                    {/* Accordion */}
+                    <div className={styles.accordionFull}>
                         {faqs.map((faq, i) => (
                             <div key={i} className={styles.item}>
                                 <button
