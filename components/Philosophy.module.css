@@ -1,5 +1,5 @@
 .philosophy {
-    padding: 120px 0 60px;
+    padding: 80px 0 60px;
     background-color: #fbfbfb;
 }
 
@@ -66,54 +66,8 @@
     line-height: 1.6;
 }
 
-.visionCard {
-    background: var(--bg-dark);
-    color: #ffffff;
-    border-radius: 32px;
-    padding: 80px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.visionCard::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.visionInner {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.visionCard h3 {
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--primary);
-    margin-bottom: 24px;
-}
-
-.visionText {
-    font-size: clamp(24px, 4vw, 36px);
-    font-weight: 600;
-    line-height: 1.3;
-    color: #ffffff;
-    max-width: 100%;
-}
-
 @media (max-width: 768px) {
-    .visionCard {
-        padding: 60px 24px;
+    .container {
+        padding: 0 24px;
     }
 }
