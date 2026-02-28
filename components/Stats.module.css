@@ -1,79 +1,239 @@
 .stats {
-    background-color: var(--bg-light);
+    background-color: #ffffff;
+    color: #111111;
+    padding: 120px 0;
+    overflow: hidden;
+    position: relative;
 }
 
-.header {
+/* Very subtle background texture/glow for light mode */
+.stats::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 195, 255, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    position: relative;
+    z-index: 2;
+}
+
+.topHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 64px;
+    margin-bottom: 80px;
+    gap: 40px;
 }
 
-.headerContent {
-    max-width: 600px;
+.headerInfo {
+    flex: 1;
 }
 
-.grid {
+.sublabel {
+    display: block;
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+}
+
+.mainTitle {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #111111;
+}
+
+.headerDescription {
+    flex: 1;
+    color: #55555A;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+.layoutGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+}
+
+/* Featured Card - Light Mode Glassmorphism */
+.featuredCard {
+    background: #fbfbfb;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 24px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featuredCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+}
+
+.featuredContent {
+    position: relative;
+    z-index: 2;
+}
+
+.featuredIcon {
+    width: 64px;
+    height: 64px;
+    background: #00C3FF;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 20px rgba(0, 195, 255, 0.2);
+}
+
+.featuredCard h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #111111;
+}
+
+.featuredCard p {
+    color: #44444a;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 380px;
+    margin-bottom: 40px;
+}
+
+.ghostLink {
+    background: transparent;
+    border: none;
+    color: #111111;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+.ghostLink:hover {
+    color: #0088CC;
+}
+
+.featuredVisual {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+}
+
+.glowOrb {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 195, 255, 0.08) 0%, transparent 70%);
+}
+
+/* Metrics Grid - Light Mode */
+.metricsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
-.card {
-    padding: 48px;
-    border-radius: 40px;
+.metricCard {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+.metricCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.metricHeader {
     display: flex;
-    flex-direction: column;
-    box-shadow: 0 20px 60px var(--primary-glow);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.dark {
-    background-color: var(--bg-dark);
-    color: white;
+.metricIcon {
+    color: #0088CC;
 }
 
-.lime {
-    background-color: var(--primary);
-    color: var(--bg-dark);
-}
-
-.value {
-    font-size: 84px;
+.metricValue {
+    font-size: 24px;
     font-weight: 700;
-    line-height: 1;
-    margin-bottom: 32px;
+    color: #111111;
+    font-family: inherit;
 }
 
-.label {
-    font-size: 20px;
+.metricLabel {
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 16px;
+    color: #111111;
+    margin-bottom: 12px;
 }
 
-.description {
-    font-size: 15px;
-    opacity: 0.8;
-    max-width: 100%;
-}
-
-.dark .description {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.lime .description {
-    color: rgba(0, 0, 0, 0.7);
+.metricDesc {
+    font-size: 12px;
+    color: #66666e;
+    line-height: 1.5;
 }
 
 @media (max-width: 1024px) {
-    .grid {
+    .layoutGrid {
         grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
     }
 
-    .header {
+    .topHeader {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;
+    }
+
+    .headerDescription {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .metricsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .featuredCard {
+        padding: 32px;
+        min-height: auto;
+    }
+
+    .stats {
+        padding: 80px 0;
     }
 }

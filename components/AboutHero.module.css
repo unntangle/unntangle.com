@@ -1,0 +1,140 @@
+.hero {
+    position: relative;
+    padding: 180px 0 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 100px;
+    align-items: flex-end;
+    margin-bottom: 120px;
+}
+
+.marker {
+    font-family: var(--font-mono, monospace);
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.1em;
+}
+
+.title {
+    font-size: clamp(56px, 10vw, 110px);
+    line-height: 0.95;
+    font-weight: 900;
+    color: #111;
+    letter-spacing: -0.04em;
+    margin: 0;
+}
+
+.outlineText {
+    color: transparent;
+    -webkit-text-stroke: 1px #111;
+}
+
+.subColumn {
+    padding-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 400;
+    max-width: 400px;
+}
+
+/* Waveform Visual Section */
+.visualSection {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.waveformContainer {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.waveform {
+    width: 100%;
+    height: 100px;
+    overflow: visible;
+}
+
+.tangleLine {
+    stroke: rgba(0, 0, 0, 0.05);
+    stroke-width: 1;
+}
+
+.activeLine {
+    stroke: var(--primary);
+    stroke-width: 2;
+}
+
+.wordmark {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    font-family: var(--font-mono, monospace);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+}
+
+/* Anchors */
+.anchors {
+    display: flex;
+    gap: 80px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 40px;
+}
+
+.anchorItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.anchorNum {
+    font-family: var(--font-mono, monospace);
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.anchorLabel {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .title {
+        font-size: clamp(48px, 12vw, 80px);
+    }
+
+    .subtitle {
+        max-width: 100%;
+    }
+
+    .anchors {
+        flex-direction: column;
+        gap: 32px;
+    }
+}

@@ -1,0 +1,64 @@
+.visionSection {
+    padding: 80px 0;
+    background-color: #fbfbfb;
+}
+
+.visionCard {
+    background: #050505;
+    /* Consistent with the brand's dark background */
+    color: #ffffff;
+    border-radius: 48px;
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+}
+
+.visionCard::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.visionInner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tag {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00d1ff;
+    margin-bottom: 32px;
+    display: block;
+}
+
+.visionText {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+    .visionCard {
+        padding: 80px 24px;
+        border-radius: 32px;
+    }
+
+    .visionText {
+        font-size: 24px;
+    }
+}

@@ -51,29 +51,29 @@ export default function FAQ() {
                         <form className={styles.contactForm}>
                             <div className={styles.inputRow}>
                                 <div className={styles.inputGroup}>
-                                    <label>Name</label>
-                                    <input type="text" placeholder="Full Name" />
+                                    <label>Full Name<span className={styles.required}>*</span></label>
+                                    <input type="text" placeholder="Enter Your Full Name" required />
                                 </div>
                                 <div className={styles.inputGroup}>
-                                    <label>Designation</label>
-                                    <input type="text" placeholder="Enter Your Designation" />
+                                    <label>Email Address<span className={styles.required}>*</span></label>
+                                    <input type="email" placeholder="Enter Your Email Address" required />
                                 </div>
                             </div>
 
                             <div className={styles.inputRow}>
                                 <div className={styles.inputGroup}>
-                                    <label>Contact Number</label>
-                                    <input type="text" placeholder="Enter Your Number*" />
+                                    <label>Phone Number<span className={styles.required}>*</span></label>
+                                    <input type="text" placeholder="Enter Your Number" required />
                                 </div>
                                 <div className={styles.inputGroup}>
-                                    <label>Work Email</label>
-                                    <input type="email" placeholder="Enter Your Email Address*" />
+                                    <label>Company/Role</label>
+                                    <input type="text" placeholder="Enter Company/Designation" />
                                 </div>
                             </div>
 
                             <div className={styles.inputGroup}>
-                                <label>Interested Solution</label>
-                                <select defaultValue="">
+                                <label>What are you looking for?<span className={styles.required}>*</span></label>
+                                <select defaultValue="" required>
                                     <option value="" disabled>Select a Solution</option>
                                     <option value="digital">Digital Solutions</option>
                                     <option value="ai">AI Solutions</option>
@@ -83,10 +83,9 @@ export default function FAQ() {
                             </div>
 
                             <div className={styles.inputGroup}>
-                                <label>Describe Your Project</label>
-                                <textarea rows={1}></textarea>
+                                <label>Project Brief</label>
+                                <textarea rows={1} placeholder="Tell us about your project..."></textarea>
                             </div>
-
 
                             <div className={styles.submitRow}>
                                 <button type="button" className={styles.submitButton}>Submit</button>

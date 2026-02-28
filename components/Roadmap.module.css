@@ -1,0 +1,164 @@
+.roadmap {
+    padding: 60px 0 120px;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: clamp(32px, 5vw, 48px);
+    margin-bottom: 24px;
+    font-weight: 800;
+}
+
+.description {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.schematicWrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.centralAxis {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(0, 209, 255, 0.1);
+    border-right: 1px solid rgba(0, 209, 255, 0.1);
+}
+
+.nodesList {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.nodeRow {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.leftRow {
+    justify-content: flex-start;
+}
+
+.rightRow {
+    justify-content: flex-end;
+}
+
+.schematicNode {
+    width: 45%;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.nodeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.yearLabel {
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(0, 209, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+.statusIndicator {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.nodeBody h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #111;
+}
+
+.nodeBody p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.junctionLine {
+    position: absolute;
+    top: 50%;
+    width: 12%;
+    height: 1px;
+    background: rgba(0, 209, 255, 0.3);
+    z-index: -1;
+}
+
+.leftRow .junctionLine {
+    right: -12%;
+}
+
+.rightRow .junctionLine {
+    left: -12%;
+}
+
+.axisDot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .centralAxis {
+        left: 20px;
+    }
+
+    .nodeRow {
+        justify-content: flex-start !important;
+        padding-left: 50px;
+    }
+
+    .schematicNode {
+        width: 100%;
+    }
+
+    .junctionLine {
+        left: -30px !important;
+        width: 30px;
+    }
+
+    .axisDot {
+        left: 20px;
+    }
+}
