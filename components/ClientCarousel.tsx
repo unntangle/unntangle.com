@@ -32,9 +32,13 @@ export default function ClientCarousel() {
     return (
         <section className={styles.carouselSection}>
             <div className={`container ${styles.container}`}>
-                <h2 className={styles.title}>
-                    Our Clients
-                </h2>
+                <div className={styles.titleContainer}>
+                    <div className={styles.line}></div>
+                    <span className={styles.titleText}>
+                        CLIENTS TRUST US
+                    </span>
+                    <div className={styles.line}></div>
+                </div>
 
                 <div className={styles.carouselContainer}>
                     {/* First Row - Scrolls Left */}

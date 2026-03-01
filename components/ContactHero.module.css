@@ -1,10 +1,10 @@
 .heroSection {
-    padding: 120px 0 60px;
+    padding: 120px 0 80px;
     background-color: #050505;
     position: relative;
     overflow: hidden;
     color: #ffffff;
-    min-height: 700px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
 }

@@ -12,13 +12,38 @@
     padding: 0 24px;
 }
 
-.title {
-    color: white;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
     margin-bottom: 64px;
-    line-height: 1.2;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.line {
+    height: 1px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.titleContainer .line:first-child {
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.titleContainer .line:last-child {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.titleText {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.9;
 }
 
 .carouselContainer {

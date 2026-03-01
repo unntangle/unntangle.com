@@ -14,6 +14,13 @@ export default function BrandBar() {
     return (
         <div className={styles.brandBar}>
             <div className={`container ${styles.container}`}>
+                <div className={styles.titleContainer}>
+                    <div className={styles.line}></div>
+                    <span className={styles.titleText}>
+                        CLIENTS TRUST US
+                    </span>
+                    <div className={styles.line}></div>
+                </div>
                 <div className={styles.marquee}>
                     <div className={styles.track}>
                         {[...logos, ...logos].map((logo, i) => (
