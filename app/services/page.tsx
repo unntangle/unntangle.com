@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import ServicesHero from "@/components/ServicesHero";
 import FeaturedServices from "@/components/FeaturedServices";
+import MarketingCTA from "@/components/MarketingCTA";
 import Footer from "@/components/Footer";
 
 const categories = [
@@ -29,6 +30,7 @@ export default function ServicesPage() {
                 onCategoryChange={setActiveCategoryId}
                 categories={categories}
             />
+            <MarketingCTA />
             <Footer />
         </main>
     );
