@@ -272,6 +272,14 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
 
     return (
         <div className={styles.shopContainer}>
+            {activeBrand === 'uryze' && (
+                <div className={styles.brandHero}>
+                    <div className={styles.heroContent}>
+                        <h1>uRYZE Elevators</h1>
+                        <p>Showing {filteredProducts.length} results</p>
+                    </div>
+                </div>
+            )}
             <div className={styles.shopContent}>
                 {activeBrand === 'usynq' && (
                     <div className={styles.usynqCategoryIconBar}>

@@ -13,6 +13,30 @@
     padding: 40px 60px 80px;
 }
 
+.brandHero {
+    background-color: #0a192f;
+    padding: 60px 60px;
+    width: 100%;
+    color: white;
+}
+
+.heroContent {
+    width: 100%;
+}
+
+.brandHero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: white !important;
+}
+
+.brandHero p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
 .filterBar {
     position: sticky;
     z-index: 100;
