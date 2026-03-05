@@ -50,18 +50,18 @@ const serviceTabs = [
         tag: 'Cloud'
     },
     {
-        id: 'smart-living',
-        label: 'Smart Living',
-        title: 'IoT & Connected Landscapes',
-        description: 'Integrating Digital and AI into the physical landscape for total technical harmony and seamless orchestration of spaces.',
+        id: 'property',
+        label: 'Property Solutions',
+        title: 'uNEST: Real Estate & Sustainable Growth',
+        description: 'Leading the future of real estate with sustainable development and intelligent infrastructure management.',
         features: [
-            'Seamless IoT Integration',
-            'Smart Space Automation',
-            'Physical-Digital Convergence',
-            'Unified Landscape Control'
+            'uNEST Promoters Development',
+            'Sustainable Construction',
+            'Property Asset Management',
+            'Smart Urban Infrastructure'
         ],
         image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800',
-        tag: 'Ecosystem'
+        tag: 'Development'
     }
 ];
 

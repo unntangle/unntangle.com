@@ -69,21 +69,38 @@ const serviceCategories = [
     ]
   },
   {
-    id: "living",
-    label: "Smart Living Solutions",
-    title: "Automation & Energy",
+    id: "property",
+    label: "Property Solutions",
+    title: "uNEST Promoters",
     services: [
-      { name: "Smart Home Automation", description: "Integrated automation for lighting, climate, and security.", path: "/services/smart-home", icon: Home },
-      { name: "Security Systems", description: "Advanced surveillance and asset protection technologies.", path: "/services/security", icon: Lock },
-      { name: "Solar Energy Panels", description: "Sustainable energy panels for residential efficiency.", path: "/services/solar", icon: Sun },
-      { name: "Residential & Commercial Elevators", description: "Premium mobility solutions for home and commerce.", path: "/services/elevators", icon: ArrowUpCircle },
-      { name: "Door Systems", description: "Automated entry and access control for modern living.", path: "/services/doors", icon: DoorOpen },
+      { name: "Property Management", description: "Comprehensive management services for residential and commercial assets.", path: "/services/property-mgmt", icon: ShieldCheck },
+      { name: "Real Estate Advisory", description: "Expert guidance for property investment and development strategies.", path: "/services/advisory", icon: FileText },
+      { name: "Sustainable Development", description: "Eco-friendly construction and urban planning solutions.", path: "/services/sustainable", icon: Sun },
+      { name: "Smart Infrastructure", description: "Integrating technology into physical environments for efficiency.", path: "/services/infrastructure", icon: Layers },
     ]
+  }
+];
+
+const productCategories = [
+  {
+    id: "uryze",
+    name: "uRYZE Elevators",
+    description: "Premium elevator solutions for modern architecture.",
+    image: "/images/uryze_preview.png", // Generated image path
+    path: "/shop/uryze"
+  },
+  {
+    id: "usynq",
+    name: "uSYNQ Smart Home Devices",
+    description: "Seamless automation for a smarter, more efficient lifestyle.",
+    image: "/images/usynq_preview.png", // Generated image path
+    path: "/shop/usynq"
   }
 ];
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showProductsDropdown, setShowProductsDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState("digital");
   const [hidden, setHidden] = useState(false);
 
@@ -109,39 +126,102 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={styles.navbarWrapper}
-      onMouseLeave={() => setShowDropdown(false)}
+      onMouseLeave={() => {
+        setShowDropdown(false);
+        setShowProductsDropdown(false);
+      }}
     >
       <nav className={styles.navbar}>
-        <Link href="/" className={styles.logoLink}>
-          <Image
-            src="/images/unntangle_logo.webp"
-            alt="Unntangle Logo"
-            width={120}
-            height={32}
-            className={styles.logoImage}
-            priority
-          />
-        </Link>
+        <div className={styles.navbarInner}>
+          <Link href="/" className={styles.logoLink}>
+            <Image
+              src="/images/unntangle_logo.webp"
+              alt="Unntangle Logo"
+              width={120}
+              height={32}
+              className={styles.logoImage}
+              priority
+            />
+          </Link>
 
-        <div className={styles.links}>
-          <Link href="/about">About us</Link>
+          <div className={styles.links}>
+            <Link href="/about">About us</Link>
 
-          <div
-            className={styles.dropdownTrigger}
-            onMouseEnter={() => setShowDropdown(true)}
-          >
-            <Link href="/services" className={styles.linkWithIcon}>
-              Services <ChevronDown size={14} />
-            </Link>
+            <div
+              className={styles.dropdownTrigger}
+              onMouseEnter={() => {
+                setShowProductsDropdown(true);
+                setShowDropdown(false);
+              }}
+            >
+              <Link href="/products" className={styles.linkWithIcon}>
+                Products <ChevronDown size={14} />
+              </Link>
+            </div>
+
+            <div
+              className={styles.dropdownTrigger}
+              onMouseEnter={() => {
+                setShowDropdown(true);
+                setShowProductsDropdown(false);
+              }}
+            >
+              <Link href="/services" className={styles.linkWithIcon}>
+                Services <ChevronDown size={14} />
+              </Link>
+            </div>
+
+            <Link href="/case-studies">Case studies</Link>
+            <Link href="/blog">Blog</Link>
           </div>
 
-          <Link href="/case-studies">Case studies</Link>
-          <Link href="/blog">Blog</Link>
+          <Link href="/contact" className={styles.ctaBadge}>
+            Get in touch
+          </Link>
         </div>
 
-        <Link href="/contact" className={styles.ctaBadge}>
-          Get in touch
-        </Link>
+        <AnimatePresence>
+          {showProductsDropdown && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className={styles.megaMenu}
+              onMouseEnter={() => setShowProductsDropdown(true)}
+            >
+              <div className={`${styles.megaMenuContainer} ${styles.productsMenuContainer}`}>
+                <div className={styles.productsGrid}>
+                  {productCategories.map((product) => (
+                    <Link key={product.id} href={product.path} className={styles.productCard}>
+                      <div className={styles.productImageWrapper}>
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className={styles.productImage}
+                        />
+                      </div>
+                      <div className={styles.productInfo}>
+                        <span className={styles.productName}>{product.name}</span>
+                        <span className={styles.productDesc}>{product.description}</span>
+                        <span className={styles.learnMore}>Learn More <ArrowRight size={14} /></span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <div className={styles.productsFeatured}>
+                  <div className={styles.featuredTag}>Featured Innovation</div>
+                  <h3>The u-Series</h3>
+                  <p>Elevating daily experiences through specialized elevator solutions and seamless home intelligence.</p>
+                  <Link href="/brand" className={styles.brandLink}>
+                    Explore the Brand <ExternalLink size={14} />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {showDropdown && (

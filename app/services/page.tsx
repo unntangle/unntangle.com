@@ -11,7 +11,7 @@ const categories = [
     { id: 'digital', name: 'Digital Solutions' },
     { id: 'ai', name: 'AI Solutions' },
     { id: 'cloud', name: 'Cloud Solutions' },
-    { id: 'smart', name: 'Smart Living Solutions' },
+    { id: 'property', name: 'Property Solutions' },
 ];
 
 export default function ServicesPage() {

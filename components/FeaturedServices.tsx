@@ -42,10 +42,10 @@ const serviceStories: ServiceStory[] = [
     },
     {
         id: '4',
-        categoryId: 'smart',
-        tag: 'Smart Living Solutions',
-        title: 'Seamless Physical-Digital Connectivity',
-        description: 'Crafting intelligent environments that harmonize IoT and AI for an elevated, connected lifestyle.',
+        categoryId: 'property',
+        tag: 'Property Solutions',
+        title: 'uNEST: Sustainable Living Environments',
+        description: 'Crafting intelligent real estate that harmonizes sustainable development with modern infrastructure.',
         image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1600',
     }
 ];
@@ -143,7 +143,7 @@ export default function FeaturedServices({ activeCategoryId, onCategoryChange, c
             } else if (latest < 0.83) {
                 if (activeCategoryId !== 'cloud') onCategoryChange('cloud');
             } else {
-                if (activeCategoryId !== 'smart') onCategoryChange('smart');
+                if (activeCategoryId !== 'property') onCategoryChange('property');
             }
         });
         return () => unsubscribe();

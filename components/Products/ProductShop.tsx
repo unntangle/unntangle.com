@@ -1,0 +1,598 @@
+'use client';
+
+import { useState, useMemo } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { ArrowRight, Filter, ChevronRight, X } from 'lucide-react';
+import styles from './products.module.css';
+import QuoteModal from './QuoteModal';
+import ImageGallery from './ImageGallery';
+import { Maximize2 } from 'lucide-react';
+
+interface Product {
+    id: string;
+    brand: 'uryze' | 'usynq';
+    category: string;
+    subcategory: string;
+    name: string;
+    description: string;
+    image: string;
+    images: string[];
+    specs: {
+        capacity: string;
+        maxLoad: string;
+        maxRise: string;
+        maxSpeed: string;
+        driveType: string;
+        doorStyle: string;
+        material: string;
+    };
+}
+
+const products: Product[] = [
+    {
+        id: 'mr-traction',
+        brand: 'uryze',
+        category: 'Commercial',
+        subcategory: 'MR Traction',
+        name: 'MR Traction',
+        description: 'Traditional machine room traction systems for high-performance vertical transport in mid to high-rise buildings.',
+        image: '/images/uryze_preview.png',
+        images: ['/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png'],
+        specs: {
+            capacity: '8-21 Persons',
+            maxLoad: '1600 kg',
+            maxRise: '120 m',
+            maxSpeed: '2.5 m/s',
+            driveType: 'Geared/Gearless Traction',
+            doorStyle: 'Center/Side Opening',
+            material: 'Hairline Stainless Steel'
+        }
+    },
+    {
+        id: 'mrl-traction',
+        brand: 'uryze',
+        category: 'Commercial',
+        subcategory: 'Machine-Room-Less (MRL) Traction',
+        name: 'Machine-Room-Less (MRL) Traction',
+        description: 'Space-saving MRL technology for modern architecture, maximizing leaseable space and energy efficiency.',
+        image: '/images/uryze_preview.png',
+        images: ['/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png'],
+        specs: {
+            capacity: '6-15 Persons',
+            maxLoad: '1150 kg',
+            maxRise: '80 m',
+            maxSpeed: '1.75 m/s',
+            driveType: 'Permanent Magnet Synchronous',
+            doorStyle: 'Automatic Telescopic',
+            material: 'Toughened Glass / SS'
+        }
+    },
+    {
+        id: 'hydraulic-lifts',
+        brand: 'uryze',
+        category: 'Residential',
+        subcategory: 'Hydraulic Lifts',
+        name: 'Hydraulic Lifts',
+        description: 'Smooth and reliable hydraulic systems designed for low to medium-rise residential and commercial buildings.',
+        image: '/images/uryze_preview.png',
+        images: ['/images/uryze_preview.png', '/images/uryze_preview.png'],
+        specs: {
+            capacity: '4-10 Persons',
+            maxLoad: '800 kg',
+            maxRise: '20 m',
+            maxSpeed: '0.63 m/s',
+            driveType: 'Direct/Indirect Hydraulic',
+            doorStyle: 'Manual/Automatic',
+            material: 'Painted Steel / SS'
+        }
+    },
+    {
+        id: 'dumbwaiter-lift',
+        brand: 'uryze',
+        category: 'Commercial',
+        subcategory: 'Dumbwaiter Lift',
+        name: 'Dumbwaiter Lift',
+        description: 'Compact service lifts for hotels, restaurants, and hospitals to move smaller loads efficiently.',
+        image: '/images/uryze_preview.png',
+        images: ['/images/uryze_preview.png', '/images/uryze_preview.png'],
+        specs: {
+            capacity: 'N/A',
+            maxLoad: '250 kg',
+            maxRise: '30 m',
+            maxSpeed: '0.4 m/s',
+            driveType: 'Drum Type / Traction',
+            doorStyle: 'Vertical Bi-parting',
+            material: 'SUS304 Stainless Steel'
+        }
+    },
+    // uSYNQ Smart Devices
+    {
+        id: 'titan-switch',
+        brand: 'usynq',
+        category: 'Titan Switches',
+        subcategory: 'Switches',
+        name: 'Titan Pro 4-Gang Switch',
+        description: 'Premium glass finish switches with haptic feedback and instant response.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '4 Gang', maxLoad: '10A', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'Zigbee 3.0', doorStyle: 'N/A', material: 'Tempered Glass' }
+    },
+    {
+        id: 'touch-switch',
+        brand: 'usynq',
+        category: 'Touch Switches',
+        subcategory: 'Switches',
+        name: 'SR28. Luxeray 8 Switch - 4M (8+0+0+0U)',
+        description: 'Elite touch-sensitive switches for modern homes.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '8 Way', maxLoad: '16A', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'WiFi/Zigbee', doorStyle: 'N/A', material: 'Crystal Glass' }
+    },
+    {
+        id: 'controller-1',
+        brand: 'usynq',
+        category: 'Controllers',
+        subcategory: 'Modules',
+        name: 'Retrofit Smart Module 2CH',
+        description: 'Convert your existing switches into smart ones without rewiring.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '2 Channel', maxLoad: '5A per channel', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'Zigbee', doorStyle: 'N/A', material: 'Polycarbonate' }
+    },
+    {
+        id: 'light-1',
+        brand: 'usynq',
+        category: 'Lights',
+        subcategory: 'Downlights',
+        name: 'Smart RGB Downlight',
+        description: 'Dimmable RGB downlight with millions of colors and smart control.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '10W', maxLoad: 'N/A', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'WiFi', doorStyle: 'N/A', material: 'Aluminium' }
+    },
+    {
+        id: 'curtain-1',
+        brand: 'usynq',
+        category: 'Curtains',
+        subcategory: 'Motors',
+        name: 'Smart Curtain Motor Pro',
+        description: 'Ultra-quiet heavy-duty curtain motor with app and voice control.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '50kg', maxLoad: '2A', maxRise: 'N/A', maxSpeed: '20cm/s', driveType: 'Zigbee', doorStyle: 'N/A', material: 'Metal' }
+    },
+    {
+        id: 'door-lock-1',
+        brand: 'usynq',
+        category: 'Door Locks',
+        subcategory: 'Smart Locks',
+        name: 'Smart Biometric Door Lock',
+        description: 'Advanced fingerprint, RFID and PIN access for ultimate security.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: '100 Users', maxLoad: 'N/A', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'Zigbee', doorStyle: 'N/A', material: 'Zinc Alloy' }
+    },
+    {
+        id: 'cabinet-lock-1',
+        brand: 'usynq',
+        category: 'Cabinet Locks',
+        subcategory: 'Smart Locks',
+        name: 'Smart Stealth Cabinet Lock',
+        description: 'Invisible smart lock for cabinets and drawers.',
+        image: '/images/usynq_preview.png',
+        images: ['/images/usynq_preview.png'],
+        specs: { capacity: 'N/A', maxLoad: 'N/A', maxRise: 'N/A', maxSpeed: 'N/A', driveType: 'Bluetooth', doorStyle: 'N/A', material: 'ABS' }
+    }
+];
+
+const usynqCategories = [
+    { id: 'Titan Switches', name: 'Titan Switches', icon: '/images/usynq_preview.png' },
+    { id: 'Touch Switches', name: 'Touch Switches', icon: '/images/usynq_preview.png' },
+    { id: 'Controllers', name: 'Controllers', icon: '/images/usynq_preview.png' },
+    { id: 'Lights', name: 'Lights', icon: '/images/usynq_preview.png' },
+    { id: 'Curtains', name: 'Curtains', icon: '/images/usynq_preview.png' },
+    { id: 'Door Locks', name: 'Door Locks', icon: '/images/usynq_preview.png' },
+    { id: 'Cabinet Locks', name: 'Cabinet Locks', icon: '/images/usynq_preview.png' }
+];
+
+export default function ProductShop({ initialBrand, forcedBrand }: { initialBrand?: string, forcedBrand?: string }) {
+    const [activeBrand, setActiveBrand] = useState<string>(forcedBrand || initialBrand || 'uryze');
+    const [activeCategory, setActiveCategory] = useState<string>('All');
+    const [activeSubcategory, setActiveSubcategory] = useState<string>('All');
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+    const [selectedProductForQuote, setSelectedProductForQuote] = useState('');
+    const [selectedProductImage, setSelectedProductImage] = useState('');
+    const [selectedProductSpecs, setSelectedProductSpecs] = useState<Product['specs'] | null>(null);
+    const [modalMode, setModalMode] = useState<'quote' | 'callback'>('quote');
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [galleryImages, setGalleryImages] = useState<string[]>([]);
+    const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() || 0;
+        if (latest > previous && latest > 150) {
+            setIsNavbarHidden(true);
+        } else {
+            setIsNavbarHidden(false);
+        }
+    });
+
+    const filteredProducts = useMemo(() => {
+        return products.filter(p => {
+            const brandMatch = p.brand === activeBrand;
+            const categoryMatch = activeCategory === 'All' || p.category === activeCategory;
+            const subMatch = activeSubcategory === 'All' || p.subcategory === activeSubcategory;
+            return brandMatch && categoryMatch && subMatch;
+        });
+    }, [activeBrand, activeCategory, activeSubcategory]);
+
+    const categories = activeBrand === 'uryze'
+        ? ['All', 'Residential', 'Commercial']
+        : ['All', ...usynqCategories.map(c => c.id)];
+
+    const subcategories = useMemo(() => {
+        if (activeBrand === 'uryze' && activeCategory === 'All') return [];
+        return Array.from(new Set(
+            products
+                .filter(p => p.brand === activeBrand && (activeCategory === 'All' || p.category === activeCategory))
+                .map(p => p.subcategory)
+        ));
+    }, [activeBrand, activeCategory]);
+
+    const groupedProducts = useMemo(() => {
+        const groups: { [key: string]: Product[] } = {};
+        filteredProducts.forEach(p => {
+            if (!groups[p.subcategory]) groups[p.subcategory] = [];
+            groups[p.subcategory].push(p);
+        });
+        return groups;
+    }, [filteredProducts]);
+
+    const groupOrder = activeBrand === 'uryze'
+        ? ['MR Traction', 'Machine-Room-Less (MRL) Traction', 'Hydraulic Lifts', 'Dumbwaiter Lift']
+        : Array.from(new Set(products.filter(p => p.brand === activeBrand).map(p => p.subcategory)));
+
+    const openQuoteModal = (product: Product, mode: 'quote' | 'callback' = 'quote') => {
+        setSelectedProductForQuote(product.name);
+        setSelectedProductImage(product.image);
+        setSelectedProductSpecs(product.specs);
+        setModalMode(mode);
+        setIsQuoteModalOpen(true);
+    };
+
+    const openGallery = (product: Product) => {
+        setGalleryImages(product.images);
+        setSelectedProductForQuote(product.name);
+        setSelectedProductSpecs(product.specs); // Reuse existing specs state
+        setIsGalleryOpen(true);
+    };
+
+    return (
+        <div className={styles.shopContainer}>
+            <div className={styles.shopContent}>
+                {activeBrand === 'usynq' && (
+                    <div className={styles.usynqCategoryIconBar}>
+                        <div className={styles.iconBarTitle}>Categories</div>
+                        <div className={styles.iconContainer}>
+                            {usynqCategories.map(cat => (
+                                <button
+                                    key={cat.id}
+                                    className={`${styles.iconItem} ${activeCategory === cat.id ? styles.active : ''}`}
+                                    onClick={() => setActiveCategory(cat.id)}
+                                >
+                                    <div className={styles.iconImageWrapper}>
+                                        <Image src={cat.icon} alt={cat.name} fill />
+                                    </div>
+                                    <span>{cat.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                <div
+                    className={activeBrand === 'usynq' ? styles.usynqFilterSortBar : styles.filterBar}
+                    style={{ top: isNavbarHidden ? '0px' : '80px' }}
+                >
+                    {activeBrand === 'uryze' ? (
+                        <>
+                            {!forcedBrand && (
+                                <div className={styles.filterGroup}>
+                                    <span className={styles.filterLabel}>Brand</span>
+                                    <div className={styles.filterOptions}>
+                                        <button
+                                            className={`${styles.filterBtn} ${activeBrand === 'uryze' ? styles.active : ''}`}
+                                            onClick={() => {
+                                                setActiveBrand('uryze');
+                                                setActiveCategory('All');
+                                                setActiveSubcategory('All');
+                                            }}
+                                        >
+                                            uRYZE
+                                        </button>
+                                        <button
+                                            className={`${styles.filterBtn} ${activeBrand === ('usynq' as string) ? styles.active : ''}`}
+                                            onClick={() => {
+                                                setActiveBrand('usynq');
+                                                setActiveCategory('All');
+                                                setActiveSubcategory('All');
+                                            }}
+                                        >
+                                            uSYNQ
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className={styles.filterGroup}>
+                                <span className={styles.filterLabel}>Category</span>
+                                <div className={styles.filterOptions}>
+                                    {categories.map(cat => (
+                                        <button
+                                            key={cat}
+                                            className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ''}`}
+                                            onClick={() => {
+                                                setActiveCategory(cat);
+                                                setActiveSubcategory('All');
+                                            }}
+                                        >
+                                            {cat}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {activeCategory !== 'All' && subcategories.length > 0 && (
+                                <div className={styles.filterGroup}>
+                                    <span className={styles.filterLabel}>Type</span>
+                                    <div className={styles.filterOptions}>
+                                        <button
+                                            className={`${styles.filterBtn} ${activeSubcategory === 'All' ? styles.active : ''}`}
+                                            onClick={() => setActiveSubcategory('All')}
+                                        >
+                                            All
+                                        </button>
+                                        {subcategories.map(sub => (
+                                            <button
+                                                key={sub}
+                                                className={`${styles.filterBtn} ${activeSubcategory === sub ? styles.active : ''}`}
+                                                onClick={() => setActiveSubcategory(sub)}
+                                            >
+                                                {sub}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <div className={styles.usynqSecondaryFilterBar}>
+                            <div className={styles.leftFilterActions}>
+                                <button className={styles.showFiltersBtn}>
+                                    <Filter size={16} />
+                                    <span>Show Filters</span>
+                                </button>
+                                <span className={styles.itemCount}>
+                                    {activeCategory === 'All' ? 'All Products' : activeCategory} - {filteredProducts.length} items
+                                </span>
+                            </div>
+                            <div className={styles.rightFilterActions}>
+                                <div className={styles.sortDropdown}>
+                                    <span>Sort By :</span>
+                                    <select>
+                                        <option>Featured</option>
+                                        <option>Price: Low to High</option>
+                                        <option>Price: High to Low</option>
+                                    </select>
+                                </div>
+                                <div className={styles.viewToggles}>
+                                    <button
+                                        className={`${styles.viewToggleBtn} ${viewMode === 'grid' ? styles.active : ''}`}
+                                        title="Grid View"
+                                        onClick={() => setViewMode('grid')}
+                                    >
+                                        <div className={styles.gridIconGrid} />
+                                    </button>
+                                    <button
+                                        className={`${styles.viewToggleBtn} ${viewMode === 'list' ? styles.active : ''}`}
+                                        title="List View"
+                                        onClick={() => setViewMode('list')}
+                                    >
+                                        <div className={styles.listIconGrid} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Main List */}
+                <main className={styles.productMain}>
+                    {activeBrand === 'usynq' && viewMode === 'list' && (
+                        <div className={styles.usynqTableHeader}>
+                            <div className={styles.colImage}>Image</div>
+                            <div className={styles.colProduct}>Product</div>
+                            <div className={styles.colPrice}>Price</div>
+                            <div className={styles.colQuantity}>Quantity</div>
+                        </div>
+                    )}
+                    <div className={styles.productListWrapper}>
+                        {groupOrder.map(subTitle => {
+                            const group = groupedProducts[subTitle];
+                            if (!group || group.length === 0) return null;
+
+                            const containerClass = activeBrand === 'uryze'
+                                ? styles.listContainer
+                                : viewMode === 'grid'
+                                    ? styles.usynqGridWrapper
+                                    : styles.usynqRowContainer;
+
+                            return (
+                                <section key={subTitle} className={styles.productGroup}>
+                                    <div className={containerClass}>
+                                        {group.map(product => (
+                                            activeBrand === 'uryze' ? (
+                                                <motion.div
+                                                    key={product.id}
+                                                    layout
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    className={styles.horizontalCard}
+                                                >
+                                                    <div className={styles.imageCol}>
+                                                        <div className={styles.imageWrapperFixed}>
+                                                            <Image
+                                                                src={product.image}
+                                                                alt={product.name}
+                                                                fill
+                                                                className={styles.productImage}
+                                                            />
+                                                            <button
+                                                                className={styles.viewGalleryBtn}
+                                                                onClick={() => openGallery(product)}
+                                                                title="View Images"
+                                                            >
+                                                                <Maximize2 size={20} />
+                                                                <span>View Gallery</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.contentCol}>
+                                                        <div className={styles.cardInfo}>
+                                                            <div className={styles.cardTop}>
+                                                                <h3>{product.name}</h3>
+                                                            </div>
+                                                            <p className={styles.description}>{product.description}</p>
+
+                                                            <div className={styles.specsGrid}>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Capacity</span>
+                                                                    <span className={styles.specValue}>{product.specs.capacity}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Max Load</span>
+                                                                    <span className={styles.specValue}>{product.specs.maxLoad}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Max Rise</span>
+                                                                    <span className={styles.specValue}>{product.specs.maxRise}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Max Speed</span>
+                                                                    <span className={styles.specValue}>{product.specs.maxSpeed}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Drive Type</span>
+                                                                    <span className={styles.specValue}>{product.specs.driveType}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Door Style</span>
+                                                                    <span className={styles.specValue}>{product.specs.doorStyle}</span>
+                                                                </div>
+                                                                <div className={styles.specItem}>
+                                                                    <span className={styles.specLabel}>Material</span>
+                                                                    <span className={styles.specValue}>{product.specs.material}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className={styles.cardBottom}>
+                                                                <div className={styles.cardActions}>
+                                                                    <button
+                                                                        className={styles.callbackBtn}
+                                                                        onClick={() => openQuoteModal(product, 'callback')}
+                                                                    >
+                                                                        Request Call Back
+                                                                    </button>
+                                                                    <button
+                                                                        className={styles.viewSpecs}
+                                                                        onClick={() => openQuoteModal(product, 'quote')}
+                                                                    >
+                                                                        Get Quote
+                                                                        <ArrowRight size={16} />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            ) : viewMode === 'list' ? (
+                                                <motion.div
+                                                    key={product.id}
+                                                    layout
+                                                    className={styles.usynqRow}
+                                                >
+                                                    <div className={styles.usynqColImage}>
+                                                        <div className={styles.usynqImageWrapper}>
+                                                            <Image src={product.image} alt={product.name} fill />
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.usynqColProduct}>
+                                                        <h3 className={styles.usynqProductName}>{product.name}</h3>
+                                                    </div>
+                                                    <div className={styles.usynqColPrice}>
+                                                        <span className={styles.priceLabel}>Retail Price:</span>
+                                                        <span className={styles.priceValue}>₹ 3,379.00</span>
+                                                    </div>
+                                                    <div className={styles.usynqColQuantity}>
+                                                        <div className={styles.quantityControls}>
+                                                            <button className={styles.qtyBtn}>-</button>
+                                                            <input type="text" value="0" readOnly />
+                                                            <button className={styles.qtyBtn}>+</button>
+                                                        </div>
+                                                        <button className={styles.addToCartBtn}>
+                                                            <ArrowRight size={18} />
+                                                        </button>
+                                                    </div>
+                                                </motion.div>
+                                            ) : (
+                                                <motion.div
+                                                    key={product.id}
+                                                    layout
+                                                    className={styles.usynqGridCard}
+                                                >
+                                                    <div className={styles.gridImageContainer}>
+                                                        <Image src={product.image} alt={product.name} fill />
+                                                    </div>
+                                                    <div className={styles.gridContent}>
+                                                        <h3 className={styles.gridProductName}>{product.name}</h3>
+                                                        <div className={styles.gridPriceContainer}>
+                                                            <span className={styles.gridPriceLabel}>Retail Price:</span>
+                                                            <span className={styles.gridPriceValue}>₹ 3,379.00</span>
+                                                        </div>
+                                                        <button className={styles.gridAddToCartBtn}>
+                                                            Add to Cart <ArrowRight size={16} />
+                                                        </button>
+                                                    </div>
+                                                </motion.div>
+                                            )
+                                        ))}
+                                    </div>
+                                </section>
+                            );
+                        })}
+                    </div>
+                </main>
+            </div >
+
+            <QuoteModal
+                isOpen={isQuoteModalOpen}
+                onClose={() => setIsQuoteModalOpen(false)}
+                productName={selectedProductForQuote}
+                productImage={selectedProductImage}
+                specs={selectedProductSpecs}
+                mode={modalMode}
+            />
+
+            <ImageGallery
+                isOpen={isGalleryOpen}
+                onClose={() => setIsGalleryOpen(false)}
+                images={galleryImages}
+                productName={selectedProductForQuote}
+                specs={selectedProductSpecs}
+            />
+        </div >
+    );
+}

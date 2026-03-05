@@ -1,0 +1,353 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: max-width 0.3s ease;
+}
+
+.modal.compact {
+    max-width: 480px;
+}
+
+.modalContent {
+    display: flex;
+    min-height: 400px;
+}
+
+.modalContent.compact {
+    flex-direction: column;
+    min-height: auto;
+}
+
+.closeButton {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748b;
+    z-index: 100;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+    transform: rotate(90deg);
+}
+
+.formSection {
+    flex: 1.2;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.compact .formSection {
+    padding: 24px 32px;
+}
+
+.header {
+    margin-bottom: 16px;
+}
+
+.compact .header {
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.compact .header h2 {
+    font-size: 24px;
+}
+
+.specsHeader {
+    margin-bottom: 12px;
+    padding-top: 0;
+}
+
+.specsHeader label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.specsHeader h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.selectedProduct {
+    margin-bottom: 32px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.selectedProduct label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.selectedProduct h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.miniSpecs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.miniSpecItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.miniSpecItem span {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+}
+
+.miniSpecItem strong {
+    font-size: 14px;
+    color: #1e293b;
+}
+
+.imageSection {
+    flex: 1;
+    position: relative;
+    background: #f1f5f9;
+}
+
+.fullImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imageOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+}
+
+.imageOverlay h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.imageOverlay span {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.technicalFooter {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.techLabel {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 4px;
+}
+
+.technicalFooter p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputGroup label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.prefix {
+    position: absolute;
+    left: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #e2e8f0;
+    padding-right: 12px;
+    height: 24px;
+}
+
+.inputWrapper input {
+    width: 100%;
+    padding: 10px 16px 10px 48px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #1e293b;
+    transition: all 0.2s ease;
+}
+
+.inputWrapper .phoneInput {
+    padding-left: 64px;
+}
+
+.inputWrapper input:focus {
+    border-color: #00f3ff;
+    background: white;
+    outline: none;
+}
+
+.submitButton {
+    margin-top: 4px;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-dark);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submitButton:hover {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.success {
+    text-align: center;
+    padding: 12px 0;
+}
+
+.successIcon {
+    width: 60px;
+    height: 60px;
+    background: #f0fdf4;
+    color: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.success h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+
+.success p {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.6;
+}

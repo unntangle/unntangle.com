@@ -29,10 +29,10 @@ const expertiseGroups = [
         image: '/images/service_cloud_v3.jpg',
     },
     {
-        id: 'smart',
-        title: 'Smart Living Solutions',
-        description: 'Integrated smart systems and advanced security solutions that give you complete control and peace of mind.',
-        services: ['Smart Home Automation', 'Security Systems', 'Solar Energy Panels', 'Residential & Commercial Elevators', 'Door Systems'],
+        id: 'property',
+        title: 'Property Solutions',
+        description: 'Sustainable real estate development and intelligent property management by uNEST Promoters.',
+        services: ['uNEST Promoters', 'Property Management', 'Real Estate Advisory', 'Sustainable Development', 'Smart Infrastructure'],
         image: '/images/service_smart.jpg',
     }
 ];
