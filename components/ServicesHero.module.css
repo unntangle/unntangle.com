@@ -8,7 +8,7 @@
 }
 
 .heroMainContent {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,11 +70,12 @@
 .content {
     max-width: 900px;
     margin: 0 auto;
-    padding-bottom: 120px;
+    padding-bottom: 80px;
     /* Space for bottom nav */
 }
 
 .headline {
+    font-family: var(--font-outfit), sans-serif;
     font-size: clamp(32px, 5vw, 64px);
     font-weight: 700;
     letter-spacing: -0.02em;

@@ -46,10 +46,10 @@
 .ctaBadge {
     background-color: var(--bg-dark);
     color: white;
-    padding: 14px 28px;
+    padding: 10px 20px;
     border-radius: 999px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13px;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }

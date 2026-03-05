@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import { ArrowRight, Filter, ChevronRight, X } from 'lucide-react';
 import styles from './products.module.css';
 import QuoteModal from './QuoteModal';
@@ -209,9 +209,17 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
     const [galleryImages, setGalleryImages] = useState<string[]>([]);
     const [isNavbarHidden, setIsNavbarHidden] = useState(false);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 12; // 3 columns x 4 rows
+    const heroRef = useRef(null);
     const { scrollY } = useScroll();
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"]
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
+    useMotionValueEvent(scrollY, "change", (latest: number) => {
         const previous = scrollY.getPrevious() || 0;
         if (latest > previous && latest > 150) {
             setIsNavbarHidden(true);
@@ -221,6 +229,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
     });
 
     const filteredProducts = useMemo(() => {
+        setCurrentPage(1); // Reset to page 1 when filters change
         return products.filter(p => {
             const brandMatch = p.brand === activeBrand;
             const categoryMatch = activeCategory === 'All' || p.category === activeCategory;
@@ -228,6 +237,46 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
             return brandMatch && categoryMatch && subMatch;
         });
     }, [activeBrand, activeCategory, activeSubcategory]);
+
+    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+    const paginatedProducts = useMemo(() => {
+        if (activeBrand !== 'usynq' || viewMode !== 'grid') return filteredProducts;
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+    }, [filteredProducts, currentPage, activeBrand, viewMode]);
+
+    const PaginationControls = () => {
+        if (activeBrand !== 'usynq' || viewMode !== 'grid' || totalPages <= 1) return null;
+        return (
+            <div className={styles.paginationControls}>
+                <button
+                    className={styles.paginationBtn}
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                >
+                    ← Previous
+                </button>
+                <div className={styles.paginationPages}>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button
+                            key={page}
+                            className={`${styles.paginationPageBtn} ${currentPage === page ? styles.paginationActive : ''}`}
+                            onClick={() => setCurrentPage(page)}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
+                <button
+                    className={styles.paginationBtn}
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                >
+                    Next →
+                </button>
+            </div>
+        );
+    };
 
     const categories = activeBrand === 'uryze'
         ? ['All', 'Residential', 'Commercial']
@@ -272,150 +321,177 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
 
     return (
         <div className={styles.shopContainer}>
-            {activeBrand === 'uryze' && (
-                <div className={styles.brandHero}>
-                    <div className={styles.heroContent}>
-                        <h1>uRYZE Elevators</h1>
-                        <p>Showing {filteredProducts.length} results</p>
-                    </div>
+            <div className={styles.brandHero} ref={heroRef}>
+                <motion.div
+                    className={styles.parallaxBg}
+                    style={{ y }}
+                >
+                    <Image
+                        src={activeBrand === 'uryze' ? '/images/uryze_banner.png' : '/images/usynq_banner.png'}
+                        alt={activeBrand === 'uryze' ? 'uRYZE' : 'uSYNQ'}
+                        fill
+                        priority
+                        className={styles.heroImage}
+                    />
+                    <div className={styles.heroOverlay} />
+                </motion.div>
+                <div className={styles.heroContent}>
+                    <h1>{activeBrand === 'uryze' ? 'uRYZE Elevators' : 'uSYNQ Smart Home Products'}</h1>
                 </div>
-            )}
+            </div>
+
             <div className={styles.shopContent}>
                 {activeBrand === 'usynq' && (
-                    <div className={styles.usynqCategoryIconBar}>
-                        <div className={styles.iconBarTitle}>Categories</div>
-                        <div className={styles.iconContainer}>
-                            {usynqCategories.map(cat => (
-                                <button
-                                    key={cat.id}
-                                    className={`${styles.iconItem} ${activeCategory === cat.id ? styles.active : ''}`}
-                                    onClick={() => setActiveCategory(cat.id)}
-                                >
-                                    <div className={styles.iconImageWrapper}>
-                                        <Image src={cat.icon} alt={cat.name} fill />
-                                    </div>
-                                    <span>{cat.name}</span>
-                                </button>
-                            ))}
+                    <div className={styles.usynqCategoryIconBar} style={{ top: isNavbarHidden ? '0px' : '80px' }}>
+                        <div className={styles.barHeaderRow}>
+                            <div className={styles.filterGroup}>
+                                <div className={styles.labelGroup}>
+                                    <span className={styles.filterLabel}>Category</span>
+                                    <button
+                                        className={`${styles.allFilterBtn} ${activeCategory === 'All' ? styles.active : ''}`}
+                                        onClick={() => setActiveCategory('All')}
+                                    >
+                                        ALL
+                                    </button>
+                                </div>
+                                <div className={styles.iconContainer}>
+                                    {usynqCategories.map(cat => (
+                                        <button
+                                            key={cat.id}
+                                            className={`${styles.iconItem} ${activeCategory === cat.id ? styles.active : ''}`}
+                                            onClick={() => setActiveCategory(cat.id)}
+                                        >
+                                            <div className={styles.iconImageWrapper}>
+                                                <Image src={cat.icon} alt={cat.name} fill />
+                                            </div>
+                                            <span>{cat.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className={styles.resultsCount}>
+                                Showing {filteredProducts.length} results
+                            </div>
                         </div>
                     </div>
                 )}
 
                 <div
                     className={activeBrand === 'usynq' ? styles.usynqFilterSortBar : styles.filterBar}
-                    style={{ top: isNavbarHidden ? '0px' : '80px' }}
+                    style={activeBrand === 'uryze' ? { top: isNavbarHidden ? '0px' : '80px' } : {}}
                 >
-                    {activeBrand === 'uryze' ? (
-                        <>
-                            {!forcedBrand && (
-                                <div className={styles.filterGroup}>
-                                    <span className={styles.filterLabel}>Brand</span>
-                                    <div className={styles.filterOptions}>
-                                        <button
-                                            className={`${styles.filterBtn} ${activeBrand === 'uryze' ? styles.active : ''}`}
-                                            onClick={() => {
-                                                setActiveBrand('uryze');
-                                                setActiveCategory('All');
-                                                setActiveSubcategory('All');
-                                            }}
-                                        >
-                                            uRYZE
-                                        </button>
-                                        <button
-                                            className={`${styles.filterBtn} ${activeBrand === ('usynq' as string) ? styles.active : ''}`}
-                                            onClick={() => {
-                                                setActiveBrand('usynq');
-                                                setActiveCategory('All');
-                                                setActiveSubcategory('All');
-                                            }}
-                                        >
-                                            uSYNQ
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className={styles.filterGroup}>
-                                <span className={styles.filterLabel}>Category</span>
-                                <div className={styles.filterOptions}>
-                                    {categories.map(cat => (
-                                        <button
-                                            key={cat}
-                                            className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ''}`}
-                                            onClick={() => {
-                                                setActiveCategory(cat);
-                                                setActiveSubcategory('All');
-                                            }}
-                                        >
-                                            {cat}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {activeCategory !== 'All' && subcategories.length > 0 && (
-                                <div className={styles.filterGroup}>
-                                    <span className={styles.filterLabel}>Type</span>
-                                    <div className={styles.filterOptions}>
-                                        <button
-                                            className={`${styles.filterBtn} ${activeSubcategory === 'All' ? styles.active : ''}`}
-                                            onClick={() => setActiveSubcategory('All')}
-                                        >
-                                            All
-                                        </button>
-                                        {subcategories.map(sub => (
+                    <div className={styles.barHeaderRow}>
+                        {activeBrand === 'uryze' ? (
+                            <>
+                                {!forcedBrand && (
+                                    <div className={styles.filterGroup}>
+                                        <span className={styles.filterLabel}>Brand</span>
+                                        <div className={styles.filterOptions}>
                                             <button
-                                                key={sub}
-                                                className={`${styles.filterBtn} ${activeSubcategory === sub ? styles.active : ''}`}
-                                                onClick={() => setActiveSubcategory(sub)}
+                                                className={`${styles.filterBtn} ${activeBrand === 'uryze' ? styles.active : ''}`}
+                                                onClick={() => {
+                                                    setActiveBrand('uryze');
+                                                    setActiveCategory('All');
+                                                    setActiveSubcategory('All');
+                                                }}
                                             >
-                                                {sub}
+                                                uRYZE
+                                            </button>
+                                            <button
+                                                className={`${styles.filterBtn} ${activeBrand === ('usynq' as string) ? styles.active : ''}`}
+                                                onClick={() => {
+                                                    setActiveBrand('usynq');
+                                                    setActiveCategory('All');
+                                                    setActiveSubcategory('All');
+                                                }}
+                                            >
+                                                uSYNQ
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className={styles.filterGroup}>
+                                    <span className={styles.filterLabel}>Category</span>
+                                    <div className={styles.filterOptions}>
+                                        {categories.map(cat => (
+                                            <button
+                                                key={cat}
+                                                className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ''}`}
+                                                onClick={() => {
+                                                    setActiveCategory(cat);
+                                                    setActiveSubcategory('All');
+                                                }}
+                                            >
+                                                {cat}
                                             </button>
                                         ))}
                                     </div>
                                 </div>
-                            )}
-                        </>
-                    ) : (
-                        <div className={styles.usynqSecondaryFilterBar}>
-                            <div className={styles.leftFilterActions}>
-                                <button className={styles.showFiltersBtn}>
-                                    <Filter size={16} />
-                                    <span>Show Filters</span>
-                                </button>
-                                <span className={styles.itemCount}>
-                                    {activeCategory === 'All' ? 'All Products' : activeCategory} - {filteredProducts.length} items
-                                </span>
-                            </div>
-                            <div className={styles.rightFilterActions}>
-                                <div className={styles.sortDropdown}>
-                                    <span>Sort By :</span>
-                                    <select>
-                                        <option>Featured</option>
-                                        <option>Price: Low to High</option>
-                                        <option>Price: High to Low</option>
-                                    </select>
+
+                                {activeCategory !== 'All' && subcategories.length > 0 && (
+                                    <div className={styles.filterGroup}>
+                                        <span className={styles.filterLabel}>Type</span>
+                                        <div className={styles.filterOptions}>
+                                            <button
+                                                className={`${styles.filterBtn} ${activeSubcategory === 'All' ? styles.active : ''}`}
+                                                onClick={() => setActiveSubcategory('All')}
+                                            >
+                                                All
+                                            </button>
+                                            {subcategories.map(sub => (
+                                                <button
+                                                    key={sub}
+                                                    className={`${styles.filterBtn} ${activeSubcategory === sub ? styles.active : ''}`}
+                                                    onClick={() => setActiveSubcategory(sub)}
+                                                >
+                                                    {sub}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div className={styles.usynqSecondaryFilterBar}>
+                                <div className={styles.leftFilterActions}>
+                                    <span className={styles.itemCount}>
+                                        {activeCategory === 'All' ? 'All Products' : activeCategory} - {filteredProducts.length} items
+                                    </span>
                                 </div>
-                                <div className={styles.viewToggles}>
-                                    <button
-                                        className={`${styles.viewToggleBtn} ${viewMode === 'grid' ? styles.active : ''}`}
-                                        title="Grid View"
-                                        onClick={() => setViewMode('grid')}
-                                    >
-                                        <div className={styles.gridIconGrid} />
-                                    </button>
-                                    <button
-                                        className={`${styles.viewToggleBtn} ${viewMode === 'list' ? styles.active : ''}`}
-                                        title="List View"
-                                        onClick={() => setViewMode('list')}
-                                    >
-                                        <div className={styles.listIconGrid} />
-                                    </button>
+                                <div className={styles.rightFilterActions}>
+                                    <div className={styles.sortDropdown}>
+                                        <span>Sort By :</span>
+                                        <select>
+                                            <option>Featured</option>
+                                            <option>Price: Low to High</option>
+                                            <option>Price: High to Low</option>
+                                        </select>
+                                    </div>
+                                    <div className={styles.viewToggles}>
+                                        <button
+                                            className={`${styles.viewToggleBtn} ${viewMode === 'grid' ? styles.active : ''}`}
+                                            title="Grid View"
+                                            onClick={() => setViewMode('grid')}
+                                        >
+                                            <div className={styles.gridIconGrid} />
+                                        </button>
+                                        <button
+                                            className={`${styles.viewToggleBtn} ${viewMode === 'list' ? styles.active : ''}`}
+                                            title="List View"
+                                            onClick={() => setViewMode('list')}
+                                        >
+                                            <div className={styles.listIconGrid} />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
+
+                {/* Pagination - Top */}
+                <PaginationControls />
 
                 {/* Main List */}
                 <main className={styles.productMain}>
@@ -428,179 +504,194 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                         </div>
                     )}
                     <div className={styles.productListWrapper}>
-                        {groupOrder.map(subTitle => {
-                            const group = groupedProducts[subTitle];
-                            if (!group || group.length === 0) return null;
+                        {/* uSYNQ Grid View: flat paginated list */}
+                        {activeBrand === 'usynq' && viewMode === 'grid' ? (
+                            <div className={styles.usynqGridWrapper}>
+                                {paginatedProducts.map(product => (
+                                    <motion.div
+                                        key={product.id}
+                                        layout
+                                        className={styles.usynqGridCard}
+                                    >
+                                        <div className={styles.gridImageContainer}>
+                                            <Image src={product.image} alt={product.name} fill />
+                                        </div>
+                                        <div className={styles.gridContent}>
+                                            <h3 className={styles.gridProductName}>{product.name}</h3>
+                                            <div className={styles.gridPriceContainer}>
+                                                <span className={styles.gridPriceLabel}>Retail Price:</span>
+                                                <span className={styles.gridPriceValue}>₹ 3,379.00</span>
+                                            </div>
+                                            <div className={styles.gridButtonGroup}>
+                                                <button className={styles.gridAddToCartBtn}>
+                                                    Add to Cart
+                                                </button>
+                                                <button className={styles.gridEnquireBtn}>
+                                                    Enquire Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        ) : (
+                            /* uRYZE / uSYNQ List View: grouped by subcategory */
+                            groupOrder.map(subTitle => {
+                                const group = groupedProducts[subTitle];
+                                if (!group || group.length === 0) return null;
 
-                            const containerClass = activeBrand === 'uryze'
-                                ? styles.listContainer
-                                : viewMode === 'grid'
-                                    ? styles.usynqGridWrapper
+                                const containerClass = activeBrand === 'uryze'
+                                    ? styles.listContainer
                                     : styles.usynqRowContainer;
 
-                            return (
-                                <section key={subTitle} className={styles.productGroup}>
-                                    <div className={containerClass}>
-                                        {group.map(product => (
-                                            activeBrand === 'uryze' ? (
-                                                <motion.div
-                                                    key={product.id}
-                                                    layout
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    className={styles.horizontalCard}
-                                                >
-                                                    <div className={styles.imageCol}>
-                                                        <div className={styles.imageWrapperFixed}>
-                                                            <Image
-                                                                src={product.image}
-                                                                alt={product.name}
-                                                                fill
-                                                                className={styles.productImage}
-                                                            />
-                                                            <button
-                                                                className={styles.viewGalleryBtn}
-                                                                onClick={() => openGallery(product)}
-                                                                title="View Images"
-                                                            >
-                                                                <Maximize2 size={20} />
-                                                                <span>View Gallery</span>
+                                return (
+                                    <section key={subTitle} className={styles.productGroup}>
+                                        <div className={containerClass}>
+                                            {group.map(product => (
+                                                activeBrand === 'uryze' ? (
+                                                    <motion.div
+                                                        key={product.id}
+                                                        layout
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        className={styles.horizontalCard}
+                                                    >
+                                                        <div className={styles.imageCol}>
+                                                            <div className={styles.imageWrapperFixed}>
+                                                                <Image
+                                                                    src={product.image}
+                                                                    alt={product.name}
+                                                                    fill
+                                                                    className={styles.productImage}
+                                                                />
+                                                                <button
+                                                                    className={styles.viewGalleryBtn}
+                                                                    onClick={() => openGallery(product)}
+                                                                    title="View Images"
+                                                                >
+                                                                    <Maximize2 size={20} />
+                                                                    <span>View Gallery</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div className={styles.contentCol}>
+                                                            <div className={styles.cardInfo}>
+                                                                <div className={styles.cardTop}>
+                                                                    <h3>{product.name}</h3>
+                                                                </div>
+                                                                <p className={styles.description}>{product.description}</p>
+
+                                                                <div className={styles.specsGrid}>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Capacity</span>
+                                                                        <span className={styles.specValue}>{product.specs.capacity}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Max Load</span>
+                                                                        <span className={styles.specValue}>{product.specs.maxLoad}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Max Rise</span>
+                                                                        <span className={styles.specValue}>{product.specs.maxRise}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Max Speed</span>
+                                                                        <span className={styles.specValue}>{product.specs.maxSpeed}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Drive Type</span>
+                                                                        <span className={styles.specValue}>{product.specs.driveType}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Door Style</span>
+                                                                        <span className={styles.specValue}>{product.specs.doorStyle}</span>
+                                                                    </div>
+                                                                    <div className={styles.specItem}>
+                                                                        <span className={styles.specLabel}>Material</span>
+                                                                        <span className={styles.specValue}>{product.specs.material}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className={styles.cardBottom}>
+                                                                    <div className={styles.cardActions}>
+                                                                        <button
+                                                                            className={styles.callbackBtn}
+                                                                            onClick={() => openQuoteModal(product, 'callback')}
+                                                                        >
+                                                                            Request Call Back
+                                                                        </button>
+                                                                        <button
+                                                                            className={styles.viewSpecs}
+                                                                            onClick={() => openQuoteModal(product, 'quote')}
+                                                                        >
+                                                                            Get Quote
+                                                                            <ArrowRight size={16} />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                ) : (
+                                                    <motion.div
+                                                        key={product.id}
+                                                        layout
+                                                        className={styles.usynqRow}
+                                                    >
+                                                        <div className={styles.usynqColImage}>
+                                                            <div className={styles.usynqImageWrapper}>
+                                                                <Image src={product.image} alt={product.name} fill />
+                                                            </div>
+                                                        </div>
+                                                        <div className={styles.usynqColProduct}>
+                                                            <h3 className={styles.usynqProductName}>{product.name}</h3>
+                                                        </div>
+                                                        <div className={styles.usynqColPrice}>
+                                                            <span className={styles.priceLabel}>Retail Price:</span>
+                                                            <span className={styles.priceValue}>₹ 3,379.00</span>
+                                                        </div>
+                                                        <div className={styles.usynqColQuantity}>
+                                                            <div className={styles.quantityControls}>
+                                                                <button className={styles.qtyBtn}>-</button>
+                                                                <input type="text" value="0" readOnly />
+                                                                <button className={styles.qtyBtn}>+</button>
+                                                            </div>
+                                                            <button className={styles.addToCartBtn}>
+                                                                <ArrowRight size={18} />
                                                             </button>
                                                         </div>
-                                                    </div>
-                                                    <div className={styles.contentCol}>
-                                                        <div className={styles.cardInfo}>
-                                                            <div className={styles.cardTop}>
-                                                                <h3>{product.name}</h3>
-                                                            </div>
-                                                            <p className={styles.description}>{product.description}</p>
-
-                                                            <div className={styles.specsGrid}>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Capacity</span>
-                                                                    <span className={styles.specValue}>{product.specs.capacity}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Max Load</span>
-                                                                    <span className={styles.specValue}>{product.specs.maxLoad}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Max Rise</span>
-                                                                    <span className={styles.specValue}>{product.specs.maxRise}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Max Speed</span>
-                                                                    <span className={styles.specValue}>{product.specs.maxSpeed}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Drive Type</span>
-                                                                    <span className={styles.specValue}>{product.specs.driveType}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Door Style</span>
-                                                                    <span className={styles.specValue}>{product.specs.doorStyle}</span>
-                                                                </div>
-                                                                <div className={styles.specItem}>
-                                                                    <span className={styles.specLabel}>Material</span>
-                                                                    <span className={styles.specValue}>{product.specs.material}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className={styles.cardBottom}>
-                                                                <div className={styles.cardActions}>
-                                                                    <button
-                                                                        className={styles.callbackBtn}
-                                                                        onClick={() => openQuoteModal(product, 'callback')}
-                                                                    >
-                                                                        Request Call Back
-                                                                    </button>
-                                                                    <button
-                                                                        className={styles.viewSpecs}
-                                                                        onClick={() => openQuoteModal(product, 'quote')}
-                                                                    >
-                                                                        Get Quote
-                                                                        <ArrowRight size={16} />
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </motion.div>
-                                            ) : viewMode === 'list' ? (
-                                                <motion.div
-                                                    key={product.id}
-                                                    layout
-                                                    className={styles.usynqRow}
-                                                >
-                                                    <div className={styles.usynqColImage}>
-                                                        <div className={styles.usynqImageWrapper}>
-                                                            <Image src={product.image} alt={product.name} fill />
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.usynqColProduct}>
-                                                        <h3 className={styles.usynqProductName}>{product.name}</h3>
-                                                    </div>
-                                                    <div className={styles.usynqColPrice}>
-                                                        <span className={styles.priceLabel}>Retail Price:</span>
-                                                        <span className={styles.priceValue}>₹ 3,379.00</span>
-                                                    </div>
-                                                    <div className={styles.usynqColQuantity}>
-                                                        <div className={styles.quantityControls}>
-                                                            <button className={styles.qtyBtn}>-</button>
-                                                            <input type="text" value="0" readOnly />
-                                                            <button className={styles.qtyBtn}>+</button>
-                                                        </div>
-                                                        <button className={styles.addToCartBtn}>
-                                                            <ArrowRight size={18} />
-                                                        </button>
-                                                    </div>
-                                                </motion.div>
-                                            ) : (
-                                                <motion.div
-                                                    key={product.id}
-                                                    layout
-                                                    className={styles.usynqGridCard}
-                                                >
-                                                    <div className={styles.gridImageContainer}>
-                                                        <Image src={product.image} alt={product.name} fill />
-                                                    </div>
-                                                    <div className={styles.gridContent}>
-                                                        <h3 className={styles.gridProductName}>{product.name}</h3>
-                                                        <div className={styles.gridPriceContainer}>
-                                                            <span className={styles.gridPriceLabel}>Retail Price:</span>
-                                                            <span className={styles.gridPriceValue}>₹ 3,379.00</span>
-                                                        </div>
-                                                        <button className={styles.gridAddToCartBtn}>
-                                                            Add to Cart <ArrowRight size={16} />
-                                                        </button>
-                                                    </div>
-                                                </motion.div>
-                                            )
-                                        ))}
-                                    </div>
-                                </section>
-                            );
-                        })}
+                                                    </motion.div>
+                                                )
+                                            ))}
+                                        </div>
+                                    </section>
+                                );
+                            })
+                        )}
                     </div>
                 </main>
-            </div >
 
-            <QuoteModal
-                isOpen={isQuoteModalOpen}
-                onClose={() => setIsQuoteModalOpen(false)}
-                productName={selectedProductForQuote}
-                productImage={selectedProductImage}
-                specs={selectedProductSpecs}
-                mode={modalMode}
-            />
+                {/* Pagination - Bottom */}
+                <PaginationControls />
 
-            <ImageGallery
-                isOpen={isGalleryOpen}
-                onClose={() => setIsGalleryOpen(false)}
-                images={galleryImages}
-                productName={selectedProductForQuote}
-                specs={selectedProductSpecs}
-            />
-        </div >
+
+                <QuoteModal
+                    isOpen={isQuoteModalOpen}
+                    onClose={() => setIsQuoteModalOpen(false)}
+                    productName={selectedProductForQuote}
+                    productImage={selectedProductImage}
+                    specs={selectedProductSpecs}
+                    mode={modalMode}
+                />
+
+                <ImageGallery
+                    isOpen={isGalleryOpen}
+                    onClose={() => setIsGalleryOpen(false)}
+                    images={galleryImages}
+                    productName={selectedProductForQuote}
+                    specs={selectedProductSpecs}
+                />
+            </div>
+        </div>
     );
 }

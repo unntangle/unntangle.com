@@ -171,7 +171,6 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <Link href="/case-studies">Case studies</Link>
             <Link href="/blog">Blog</Link>
           </div>
 
