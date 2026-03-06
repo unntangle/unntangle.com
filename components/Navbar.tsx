@@ -34,7 +34,7 @@ import styles from './Navbar.module.css';
 const serviceCategories = [
   {
     id: "digital",
-    label: "Digital Solutions",
+    label: "Digital Ecosystems",
     title: "Digital & Creative",
     services: [
       { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/web", icon: Monitor },
@@ -46,7 +46,7 @@ const serviceCategories = [
   },
   {
     id: "ai",
-    label: "AI Solutions",
+    label: "Intelligent AI",
     title: "Artificial Intelligence",
     services: [
       { name: "Custom AI Application Development", description: "Tailored AI solutions for unique business requirements.", path: "/services/ai-app", icon: Cpu },
@@ -58,7 +58,7 @@ const serviceCategories = [
   },
   {
     id: "cloud",
-    label: "Cloud Solutions",
+    label: "Global Cloud",
     title: "Cloud Computing",
     services: [
       { name: "Cloud Migration", description: "Securely move your infrastructure to the modern cloud.", path: "/services/cloud-migration", icon: CloudUpload },

@@ -102,6 +102,17 @@
     justify-content: center;
     padding-top: 16px;
     z-index: 1001;
+    pointer-events: none;
+}
+
+.megaMenu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    pointer-events: auto;
 }
 
 .megaMenuContainer {
@@ -113,14 +124,15 @@
     display: grid;
     grid-template-columns: 280px 1fr 300px;
     overflow: hidden;
-    min-height: 480px;
+    min-height: 400px;
+    pointer-events: auto;
 }
 
 /* Side Section */
 .megaMenuSide {
     background-color: #f9fafb;
     border-right: 1px solid #f3f4f6;
-    padding: 32px 24px;
+    padding: 24px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -178,10 +190,9 @@
 
 /* Promo Banner */
 .promoBanner {
-    margin-top: 32px;
+    margin-top: 24px;
     position: relative;
-    height: 240px;
-    /* Increased height */
+    height: 180px;
     border-radius: 16px;
     overflow: hidden;
 }
@@ -220,17 +231,16 @@
 
 /* Main Section */
 .megaMenuMain {
-    padding: 40px 50px;
+    padding: 32px 40px;
 }
 
 .megaMenuMain h5 {
     font-size: 16px;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid #e5e7eb;
-    /* More evident grey underline */
 }
 
 .servicesGrid {
@@ -314,7 +324,7 @@
 .megaMenuFeatured {
     background-color: #eff6ff;
     /* Targeted section tint */
-    padding: 40px 24px;
+    padding: 32px 24px;
     border-left: 1px solid #dbeafe;
 }
 
@@ -322,7 +332,7 @@
     font-size: 16px;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .featuredList {
@@ -368,7 +378,7 @@
 
 .featuredImageWrapper {
     position: relative;
-    height: 160px;
+    height: 140px;
 }
 
 .featuredImage {

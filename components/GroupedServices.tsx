@@ -72,7 +72,7 @@ export default function GroupedServices() {
         <section className={styles.servicesSection}>
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>Our Services</h2>
+                    <h2 className={styles.title}>OUR SERVICES</h2>
                     <p className={styles.description}>
                         A comprehensive architectural overview of our specialized engineering domains.
                     </p>

@@ -1,5 +1,5 @@
 .servicesSection {
-    padding: 40px 0 80px;
+    padding: 80px 0 80px;
     background-color: #050505;
     color: #ffffff;
 }
@@ -16,9 +16,9 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 56px);
+    font-size: 48px;
     margin-bottom: 24px;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.02em;
     color: #ffffff;
 }

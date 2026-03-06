@@ -47,7 +47,7 @@ export default function Roadmap() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Evolutionary Path</span>
-                    <h2 className={styles.title}>The Schematic Journey</h2>
+                    <h2 className={styles.title}>OUR JOURNEY</h2>
                     <p className={styles.description}>
                         From an initial philosophy to global synchrony. A balanced view of our technical and strategic milestones.
                     </p>

@@ -11,9 +11,9 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: 48px;
     margin-bottom: 24px;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .description {

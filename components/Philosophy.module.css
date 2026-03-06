@@ -9,7 +9,7 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: 48px;
     margin-bottom: 24px;
     font-weight: 700;
 }

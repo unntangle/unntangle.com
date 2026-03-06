@@ -4,6 +4,7 @@ import AboutHero from "@/components/AboutHero";
 import Philosophy from "@/components/Philosophy";
 import GroupedServices from "@/components/GroupedServices";
 import Roadmap from "@/components/Roadmap";
+import AboutProducts from "@/components/AboutProducts";
 import Vision from "@/components/Vision";
 
 export default function AboutPage() {
@@ -13,6 +14,7 @@ export default function AboutPage() {
             <AboutHero />
             <Philosophy />
             <GroupedServices />
+            <AboutProducts />
             <Roadmap />
             <Vision />
             <Footer />

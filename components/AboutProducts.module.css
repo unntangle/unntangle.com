@@ -1,0 +1,220 @@
+.productsSection {
+    position: relative;
+    padding: 120px 0;
+    background-color: var(--bg-dark);
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 80px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sectionBadge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(0, 209, 255, 0.1);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    color: var(--primary);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 48px;
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #94a3b8;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.productCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+.productCard:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.imageWrapper {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.productImage {
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.productCard:hover .productImage {
+    transform: scale(1.05);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.8) 100%);
+    z-index: 1;
+}
+
+.brandBadge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    z-index: 2;
+    letter-spacing: 0.05em;
+}
+
+.cardContent {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
+.cardContent h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.cardContent p {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    flex-grow: 1;
+}
+
+.exploreLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.exploreLink svg {
+    transition: transform 0.3s ease;
+}
+
+.exploreLink:hover {
+    color: var(--primary);
+}
+
+.exploreLink:hover svg {
+    transform: translateX(4px);
+}
+
+/* Gradients */
+.backgroundGradients {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gradientBlue {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 209, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.gradientPurple {
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+    .productGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .productsSection {
+        padding: 80px 0;
+    }
+
+    .container {
+        padding: 0 24px;
+    }
+
+    .imageWrapper {
+        height: 240px;
+    }
+
+    .cardContent {
+        padding: 32px 24px;
+    }
+}
