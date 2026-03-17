@@ -211,10 +211,10 @@ export default function Navbar() {
                 </div>
                 <div className={styles.productsFeatured}>
                   <div className={styles.featuredTag}>Featured Innovation</div>
-                  <h3>The u-Series</h3>
-                  <p>Elevating daily experiences through specialized elevator solutions and seamless home intelligence.</p>
-                  <Link href="/brand" className={styles.brandLink}>
-                    Explore the Brand <ExternalLink size={14} />
+                  <h3>Smart Ecosystem</h3>
+                  <p>Discover our upcoming integrated solutions designed to seamlessly connect your home and elevate your lifestyle.</p>
+                  <Link href="/products" className={styles.brandLink}>
+                    Launching Soon <ExternalLink size={14} />
                   </Link>
                 </div>
               </div>

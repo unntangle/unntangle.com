@@ -248,7 +248,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
     const PaginationControls = () => {
         if (activeBrand !== 'usynq' || viewMode !== 'grid' || totalPages <= 1) return null;
         return (
-            <div className={styles.paginationControls}>
+            <div className={styles.paginationControls} style={{ display: 'none' }}>
                 <button
                     className={styles.paginationBtn}
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
@@ -342,7 +342,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
 
             <div className={styles.shopContent}>
                 {activeBrand === 'usynq' && (
-                    <div className={styles.usynqCategoryIconBar} style={{ top: isNavbarHidden ? '0px' : '80px' }}>
+                    <div className={styles.usynqCategoryIconBar} style={{ top: isNavbarHidden ? '0px' : '80px', display: 'none' }}>
                         <div className={styles.barHeaderRow}>
                             <div className={styles.filterGroup}>
                                 <div className={styles.labelGroup}>
@@ -378,7 +378,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
 
                 <div
                     className={activeBrand === 'usynq' ? styles.usynqFilterSortBar : styles.filterBar}
-                    style={activeBrand === 'uryze' ? { top: isNavbarHidden ? '0px' : '80px' } : {}}
+                    style={activeBrand === 'uryze' ? { top: isNavbarHidden ? '0px' : '80px', display: 'none' } : {}}
                 >
                     <div className={styles.barHeaderRow}>
                         {activeBrand === 'uryze' ? (
@@ -411,7 +411,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                                     </div>
                                 )}
 
-                                <div className={styles.filterGroup}>
+                                <div className={styles.filterGroup} style={{ display: activeBrand === 'uryze' ? 'none' : 'flex' }}>
                                     <span className={styles.filterLabel}>Category</span>
                                     <div className={styles.filterOptions}>
                                         {categories.map(cat => (
@@ -430,7 +430,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                                 </div>
 
                                 {activeCategory !== 'All' && subcategories.length > 0 && (
-                                    <div className={styles.filterGroup}>
+                                    <div className={styles.filterGroup} style={{ display: activeBrand === 'uryze' ? 'none' : 'flex' }}>
                                         <span className={styles.filterLabel}>Type</span>
                                         <div className={styles.filterOptions}>
                                             <button
@@ -453,7 +453,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                                 )}
                             </>
                         ) : (
-                            <div className={styles.usynqSecondaryFilterBar}>
+                            <div className={styles.usynqSecondaryFilterBar} style={{ display: 'none' }}>
                                 <div className={styles.leftFilterActions}>
                                     <span className={styles.itemCount}>
                                         {activeCategory === 'All' ? 'All Products' : activeCategory} - {filteredProducts.length} items
@@ -496,7 +496,7 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                 {/* Main List */}
                 <main className={styles.productMain}>
                     {activeBrand === 'usynq' && viewMode === 'list' && (
-                        <div className={styles.usynqTableHeader}>
+                        <div className={styles.usynqTableHeader} style={{ display: 'none' }}>
                             <div className={styles.colImage}>Image</div>
                             <div className={styles.colProduct}>Product</div>
                             <div className={styles.colPrice}>Price</div>
@@ -504,9 +504,29 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                         </div>
                     )}
                     <div className={styles.productListWrapper}>
+                        <div style={{ minHeight: '40vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '40px 20px', width: '100%' }}>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                style={{ fontSize: '3rem', fontWeight: 300, color: 'var(--text-primary, #111)', marginBottom: '1rem' }}
+                            >
+                                Launching Soon
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                style={{ fontSize: '1.2rem', color: 'var(--text-secondary, #666)', maxWidth: '600px' }}
+                            >
+                                {activeBrand === 'uryze'
+                                    ? 'Our premium uRYZE elevator collection is currently being prepared for launch. Stay tuned for updates.'
+                                    : 'Our premium uSYNQ smart home collection is currently being prepared for launch. Stay tuned for updates.'}
+                            </motion.p>
+                        </div>
+
                         {/* uSYNQ Grid View: flat paginated list */}
                         {activeBrand === 'usynq' && viewMode === 'grid' ? (
-                            <div className={styles.usynqGridWrapper}>
+                            <div className={styles.usynqGridWrapper} style={{ display: 'none' }}>
                                 {paginatedProducts.map(product => (
                                     <motion.div
                                         key={product.id}
@@ -536,137 +556,139 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                             </div>
                         ) : (
                             /* uRYZE / uSYNQ List View: grouped by subcategory */
-                            groupOrder.map(subTitle => {
-                                const group = groupedProducts[subTitle];
-                                if (!group || group.length === 0) return null;
+                            <div style={{ display: 'none', width: '100%' }}>
+                                {groupOrder.map(subTitle => {
+                                    const group = groupedProducts[subTitle];
+                                    if (!group || group.length === 0) return null;
 
-                                const containerClass = activeBrand === 'uryze'
-                                    ? styles.listContainer
-                                    : styles.usynqRowContainer;
+                                    const containerClass = activeBrand === 'uryze'
+                                        ? styles.listContainer
+                                        : styles.usynqRowContainer;
 
-                                return (
-                                    <section key={subTitle} className={styles.productGroup}>
-                                        <div className={containerClass}>
-                                            {group.map(product => (
-                                                activeBrand === 'uryze' ? (
-                                                    <motion.div
-                                                        key={product.id}
-                                                        layout
-                                                        initial={{ opacity: 0, x: -20 }}
-                                                        animate={{ opacity: 1, x: 0 }}
-                                                        className={styles.horizontalCard}
-                                                    >
-                                                        <div className={styles.imageCol}>
-                                                            <div className={styles.imageWrapperFixed}>
-                                                                <Image
-                                                                    src={product.image}
-                                                                    alt={product.name}
-                                                                    fill
-                                                                    className={styles.productImage}
-                                                                />
-                                                                <button
-                                                                    className={styles.viewGalleryBtn}
-                                                                    onClick={() => openGallery(product)}
-                                                                    title="View Images"
-                                                                >
-                                                                    <Maximize2 size={20} />
-                                                                    <span>View Gallery</span>
+                                    return (
+                                        <section key={subTitle} className={styles.productGroup}>
+                                            <div className={containerClass}>
+                                                {group.map(product => (
+                                                    activeBrand === 'uryze' ? (
+                                                        <motion.div
+                                                            key={product.id}
+                                                            layout
+                                                            initial={{ opacity: 0, x: -20 }}
+                                                            animate={{ opacity: 1, x: 0 }}
+                                                            className={styles.horizontalCard}
+                                                        >
+                                                            <div className={styles.imageCol}>
+                                                                <div className={styles.imageWrapperFixed}>
+                                                                    <Image
+                                                                        src={product.image}
+                                                                        alt={product.name}
+                                                                        fill
+                                                                        className={styles.productImage}
+                                                                    />
+                                                                    <button
+                                                                        className={styles.viewGalleryBtn}
+                                                                        onClick={() => openGallery(product)}
+                                                                        title="View Images"
+                                                                    >
+                                                                        <Maximize2 size={20} />
+                                                                        <span>View Gallery</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div className={styles.contentCol}>
+                                                                <div className={styles.cardInfo}>
+                                                                    <div className={styles.cardTop}>
+                                                                        <h3>{product.name}</h3>
+                                                                    </div>
+                                                                    <p className={styles.description}>{product.description}</p>
+
+                                                                    <div className={styles.specsGrid}>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Capacity</span>
+                                                                            <span className={styles.specValue}>{product.specs.capacity}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Max Load</span>
+                                                                            <span className={styles.specValue}>{product.specs.maxLoad}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Max Rise</span>
+                                                                            <span className={styles.specValue}>{product.specs.maxRise}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Max Speed</span>
+                                                                            <span className={styles.specValue}>{product.specs.maxSpeed}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Drive Type</span>
+                                                                            <span className={styles.specValue}>{product.specs.driveType}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Door Style</span>
+                                                                            <span className={styles.specValue}>{product.specs.doorStyle}</span>
+                                                                        </div>
+                                                                        <div className={styles.specItem}>
+                                                                            <span className={styles.specLabel}>Material</span>
+                                                                            <span className={styles.specValue}>{product.specs.material}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className={styles.cardBottom}>
+                                                                        <div className={styles.cardActions}>
+                                                                            <button
+                                                                                className={styles.callbackBtn}
+                                                                                onClick={() => openQuoteModal(product, 'callback')}
+                                                                            >
+                                                                                Request Call Back
+                                                                            </button>
+                                                                            <button
+                                                                                className={styles.viewSpecs}
+                                                                                onClick={() => openQuoteModal(product, 'quote')}
+                                                                            >
+                                                                                Get Quote
+                                                                                <ArrowRight size={16} />
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </motion.div>
+                                                    ) : (
+                                                        <motion.div
+                                                            key={product.id}
+                                                            layout
+                                                            className={styles.usynqRow}
+                                                        >
+                                                            <div className={styles.usynqColImage}>
+                                                                <div className={styles.usynqImageWrapper}>
+                                                                    <Image src={product.image} alt={product.name} fill />
+                                                                </div>
+                                                            </div>
+                                                            <div className={styles.usynqColProduct}>
+                                                                <h3 className={styles.usynqProductName}>{product.name}</h3>
+                                                            </div>
+                                                            <div className={styles.usynqColPrice}>
+                                                                <span className={styles.priceLabel}>Retail Price:</span>
+                                                                <span className={styles.priceValue}>₹ 3,379.00</span>
+                                                            </div>
+                                                            <div className={styles.usynqColQuantity}>
+                                                                <div className={styles.quantityControls}>
+                                                                    <button className={styles.qtyBtn}>-</button>
+                                                                    <input type="text" value="0" readOnly />
+                                                                    <button className={styles.qtyBtn}>+</button>
+                                                                </div>
+                                                                <button className={styles.addToCartBtn}>
+                                                                    <ArrowRight size={18} />
                                                                 </button>
                                                             </div>
-                                                        </div>
-                                                        <div className={styles.contentCol}>
-                                                            <div className={styles.cardInfo}>
-                                                                <div className={styles.cardTop}>
-                                                                    <h3>{product.name}</h3>
-                                                                </div>
-                                                                <p className={styles.description}>{product.description}</p>
-
-                                                                <div className={styles.specsGrid}>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Capacity</span>
-                                                                        <span className={styles.specValue}>{product.specs.capacity}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Max Load</span>
-                                                                        <span className={styles.specValue}>{product.specs.maxLoad}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Max Rise</span>
-                                                                        <span className={styles.specValue}>{product.specs.maxRise}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Max Speed</span>
-                                                                        <span className={styles.specValue}>{product.specs.maxSpeed}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Drive Type</span>
-                                                                        <span className={styles.specValue}>{product.specs.driveType}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Door Style</span>
-                                                                        <span className={styles.specValue}>{product.specs.doorStyle}</span>
-                                                                    </div>
-                                                                    <div className={styles.specItem}>
-                                                                        <span className={styles.specLabel}>Material</span>
-                                                                        <span className={styles.specValue}>{product.specs.material}</span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className={styles.cardBottom}>
-                                                                    <div className={styles.cardActions}>
-                                                                        <button
-                                                                            className={styles.callbackBtn}
-                                                                            onClick={() => openQuoteModal(product, 'callback')}
-                                                                        >
-                                                                            Request Call Back
-                                                                        </button>
-                                                                        <button
-                                                                            className={styles.viewSpecs}
-                                                                            onClick={() => openQuoteModal(product, 'quote')}
-                                                                        >
-                                                                            Get Quote
-                                                                            <ArrowRight size={16} />
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                ) : (
-                                                    <motion.div
-                                                        key={product.id}
-                                                        layout
-                                                        className={styles.usynqRow}
-                                                    >
-                                                        <div className={styles.usynqColImage}>
-                                                            <div className={styles.usynqImageWrapper}>
-                                                                <Image src={product.image} alt={product.name} fill />
-                                                            </div>
-                                                        </div>
-                                                        <div className={styles.usynqColProduct}>
-                                                            <h3 className={styles.usynqProductName}>{product.name}</h3>
-                                                        </div>
-                                                        <div className={styles.usynqColPrice}>
-                                                            <span className={styles.priceLabel}>Retail Price:</span>
-                                                            <span className={styles.priceValue}>₹ 3,379.00</span>
-                                                        </div>
-                                                        <div className={styles.usynqColQuantity}>
-                                                            <div className={styles.quantityControls}>
-                                                                <button className={styles.qtyBtn}>-</button>
-                                                                <input type="text" value="0" readOnly />
-                                                                <button className={styles.qtyBtn}>+</button>
-                                                            </div>
-                                                            <button className={styles.addToCartBtn}>
-                                                                <ArrowRight size={18} />
-                                                            </button>
-                                                        </div>
-                                                    </motion.div>
-                                                )
-                                            ))}
-                                        </div>
-                                    </section>
-                                );
-                            })
+                                                        </motion.div>
+                                                    )
+                                                ))}
+                                            </div>
+                                        </section>
+                                    );
+                                })}
+                            </div>
                         )}
                     </div>
                 </main>
