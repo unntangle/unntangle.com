@@ -25,34 +25,6 @@ export default function AboutProducts() {
 
                 <div className={styles.productGrid}>
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className={styles.productCard}
-                    >
-                        <div className={styles.imageWrapper}>
-                            <div className={styles.imageOverlay} />
-                            <Image
-                                src="/images/uryze_preview.png"
-                                alt="uRYZE Elevators"
-                                fill
-                                className={styles.productImage}
-                            />
-                            <div className={styles.brandBadge}>uRYZE</div>
-                        </div>
-                        <div className={styles.cardContent}>
-                            <h3>uRYZE</h3>
-                            <p>
-                                Premium elevator systems blending sophisticated design with high-performance engineering for commercial and residential architecture.
-                            </p>
-                            <Link href="/shop/uryze" className={styles.exploreLink}>
-                                Explore uRYZE <ArrowRight size={16} />
-                            </Link>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}

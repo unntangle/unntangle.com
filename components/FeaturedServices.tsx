@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import styles from './FeaturedServices.module.css';
 
 interface ServiceStory {
@@ -13,40 +14,36 @@ interface ServiceStory {
     description: string;
     image: string;
     brandLogo?: string;
+    path?: string;
 }
 
 const serviceStories: ServiceStory[] = [
     {
         id: '1',
-        categoryId: 'digital',
-        tag: 'Digital Solutions',
+        categoryId: 'tech',
+        tag: 'Technology Solutions',
         title: 'Modernizing Global Enterprise Architectures',
         description: 'Accelerating digital maturity through bespoke engineering and deterministic infrastructure upgrades.',
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
+        path: '/services/website'
     },
     {
         id: '2',
-        categoryId: 'ai',
-        tag: 'AI Solutions',
-        title: 'Unnleashing Potential with Predictive Intelligence',
-        description: 'Integrating frontier AI models to automate complex decision-making and optimize operational workflows.',
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600',
+        categoryId: 'design',
+        tag: 'Creative Design',
+        title: 'Unnleashing Concept into Reality',
+        description: 'Integrating frontier visual logic and immersive 3D architectures to elevate your brand presence.',
+        image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1600',
+        path: '/services/graphic-designing'
     },
     {
         id: '3',
-        categoryId: 'cloud',
-        tag: 'Cloud Solutions',
-        title: 'High-Performance Sovereign Cloud Ecosystems',
-        description: 'Securing your digital assets with independent governance and global edge orchestration.',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600',
-    },
-    {
-        id: '4',
-        categoryId: 'property',
-        tag: 'Property Solutions',
-        title: 'uNEST: Sustainable Living Environments',
-        description: 'Crafting intelligent real estate that harmonizes sustainable development with modern infrastructure.',
-        image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1600',
+        categoryId: 'marketing',
+        tag: 'Growth Marketing',
+        title: 'Predictable Algorithmic Revenue Engines',
+        description: 'Transforming scroll depth into extreme revenue generation via precision social data strategies.',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600',
+        path: '/services/meta-ads'
     }
 ];
 
@@ -110,10 +107,10 @@ const ServiceCard = ({ story, index, totalCards, scrollYProgress }: { story: Ser
                         )}
                         <h3 className={styles.title}>{story.title}</h3>
                         <p className={styles.description}>{story.description}</p>
-                        <button className={styles.viewButton}>
+                        <Link href={story.path || "/services"} className={styles.viewButton}>
                             <span>View the story</span>
                             <ArrowRight size={18} />
-                        </button>
+                        </Link>
                     </motion.div>
                 </div>
             </motion.div>
@@ -130,20 +127,18 @@ export default function FeaturedServices({ activeCategoryId, onCategoryChange, c
 
     // Translate vertical scroll into horizontal movement
     // Track padding-left is 10vw. Card width is 80vw. Gap is 5vw.
-    // Total translation to center the 4th card (index 3) is 3 * (80vw + 5vw) = 255vw
-    const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-255vw"]);
+    // Total translation to center the 3rd card (index 2) is 2 * (80vw + 5vw) = 170vw
+    const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-170vw"]);
 
     // Synchronize active category with scroll progress
     useEffect(() => {
         const unsubscribe = scrollYProgress.on("change", (latest) => {
-            if (latest < 0.16) {
-                if (activeCategoryId !== 'digital') onCategoryChange('digital');
-            } else if (latest < 0.50) {
-                if (activeCategoryId !== 'ai') onCategoryChange('ai');
-            } else if (latest < 0.83) {
-                if (activeCategoryId !== 'cloud') onCategoryChange('cloud');
+            if (latest < 0.25) {
+                if (activeCategoryId !== 'tech') onCategoryChange('tech');
+            } else if (latest < 0.75) {
+                if (activeCategoryId !== 'design') onCategoryChange('design');
             } else {
-                if (activeCategoryId !== 'property') onCategoryChange('property');
+                if (activeCategoryId !== 'marketing') onCategoryChange('marketing');
             }
         });
         return () => unsubscribe();

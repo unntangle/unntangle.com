@@ -30,82 +30,7 @@ interface Product {
 }
 
 const products: Product[] = [
-    {
-        id: 'mr-traction',
-        brand: 'uryze',
-        category: 'Commercial',
-        subcategory: 'MR Traction',
-        name: 'MR Traction',
-        description: 'Traditional machine room traction systems for high-performance vertical transport in mid to high-rise buildings.',
-        image: '/images/uryze_preview.png',
-        images: ['/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png'],
-        specs: {
-            capacity: '8-21 Persons',
-            maxLoad: '1600 kg',
-            maxRise: '120 m',
-            maxSpeed: '2.5 m/s',
-            driveType: 'Geared/Gearless Traction',
-            doorStyle: 'Center/Side Opening',
-            material: 'Hairline Stainless Steel'
-        }
-    },
-    {
-        id: 'mrl-traction',
-        brand: 'uryze',
-        category: 'Commercial',
-        subcategory: 'Machine-Room-Less (MRL) Traction',
-        name: 'Machine-Room-Less (MRL) Traction',
-        description: 'Space-saving MRL technology for modern architecture, maximizing leaseable space and energy efficiency.',
-        image: '/images/uryze_preview.png',
-        images: ['/images/uryze_preview.png', '/images/uryze_preview.png', '/images/uryze_preview.png'],
-        specs: {
-            capacity: '6-15 Persons',
-            maxLoad: '1150 kg',
-            maxRise: '80 m',
-            maxSpeed: '1.75 m/s',
-            driveType: 'Permanent Magnet Synchronous',
-            doorStyle: 'Automatic Telescopic',
-            material: 'Toughened Glass / SS'
-        }
-    },
-    {
-        id: 'hydraulic-lifts',
-        brand: 'uryze',
-        category: 'Residential',
-        subcategory: 'Hydraulic Lifts',
-        name: 'Hydraulic Lifts',
-        description: 'Smooth and reliable hydraulic systems designed for low to medium-rise residential and commercial buildings.',
-        image: '/images/uryze_preview.png',
-        images: ['/images/uryze_preview.png', '/images/uryze_preview.png'],
-        specs: {
-            capacity: '4-10 Persons',
-            maxLoad: '800 kg',
-            maxRise: '20 m',
-            maxSpeed: '0.63 m/s',
-            driveType: 'Direct/Indirect Hydraulic',
-            doorStyle: 'Manual/Automatic',
-            material: 'Painted Steel / SS'
-        }
-    },
-    {
-        id: 'dumbwaiter-lift',
-        brand: 'uryze',
-        category: 'Commercial',
-        subcategory: 'Dumbwaiter Lift',
-        name: 'Dumbwaiter Lift',
-        description: 'Compact service lifts for hotels, restaurants, and hospitals to move smaller loads efficiently.',
-        image: '/images/uryze_preview.png',
-        images: ['/images/uryze_preview.png', '/images/uryze_preview.png'],
-        specs: {
-            capacity: 'N/A',
-            maxLoad: '250 kg',
-            maxRise: '30 m',
-            maxSpeed: '0.4 m/s',
-            driveType: 'Drum Type / Traction',
-            doorStyle: 'Vertical Bi-parting',
-            material: 'SUS304 Stainless Steel'
-        }
-    },
+
     // uSYNQ Smart Devices
     {
         id: 'titan-switch',
@@ -197,7 +122,7 @@ const usynqCategories = [
 ];
 
 export default function ProductShop({ initialBrand, forcedBrand }: { initialBrand?: string, forcedBrand?: string }) {
-    const [activeBrand, setActiveBrand] = useState<string>(forcedBrand || initialBrand || 'uryze');
+    const [activeBrand, setActiveBrand] = useState<string>(forcedBrand || initialBrand || 'usynq');
     const [activeCategory, setActiveCategory] = useState<string>('All');
     const [activeSubcategory, setActiveSubcategory] = useState<string>('All');
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -383,33 +308,6 @@ export default function ProductShop({ initialBrand, forcedBrand }: { initialBran
                     <div className={styles.barHeaderRow}>
                         {activeBrand === 'uryze' ? (
                             <>
-                                {!forcedBrand && (
-                                    <div className={styles.filterGroup}>
-                                        <span className={styles.filterLabel}>Brand</span>
-                                        <div className={styles.filterOptions}>
-                                            <button
-                                                className={`${styles.filterBtn} ${activeBrand === 'uryze' ? styles.active : ''}`}
-                                                onClick={() => {
-                                                    setActiveBrand('uryze');
-                                                    setActiveCategory('All');
-                                                    setActiveSubcategory('All');
-                                                }}
-                                            >
-                                                uRYZE
-                                            </button>
-                                            <button
-                                                className={`${styles.filterBtn} ${activeBrand === ('usynq' as string) ? styles.active : ''}`}
-                                                onClick={() => {
-                                                    setActiveBrand('usynq');
-                                                    setActiveCategory('All');
-                                                    setActiveSubcategory('All');
-                                                }}
-                                            >
-                                                uSYNQ
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
 
                                 <div className={styles.filterGroup} style={{ display: activeBrand === 'uryze' ? 'none' : 'flex' }}>
                                     <span className={styles.filterLabel}>Category</span>

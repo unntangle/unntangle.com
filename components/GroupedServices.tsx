@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import styles from './GroupedServices.module.css';
 
 import { useState } from 'react';
@@ -112,10 +113,10 @@ export default function GroupedServices() {
                                 ))}
                             </div>
 
-                            <button className={styles.knowMoreButton}>
+                            <Link href="/services" className={styles.knowMoreButton}>
                                 <span>Know more</span>
                                 <ArrowRight size={18} />
-                            </button>
+                            </Link>
                         </div>
 
                         <div className={styles.visualColumn}>

@@ -33,75 +33,45 @@ import styles from './Navbar.module.css';
 
 const serviceCategories = [
   {
-    id: "digital",
-    label: "Digital Ecosystems",
-    title: "Digital & Creative",
+    id: "tech",
+    label: "Technology Solutions",
+    title: "Technology Solutions",
     services: [
-      { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/web", icon: Monitor },
+      { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/website", icon: Monitor },
       { name: "App Development", description: "Custom mobile and desktop apps for complex business problems.", path: "/services/app", icon: Smartphone },
       { name: "ERP Development", description: "Integrated systems to streamline operations and data management.", path: "/services/erp", icon: Database },
-      { name: "Digital Marketing", description: "Data-driven strategies to increase visibility and growth.", path: "/services/marketing", icon: BarChart3 },
-      { name: "Graphic Designing", description: "Creative visuals that capture your brand and message.", path: "/services/graphics", icon: Palette },
+      { name: "Website Revamp", description: "Modernize legacy systems into high-converting digital powerhouses.", path: "/services/website-revamp", icon: RefreshCw },
+      { name: "Interactive 3D Website", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d", icon: Layers }
     ]
   },
   {
-    id: "ai",
-    label: "Intelligent AI",
-    title: "Artificial Intelligence",
+    id: "design",
+    label: "Creative Design",
+    title: "Creative Design",
     services: [
-      { name: "Custom AI Application Development", description: "Tailored AI solutions for unique business requirements.", path: "/services/ai-app", icon: Cpu },
-      { name: "AI Agent Development", description: "Autonomous agents to automate workflows and engagement.", path: "/services/ai-agents", icon: Bot },
-      { name: "Generative AI & Chatbots", description: "Next-gen LLM solutions for intelligent interaction.", path: "/services/gen-ai", icon: MessageSquare },
-      { name: "NLP Solutions", description: "Analyze and understand language with advanced algorithms.", path: "/services/nlp", icon: FileText },
-      { name: "AI Automation", description: "Streamline repetitive tasks with intelligent logic.", path: "/services/ai-automation", icon: Zap },
+      { name: "2D Graphic Designing", description: "Creative visuals that capture your brand and message.", path: "/services/graphic-designing", icon: Palette },
+      { name: "3D Designing", description: "Hyper-realistic spatial assets and physical product modeling.", path: "/services/3d-designing", icon: Sun },
+      { name: "AI Image Rendition", description: "Next-generation generative art for rapid, bespoke visuals.", path: "/services/ai-rendition", icon: Bot }
     ]
   },
   {
-    id: "cloud",
-    label: "Global Cloud",
-    title: "Cloud Computing",
+    id: "marketing",
+    label: "Growth Marketing",
+    title: "Growth Marketing",
     services: [
-      { name: "Cloud Migration", description: "Securely move your infrastructure to the modern cloud.", path: "/services/cloud-migration", icon: CloudUpload },
-      { name: "Cloud Modernization", description: "Update legacy systems with cloud-native architectures.", path: "/services/cloud-modernization", icon: RefreshCw },
-      { name: "Cloud-Native Development", description: "Build scalable applications designed for cloud efficiency.", path: "/services/cloud-native", icon: Layers },
-      { name: "Managed Cloud Services", description: "24/7 monitoring and optimization of your cloud environment.", path: "/services/cloud-managed", icon: ShieldCheck },
-      { name: "Backup & Disaster Recovery", description: "Resilient data protection and rapid recovery solutions.", path: "/services/cloud-backup", icon: LifeBuoy },
-    ]
-  },
-  {
-    id: "property",
-    label: "Property Solutions",
-    title: "uNEST Promoters",
-    services: [
-      { name: "Property Management", description: "Comprehensive management services for residential and commercial assets.", path: "/services/property-mgmt", icon: ShieldCheck },
-      { name: "Real Estate Advisory", description: "Expert guidance for property investment and development strategies.", path: "/services/advisory", icon: FileText },
-      { name: "Sustainable Development", description: "Eco-friendly construction and urban planning solutions.", path: "/services/sustainable", icon: Sun },
-      { name: "Smart Infrastructure", description: "Integrating technology into physical environments for efficiency.", path: "/services/infrastructure", icon: Layers },
+      { name: "Meta Ads", description: "Laser-targeted conversion campaigns across Facebook and Instagram.", path: "/services/meta-ads", icon: BarChart3 },
+      { name: "SMM", description: "Cultivate a fiercely loyal community around your brand.", path: "/services/smm", icon: MessageSquare },
+      { name: "SEO", description: "Dominate search engine rankings for high-intent keywords.", path: "/services/seo", icon: ShieldCheck },
+      { name: "Google Ads", description: "Capture active demand exactly when they search for you.", path: "/services/google-ads", icon: Zap }
     ]
   }
 ];
 
-const productCategories = [
-  {
-    id: "uryze",
-    name: "uRYZE Elevators",
-    description: "Premium elevator solutions for modern architecture.",
-    image: "/images/uryze_preview.png", // Generated image path
-    path: "/shop/uryze"
-  },
-  {
-    id: "usynq",
-    name: "uSYNQ Smart Home Devices",
-    description: "Seamless automation for a smarter, more efficient lifestyle.",
-    image: "/images/usynq_preview.png", // Generated image path
-    path: "/shop/usynq"
-  }
-];
+
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showProductsDropdown, setShowProductsDropdown] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("digital");
+  const [activeCategory, setActiveCategory] = useState("tech");
   const [hidden, setHidden] = useState(false);
 
   const { scrollY } = useScroll();
@@ -128,7 +98,6 @@ export default function Navbar() {
       className={styles.navbarWrapper}
       onMouseLeave={() => {
         setShowDropdown(false);
-        setShowProductsDropdown(false);
       }}
     >
       <nav className={styles.navbar}>
@@ -145,82 +114,29 @@ export default function Navbar() {
           </Link>
 
           <div className={styles.links}>
-            <Link href="/about">About us</Link>
-
-            <div
-              className={styles.dropdownTrigger}
-              onMouseEnter={() => {
-                setShowProductsDropdown(true);
-                setShowDropdown(false);
-              }}
-            >
-              <Link href="/products" className={styles.linkWithIcon}>
-                Products <ChevronDown size={14} />
-              </Link>
-            </div>
+            <Link href="/about">Who we are</Link>
 
             <div
               className={styles.dropdownTrigger}
               onMouseEnter={() => {
                 setShowDropdown(true);
-                setShowProductsDropdown(false);
               }}
             >
               <Link href="/services" className={styles.linkWithIcon}>
-                Services <ChevronDown size={14} />
+                What we do <ChevronDown size={14} />
               </Link>
             </div>
 
-            <Link href="/blog">Blog</Link>
+            <Link href="/blog">Knowledge Hub</Link>
+            <Link href="/contact">Let's Talk</Link>
           </div>
 
-          <Link href="/contact" className={styles.ctaBadge}>
-            Get in touch
+          <Link href="/shop/usynq" className={styles.ctaBadge}>
+            Smart Living by uSYNQ
           </Link>
         </div>
 
-        <AnimatePresence>
-          {showProductsDropdown && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
-              className={styles.megaMenu}
-              onMouseEnter={() => setShowProductsDropdown(true)}
-            >
-              <div className={`${styles.megaMenuContainer} ${styles.productsMenuContainer}`}>
-                <div className={styles.productsGrid}>
-                  {productCategories.map((product) => (
-                    <Link key={product.id} href={product.path} className={styles.productCard}>
-                      <div className={styles.productImageWrapper}>
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className={styles.productImage}
-                        />
-                      </div>
-                      <div className={styles.productInfo}>
-                        <span className={styles.productName}>{product.name}</span>
-                        <span className={styles.productDesc}>{product.description}</span>
-                        <span className={styles.learnMore}>Learn More <ArrowRight size={14} /></span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-                <div className={styles.productsFeatured}>
-                  <div className={styles.featuredTag}>Featured Innovation</div>
-                  <h3>Smart Ecosystem</h3>
-                  <p>Discover our upcoming integrated solutions designed to seamlessly connect your home and elevate your lifestyle.</p>
-                  <Link href="/products" className={styles.brandLink}>
-                    Launching Soon <ExternalLink size={14} />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
 
         <AnimatePresence>
           {showDropdown && (
@@ -257,7 +173,7 @@ export default function Navbar() {
                     />
                     <div className={styles.promoOverlay}>
                       <h4>Maximize Your Presence</h4>
-                      <Link href="/contact">Explore All Services <ExternalLink size={12} /></Link>
+                      <Link href="/services">Explore All Services <ExternalLink size={12} /></Link>
                     </div>
                   </div>
                 </div>

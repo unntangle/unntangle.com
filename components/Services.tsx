@@ -4,36 +4,30 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 import styles from './Services.module.css';
 
 const expertiseGroups = [
     {
-        id: 'digital',
-        title: 'Digital Solutions',
-        description: 'Building high-performance digital ecosystems that drive growth and engagement through cutting-edge technology and design.',
-        services: ['Website Development', 'App Development', 'ERP Development', 'Digital Marketing', 'Graphic Designing'],
+        id: 'tech',
+        title: 'Technology Solutions',
+        description: 'Building high-performance digital ecosystems, apps, and immersive 3D web experiences that drive growth and engagement.',
+        services: ['Website Development', 'App Development', 'ERP Development', 'Website Revamp', 'Interactive 3D Website'],
         image: '/images/service_digital.jpg',
     },
     {
-        id: 'ai',
-        title: 'AI Solutions',
-        description: 'Leveraging next-generation artificial intelligence to automate complex workflows and provide intelligent business insights.',
-        services: ['Custom AI Application Development', 'AI Agent Development', 'Generative AI & Chatbots', 'NLP Solutions', 'AI Automation'],
-        image: '/images/service_ai.jpg',
-    },
-    {
-        id: 'cloud',
-        title: 'Cloud Solutions',
-        description: 'Secure, scalable, and efficient cloud transition strategies to modernize your infrastructure and optimize global performance.',
-        services: ['Cloud Migration', 'Cloud Modernization', 'Cloud-Native Development', 'Managed Cloud Services', 'Backup & Disaster Recovery'],
+        id: 'design',
+        title: 'Creative Design',
+        description: 'Premium visual identity and spatial modeling. Elevating your brand through 2D graphics, cinematic 3D rendering, and AI-generated art.',
+        services: ['2D Graphic Designing', '3D Designing', 'AI Image Rendition'],
         image: '/images/service_cloud_v3.jpg',
     },
     {
-        id: 'property',
-        title: 'Property Solutions',
-        description: 'Sustainable real estate development and intelligent property management by uNEST Promoters.',
-        services: ['uNEST Promoters', 'Property Management', 'Real Estate Advisory', 'Sustainable Development', 'Smart Infrastructure'],
-        image: '/images/service_smart.jpg',
+        id: 'marketing',
+        title: 'Growth Marketing',
+        description: 'Aggressive growth engines. Cultivating community and capturing high-intent traffic through targeted SEO, Social Media, and Performance Ads.',
+        services: ['Meta Ads', 'SMM', 'SEO', 'Google Ads'],
+        image: '/images/service_ai.jpg',
     }
 ];
 
@@ -57,9 +51,8 @@ const Card = ({ group, index, progress }: CardProps) => {
     // Card 4 finishes at 0.75 — well before section unpins
     const windows: [number, number][] = [
         [0, 0],          // Card 0: static
-        [0.10, 0.35],    // Card 1: reveal starts after pinning
-        [0.40, 0.65],    // Card 2: middle reveal
-        [0.70, 0.95],    // Card 3: final reveal
+        [0.20, 0.45],    // Card 1: reveal
+        [0.55, 0.80],    // Card 2: final reveal
     ];
     const [start, end] = windows[index];
 
@@ -132,9 +125,11 @@ const Card = ({ group, index, progress }: CardProps) => {
                         ))}
                     </div>
 
-                    <button className={styles.exploreBtn}>
-                        Explore Solutions <Plus size={18} />
-                    </button>
+                    <Link href="/services" style={{ textDecoration: 'none' }}>
+                        <button className={styles.exploreBtn}>
+                            Explore Solutions <Plus size={18} />
+                        </button>
+                    </Link>
                 </div>
             </motion.div>
         </div>

@@ -8,14 +8,13 @@ import MarketingCTA from "@/components/MarketingCTA";
 import Footer from "@/components/Footer";
 
 const categories = [
-    { id: 'digital', name: 'Digital Solutions' },
-    { id: 'ai', name: 'AI Solutions' },
-    { id: 'cloud', name: 'Cloud Solutions' },
-    { id: 'property', name: 'Property Solutions' },
+    { id: 'tech', name: 'Technology Solutions' },
+    { id: 'design', name: 'Creative Design' },
+    { id: 'marketing', name: 'Growth Marketing' },
 ];
 
 export default function ServicesPage() {
-    const [activeCategoryId, setActiveCategoryId] = useState('digital');
+    const [activeCategoryId, setActiveCategoryId] = useState('tech');
 
     return (
         <main>
