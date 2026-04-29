@@ -1,7 +1,7 @@
 .ctaSection {
     position: relative;
     background-color: #ffffff;
-    padding: 120px 0;
+    padding: 100px 0 120px 0;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -20,7 +20,8 @@
     background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
     background-size: 32px 32px;
     opacity: 0.6;
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 50%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 50%, black 90%, transparent 100%);
 }
 
 .blobContainer {
@@ -28,6 +29,8 @@
     inset: 0;
     filter: blur(100px);
     opacity: 0.45;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
 }
 
 .blob {

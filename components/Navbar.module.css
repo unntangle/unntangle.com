@@ -117,292 +117,215 @@
 
 .megaMenuContainer {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1280px;
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 24px;
     border: 1px solid #e5e7eb;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
     display: grid;
-    grid-template-columns: 280px 1fr 300px;
+    grid-template-columns: 1fr 320px;
     overflow: hidden;
-    min-height: 400px;
     pointer-events: auto;
+    align-items: stretch;
 }
 
-/* Side Section */
-.megaMenuSide {
-    background-color: #f9fafb;
-    border-right: 1px solid #f3f4f6;
-    padding: 24px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.categoryNav {
-    display: flex;
-    flex-direction: column;
+/* Category Columns - NiCE-style */
+.categoryColumns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
+    padding: 28px 36px 28px 36px;
+    align-items: start;
 }
 
-.catButton {
+/* Two-column variant for the Products menu (only AI & Automation + Coming Soon) */
+.categoryColumnsTwo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.categoryColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.columnHeading {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 20px 0;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    letter-spacing: -0.01em;
+}
+
+.columnLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.serviceLink {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: transform 0.2s ease;
+}
+
+.serviceLinkTitle {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary, #00b4db);
+    transition: color 0.2s ease;
+    letter-spacing: -0.01em;
+    font-family: var(--font-outfit), inherit;
+}
+
+.serviceLink:hover .serviceLinkTitle {
+    color: #006b85;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.serviceLinkDesc {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Featured Promo (right column) - Dynamic Latest Blog */
+.featuredPromo {
+    background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 1px solid #e5e7eb;
+}
+
+.promoEyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary, #00b4db);
+    margin-bottom: 4px;
+}
+
+.promoCard {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f1f5f9;
+    box-shadow: 0 8px 24px rgba(0, 114, 255, 0.12);
+    margin-bottom: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promoCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 114, 255, 0.18);
+}
+
+.promoCardImage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.promoCardImg {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.promoCard:hover .promoCardImg {
+    transform: scale(1.05);
+}
+
+.promoMeta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    border-radius: 12px;
+    gap: 8px;
+    font-size: 11px;
     font-weight: 600;
-    font-size: 15px;
-    color: #4b5563;
-    transition: all 0.2s ease;
-    border: none;
-    background: none;
-    cursor: pointer;
-    text-align: left;
+    color: #6b7280;
 }
 
-.catButton.active {
-    background-color: var(--primary-glow);
-    color: var(--primary);
+.promoCategory {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1f2937;
 }
 
-.catButton:not(.active):hover {
-    background-color: rgba(0, 209, 255, 0.05);
-    /* Very subtle hover pulse */
+.promoDot {
+    color: #9ca3af;
 }
 
-.catButton svg {
-    opacity: 0;
-    transition: opacity 0.2s ease;
+.promoDate {
+    color: #6b7280;
+    font-weight: 500;
 }
 
-.catButton.active svg {
-    opacity: 1;
-}
-
-.knowledgeHub {
-    margin-top: 12px;
-    padding: 10px 18px;
-    font-weight: 600;
-    font-size: 15px;
-    color: #111827;
+.promoTitleLink {
     text-decoration: none;
+    color: inherit;
 }
 
-/* Promo Banner */
-.promoBanner {
-    margin-top: 24px;
-    position: relative;
-    height: 180px;
-    border-radius: 16px;
+.promoTitleLink:hover .promoHeading {
+    color: var(--primary, #00b4db);
+}
+
+.promoHeading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 0;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-.promoImage {
-    object-fit: cover;
-}
-
-.promoOverlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 12px;
-}
-
-.promoOverlay h4 {
-    color: var(--primary);
-    font-size: 18px;
+.promoDescription {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.5;
     margin: 0;
-    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.promoOverlay a {
-    color: white;
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
+.promoLink {
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-/* Main Section */
-.megaMenuMain {
-    padding: 32px 40px;
-}
-
-.megaMenuMain h5 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e5e7eb;
-}
-
-.servicesGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.serviceItem {
-    text-decoration: none;
-    padding: 12px 16px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background-color: transparent;
-}
-
-.serviceItem:hover {
-    background-color: #f8fafc;
-}
-
-.serviceIconWrapper {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.serviceIcon {
-    color: #94a3b8;
-    /* Slate grey */
-    transition: all 0.2s ease;
-}
-
-.serviceItem:hover .serviceIcon {
-    color: #475569;
-    /* Darker grey on hover */
-}
-
-.serviceItemContent {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    flex: 1;
-}
-
-.serviceName {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
-    transition: color 0.2s ease;
-}
-
-.serviceDesc {
+    color: var(--primary, #00b4db);
     font-size: 13px;
-    color: #6b7280;
-    line-height: 1.4;
-    transition: color 0.2s ease;
-    max-width: 320px;
-}
-
-.serviceArrow {
-    opacity: 0;
-    transition: all 0.2s ease;
-    transform: translateX(-10px);
-    color: #111827;
-}
-
-.serviceItem:hover .serviceArrow {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Featured Section */
-.megaMenuFeatured {
-    background-color: #eff6ff;
-    /* Targeted section tint */
-    padding: 32px 24px;
-    border-left: 1px solid #dbeafe;
-}
-
-.megaMenuFeatured h5 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 20px;
-}
-
-.featuredList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.secondaryBlogs {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-top: 8px;
-}
-
-.blogLinkItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
     font-weight: 600;
-    color: #1f2937;
     text-decoration: none;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: color 0.2s ease;
+    margin-top: 4px;
+    transition: gap 0.2s ease;
 }
 
-.blogLinkItem:hover {
-    color: var(--primary);
-}
-
-.blogLinkItem svg {
-    color: var(--primary);
-}
-
-.featuredCard {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08);
-}
-
-.featuredImageWrapper {
-    position: relative;
-    height: 140px;
-}
-
-.featuredImage {
-    object-fit: cover;
-}
-
-.featuredContent {
-    padding: 20px;
-}
-
-.featuredContent p {
-    font-size: 14px;
-    color: #1f2937;
-    line-height: 1.5;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.featuredContent a {
-    color: #2563eb;
-    font-size: 14px;
-    font-weight: 700;
+.promoLink:hover {
+    gap: 10px;
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
 }
 
 /* Products Mega Menu Specifics */
@@ -542,7 +465,17 @@
 
 @media (max-width: 1024px) {
     .megaMenuContainer {
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .categoryColumns {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 28px;
+    }
+
+    .featuredPromo {
+        display: none;
     }
 
     .productsMenuContainer {
@@ -553,7 +486,17 @@
         display: none;
     }
 
-    .megaMenuFeatured {
+    .productsContainer {
+        max-width: 100%;
+        padding: 28px;
+    }
+
+    .productsGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .productPlaceholder {
         display: none;
     }
 }
@@ -567,3 +510,282 @@
         gap: 12px;
     }
 }
+
+/* ============================
+   Products Mega Menu (mirrors Services structure)
+   ============================ */
+
+/* Product item titles can carry a small status badge */
+.productItemTitleRow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.productLiveBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #047857;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.productLiveBadge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+.productSoonBadge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7280;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.productItemDisabled {
+    cursor: default;
+    opacity: 0.75;
+}
+
+.productItemDisabled:hover .serviceLinkTitle {
+    color: var(--primary, #00b4db);
+    text-decoration: none;
+}
+
+/* Featured product variant of the right-rail promo — SaaS data-forward layout */
+.featuredProduct {
+    background: linear-gradient(180deg, #fafbff 0%, #f4f7fc 100%);
+    padding: 22px 22px 22px;
+    gap: 12px;
+}
+
+/* Compact product header: small icon tile + wordmark + tagline.
+   Replaces the old big gradient hero card. */
+.featuredProductHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    margin: 0;
+}
+
+.featuredProductHeader:hover {
+    border-color: #c7d2fe;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+/* Product preview image — hero shot of the actual dashboard UI */
+.featuredProductPreview {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.featuredProductPreview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+}
+
+.featuredProductPreviewImg {
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.featuredProductPreview:hover .featuredProductPreviewImg {
+    transform: scale(1.05);
+}
+
+/* Branded color overlay so the stock photo feels on-brand and the floating
+   icon tile has reliable contrast against the image */
+.featuredProductPreviewGradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 64, 175, 0.55) 0%,
+        rgba(6, 182, 212, 0.25) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Floating icon tile in top-left corner of the preview image */
+.featuredProductPreviewOverlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.featuredProductIconTile {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1e40af 0%, #06b6d4 100%);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.35);
+}
+
+.featuredProductHeaderText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    min-width: 0;
+    line-height: 1.2;
+}
+
+.featuredProductName {
+    font-family: var(--font-outfit), sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+/* Actual uVOIZ logo image (replaces the text wordmark) */
+.featuredProductLogo {
+    width: auto;
+    height: 28px;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    margin-left: -2px;
+    margin-bottom: 2px;
+}
+
+.featuredProductHeaderTag {
+    font-size: 11.5px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+
+.featuredProductDescription {
+    font-size: 12.5px;
+    color: #4b5563;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Stat tiles — 2x2 grid, Google/Stripe metric-card style */
+.featuredProductStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.statTile {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.statValue {
+    font-family: var(--font-outfit), sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e40af;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.statLabel {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+}
+
+/* Text-link CTA — minimal, no button shape */
+.featuredProductCtaLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    align-self: flex-start;
+    color: #1e40af;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.005em;
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.featuredProductCtaLink:hover {
+    gap: 10px;
+    color: #1e3a8a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+
+/* ============================
+   Product wordmark color
+   Two-tone: cyan "u" + deep blue rest, matches the hero blue-cyan palette
+   ============================ */
+
+/* Small wordmark used in the left-column product list (on white bg).
+   Solid cyan for both halves — unified brand accent.
+   Slightly larger font-size to optically match the Services dropdown titles
+   (uppercase letters in 'uVOIZ' have less cap-height than 'Website Development'). */
+.uvoizU,
+.uvoizVoiz {
+    color: #06b6d4;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font-outfit), inherit;
+    letter-spacing: -0.01em;
+    line-height: inherit;
+}
+
+/* Large wordmark used in the featured card (kept for backwards compat, no longer used) */
+.featuredU {
+    color: #06b6d4;
+}
+
+.featuredVoiz {
+    color: #1e40af;
+}
+

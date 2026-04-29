@@ -1,7 +1,7 @@
 .scrollSection {
     position: relative;
     height: 350vh;
-    background-color: #000000;
+    background-color: #ffffff;
 }
 
 .stickyWrapper {
@@ -11,59 +11,76 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 100px;
-    /* Reduced space from top of screen */
+    padding-top: 48px;
     overflow: hidden;
 }
 
-/* Tabs Sticky Styling */
+/* Tabs Sticky Styling - Refined Light Theme */
 .tabsStickyContainer {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
-    /* Reduced gap between tabs and cards */
+    margin-bottom: 32px;
     z-index: 20;
 }
 
 .categoriesList {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+    border-radius: 999px;
+    padding: 6px;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .categoryItem {
-    padding: 12px 24px;
+    position: relative;
+    padding: 10px 22px;
     font-size: 14px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    color: #6b7280;
     white-space: nowrap;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 12px;
-    display: flex;
+    transition: color 0.25s ease, background-color 0.25s ease;
+    border-radius: 999px;
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    letter-spacing: -0.005em;
 }
 
 .categoryItem:hover {
-    color: #ffffff;
+    color: #111;
+    background: #f3f4f6;
 }
 
 .categoryActive {
-    color: var(--primary, #00d1ff);
-    background: rgba(0, 209, 255, 0.1);
+    color: #ffffff;
+    background: #111;
+    font-weight: 600;
+}
+
+.categoryActive:hover {
+    color: #ffffff;
+    background: #111;
 }
 
 .tabIcon {
-    margin-left: 4px;
+    margin-left: 2px;
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.25s ease, width 0.25s ease;
+    overflow: hidden;
+}
+
+.categoryActive .tabIcon {
+    opacity: 1;
+    width: 14px;
 }
 
 .horizontalTrack {
@@ -78,12 +95,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Important to center the scaling card vertically */
 }
 
 .cardWrapper {
     width: 100%;
-    /* Let Framer Motion handle scale */
     display: flex;
     justify-content: center;
 }
@@ -92,27 +107,27 @@
     position: relative;
     width: 100%;
     height: clamp(400px, 65vh, 600px);
-    /* Changed from aspect-ratio to constrained height to match AWS wide style */
     background: #111;
     border-radius: 24px;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
-/* Glow Border Effect */
+/* Soft Glow Border Effect (kept but tuned for light bg) */
 .glowBorder {
     position: absolute;
     inset: -2px;
     background: linear-gradient(135deg, #C084FC 0%, #3b82f6 50%, #8B9DFF 100%);
     z-index: 0;
     border-radius: 26px;
-    opacity: 0.4;
-    filter: blur(8px);
+    opacity: 0.25;
+    filter: blur(10px);
     transition: opacity 0.3s ease;
 }
 
 .card:hover .glowBorder {
-    opacity: 0.8;
+    opacity: 0.55;
 }
 
 .imageWrapper {
@@ -132,10 +147,17 @@
     transform: scale(1.02);
 }
 
+/* Subtle dark scrim on the card image so white text stays legible */
 .overlay {
     position: absolute;
     inset: 0;
-    background: transparent;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.15) 35%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+    z-index: 1;
 }
 
 .topContent {
@@ -156,7 +178,6 @@
     font-weight: 500;
     letter-spacing: 0.05em;
     font-family: monospace;
-    /* AWS style badge */
 }
 
 .bottomContent {
@@ -171,7 +192,6 @@
 .title {
     font-family: var(--font-outfit), sans-serif;
     font-size: clamp(32px, 5vw, 64px);
-    /* Increased size to match AWS dramatic title */
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 20px;
@@ -182,7 +202,6 @@
 
 .description {
     font-size: clamp(18px, 1.5vw, 24px);
-    /* Increased readability */
     font-weight: 500;
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 32px;

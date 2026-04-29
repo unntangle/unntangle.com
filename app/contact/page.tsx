@@ -6,7 +6,7 @@ import FAQ from "@/components/FAQ";
 
 export default function ContactPage() {
     return (
-        <main style={{ backgroundColor: '#ffffff' }}>
+        <main>
             <Navbar />
             <ContactHero />
             <BrandBar />

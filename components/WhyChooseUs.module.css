@@ -1,0 +1,225 @@
+.section {
+    position: relative;
+    background: #ffffff;
+    padding: 40px 0 80px;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 48px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary, #00b4db);
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.08);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    border-radius: 999px;
+}
+
+.title {
+    font-family: var(--font-outfit), sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: #111;
+    margin-bottom: 20px;
+    padding: 0.1em 0;
+}
+
+.titleAccent {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+    padding: 0.15em 0.1em 0.2em 0.02em;
+    margin: -0.15em 0 -0.2em 0;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #4b5563;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* ============================
+   Comparison Table
+   ============================ */
+.comparisonTable {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr 1.4fr;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.headerCell {
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+}
+
+.headerUnntangle {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(124, 58, 237, 0.06) 100%);
+    border-left: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+}
+
+.headerOthers {
+    /* keep neutral */
+}
+
+.headerLabel {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #111;
+}
+
+.headerOthers .headerLabel {
+    color: #6b7280;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr 1.4fr;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableRow:hover {
+    background: #fcfcfd;
+}
+
+.featureCell {
+    padding: 24px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: center;
+}
+
+.cell {
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #4b5563;
+}
+
+.cellUnntangle {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.025) 0%, rgba(124, 58, 237, 0.025) 100%);
+    border-left: 1px solid #f3f4f6;
+    border-right: 1px solid #f3f4f6;
+    color: #1f2937;
+}
+
+.cellOthers {
+    color: #6b7280;
+}
+
+.cellText {
+    flex: 1;
+    padding-top: 2px;
+}
+
+.iconWrapper {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.iconWrapperX {
+    background: #e5e7eb;
+    color: #9ca3af;
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .section {
+        padding: 32px 0 60px;
+    }
+
+    .header {
+        margin-bottom: 48px;
+    }
+
+    .tableHeader,
+    .tableRow {
+        grid-template-columns: 1fr;
+    }
+
+    .headerCell:first-child {
+        display: none;
+    }
+
+    .headerUnntangle,
+    .headerOthers {
+        border: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 14px 24px;
+    }
+
+    .featureCell {
+        padding: 20px 24px 8px;
+        font-size: 16px;
+        background: #f9fafb;
+    }
+
+    .cell {
+        padding: 16px 24px 20px;
+        border: none;
+    }
+
+    .cellUnntangle {
+        border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .tableRow {
+        border-bottom: 2px solid #e5e7eb;
+    }
+}

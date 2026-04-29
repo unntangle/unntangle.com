@@ -1,35 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
   ChevronDown,
   ArrowRight,
-  ExternalLink,
-  Monitor,
-  Smartphone,
-  Database,
-  BarChart3,
-  Palette,
-  Cpu,
-  Bot,
-  MessageSquare,
-  FileText,
-  Zap,
-  CloudUpload,
-  RefreshCw,
-  Layers,
+  PhoneCall,
+  Sparkles,
+  Globe2,
   ShieldCheck,
-  LifeBuoy,
-  Home,
-  Lock,
-  Sun,
-  ArrowUpCircle,
-  DoorOpen
+  BarChart3,
+  Zap,
 } from 'lucide-react';
 import styles from './Navbar.module.css';
+import { blogsData } from '@/data/blogs';
 
 const serviceCategories = [
   {
@@ -37,11 +23,11 @@ const serviceCategories = [
     label: "Technology Solutions",
     title: "Technology Solutions",
     services: [
-      { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/website", icon: Monitor },
-      { name: "App Development", description: "Custom mobile and desktop apps for complex business problems.", path: "/services/app", icon: Smartphone },
-      { name: "ERP Development", description: "Integrated systems to streamline operations and data management.", path: "/services/erp", icon: Database },
-      { name: "Website Revamp", description: "Modernize legacy systems into high-converting digital powerhouses.", path: "/services/website-revamp", icon: RefreshCw },
-      { name: "Interactive 3D Website", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d", icon: Layers }
+      { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/website" },
+      { name: "App Development", description: "Custom mobile and desktop apps for complex business problems.", path: "/services/app" },
+      { name: "ERP Development", description: "Integrated systems to streamline operations and data management.", path: "/services/erp" },
+      { name: "Website Revamp", description: "Modernize legacy systems into high-converting digital powerhouses.", path: "/services/website-revamp" },
+      { name: "Interactive 3D Website", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d" }
     ]
   },
   {
@@ -49,9 +35,9 @@ const serviceCategories = [
     label: "Creative Design",
     title: "Creative Design",
     services: [
-      { name: "2D Graphic Designing", description: "Creative visuals that capture your brand and message.", path: "/services/graphic-designing", icon: Palette },
-      { name: "3D Designing", description: "Hyper-realistic spatial assets and physical product modeling.", path: "/services/3d-designing", icon: Sun },
-      { name: "AI Image Rendition", description: "Next-generation generative art for rapid, bespoke visuals.", path: "/services/ai-rendition", icon: Bot }
+      { name: "2D Graphic Designing", description: "Creative visuals that capture your brand and message.", path: "/services/graphic-designing" },
+      { name: "3D Designing", description: "Hyper-realistic spatial assets and physical product modeling.", path: "/services/3d-designing" },
+      { name: "AI Image Rendition", description: "Next-generation generative art for rapid, bespoke visuals.", path: "/services/ai-rendition" }
     ]
   },
   {
@@ -59,33 +45,71 @@ const serviceCategories = [
     label: "Growth Marketing",
     title: "Growth Marketing",
     services: [
-      { name: "Meta Ads", description: "Laser-targeted conversion campaigns across Facebook and Instagram.", path: "/services/meta-ads", icon: BarChart3 },
-      { name: "SMM", description: "Cultivate a fiercely loyal community around your brand.", path: "/services/smm", icon: MessageSquare },
-      { name: "SEO", description: "Dominate search engine rankings for high-intent keywords.", path: "/services/seo", icon: ShieldCheck },
-      { name: "Google Ads", description: "Capture active demand exactly when they search for you.", path: "/services/google-ads", icon: Zap }
+      { name: "Meta Ads", description: "Laser-targeted conversion campaigns across Facebook and Instagram.", path: "/services/meta-ads" },
+      { name: "SMM", description: "Cultivate a fiercely loyal community around your brand.", path: "/services/smm" },
+      { name: "SEO", description: "Dominate search engine rankings for high-intent keywords.", path: "/services/seo" },
+      { name: "Google Ads", description: "Capture active demand exactly when they search for you.", path: "/services/google-ads" }
     ]
   }
 ];
 
-
+// Products organized like services — categories of products with item lists.
+// Today there's one shipping product (uVOIZ) plus a future-roadmap column.
+const productCategories = [
+  {
+    id: "live",
+    title: "AI & Automation",
+    items: [
+      {
+        name: "uVOIZ",
+        description: "Replace telecallers with AI that speaks Hindi, Tamil, Telugu, Kannada and more. TRAI-compliant. Built for Indian BPOs.",
+        path: "https://uvoiz.unntangle.com",
+        external: true,
+      },
+    ],
+  },
+  {
+    id: "roadmap",
+    title: "Coming Soon",
+    items: [
+      {
+        name: "uDYLR",
+        description: "Intelligent BPO dialer with predictive routing, agent assist, and built-in compliance for outbound and inbound campaigns.",
+        path: "#",
+        disabled: true,
+      },
+      {
+        name: "uSCRIBR",
+        description: "AI medical scribe that captures clinical conversations and generates structured SOAP notes in real time.",
+        path: "#",
+        disabled: true,
+      },
+    ],
+  },
+];
 
 export default function Navbar() {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("tech");
+  const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | null>(null);
   const [hidden, setHidden] = useState(false);
+
+  // Get the most recent blog post by parsing dates and sorting descending
+  const latestBlog = useMemo(() => {
+    if (!blogsData || blogsData.length === 0) return null;
+    return [...blogsData].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    )[0];
+  }, []);
 
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
-    if (latest > previous && latest > 150 && !showDropdown) {
+    if (latest > previous && latest > 150 && !activeDropdown) {
       setHidden(true);
     } else {
       setHidden(false);
     }
   });
-
-  const currentGroup = serviceCategories.find(cat => cat.id === activeCategory) || serviceCategories[0];
 
   return (
     <motion.div
@@ -97,7 +121,7 @@ export default function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={styles.navbarWrapper}
       onMouseLeave={() => {
-        setShowDropdown(false);
+        setActiveDropdown(null);
       }}
     >
       <nav className={styles.navbar}>
@@ -118,12 +142,19 @@ export default function Navbar() {
 
             <div
               className={styles.dropdownTrigger}
-              onMouseEnter={() => {
-                setShowDropdown(true);
-              }}
+              onMouseEnter={() => setActiveDropdown('services')}
             >
               <Link href="/services" className={styles.linkWithIcon}>
                 What we do <ChevronDown size={14} />
+              </Link>
+            </div>
+
+            <div
+              className={styles.dropdownTrigger}
+              onMouseEnter={() => setActiveDropdown('products')}
+            >
+              <Link href="/products" className={styles.linkWithIcon}>
+                Products <ChevronDown size={14} />
               </Link>
             </div>
 
@@ -136,108 +167,191 @@ export default function Navbar() {
           </Link>
         </div>
 
-
-
+        {/* Services Mega Menu */}
         <AnimatePresence>
-          {showDropdown && (
+          {activeDropdown === 'services' && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
               className={styles.megaMenu}
-              onMouseEnter={() => setShowDropdown(true)}
+              onMouseEnter={() => setActiveDropdown('services')}
             >
               <div className={styles.megaMenuContainer}>
-                {/* Left Side: Category Nav & Banner */}
-                <div className={styles.megaMenuSide}>
-                  <div className={styles.categoryNav}>
-                    {serviceCategories.map(cat => (
-                      <button
-                        key={cat.id}
-                        className={`${styles.catButton} ${activeCategory === cat.id ? styles.active : ''}`}
-                        onMouseEnter={() => setActiveCategory(cat.id)}
-                      >
-                        <span>{cat.label}</span>
-                        <ArrowRight size={16} />
-                      </button>
-                    ))}
-                  </div>
+                {/* Service Category Columns */}
+                <div className={styles.categoryColumns}>
+                  {serviceCategories.map((cat) => (
+                    <div key={cat.id} className={styles.categoryColumn}>
+                      <h5 className={styles.columnHeading}>{cat.title}</h5>
+                      <div className={styles.columnLinks}>
+                        {cat.services.map((service, i) => (
+                          <Link key={i} href={service.path} className={styles.serviceLink}>
+                            <span className={styles.serviceLinkTitle}>{service.name}</span>
+                            <span className={styles.serviceLinkDesc}>{service.description}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                  <div className={styles.promoBanner}>
+                {/* Featured Latest Blog Card (dynamic) */}
+                <div className={styles.featuredPromo}>
+                  {latestBlog && (
+                    <>
+                      <span className={styles.promoEyebrow}>Latest from the blog</span>
+                      <Link href={`/blog/${latestBlog.id}`} className={styles.promoCard}>
+                        <div className={styles.promoCardImage}>
+                          <Image
+                            src={latestBlog.image}
+                            alt={latestBlog.title}
+                            fill
+                            className={styles.promoCardImg}
+                            unoptimized
+                          />
+                        </div>
+                      </Link>
+                      <div className={styles.promoMeta}>
+                        <span className={styles.promoCategory}>{latestBlog.category}</span>
+                        <span className={styles.promoDot}>•</span>
+                        <span className={styles.promoDate}>{latestBlog.date}</span>
+                      </div>
+                      <Link href={`/blog/${latestBlog.id}`} className={styles.promoTitleLink}>
+                        <h4 className={styles.promoHeading}>{latestBlog.title}</h4>
+                      </Link>
+                      <p className={styles.promoDescription}>{latestBlog.description}</p>
+                      <Link href={`/blog/${latestBlog.id}`} className={styles.promoLink}>
+                        Read full article <ArrowRight size={14} />
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Products Mega Menu — mirrors Services structure */}
+        <AnimatePresence>
+          {activeDropdown === 'products' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className={styles.megaMenu}
+              onMouseEnter={() => setActiveDropdown('products')}
+            >
+              <div className={styles.megaMenuContainer}>
+                {/* Product Category Columns (left) */}
+                <div className={`${styles.categoryColumns} ${styles.categoryColumnsTwo}`}>
+                  {productCategories.map((cat) => (
+                    <div key={cat.id} className={styles.categoryColumn}>
+                      <h5 className={styles.columnHeading}>{cat.title}</h5>
+                      <div className={styles.columnLinks}>
+                        {cat.items.map((item, i) => {
+                          const linkProps = item.external
+                            ? { target: '_blank' as const, rel: 'noopener noreferrer' }
+                            : {};
+                          const className = item.disabled
+                            ? `${styles.serviceLink} ${styles.productItemDisabled}`
+                            : styles.serviceLink;
+                          return (
+                            <Link
+                              key={i}
+                              href={item.disabled ? '#' : item.path}
+                              className={className}
+                              {...linkProps}
+                              onClick={item.disabled ? (e) => e.preventDefault() : undefined}
+                            >
+                              <span className={styles.productItemTitleRow}>
+                                <span className={styles.serviceLinkTitle}>
+                                  {item.name.startsWith('u') && item.name.length > 1 ? (
+                                    <>
+                                      <span className={styles.uvoizU}>u</span>
+                                      <span className={styles.uvoizVoiz}>{item.name.slice(1)}</span>
+                                    </>
+                                  ) : (
+                                    item.name
+                                  )}
+                                </span>
+                                {item.badge && (
+                                  <span className={styles.productLiveBadge}>{item.badge}</span>
+                                )}
+                                {item.disabled && (
+                                  <span className={styles.productSoonBadge}>Soon</span>
+                                )}
+                              </span>
+                              <span className={styles.serviceLinkDesc}>{item.description}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Featured Product Card (right) — SaaS-style with product preview image */}
+                <div className={`${styles.featuredPromo} ${styles.featuredProduct}`}>
+                  <span className={styles.promoEyebrow}>
+                    Featured product
+                  </span>
+
+                  {/* Product preview image — BPO / AI telecalling vibe */}
+                  <Link
+                    href="https://uvoiz.unntangle.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.featuredProductPreview}
+                  >
                     <Image
-                      src="/images/hero.png"
-                      alt="Explore Services"
+                      src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&q=80&w=800&h=450"
+                      alt="AI-powered BPO call center"
                       fill
-                      className={styles.promoImage}
+                      sizes="320px"
+                      className={styles.featuredProductPreviewImg}
+                      unoptimized
                     />
-                    <div className={styles.promoOverlay}>
-                      <h4>Maximize Your Presence</h4>
-                      <Link href="/services">Explore All Services <ExternalLink size={12} /></Link>
+                    <div className={styles.featuredProductPreviewGradient} aria-hidden="true" />
+                  </Link>
+
+                  {/* Compact logo + tagline below the image */}
+                  <div className={styles.featuredProductHeaderText}>
+                    <Image
+                      src="/images/uVOIZ-logo.webp"
+                      alt="uVOIZ"
+                      width={120}
+                      height={32}
+                      className={styles.featuredProductLogo}
+                    />
+                    <span className={styles.featuredProductHeaderTag}>AI Telecalling for BPOs</span>
+                  </div>
+
+                  <p className={styles.featuredProductDescription}>
+                    Replace telecallers with AI voice agents that speak 5+ Indian languages, integrate with your CRM, and run 24/7.
+                  </p>
+
+                  {/* Stat tiles — Google/Stripe-style metric cards */}
+                  <div className={styles.featuredProductStats}>
+                    <div className={styles.statTile}>
+                      <span className={styles.statValue}>5+</span>
+                      <span className={styles.statLabel}>Indian languages</span>
+                    </div>
+                    <div className={styles.statTile}>
+                      <span className={styles.statValue}>24/7</span>
+                      <span className={styles.statLabel}>Always-on calling</span>
                     </div>
                   </div>
-                </div>
 
-                {/* Center: Services List */}
-                <div className={styles.megaMenuMain}>
-                  <h5>{currentGroup.title}</h5>
-                  <div className={styles.servicesGrid}>
-                    {currentGroup.services.map((service, i) => {
-                      const Icon = service.icon;
-                      return (
-                        <Link key={i} href={service.path} className={styles.serviceItem}>
-                          <div className={styles.serviceIconWrapper}>
-                            <Icon size={24} className={styles.serviceIcon} />
-                          </div>
-                          <div className={styles.serviceItemContent}>
-                            <span className={styles.serviceName}>{service.name}</span>
-                            <span className={styles.serviceDesc}>{service.description}</span>
-                          </div>
-                          <ArrowRight size={18} className={styles.serviceArrow} />
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Right Side: Latest Blog */}
-                <div className={styles.megaMenuFeatured}>
-                  <h5>Latest Blog</h5>
-                  <div className={styles.featuredList}>
-                    <div className={styles.featuredCard}>
-                      <div className={styles.featuredImageWrapper}>
-                        <Image
-                          src="/images/latest_blog.png"
-                          alt="Latest Blog"
-                          fill
-                          className={styles.featuredImage}
-                        />
-                      </div>
-                      <div className={styles.featuredContent}>
-                        <p>The Future of AI in Modern Business: How to Stay Ahead of the Curve in 2026</p>
-                        <Link href="/blog/ai-future">Read Full Article</Link>
-                      </div>
-                    </div>
-
-                    <div className={styles.secondaryBlogs}>
-                      <Link href="/blog/digital-trends" className={styles.blogLinkItem}>
-                        <span>Digital Transformation Trends 2026</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                      <Link href="/blog/cloud-security" className={styles.blogLinkItem}>
-                        <span>Securing Your Cloud Infrastructure</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                      <Link href="/blog/ai-ethics" className={styles.blogLinkItem}>
-                        <span>AI Ethics: Navigating the New Frontier</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                      <Link href="/blog/smart-efficiency" className={styles.blogLinkItem}>
-                        <span>Maximizing Efficiency with Smart Living</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                    </div>
-                  </div>
+                  <Link
+                    href="https://uvoiz.unntangle.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.featuredProductCtaLink}
+                  >
+                    Try now <ArrowRight size={13} />
+                  </Link>
                 </div>
               </div>
             </motion.div>

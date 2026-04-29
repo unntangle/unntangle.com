@@ -1,3 +1,10 @@
+/* Wrapper that fills the area behind the footer's rounded top corners with cream,
+   matching the FAQ section above. The footer's curve cuts into this wrapper, so cream
+   is what's revealed at the corners regardless of body or page background. */
+.footerWrapper {
+    background: #f5f1eb;
+}
+
 .footer {
     background-color: #0f141a;
     color: white;

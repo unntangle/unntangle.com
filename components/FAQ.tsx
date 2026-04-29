@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import styles from './FAQ.module.css';
 
 const faqs = [
@@ -37,41 +37,68 @@ export default function FAQ() {
 
     return (
         <section className={styles.faqSection}>
-            <div className={`container ${styles.container}`}>
-                <h2 className={styles.mainTitle}>Frequently Asked Questions</h2>
+            <div className={styles.container}>
+                <div className={styles.layout}>
+                    {/* Left column: sticky title */}
+                    <aside className={styles.titleColumn}>
+                        <motion.h2
+                            className={styles.mainTitle}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            Frequently Asked
+                            <br />
+                            Questions
+                        </motion.h2>
+                    </aside>
 
-                <div className={styles.contentWrapper}>
-                    {/* Accordion */}
-                    <div className={styles.accordionFull}>
-                        {faqs.map((faq, i) => (
-                            <div key={i} className={styles.item}>
-                                <button
-                                    className={`${styles.question} ${openIndex === i ? styles.active : ''}`}
-                                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    {/* Right column: accordion cards */}
+                    <div className={styles.accordion}>
+                        {faqs.map((faq, i) => {
+                            const isOpen = openIndex === i;
+                            return (
+                                <motion.div
+                                    key={i}
+                                    className={`${styles.card} ${isOpen ? styles.cardOpen : ''}`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.06 }}
                                 >
-                                    <div className={styles.questionContent}>
-                                        <span className={styles.faqNumber}>{i + 1}</span>
+                                    <button
+                                        className={styles.questionRow}
+                                        onClick={() => setOpenIndex(isOpen ? null : i)}
+                                        aria-expanded={isOpen}
+                                    >
                                         <span className={styles.questionText}>{faq.question}</span>
-                                    </div>
-                                    {openIndex === i ? <ChevronUp size={20} className={styles.chevron} /> : <ChevronDown size={20} className={styles.chevron} />}
-                                </button>
-                                <AnimatePresence>
-                                    {openIndex === i && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                            className={styles.answerWrapper}
-                                        >
-                                            <div className={styles.answer}>
-                                                {faq.answer}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        ))}
+                                        <span className={styles.iconWrap} aria-hidden="true">
+                                            {isOpen ? (
+                                                <Minus size={18} strokeWidth={2.25} />
+                                            ) : (
+                                                <Plus size={18} strokeWidth={2.25} />
+                                            )}
+                                        </span>
+                                    </button>
+
+                                    <AnimatePresence initial={false}>
+                                        {isOpen && (
+                                            <motion.div
+                                                key="answer"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                                className={styles.answerWrapper}
+                                            >
+                                                <p className={styles.answer}>{faq.answer}</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

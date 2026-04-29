@@ -89,6 +89,21 @@ export default async function BlogDetailPage(props: { params: Params }) {
                             Back to Insights
                         </Link>
 
+                        <span style={{
+                            display: 'inline-block',
+                            background: '#f1f3f6',
+                            color: '#111',
+                            padding: '6px 14px',
+                            borderRadius: '999px',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
+                            marginBottom: '20px'
+                        }}>
+                            {blog.category}
+                        </span>
+
                         <h1 style={{ 
                             fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', 
                             fontWeight: 700, 
@@ -139,6 +154,44 @@ export default async function BlogDetailPage(props: { params: Params }) {
                             color: '#374151'
                         }}>
                             <MDXRemote source={blog.content} />
+                        </div>
+
+                        {/* Related Service CTA */}
+                        <div style={{
+                            marginTop: '64px',
+                            padding: '32px',
+                            background: '#f8f9fa',
+                            border: '1px solid #eaeaea',
+                            borderRadius: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            gap: '24px',
+                            flexWrap: 'wrap'
+                        }}>
+                            <div>
+                                <p style={{ fontSize: '0.85rem', color: '#6b7280', marginBottom: '6px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                    Related Service
+                                </p>
+                                <p style={{ fontSize: '1.15rem', color: '#111', fontWeight: 600 }}>
+                                    Explore how we deliver {blog.title.split(':')[0]}
+                                </p>
+                            </div>
+                            <Link href={`/services/${blog.serviceId}`} style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                background: '#111',
+                                color: '#fff',
+                                padding: '14px 24px',
+                                borderRadius: '12px',
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                textDecoration: 'none',
+                                whiteSpace: 'nowrap'
+                            }}>
+                                View Service →
+                            </Link>
                         </div>
                     </div>
 
