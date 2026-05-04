@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,9 @@
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 
   <style>
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -47,10 +50,12 @@
       z-index: 10;
       transition: opacity 0.5s ease;
     }
+
     .loading-overlay.loaded {
       opacity: 0;
       pointer-events: none;
     }
+
     .loader-logo {
       width: 56px;
       height: 56px;
@@ -58,10 +63,21 @@
       margin-bottom: 24px;
       animation: pulse 1.8s ease-in-out infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.95); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.6;
+        transform: scale(0.95);
+      }
     }
+
     .progress-track {
       width: 200px;
       height: 3px;
@@ -69,6 +85,7 @@
       border-radius: 3px;
       overflow: hidden;
     }
+
     .progress-fill {
       height: 100%;
       width: 0%;
@@ -76,6 +93,7 @@
       border-radius: 3px;
       transition: width 0.3s ease;
     }
+
     .loader-text {
       margin-top: 14px;
       font-size: 12px;
@@ -86,7 +104,8 @@
     /* ─── Logo ─── */
     .logo {
       position: fixed;
-      top: 4px; left: 24px;
+      top: 4px;
+      left: 24px;
       z-index: 20;
       height: 72px;
       width: auto;
@@ -112,11 +131,13 @@
       border-radius: 14px;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
     }
+
     .ctrl-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border: none;
       background: transparent;
       color: #666;
@@ -125,20 +146,29 @@
       transition: all 0.15s ease;
       position: relative;
     }
+
     .ctrl-btn:hover {
       background: rgba(0, 209, 255, 0.1);
       color: #00d1ff;
     }
+
     .ctrl-btn.active {
       background: #00d1ff;
       color: #fff;
     }
-    .ctrl-btn svg { width: 18px; height: 18px; }
+
+    .ctrl-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
     .ctrl-sep {
-      width: 20px; height: 1px;
+      width: 20px;
+      height: 1px;
       background: #e8e8e8;
       margin: 0 4px;
     }
+
     .ctrl-btn .tip {
       position: absolute;
       bottom: 46px;
@@ -155,6 +185,7 @@
       transition: all 0.15s ease;
       pointer-events: none;
     }
+
     .ctrl-btn:hover .tip {
       opacity: 1;
       visibility: visible;
@@ -167,6 +198,7 @@
         top: 8px;
         left: 16px;
       }
+
       .controls {
         right: auto;
         top: auto;
@@ -177,45 +209,34 @@
         padding: 6px 10px;
         gap: 4px;
       }
+
       .ctrl-btn {
         width: 34px;
         height: 34px;
       }
+
       .ctrl-sep {
         width: 1px;
         height: 20px;
       }
+
       .ctrl-btn .tip {
         display: none;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Logo -->
   <img src="/jupiter/officemate-logo.webp" alt="OfficeMate" class="logo">
 
   <!-- Model Viewer -->
-  <model-viewer
-    id="viewer"
-    src="/jupiter/jupiter.glb"
-    alt="Jupiter 3D Model"
-    auto-rotate
-    auto-rotate-delay="0"
-    rotation-per-second="30deg"
-    camera-controls
-    touch-action="pan-y"
-    interaction-prompt="none"
-    shadow-intensity="1"
-    shadow-softness="1"
-    exposure="1"
-    environment-image="neutral"
-    camera-orbit="45deg 75deg auto"
-    min-camera-orbit="auto auto 5%"
-    max-camera-orbit="auto auto 300%"
-    interpolation-decay="100"
-  >
+  <model-viewer id="viewer" src="/jupiter/jupiter3.glb" alt="Jupiter 3D Model" auto-rotate auto-rotate-delay="0"
+    rotation-per-second="30deg" camera-controls touch-action="pan-y" interaction-prompt="none" shadow-intensity="1"
+    shadow-softness="1" exposure="1" environment-image="neutral" camera-orbit="45deg 75deg auto"
+    min-camera-orbit="auto auto 5%" max-camera-orbit="auto auto 300%" interpolation-decay="100">
     <!-- Loading -->
     <div class="loading-overlay" slot="poster" id="loadingOverlay">
       <img src="/jupiter/officemate-logo.webp" alt="Loading" class="loader-logo">
@@ -231,9 +252,11 @@
     <!-- Auto Rotate -->
     <button class="ctrl-btn active" id="btnRotate" aria-label="Auto rotate">
       <span class="tip">Auto Rotate</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/>
-        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M23 4v6h-6" />
+        <path d="M1 20v-6h6" />
+        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
       </svg>
     </button>
 
@@ -242,26 +265,33 @@
     <!-- Reset -->
     <button class="ctrl-btn" id="btnReset" aria-label="Reset view">
       <span class="tip">Reset View</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8" />
+        <path d="M3 3v5h5" />
       </svg>
     </button>
 
     <!-- Zoom In -->
     <button class="ctrl-btn" id="btnZoomIn" aria-label="Zoom in">
       <span class="tip">Zoom In</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="11" y1="8" x2="11" y2="14" />
+        <line x1="8" y1="11" x2="14" y2="11" />
       </svg>
     </button>
 
     <!-- Zoom Out -->
     <button class="ctrl-btn" id="btnZoomOut" aria-label="Zoom out">
       <span class="tip">Zoom Out</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        <line x1="8" y1="11" x2="14" y2="11"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="8" y1="11" x2="14" y2="11" />
       </svg>
     </button>
 
@@ -270,9 +300,12 @@
     <!-- Fullscreen -->
     <button class="ctrl-btn" id="btnFullscreen" aria-label="Fullscreen">
       <span class="tip">Fullscreen</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-        <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="15 3 21 3 21 9" />
+        <polyline points="9 21 3 21 3 15" />
+        <line x1="21" y1="3" x2="14" y2="10" />
+        <line x1="3" y1="21" x2="10" y2="14" />
       </svg>
     </button>
   </div>
@@ -340,4 +373,5 @@
     });
   </script>
 </body>
+
 </html>
