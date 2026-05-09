@@ -139,6 +139,20 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
+    /* Force every grid row to use the height of its tallest card.
+       Default `align-items: stretch` should already do this, but the
+       motion.div wrappers (added for staggered reveal) become the actual
+       grid items and need to be explicitly told to fill their row. */
+    align-items: stretch;
+}
+
+/* The motion.div wrappers around each card are the real grid items now.
+   Without `display: flex` + `height: 100%` on them, each wrapper sizes to
+   its content and the inner .categoryCard never gets stretched, so a
+   shorter description leaves a shorter card. */
+.categoryGridItem {
+    display: flex;
+    height: 100%;
 }
 
 @media (max-width: 900px) {
@@ -159,6 +173,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 260px;
+    /* Fill the parent grid cell so siblings in the same row match heights. */
+    width: 100%;
 }
 
 .categoryCard:hover {
@@ -290,6 +306,23 @@
 
 /* ============================================================
  * SHOP CTA BAND — final big call-to-action
+ *
+ * Background image: "reading room" by Toa Heftiba (Unsplash, free
+ * license). A woman reading in a Mount Desert (Maine) cottage —
+ * editorial luxury-home shot with strong window light and warm
+ * earth tones. Sets a "this is what your home could feel like"
+ * mood at the bottom of the brand page, right before the user
+ * clicks through to the catalog.
+ *
+ * Source:  https://unsplash.com/photos/mOCP9ZrqhI4
+ * CDN ID:  photo-1534707658789-f051bfba7a4a
+ *
+ * Layered backgrounds (top → bottom):
+ *   1. Dark linear gradient — keeps the white headline readable
+ *      regardless of which patch of the image lands behind it.
+ *   2. The Unsplash photo itself, loaded at 2400px so it stays
+ *      crisp on retina displays.
+ *   3. A solid #0a0a0a base in case the network fetch ever fails.
  * ============================================================ */
 .shopCta {
     padding: 100px 24px;
@@ -301,12 +334,25 @@
 .shopCtaInner {
     max-width: 1100px;
     width: 100%;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
+    background-color: #0a0a0a;
+    background-image:
+        linear-gradient(135deg,
+            rgba(10, 10, 10, 0.78) 0%,
+            rgba(10, 10, 10, 0.62) 50%,
+            rgba(10, 10, 10, 0.78) 100%),
+        url('https://images.unsplash.com/photo-1534707658789-f051bfba7a4a?auto=format&fit=crop&q=85&w=2400');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
     border-radius: 32px;
     padding: 72px 56px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    /* New stacking context so the radial glow ::before sits ABOVE the
+       background image but BELOW the text. Without isolation, layered
+       backgrounds + ::before z-indexing get fragile. */
+    isolation: isolate;
 }
 
 .shopCtaInner::before {

@@ -46,7 +46,7 @@ export default function AboutProducts() {
                             <p>
                                 Seamless automation technology, from premium touch switches and integrated controllers to biometric security for modern living spaces.
                             </p>
-                            <Link href="/shop/usynq" className={styles.exploreLink}>
+                            <Link href="/usynq/products" className={styles.exploreLink}>
                                 Explore uSYNQ <ArrowRight size={16} />
                             </Link>
                         </div>

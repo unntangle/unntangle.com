@@ -50,7 +50,7 @@ export const usynqCategories: UsynqCategory[] = [
     id: 'retrofit-modules',
     label: 'Retrofit Modules',
     description:
-      'Concealed in-wall ZigBee modules that turn any conventional switchboard smart, with heavy-duty relays for lights and dedicated curtain controllers.',
+      'Concealed in-wall ZigBee modules that turn any conventional switchboard smart, with heavy-duty relays and curtain controllers.',
   },
 ];
 

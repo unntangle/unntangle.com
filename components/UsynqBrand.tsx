@@ -2,12 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { ArrowRight, Wifi, ShieldCheck, Sparkles, Layers, Zap, Cpu } from 'lucide-react';
 import { usynqCategories, usynqProducts } from '@/data/usynqProducts';
+import AnimatedStat from './AnimatedStat';
 import styles from './UsynqBrand.module.css';
 
 // Map each category to a representative product image (the first product of that category)
-// and the deep-link path back into the shop products page.
+// and the deep-link path back into the products page (/usynq/products).
 const categoryShowcase = usynqCategories.map((cat) => {
     const firstProduct = usynqProducts.find((p) => p.category === cat.id);
     const count = usynqProducts.filter((p) => p.category === cat.id).length;
@@ -57,6 +59,61 @@ const features = [
     },
 ];
 
+// Stats are kept as data so the JSX can map over them and stagger the reveal
+// without each card needing its own motion config.
+const stats = [
+    { value: '5000W', label: 'Per-relay capacity' },
+    { value: '2', label: 'Wireless protocols' },
+    { value: '40A', label: 'Heavy-duty rating' },
+    { value: 'IP65', label: 'Build standard' },
+];
+
+/* ============================================================
+ * Shared motion configuration
+ *
+ * Centralised so every reveal on the page has the same feel.
+ * - `viewport.once: true` matches `whileInView` patterns elsewhere
+ *   in the codebase; we don't want animations replaying every time
+ *   the user scrolls back up.
+ * - `margin: '-80px 0px'` triggers the reveal slightly BEFORE the
+ *   element fully enters view, so by the time it's centred on screen
+ *   the animation has already settled (looks proactive vs reactive).
+ * ============================================================ */
+const REVEAL_VIEWPORT = { once: true, margin: '-80px 0px' };
+
+// Soft "lift" reveal — opacity + slight upward motion. Used for hero
+// blocks, headings, lone CTAs.
+const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0 },
+};
+
+// Container for staggered children. Each child uses `fadeUp` and inherits
+// the parent's `visible` trigger via framer-motion's variants system.
+const staggerContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            // 0.08s between children = quick but visibly cascading. Anything
+            // longer than ~0.12 starts to drag on a 6-card grid.
+            staggerChildren: 0.08,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+// Per-child reveal used inside a staggered container. Same shape as
+// `fadeUp` but framer-motion will read it through the parent's
+// orchestration so the timing offsets line up cleanly.
+const staggerItem = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    },
+};
+
 export default function UsynqBrand() {
     return (
         <>
@@ -65,7 +122,17 @@ export default function UsynqBrand() {
               * ============================================================ */}
             <div className={styles.section}>
                 <div className={styles.container}>
-                    <div className={styles.sectionHeader}>
+                    {/* Header reveals as a single block — eyebrow, title, lead all
+                        rise together so the eye doesn't jump between three
+                        independently animating elements. */}
+                    <motion.div
+                        className={styles.sectionHeader}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={REVEAL_VIEWPORT}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <span className={styles.eyebrow}>
                             Why <span className={styles.brandName}>uSYNQ</span>
                         </span>
@@ -77,52 +144,74 @@ export default function UsynqBrand() {
                             modules, and locks that talk to each other natively, not over a fragile
                             patchwork of integrations.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className={styles.featuresGrid}>
+                    {/* Feature cards are revealed by a staggered parent: the parent
+                        observes the viewport, then orchestrates each child's
+                        animation 0.08s after the previous. */}
+                    <motion.div
+                        className={styles.featuresGrid}
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={REVEAL_VIEWPORT}
+                    >
                         {features.map((feature) => (
-                            <div key={feature.title} className={styles.featureCard}>
+                            <motion.div
+                                key={feature.title}
+                                className={styles.featureCard}
+                                variants={staggerItem}
+                            >
                                 <div className={styles.featureIcon}>{feature.icon}</div>
                                 <h3 className={styles.featureTitle}>{feature.title}</h3>
                                 <p className={styles.featureDescription}>{feature.description}</p>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* ============================================================
-              * STATS BAND — stable technical credentials only.
-              * Avoid hardcoded product/category counts here, since
-              * those drift as the catalog grows.
+              * STATS BAND — animated counters
+              *
+              * The numeric values count up from 0 once the band scrolls
+              * into view. Each <AnimatedStat /> handles its own trigger
+              * via IntersectionObserver, so they all start in concert
+              * regardless of where they live in the layout.
               * ============================================================ */}
-            <div className={styles.statsBand}>
+            <motion.div
+                className={styles.statsBand}
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={REVEAL_VIEWPORT}
+            >
                 <div className={styles.statsInner}>
-                    <div>
-                        <span className={styles.statValue}>5000W</span>
-                        <span className={styles.statLabel}>Per-relay capacity</span>
-                    </div>
-                    <div>
-                        <span className={styles.statValue}>2</span>
-                        <span className={styles.statLabel}>Wireless protocols</span>
-                    </div>
-                    <div>
-                        <span className={styles.statValue}>40A</span>
-                        <span className={styles.statLabel}>Heavy-duty rating</span>
-                    </div>
-                    <div>
-                        <span className={styles.statValue}>IP65</span>
-                        <span className={styles.statLabel}>Build standard</span>
-                    </div>
+                    {stats.map((stat) => (
+                        <motion.div key={stat.label} variants={staggerItem}>
+                            <AnimatedStat
+                                value={stat.value}
+                                className={styles.statValue}
+                            />
+                            <span className={styles.statLabel}>{stat.label}</span>
+                        </motion.div>
+                    ))}
                 </div>
-            </div>
+            </motion.div>
 
             {/* ============================================================
               * CATEGORY SHOWCASE: 4 cards
               * ============================================================ */}
             <div className={`${styles.section} ${styles.sectionAlt}`}>
                 <div className={styles.container}>
-                    <div className={styles.sectionHeader}>
+                    <motion.div
+                        className={styles.sectionHeader}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={REVEAL_VIEWPORT}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <span className={styles.eyebrow}>Product Range</span>
                         <h2 className={styles.sectionTitle}>
                             Explore the product families.
@@ -131,48 +220,66 @@ export default function UsynqBrand() {
                             From premium switch panels to face-recognition locks, every uSYNQ
                             product is designed to drop into the same unified ecosystem.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className={styles.categoryGrid}>
+                    <motion.div
+                        className={styles.categoryGrid}
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={REVEAL_VIEWPORT}
+                    >
                         {categoryShowcase.map((cat) => (
-                            <Link
+                            <motion.div
                                 key={cat.id}
-                                href={`/shop/usynq?category=${cat.id}`}
-                                className={styles.categoryCard}
+                                className={styles.categoryGridItem}
+                                variants={staggerItem}
                             >
-                                <div className={styles.categoryCardText}>
-                                    <div>
-                                        <span className={styles.categoryCardLabel}>Category</span>
-                                        <h3 className={styles.categoryCardTitle}>{cat.label}</h3>
-                                        <p className={styles.categoryCardDescription}>
-                                            {cat.description}
-                                        </p>
+                                <Link
+                                    href={`/usynq/products?category=${cat.id}`}
+                                    className={styles.categoryCard}
+                                >
+                                    <div className={styles.categoryCardText}>
+                                        <div>
+                                            <span className={styles.categoryCardLabel}>Category</span>
+                                            <h3 className={styles.categoryCardTitle}>{cat.label}</h3>
+                                            <p className={styles.categoryCardDescription}>
+                                                {cat.description}
+                                            </p>
+                                        </div>
+                                        <span className={styles.categoryCardCount}>
+                                            Explore <ArrowRight size={14} />
+                                        </span>
                                     </div>
-                                    <span className={styles.categoryCardCount}>
-                                        Explore <ArrowRight size={14} />
-                                    </span>
-                                </div>
-                                {cat.previewImage && (
-                                    <div className={styles.categoryCardImageWrap}>
-                                        <Image
-                                            src={cat.previewImage}
-                                            alt={cat.label}
-                                            fill
-                                            sizes="(max-width: 600px) 100vw, 50vw"
-                                            className={styles.categoryCardImage}
-                                        />
-                                    </div>
-                                )}
-                            </Link>
+                                    {cat.previewImage && (
+                                        <div className={styles.categoryCardImageWrap}>
+                                            <Image
+                                                src={cat.previewImage}
+                                                alt={cat.label}
+                                                fill
+                                                sizes="(max-width: 600px) 100vw, 50vw"
+                                                className={styles.categoryCardImage}
+                                            />
+                                        </div>
+                                    )}
+                                </Link>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* ============================================================
               * FINAL SHOP CTA
               * ============================================================ */}
-            <div className={styles.shopCta}>
+            <motion.div
+                className={styles.shopCta}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={REVEAL_VIEWPORT}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
                 <div className={styles.shopCtaInner}>
                     <span className={styles.shopCtaEyebrow}>Ready to build?</span>
                     <h2 className={styles.shopCtaTitle}>
@@ -182,12 +289,12 @@ export default function UsynqBrand() {
                         Browse the full range: TITAN panels, Velux & Luxeray
                         touch switches, ZigBee retrofit modules, and biometric smart locks.
                     </p>
-                    <Link href="/shop/usynq" className={styles.shopCtaButton}>
+                    <Link href="/usynq/products" className={styles.shopCtaButton}>
                         View all products
                         <ArrowRight size={18} />
                     </Link>
                 </div>
-            </div>
+            </motion.div>
         </>
     );
 }

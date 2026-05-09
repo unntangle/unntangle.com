@@ -1,19 +1,21 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import UsynqShowcase from '@/components/UsynqShowcase';
+/**
+ * Legacy redirect page.
+ *
+ * The uSYNQ products listing used to live here at /shop/usynq. It moved to
+ * /usynq/products so the products page sits under the same /usynq brand
+ * namespace as the marketing page (/usynq).
+ *
+ * The site middleware (middleware.ts) already 308-redirects requests for
+ * /shop/usynq* to /usynq/products*, so this page never actually renders in
+ * normal operation. We keep this file as a defence-in-depth fallback in
+ * case the middleware is ever bypassed (e.g. on a static export, or if the
+ * matcher config changes), and as a clear marker that the route has moved.
+ *
+ * NOTE: This file can be safely deleted once the redirect has been live in
+ * production for long enough to drain any stale bookmarks/external links.
+ */
+import { redirect } from 'next/navigation';
 
-export const metadata = {
-    title: 'uSYNQ Smart Living | Products',
-    description:
-        'Explore the complete uSYNQ smart home collection: TITAN switch panels, Velux & Luxeray touch switches, ZigBee retrofit modules, and biometric & face-recognition smart door locks.',
-};
-
-export default function UsynqShopPage() {
-    return (
-        <main style={{ backgroundColor: '#fafafa', minHeight: '100vh' }}>
-            <Navbar />
-            <UsynqShowcase />
-            <Footer />
-        </main>
-    );
+export default function LegacyUsynqShopRedirect() {
+    redirect('/usynq/products');
 }

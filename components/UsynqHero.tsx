@@ -81,7 +81,7 @@ export default function UsynqHero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.4 }}
                 >
-                    <Link href="/shop/usynq" className={styles.ctaPrimary}>
+                    <Link href="/usynq/products" className={styles.ctaPrimary}>
                         Explore
                         <ArrowRight size={18} />
                     </Link>

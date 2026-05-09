@@ -74,6 +74,25 @@
     transition: color 0.3s ease;
 }
 
+/* Used when a nav entry needs to be a <button> instead of an <a> —
+   currently for "Let's Talk" on the uSYNQ shop page where the click
+   opens an in-page modal rather than navigating. Visually identical
+   to a regular nav link so the navbar layout doesn't shift. */
+.linkAsButton {
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: inherit;
+}
+
 .linkWithIcon {
     display: flex;
     align-items: center;
@@ -82,7 +101,8 @@
 }
 
 .links a:hover,
-.linkWithIcon:hover {
+.linkWithIcon:hover,
+.linkAsButton:hover {
     color: var(--text-muted);
 }
 

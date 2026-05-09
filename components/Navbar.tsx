@@ -100,14 +100,20 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
 
   // Route-aware uSYNQ CTA pill:
-  //  - On the brand page (/usynq) → pill becomes "EXPLORE uSYNQ" → /shop/usynq
+  //  - On the brand page (/usynq) → pill becomes "EXPLORE uSYNQ" → /usynq/products
   //    The label is rendered as two parts so we can keep "EXPLORE" uppercased
   //    while preserving the mixed-case brand wordmark "uSYNQ".
-  //  - Everywhere else (including /shop/usynq) → pill says
+  //  - Everywhere else (including /usynq/products) → pill says
   //    "Smart Living by uSYNQ" → /usynq (brand page)
   //    Mixed case is preserved here so the brand wordmark renders correctly.
   const pathname = usePathname();
-  const isOnBrandPage = pathname === '/usynq' || pathname?.startsWith('/usynq/');
+  // The products page lives at /usynq/products, so we have to detect it BEFORE
+  // (and exclude it from) the broader brand-page check below — otherwise both
+  // would be true and the navbar would show the wrong CTA / wrong Let's Talk
+  // behaviour while the user is browsing products.
+  const isOnShopPage = pathname?.startsWith('/usynq/products') ?? false;
+  const isOnBrandPage =
+    !isOnShopPage && (pathname === '/usynq' || (pathname?.startsWith('/usynq/') ?? false));
   const usynqCta = isOnBrandPage
     ? {
         // `node` overrides the plain string when present, so the JSX
@@ -119,7 +125,7 @@ export default function Navbar() {
             EXPLORE&nbsp;<span style={{ textTransform: 'none' }}>uSYNQ</span>
           </>
         ),
-        href: '/shop/usynq',
+        href: '/usynq/products',
       }
     : { label: 'Smart Living by uSYNQ', node: null, href: '/usynq' };
 
@@ -190,7 +196,34 @@ export default function Navbar() {
             </div>
 
             <Link href="/blog">Knowledge Hub</Link>
-            <Link href="/contact">Let's Talk</Link>
+            {isOnShopPage ? (
+                /*
+                 * On the shop page — fire a DOM custom event that the
+                 * showcase component (UsynqShowcase) listens for and uses
+                 * to open its contact modal. We use an event rather than
+                 * a shared store / context because:
+                 *   1. The navbar lives outside the showcase tree, so prop
+                 *      drilling is impossible.
+                 *   2. A context would require wiring a provider into the
+                 *      root layout for one button on one page.
+                 *   3. The event is scoped automatically: if no listener
+                 *      is mounted (i.e. user isn't on the shop page) the
+                 *      event simply has no effect. Loose coupling wins.
+                 */
+                <button
+                    type="button"
+                    className={styles.linkAsButton}
+                    onClick={() => {
+                        if (typeof window !== 'undefined') {
+                            window.dispatchEvent(new CustomEvent('usynq:open-contact'));
+                        }
+                    }}
+                >
+                    Let&apos;s Talk
+                </button>
+            ) : (
+                <Link href="/contact">Let&apos;s Talk</Link>
+            )}
           </div>
 
           {/* The CTA pill is always visible — its label and target route

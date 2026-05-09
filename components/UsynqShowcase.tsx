@@ -100,6 +100,19 @@ function UsynqShowcaseInner() {
         }
     };
 
+    // Listen for the navbar's "Let's Talk" click. The Navbar dispatches a
+    // 'usynq:open-contact' custom event when the user clicks Let's Talk
+    // while on the shop page (the navbar lives outside this component's
+    // tree, so a DOM event is the cleanest way to bridge them without
+    // adding a context provider for a single button).
+    useEffect(() => {
+        const handleOpenContact = () => setContactModalOpen(true);
+        window.addEventListener('usynq:open-contact', handleOpenContact);
+        return () => {
+            window.removeEventListener('usynq:open-contact', handleOpenContact);
+        };
+    }, []);
+
     // Keep state in sync if the user navigates between filtered URLs.
     useEffect(() => {
         if (isValidFilter(categoryParam)) {
@@ -128,7 +141,7 @@ function UsynqShowcaseInner() {
      */
     const handleTabClick = (filter: FilterId) => {
         setActiveFilter(filter);
-        const url = filter === 'all' ? '/shop/usynq' : `/shop/usynq?category=${filter}`;
+        const url = filter === 'all' ? '/usynq/products' : `/usynq/products?category=${filter}`;
         router.replace(url, { scroll: false });
     };
 
