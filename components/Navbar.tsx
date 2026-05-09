@@ -114,6 +114,31 @@ export default function Navbar() {
   const isOnShopPage = pathname?.startsWith('/usynq/products') ?? false;
   const isOnBrandPage =
     !isOnShopPage && (pathname === '/usynq' || (pathname?.startsWith('/usynq/') ?? false));
+
+  // The whole uSYNQ experience (/usynq + /usynq/products) is a sub-brand,
+  // so the navbar logo swaps to the uSYNQ wordmark while the user is in
+  // that section. Clicking the logo takes them to the uSYNQ brand home,
+  // not the Unntangle root — the convention on sub-brand pages is that
+  // the visible wordmark anchors the section it represents.
+  const isInUsynqSection = isOnBrandPage || isOnShopPage;
+  const logoConfig = isInUsynqSection
+    ? {
+        src: '/images/uSYNQ/uSYNQ-brand-logo.webp',
+        alt: 'uSYNQ',
+        href: '/usynq',
+        // uSYNQ wordmark is roughly 3:1; the intrinsic dims are a layout
+        // hint for Next.js — actual on-screen size is set by the
+        // .logoImage CSS class (height: 44px, width: auto).
+        width: 132,
+        height: 44,
+      }
+    : {
+        src: '/images/unntangle_logo.webp',
+        alt: 'Unntangle Logo',
+        href: '/',
+        width: 120,
+        height: 32,
+      };
   const usynqCta = isOnBrandPage
     ? {
         // `node` overrides the plain string when present, so the JSX
@@ -163,12 +188,12 @@ export default function Navbar() {
     >
       <nav className={styles.navbar}>
         <div className={styles.navbarInner}>
-          <Link href="/" className={styles.logoLink}>
+          <Link href={logoConfig.href} className={styles.logoLink}>
             <Image
-              src="/images/unntangle_logo.webp"
-              alt="Unntangle Logo"
-              width={120}
-              height={32}
+              src={logoConfig.src}
+              alt={logoConfig.alt}
+              width={logoConfig.width}
+              height={logoConfig.height}
               className={styles.logoImage}
               priority
             />
