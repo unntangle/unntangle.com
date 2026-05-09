@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Wifi, ShieldCheck, Sparkles, Layers, Zap, Cpu } from 'lucide-react';
 import { usynqCategories, usynqProducts } from '@/data/usynqProducts';
 import AnimatedStat from './AnimatedStat';
@@ -83,14 +83,14 @@ const REVEAL_VIEWPORT = { once: true, margin: '-80px 0px' };
 
 // Soft "lift" reveal — opacity + slight upward motion. Used for hero
 // blocks, headings, lone CTAs.
-const fadeUp = {
+const fadeUp: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: { opacity: 1, y: 0 },
 };
 
 // Container for staggered children. Each child uses `fadeUp` and inherits
 // the parent's `visible` trigger via framer-motion's variants system.
-const staggerContainer = {
+const staggerContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -105,12 +105,12 @@ const staggerContainer = {
 // Per-child reveal used inside a staggered container. Same shape as
 // `fadeUp` but framer-motion will read it through the parent's
 // orchestration so the timing offsets line up cleanly.
-const staggerItem = {
+const staggerItem: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
     },
 };
 
@@ -131,7 +131,7 @@ export default function UsynqBrand() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={REVEAL_VIEWPORT}
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
                     >
                         <span className={styles.eyebrow}>
                             Why <span className={styles.brandName}>uSYNQ</span>
@@ -210,7 +210,7 @@ export default function UsynqBrand() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={REVEAL_VIEWPORT}
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
                     >
                         <span className={styles.eyebrow}>Product Range</span>
                         <h2 className={styles.sectionTitle}>
@@ -278,7 +278,7 @@ export default function UsynqBrand() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={REVEAL_VIEWPORT}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
             >
                 <div className={styles.shopCtaInner}>
                     <span className={styles.shopCtaEyebrow}>Ready to build?</span>
