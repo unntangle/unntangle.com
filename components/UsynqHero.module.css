@@ -1,0 +1,293 @@
+/* uSYNQ custom hero — NOT using PageHero template.
+ *
+ * This is a hardware-product hero: dark editorial canvas,
+ * centered oversized type, tech-spec inline pills.
+ *
+ * Distinct from every other hero on the site:
+ *   - Home/Services/About/Blog use PageHero with split-column layout
+ *     and bright multi-stop gradients.
+ *   - This one is single-column, dark, minimal.
+ */
+
+/* ============================================================
+ * HERO WRAPPER
+ * ============================================================ */
+.hero {
+    position: relative;
+    background: #0a0a0f;
+    color: #fff;
+    padding: 48px 24px 120px;
+    overflow: hidden;
+    /* override globals.css `section { padding: 100px 24px; display: flex }` */
+    display: block;
+}
+
+/* Ambient violet glow — much subtler than the gradient presets used elsewhere */
+.heroGlow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1100px;
+    height: 800px;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.08) 35%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heroGlowSecondary {
+    position: absolute;
+    bottom: -100px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Dotted grid texture — adds technical/blueprint feel, very subtle */
+.heroGrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, #000 0%, #000 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, #000 40%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heroInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: 0;
+}
+
+/* ============================================================
+ * EYEBROW BADGE
+ * ============================================================ */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ddd;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    margin-bottom: 32px;
+    font-weight: 500;
+}
+
+.eyebrowDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 12px #a78bfa;
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+/* Preserve mixed case for the brand name inside the uppercased eyebrow.
+   Without this, `text-transform: uppercase` on .eyebrow would render
+   "uSYNQ" as "USYNQ" — changing the brand identity. */
+.brandName {
+    text-transform: none;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.3);
+    }
+}
+
+/* ============================================================
+ * MAIN HEADLINE — oversized, single-column, centered
+ * ============================================================ */
+.title {
+    /* override h1 from globals.css */
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 auto 28px;
+    max-width: 960px;
+    overflow-wrap: break-word;
+    padding: 0 16px;
+}
+
+.titleAccent {
+    /* Solid color instead of -webkit-background-clip: text gradient.
+     * The clip-text gradient was masking the italic glyphs to their
+     * character box, cutting off the trailing letter ('d', 'n') because
+     * italic letters extend past their box on the right side. */
+    color: #a78bfa;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* ============================================================
+ * SUBTITLE
+ * ============================================================ */
+.subtitle {
+    /* override p from globals.css */
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    color: #a1a1aa;
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto 36px;
+}
+
+/* ============================================================
+ * SPEC STAMPS — inline tech badges (replace floating pills)
+ * ============================================================ */
+.specStamps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 44px;
+}
+
+.specStamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.7rem;
+    color: #ddd;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.specStampDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 6px #a78bfa;
+}
+
+/* ============================================================
+ * CTA ACTIONS
+ * ============================================================ */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ctaPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    background: #fff;
+    color: #000;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.ctaPrimary:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
+}
+
+.ctaSecondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    background: transparent;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.ctaSecondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+ * RESPONSIVE
+ * ============================================================ */
+@media (max-width: 768px) {
+    .hero {
+        padding: 32px 16px 80px;
+    }
+
+    .heroInner {
+        padding-top: 0;
+    }
+
+    .eyebrow {
+        font-size: 0.66rem;
+        padding: 6px 14px;
+        margin-bottom: 24px;
+    }
+
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+
+    .specStamps {
+        gap: 6px;
+        margin-bottom: 32px;
+    }
+
+    .specStamp {
+        font-size: 0.62rem;
+        padding: 6px 11px;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .ctaPrimary,
+    .ctaSecondary {
+        padding: 12px 24px;
+        font-size: 0.88rem;
+    }
+}

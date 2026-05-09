@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
   ChevronDown,
@@ -98,6 +99,30 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | null>(null);
   const [hidden, setHidden] = useState(false);
 
+  // Route-aware uSYNQ CTA pill:
+  //  - On the brand page (/usynq) → pill becomes "EXPLORE uSYNQ" → /shop/usynq
+  //    The label is rendered as two parts so we can keep "EXPLORE" uppercased
+  //    while preserving the mixed-case brand wordmark "uSYNQ".
+  //  - Everywhere else (including /shop/usynq) → pill says
+  //    "Smart Living by uSYNQ" → /usynq (brand page)
+  //    Mixed case is preserved here so the brand wordmark renders correctly.
+  const pathname = usePathname();
+  const isOnBrandPage = pathname === '/usynq' || pathname?.startsWith('/usynq/');
+  const usynqCta = isOnBrandPage
+    ? {
+        // `node` overrides the plain string when present, so the JSX
+        // below can render "EXPLORE" + "uSYNQ" with separate styling
+        // for each half. The string label is kept as a fallback.
+        label: 'EXPLORE uSYNQ',
+        node: (
+          <>
+            EXPLORE&nbsp;<span style={{ textTransform: 'none' }}>uSYNQ</span>
+          </>
+        ),
+        href: '/shop/usynq',
+      }
+    : { label: 'Smart Living by uSYNQ', node: null, href: '/usynq' };
+
   // Get the most recent blog post by parsing dates and sorting descending
   const latestBlog = useMemo(() => {
     if (!blogsData || blogsData.length === 0) return null;
@@ -168,8 +193,12 @@ export default function Navbar() {
             <Link href="/contact">Let's Talk</Link>
           </div>
 
-          <Link href="/shop/usynq" className={styles.ctaBadge}>
-            Smart Living by uSYNQ
+          {/* The CTA pill is always visible — its label and target route
+              switch based on the current page (see usynqCta above).
+              Render the JSX `node` if provided (for mixed-case branding),
+              otherwise fall back to the plain string label. */}
+          <Link href={usynqCta.href} className={styles.ctaBadge}>
+            {usynqCta.node ?? usynqCta.label}
           </Link>
         </div>
 

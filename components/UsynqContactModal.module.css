@@ -1,0 +1,470 @@
+/* uSYNQ Contact Modal — split-pane: image on the left, form on the right.
+ *
+ * Triggered from the "Talk to our team" CTA on the showcase and brand pages.
+ * Locks body scroll when open. Closes on backdrop click or Escape key.
+ */
+
+/* ============================================================
+ * BACKDROP — full-viewport overlay behind the modal
+ *
+ * Note: the backdrop does NOT scroll. The modal is constrained
+ * via max-height and the form pane scrolls internally when the
+ * form is taller than the available space. If the backdrop
+ * scrolled, the "padding" would become scroll-content rather
+ * than a hard visual margin around the modal.
+ * ============================================================ */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+ * MODAL CARD — split-pane layout (image | form)
+ *
+ * Uses flex (not grid) for the split because flex's default
+ * `min-height: 0` on children means internal scroll "just works"
+ * without the CSS Grid gotchas around min-content sizing.
+ * ============================================================ */
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    /* Hard height cap: never exceed the viewport minus backdrop padding.
+       80px = backdrop's 40px top + 40px bottom. */
+    max-height: calc(100vh - 80px);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow:
+        0 24px 60px -12px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+/* ============================================================
+ * LEFT PANE — image with overlay text
+ *
+ * Image: "Woman sitting on gray sofa chair holding mug" by Toa Heftiba
+ * (Unsplash, Sept 2018, free for commercial use). Editorial luxury
+ * living-room shot, Manhattan apartment, moody premium aesthetic —
+ * fits a smart-home brand much better than a generic stock photo.
+ *
+ * Source: https://unsplash.com/photos/rQqabcGBsyk
+ * CDN ID: photo-1536008046477-01746710ffb9
+ *
+ * Layered priority (CSS background fallback chain):
+ *   1. /public/images/usynq-contact.jpg (your final custom image)
+ *   2. Unsplash CDN (verified, currently active)
+ *   3. Solid #1a1a1a base if both fail
+ * ============================================================ */
+.imagePane {
+    /* Each pane takes 50% of the modal width via flex */
+    flex: 1 1 50%;
+    min-width: 0;
+    background-color: #1a1a1a;
+    background-image:
+        linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.45) 55%, rgba(10, 10, 10, 0.92) 100%),
+        url('/images/usynq-contact.jpg'),
+        url('https://images.unsplash.com/photo-1536008046477-01746710ffb9?auto=format&fit=crop&q=85&w=1200');
+    background-size: auto, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 36px 48px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.imagePaneEyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    margin-bottom: 16px;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.imagePaneEyebrowDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Preserve mixed case for the brand name inside an uppercased eyebrow.
+   Without this, `text-transform: uppercase` on the parent would render
+   "uSYNQ" as "USYNQ" — changing the brand identity. */
+.brandName {
+    text-transform: none;
+}
+
+.imagePaneQuote {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.imagePaneCaption {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.55;
+    margin: 0;
+    max-width: none;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+ * RIGHT PANE — form (scrolls if it overflows)
+ * ============================================================ */
+.formPane {
+    /* Takes the other 50% of the modal width */
+    flex: 1 1 50%;
+    min-width: 0;
+    /* No internal scroll — the form is sized to fit. If something
+       absolutely has to overflow on a very short screen, hidden is
+       safer than auto (no scrollbar visual noise). */
+    overflow: hidden;
+    padding: 36px 36px 40px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.formPane::-webkit-scrollbar {
+    width: 8px;
+}
+
+.formPane::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.formPane::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    border: 2px solid #fff;
+}
+
+.closeButton {
+    position: absolute;
+    /* Tucked further into the corner so it doesn't crowd the form heading */
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.closeButton:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* ============================================================
+ * FORM HEADER
+ * ============================================================ */
+.title {
+    /* Override h2 from globals.css */
+    color: #0a0a0a;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+    line-height: 1.25;
+}
+
+.subtitle {
+    /* Override p from globals.css */
+    color: #666;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    max-width: none;
+}
+
+/* ============================================================
+ * FORM FIELDS
+ * ============================================================ */
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inputGroupFull {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.required {
+    color: #dc2626;
+    font-size: 0.85em;
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    padding: 8px 11px;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    font-size: 0.86rem;
+    font-family: inherit;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #999;
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+    outline: none;
+    border-color: #0a0a0a;
+    background: #fff;
+}
+
+.textarea {
+    resize: none;
+    min-height: 70px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+/* ============================================================
+ * SUBMIT
+ * ============================================================ */
+.submitRow {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.privacyNote {
+    color: #888;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    flex: 1;
+    min-width: 160px;
+    margin: 0;
+    max-width: none;
+}
+
+.submitButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #0a0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+ * SUCCESS STATE — replaces the form after a successful submit
+ * ============================================================ */
+.successState {
+    text-align: center;
+    padding: 32px 16px 16px;
+}
+
+.successIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    margin-bottom: 18px;
+}
+
+.successTitle {
+    color: #0a0a0a;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.successMessage {
+    color: #666;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0 0 22px;
+    max-width: none;
+}
+
+.successButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: #0a0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.successButton:hover {
+    background: #333;
+}
+
+/* ============================================================
+ * RESPONSIVE — stack panes on mobile (image hides on very small)
+ * ============================================================ */
+@media (max-width: 760px) {
+    .backdrop {
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .modal {
+        flex-direction: column;
+        max-height: calc(100vh - 32px);
+    }
+
+    .imagePane {
+        flex: 0 0 auto;
+        min-height: 120px;
+        padding: 20px 24px;
+        justify-content: flex-end;
+    }
+
+    .imagePaneQuote {
+        font-size: 1.05rem;
+        margin-bottom: 0;
+    }
+
+    .imagePaneCaption {
+        display: none;
+    }
+
+    .formPane {
+        flex: 1 1 auto;
+        padding: 28px 22px 32px;
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .submitRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .submitButton {
+        width: 100%;
+    }
+}

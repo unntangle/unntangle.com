@@ -1,0 +1,657 @@
+/* uSYNQ Showcase — premium product catalog (LIGHT THEME, no pricing)
+ *
+ * IMPORTANT: globals.css has aggressive defaults we must override:
+ *   - section { padding: 100px 24px; display: flex }  → kills grid inside
+ *   - h1, h2, h3 { color: #1a1a1a; margin-bottom: 24-32px }
+ *   - p { color: #666; max-width: 600px }
+ * Every text element is set explicitly here.
+ */
+
+/* ============================================================
+ * PAGE WRAPPER
+ * ============================================================ */
+.showcase {
+    background-color: #fafafa;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 0;
+    display: block;
+}
+
+/* Spacer that reserves space for the 80px fixed navbar above the
+   sticky tabs. Without this, the tabs would render at the very top
+   of the page on initial load and overlap the navbar. */
+.navbarSpacer {
+    height: 80px;
+    width: 100%;
+}
+
+/* Body container holds the product sections and CTA, centred.
+   Lives BELOW the sticky tabs so the tabs can be full-bleed. */
+.bodyContainer {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 56px 32px 100px;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+ * HERO HEADER
+ * ============================================================ */
+.hero {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+    background: #fff;
+    margin-bottom: 24px;
+}
+
+.eyebrowDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.heroTitle {
+    /* Override h1 from globals.css */
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #0a0a0a;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 20px;
+}
+
+.heroTitle em {
+    font-style: normal;
+    background: linear-gradient(120deg, #0a0a0a 0%, #666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+    /* Override p from globals.css */
+    font-size: 1.05rem;
+    color: #666;
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ============================================================
+ * CATEGORY TABS — sticky, full-bleed band below the navbar
+ *
+ * The tabsWrapper sits OUTSIDE any centred container so its
+ * background spans the entire viewport. When the user scrolls
+ * past it, it sticks at top: 80px (right under the fixed navbar)
+ * and the page content slides cleanly behind the opaque band.
+ *
+ * Requirements that are met:
+ *   - No `overflow` on .showcase or any ancestor (sticky needs this)
+ *   - z-index < 1000 (the navbar's z-index)
+ *   - Background fully covers the viewport width (this is the fix
+ *     for the “I can see cards through the gaps” bug).
+ * ============================================================ */
+.tabsWrapper {
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    width: 100%;
+    /* White (slightly translucent) + blur — makes the band CLEARLY
+       visible as a floating rail when stuck. The page bg is #fafafa,
+       so a true white here gives just enough contrast to read as a
+       distinct surface. The blur is a defensive belt: if anything were
+       ever to peek through (1px alignment quirks, etc.), it'd be fuzzed. */
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02), 0 4px 16px -4px rgba(0, 0, 0, 0.04);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* When stuck, the inner pill no longer needs its own white BG
+   (the band itself is white now) — transparent it so it blends in. */
+.tabs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 100px;
+}
+
+.tab {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 100px;
+    color: #666;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.tab:hover {
+    color: #0a0a0a;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.tabActive {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+.tabActive:hover {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+.tabCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 20px;
+    padding: 0 7px;
+    border-radius: 100px;
+    background: rgba(0, 0, 0, 0.06);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.tabActive .tabCount {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+ * SECTION
+ * ============================================================ */
+.section {
+    padding: 0;
+    display: block;
+    margin-bottom: 80px;
+}
+
+.section:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+ * SECTION HEADER
+ * ============================================================ */
+.sectionHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeaderText {
+    flex: 1;
+    min-width: 280px;
+}
+
+.sectionTitle {
+    /* Override h2 from globals.css */
+    color: #0a0a0a;
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    line-height: 1.2;
+}
+
+.sectionDescription {
+    color: #666;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0;
+}
+
+.sectionMeta {
+    color: #999;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    padding-bottom: 4px;
+    font-weight: 600;
+}
+
+/* ============================================================
+ * PRODUCT GRID
+ * ============================================================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+/* ============================================================
+ * PRODUCT CARD
+ * ============================================================ */
+.card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.15);
+}
+
+.imageWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #f4f4f4;
+    overflow: hidden;
+    /* Reset button defaults so this <button> looks like the original <div>.
+       Cursor + transition apply when hovering anywhere over the image. */
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: zoom-in;
+    display: block;
+}
+
+.imageWrap:focus-visible {
+    /* Keyboard accessibility — visible focus ring when tabbed to */
+    outline: 2px solid #0a0a0a;
+    outline-offset: -2px;
+}
+
+/* Magnifier hint overlay — sits in the top-right corner of the image
+   and fades in on card hover. Pointer-events:none so it doesn't steal
+   clicks from the underlying button. */
+.zoomHint {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.85);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-2px) scale(0.92);
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.card:hover .zoomHint {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.image {
+    object-fit: contain;
+    padding: 18px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .image {
+    transform: scale(1.04);
+}
+
+.skuBadge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.06em;
+    z-index: 2;
+    backdrop-filter: blur(6px);
+}
+
+.cardBody {
+    padding: 14px 16px 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.productName {
+    /* Override h3 from globals.css */
+    color: #1a1a1a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.5em;
+}
+
+.tagRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: auto;
+}
+
+.tagPill {
+    padding: 2px 8px;
+    background: #f4f4f4;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 100px;
+    font-size: 0.64rem;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================================
+ * CTA SECTION — image-backed banner
+ *
+ * The backdrop is a high-res Unsplash photo (woman in a modern
+ * interior, warm lifestyle vibe). Loaded directly from Unsplash's
+ * CDN at 2400px wide so it stays sharp on retina/4K displays.
+ *
+ * The dark gradient overlay layered on top keeps the white type
+ * legible regardless of the underlying image's contrast.
+ *
+ * To swap the image: change the photo ID in the url() below.
+ * Browse unsplash.com, pick a photo, copy the photo ID from the
+ * URL (the part after `photo-`), and paste it in.
+ * ============================================================ */
+.cta {
+    position: relative;
+    margin-top: 80px;
+    padding: 80px 32px;
+    text-align: center;
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+    /* Layered backgrounds: dark gradient overlay over the image.
+       Without the overlay the text would be unreadable on busy imagery. */
+    background:
+        linear-gradient(135deg,
+            rgba(10, 10, 10, 0.72) 0%,
+            rgba(10, 10, 10, 0.55) 50%,
+            rgba(10, 10, 10, 0.72) 100%),
+        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=85&w=2400') center / cover no-repeat;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Subtle radial glow centred behind the heading for extra depth */
+.cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ctaTitle {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.2;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.ctaSubtitle {
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    max-width: 480px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ctaButton {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    background: #fff;
+    color: #000;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.ctaButton:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================================
+ * FLOATING SCROLL ARROWS — fixed bottom-right corner
+ *
+ * Two stacked circular buttons that let users jump to the top
+ * or bottom of the long products page. Visibility is controlled
+ * from the component (showScrollUp / showScrollDown flags).
+ *
+ * z-index sits between the page content and the navbar (1000):
+ * we want them above cards but below modals (which are 2000).
+ * ============================================================ */
+.scrollButtons {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+    /* The wrapper itself doesn't capture clicks; the buttons inside do.
+       This means the empty gap between the two buttons stays interactive
+       for the page content underneath. */
+    pointer-events: none;
+}
+
+.scrollButton {
+    pointer-events: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 10, 0.85);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.18),
+        0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    font-family: inherit;
+    padding: 0;
+}
+
+.scrollButton:hover {
+    background: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.scrollButton:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 700px) {
+    .scrollButtons {
+        right: 16px;
+        bottom: 16px;
+        gap: 8px;
+    }
+
+    .scrollButton {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ============================================================
+ * RESPONSIVE
+ * ============================================================ */
+@media (max-width: 768px) {
+    .heroContainer {
+        padding: 100px 18px 0;
+    }
+
+    .bodyContainer {
+        padding: 40px 18px 80px;
+    }
+
+    .hero {
+        margin-bottom: 0;
+    }
+
+    .tabsWrapper {
+        padding: 12px 18px;
+    }
+
+    .tab {
+        padding: 8px 14px;
+        font-size: 0.78rem;
+        gap: 7px;
+    }
+
+    .tabCount {
+        min-width: 20px;
+        height: 18px;
+        font-size: 0.62rem;
+    }
+
+    .section {
+        margin-bottom: 56px;
+    }
+
+    .sectionHeader {
+        margin-bottom: 20px;
+        gap: 12px;
+        padding-bottom: 14px;
+    }
+
+    .image {
+        padding: 12px;
+    }
+
+    .cardBody {
+        padding: 10px 12px 12px;
+        gap: 8px;
+    }
+
+    .productName {
+        font-size: 0.78rem;
+        min-height: 2.2em;
+    }
+
+    .tagPill {
+        font-size: 0.58rem;
+        padding: 2px 6px;
+    }
+
+    .skuBadge {
+        font-size: 0.55rem;
+        top: 7px;
+        left: 7px;
+        padding: 2px 6px;
+    }
+
+    .cta {
+        padding: 40px 20px;
+        margin-top: 56px;
+    }
+}

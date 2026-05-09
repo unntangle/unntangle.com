@@ -92,7 +92,7 @@ export default function Footer() {
                             </div>
 
                             <p className={styles.copyright}>
-                                © {new Date().getFullYear()}, <span className={styles.accent}>Unntangle Solutions</span>. All rights reserved.
+                                © {new Date().getFullYear()}, <span className={styles.accent}>Unntangle</span>. All rights reserved.
                             </p>
                         </div>
                     </div>
