@@ -57,16 +57,15 @@ export default function OurJourney() {
     return (
         <section className={styles.section}>
             <div className={`container ${styles.container}`}>
+                {/* Compact section header — just the eyebrow.
+                   The h2 + subtitle that previously lived here were
+                   restating what the year scrubber and milestone
+                   cards below already show in concrete detail.
+                   Removing them lets the giant year numeral act as
+                   the visual title, which makes the whole section
+                   feel tighter and more confident. */}
                 <div className={styles.header}>
-                    <span className={styles.eyebrow}>Our Journey</span>
-                    <h2 className={styles.title}>
-                        From a thesis to a{' '}
-                        <span className={styles.titleAccent}>full-stack studio</span>.
-                    </h2>
-                    <p className={styles.subtitle}>
-                        Unntangle is a young company with a long-term plan. Here&apos;s where
-                        we&apos;ve been so far — and where we&apos;re going next.
-                    </p>
+                    <span className={styles.eyebrow}>Founded 2023</span>
                 </div>
 
                 {/* Big year display + description card */}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import FeaturedServices from "@/components/FeaturedServices";
+import ServiceTechStack from "@/components/ServiceTechStack";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import OurProcess from "@/components/OurProcess";
 import MarketingCTA from "@/components/MarketingCTA";
@@ -25,14 +26,12 @@ export default function ServicesPage() {
                 <PageHero
                     eyebrow="What we do"
                     titleParts={[
-                        { accent: 'Unnfold' },
-                        '. ',
-                        { accent: 'Unnleash' },
-                        '. ',
-                        { accent: 'Unntangle' },
-                        '.',
+                        'Three disciplines.',
+                        ' ',
+                        { accent: 'Twelve services' },
+                        '. One team.',
                     ]}
-                    description="We strip away technical friction to reveal hidden possibilities — architecting the next generation of digital landscapes and intelligent environments across engineering, design, and growth."
+                    description="Technology, creative design, and growth marketing — plus smart-living hardware. Every service ships from one accountable studio, not three vendors."
                     primaryCta={{ label: 'Explore services', href: '#services' }}
                     secondaryCta={{ label: 'Start a project', href: '/contact' }}
                     image="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000"
@@ -44,7 +43,7 @@ export default function ServicesPage() {
                     ]}
                     imageAlt="What we do at Unntangle"
                     pills={[
-                        { text: 'Tech, Design, Growth — in one stack', variant: 'cyan', icon: true },
+                        { text: 'Tech · Design · Growth — in one stack', variant: 'cyan', icon: true },
                     ]}
                     gradient="orange-pink"
                     imageLayout="diamond-grid"
@@ -57,6 +56,7 @@ export default function ServicesPage() {
                     categories={categories}
                 />
             </div>
+            <ServiceTechStack />
             <WhyChooseUs />
             <OurProcess />
             <MarketingCTA />

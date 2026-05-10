@@ -33,10 +33,11 @@
 }
 
 .hero h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
+    letter-spacing: var(--ls-hero);
+    line-height: var(--lh-hero);
     margin-bottom: 24px;
     background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
     -webkit-background-clip: text;
@@ -44,11 +45,11 @@
 }
 
 .hero p {
-    font-size: 20px;
+    font-size: var(--fs-body);
     color: rgba(255, 255, 255, 0.6);
     max-width: 700px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: var(--lh-body);
 }
 
 .content {

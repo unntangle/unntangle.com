@@ -93,7 +93,13 @@ export default function Products() {
                             quietly running for our customers.
                         </p>
                     </div>
-                    <Link href="/products" className="btn btn-primary">View all</Link>
+                    {/* No "View all" CTA — there's no /products listing route
+                       yet, and pointing it at /usynq or any single product
+                       would be misleading because we have multiple SaaS
+                       products plus the hardware brand. The cards and uSYNQ
+                       band below already give every product its own
+                       direct entry point, so an extra header CTA isn't
+                       adding navigation, just visual noise. */}
                 </div>
 
                 {/* ============================================================

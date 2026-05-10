@@ -16,9 +16,11 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 800;
-    line-height: 1.2;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: #111111;
 }
 

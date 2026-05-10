@@ -24,11 +24,12 @@
 }
 
 .title {
-    font-size: clamp(56px, 10vw, 110px);
-    line-height: 0.95;
-    font-weight: 900;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    line-height: var(--lh-hero);
+    font-weight: var(--fw-title);
     color: #111;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-hero);
     margin: 0;
 }
 
@@ -42,8 +43,8 @@
 }
 
 .subtitle {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     color: var(--text-muted);
     font-weight: 400;
     max-width: 400px;

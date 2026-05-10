@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import AboutStatsHero from "@/components/AboutStatsHero";
 import Philosophy from "@/components/Philosophy";
 import OurJourney from "@/components/OurJourney";
 import OwnResponsibilities from "@/components/OwnResponsibilities";
 import GroupedServices from "@/components/GroupedServices";
-import DualSpotlight from "@/components/DualSpotlight";
 import AboutProducts from "@/components/AboutProducts";
 import BeyondWordmark from "@/components/BeyondWordmark";
 import Roadmap from "@/components/Roadmap";
@@ -21,19 +21,29 @@ export const metadata = {
  * About page composition
  *
  * Section order is the narrative arc:
- *   1. AboutStatsHero      — bold stat-led intro brick
- *   2. Philosophy          — the company's worldview
- *   3. OurJourney          — interactive timeline (2023 → present)
- *   4. OwnResponsibilities — accountability principles
- *   5. GroupedServices     — what we do (services overview)
- *   6. DualSpotlight       — twin AI / Smart Living feature cards
- *   7. AboutProducts       — product portfolio detail
+ *   1. PageHero            — gradient card hero (matches home/services)
+ *   2. AboutStatsHero      — stat-led intro brick (4 metric tiles)
+ *   3. Philosophy          — the company's worldview
+ *   4. OurJourney          — interactive timeline (2023 → present)
+ *   5. OwnResponsibilities — accountability principles
+ *   6. GroupedServices     — what we do (services overview)
+ *   7. AboutProducts       — SaaS suite + uSYNQ hero band
  *   8. BeyondWordmark      — typographic transition / vision pivot
  *   9. Roadmap             — what's coming next
  *  10. Vision              — long-term vision close
  *
- * Hero, Journey and Wordmark are the "company story" beats; the
- * others are proof points and product context layered around them.
+ * The PageHero uses the green-teal gradient so the About page has
+ * its own visual identity:
+ *   - Home:      blue-cyan
+ *   - Services:  orange-pink
+ *   - About:     green-teal
+ *   - Blog:      purple-pink (default)
+ *
+ * AboutStatsHero stays below the PageHero — the two beats together
+ * are: "here's who we are at a glance" (gradient hero) → "here's
+ * the proof in numbers" (stat tiles). They don't compete because
+ * the PageHero is a full-bleed colored card and AboutStatsHero is
+ * a centered tile-grid layout on a light background.
  */
 
 export default function AboutPage() {
@@ -41,13 +51,41 @@ export default function AboutPage() {
         <main>
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
-                <AboutStatsHero />
+                <PageHero
+                    eyebrow="Who We Are"
+                    titleParts={[
+                        'A studio built to ',
+                        { accent: 'ship work that matters' },
+                        '.',
+                    ]}
+                    description="A full-stack technology and digital company bringing engineering, design, growth, and smart-living hardware under one accountable team."
+                    primaryCta={{
+                        label: "Let's talk",
+                        href: '/contact',
+                        showArrow: true,
+                    }}
+                    secondaryCta={{
+                        label: 'See our work',
+                        href: '/services',
+                    }}
+                    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600"
+                    imageAlt="The Unntangle team collaborating in studio"
+                    imageLayout="diamond-grid"
+                    images={[
+                        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
+                    ]}
+                    pills={[{ text: 'One team. Every layer.', variant: 'cyan', icon: true }]}
+                    gradient="green-teal"
+                />
             </div>
+            <AboutStatsHero />
             <Philosophy />
             <OurJourney />
             <OwnResponsibilities />
             <GroupedServices />
-            <DualSpotlight />
             <AboutProducts />
             <BeyondWordmark />
             <Roadmap />

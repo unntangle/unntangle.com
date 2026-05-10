@@ -64,11 +64,12 @@
 }
 
 .title {
-    font-size: clamp(30px, 4.2vw, 48px);
-    line-height: 1.1;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
     margin-bottom: 18px;
     color: white;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-section);
 }
 
 .titleAccent {
@@ -76,9 +77,9 @@
 }
 
 .description {
-    font-size: 16px;
+    font-size: var(--fs-body);
     color: rgba(255, 255, 255, 0.78);
-    line-height: 1.55;
+    line-height: var(--lh-body);
     max-width: 640px;
     margin-bottom: 28px;
 }

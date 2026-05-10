@@ -23,10 +23,12 @@
 }
 
 .title {
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 900;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-hero);
     margin-bottom: 48px;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-hero);
 }
 
 .actions {

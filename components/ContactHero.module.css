@@ -115,17 +115,19 @@
 }
 
 .title {
-    font-size: clamp(26px, 3.2vw, 36px);
-    font-weight: 700;
-    line-height: 1.2;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
     margin-bottom: 16px;
     color: #ffffff;
+    letter-spacing: var(--ls-section);
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: var(--fs-body-sm);
     color: rgba(255, 255, 255, 0.6);
-    line-height: 1.5;
+    line-height: var(--lh-body-sm);
     margin-bottom: 32px;
 }
 

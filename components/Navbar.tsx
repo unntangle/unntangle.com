@@ -215,9 +215,14 @@ export default function Navbar() {
               className={styles.dropdownTrigger}
               onMouseEnter={() => setActiveDropdown('products')}
             >
-              <Link href="/products" className={styles.linkWithIcon}>
+              {/* No `/products` listing route exists yet, so the
+                  trigger is a non-navigating span. The mega menu on
+                  hover still surfaces individual product links
+                  (uVOIZ, uDYLR, uSCRIBR) so the experience isn't
+                  diminished — the user just can't tap into a 404. */}
+              <span className={`${styles.linkWithIcon} ${styles.linkWithIconStatic}`}>
                 Products <ChevronDown size={14} />
-              </Link>
+              </span>
             </div>
 
             <Link href="/blog">Knowledge Hub</Link>

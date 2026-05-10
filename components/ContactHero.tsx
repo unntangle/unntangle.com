@@ -144,7 +144,7 @@ export default function ContactHero() {
                                     <div className={styles.itemIcon}><Phone size={18} /></div>
                                     <div className={styles.itemText}>
                                         <span>Call Us</span>
-                                        <p><a href="tel:+919789058391">+91 97890 58391</a></p>
+                                        <p><a href="tel:+917092747933">+91 70927 47933</a></p>
                                         <p><a href="tel:+916379388462">+91 63793 88462</a></p>
                                     </div>
                                 </div>

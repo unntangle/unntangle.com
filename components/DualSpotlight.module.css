@@ -127,18 +127,18 @@
 
 .title {
     font-family: var(--font-title), sans-serif;
-    font-size: clamp(26px, 2.6vw, 36px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: var(--fs-sub);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-sub);
+    letter-spacing: var(--ls-sub);
     color: white;
     margin: 0;
 }
 
 .description {
-    font-size: 15px;
+    font-size: var(--fs-body-sm);
     color: rgba(255, 255, 255, 0.82);
-    line-height: 1.55;
+    line-height: var(--lh-body-sm);
     margin: 0;
     max-width: 480px;
 }

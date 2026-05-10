@@ -100,6 +100,15 @@
     cursor: pointer;
 }
 
+/* Variant for trigger labels that don't navigate themselves — the
+   hover dropdown is the actionable part. Removes the link cursor
+   so the label feels like a header, not a button. Used by the
+   Products dropdown trigger since /products doesn't exist as a
+   listing route yet. */
+.linkWithIconStatic {
+    cursor: default;
+}
+
 .links a:hover,
 .linkWithIcon:hover,
 .linkAsButton:hover {

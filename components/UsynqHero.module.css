@@ -122,11 +122,12 @@
  * ============================================================ */
 .title {
     /* override h1 from globals.css */
-    font-size: clamp(2.4rem, 6vw, 4.8rem);
-    font-weight: 300;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
     color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: var(--ls-hero);
+    line-height: var(--lh-hero);
     margin: 0 auto 28px;
     max-width: 960px;
     overflow-wrap: break-word;
@@ -148,9 +149,9 @@
  * ============================================================ */
 .subtitle {
     /* override p from globals.css */
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: var(--fs-body);
     color: #a1a1aa;
-    line-height: 1.6;
+    line-height: var(--lh-body);
     max-width: 620px;
     margin: 0 auto 36px;
 }

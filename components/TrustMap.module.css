@@ -25,17 +25,19 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 800;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
     margin-bottom: 24px;
-    line-height: 1.1;
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: #111111;
 }
 
 .description {
-    font-size: 18px;
+    font-size: var(--fs-body);
     color: #666;
-    line-height: 1.6;
+    line-height: var(--lh-body);
 }
 
 .visualContainer {

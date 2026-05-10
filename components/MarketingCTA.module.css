@@ -1,7 +1,10 @@
 .ctaSection {
     position: relative;
     background-color: #ffffff;
-    padding: 100px 0 120px 0;
+    padding: 16px 0 64px 0;
+    /* Top padding trimmed (32 → 16) so this section starts closer
+       to where OurProcess finishes. Bottom also trimmed slightly
+       (80 → 64) since the Footer below has its own padding. */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -20,8 +23,13 @@
     background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
     background-size: 32px 32px;
     opacity: 0.6;
-    mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 50%, black 90%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 50%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 90%, transparent 100%);
+    /* Tightened the mask: previously 25→50% fade-in meant the top
+       half of the section was effectively empty. Now the pattern
+       reaches full opacity at 12% of the section height, so the
+       glassmorphic banner sits on a visibly textured background
+       rather than floating in a void below the prior section. */
 }
 
 .blobContainer {
@@ -97,12 +105,13 @@
 }
 
 .title {
-    font-family: var(--font-outfit), sans-serif;
-    font-size: clamp(32px, 4vw, 56px);
-    font-weight: 800;
-    line-height: 1.1;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
     color: #111111;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-section);
+    margin-bottom: 24px;
 }
 
 .gradientText {
@@ -112,32 +121,98 @@
     background-clip: text;
 }
 
+/* ============================================================
+   PILLAR CHIPS — the three service pillars listed below the
+   headline as small chips with cyan dots. Reinforces "one team
+   handles all three" rather than fragmenting them into vendors.
+============================================================ */
+.pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.pillarChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.pillarDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+    flex-shrink: 0;
+}
+
 .description {
-    font-size: clamp(16px, 1.1vw, 18px);
+    font-size: var(--fs-body);
     color: #4b5563;
-    line-height: 1.6;
+    line-height: var(--lh-body);
     margin-bottom: 32px;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
 }
 
 .primaryBtn {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background-color: #111111;
     color: #ffffff;
     border: none;
-    padding: 16px 36px;
-    border-radius: 12px;
-    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
     width: fit-content;
+    text-decoration: none;
+    font-family: inherit;
 }
 
 .primaryBtn:hover {
     transform: translateY(-2px);
     background-color: #000000;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.secondaryBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.secondaryBtn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.22);
 }
 
 .btnGlow {
@@ -178,14 +253,18 @@
         justify-content: center;
     }
 
-    .primaryBtn {
-        margin: 0 auto;
+    .pillars {
+        justify-content: center;
+    }
+
+    .buttonWrapper {
+        justify-content: center;
     }
 }
 
 @media (max-width: 768px) {
     .ctaSection {
-        padding: 60px 0;
+        padding: 40px 0 56px;
     }
 
     .horizontalBanner {

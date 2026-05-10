@@ -68,11 +68,9 @@ const serviceStories: ServiceStory[] = [
         description:
             'From a complete 2D brand identity to photo-realistic 3D product renders and custom-trained AI imagery. We engineer visual systems that look premium, scale across every touchpoint, and ship at the speed of modern marketing.',
         deliverables: [
-            '2D Graphic Design',
-            '3D Modelling & Rendering',
+            '2D Graphic Designing',
+            '3D Designing',
             'AI Image Rendition',
-            'Brand Guidelines',
-            'Marketing Collateral',
         ],
         image:
             'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=1600',
@@ -90,8 +88,7 @@ const serviceStories: ServiceStory[] = [
             'Meta Ads',
             'Google Ads',
             'SEO',
-            'Social Media Marketing',
-            'Performance Tracking',
+            'SMM',
         ],
         image:
             'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',

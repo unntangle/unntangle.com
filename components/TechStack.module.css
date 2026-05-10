@@ -1,14 +1,28 @@
 /* Tech Stack section
-   Categorised logo wall in a clean, restrained layout. Each
-   category is a row: small uppercase label on the left, logo
-   tiles in a flex-wrap on the right. */
+   Each category is a horizontal marquee row that scrolls in
+   alternating directions (zigzag pattern). The category label
+   sits above each marquee in a normal padded container; the
+   marquee itself is full-bleed (escapes the container's max-width)
+   so the scroll motion runs edge-to-edge of the viewport. */
 
 .section {
     background-color: var(--bg-light);
     padding: 96px 0;
+    overflow: hidden;
+    display: block;
+    /* `display: block` overrides the global `section { display: flex }`
+       rule in globals.css. With flex active, the two direct children
+       (.headerContainer and .marqueeStack) were being laid out as
+       flex items in a single row — which collapsed the header to
+       zero width since it had no flex-basis. Block layout makes
+       them stack vertically as expected. */
+    /* overflow:hidden on the section as a whole prevents the
+       horizontal marquees from forcing horizontal page scroll
+       on tablet/mobile viewports where the tripled track is
+       wider than the screen. */
 }
 
-.container {
+.headerContainer {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -16,7 +30,7 @@
 
 .header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 56px;
 }
 
 .header h2 {
@@ -29,23 +43,32 @@
     max-width: 580px;
 }
 
-.categories {
+/* ============================================================
+   MARQUEE STACK — vertical list of category rows
+   Sits OUTSIDE any constraining container so each row's
+   scroll wrapper can run viewport-edge-to-viewport-edge.
+============================================================ */
+.marqueeStack {
     display: flex;
     flex-direction: column;
     gap: 28px;
 }
 
-.category {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    align-items: center;
-    gap: 32px;
-    padding: 24px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+.categoryRow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.category:last-child {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+/* Label sits in its own padded inner container so it aligns
+   with header text and the rest of the page, while the marquee
+   below it still runs full-bleed. */
+.labelInner {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .categoryLabel {
@@ -56,13 +79,51 @@
     letter-spacing: 0.14em;
 }
 
-.logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+/* ============================================================
+   SCROLL WRAPPER — full-bleed, edge-faded
+   Inside the section overflow:hidden ancestor, so width: 100% +
+   left/right negative inset gives full-bleed without the 100vw
+   trick (which can cause horizontal-scroll quirks on Windows
+   when the scrollbar is rendered).
+============================================================ */
+.scrollWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+    );
 }
 
-/* Each logo sits in a soft pill with subtle hover lift */
+.scrollTrack {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    /* width:max-content lets the flex line grow as wide as its
+       children need, which is exactly what the x-translate
+       animation expects. The transform animates from 0 to -33.3%
+       which lines the second copy of the tripled item list up
+       with where the first copy started — the user can't see
+       the seam. */
+    padding: 4px 0;
+    /* Vertical padding gives box-shadow + transform:translateY
+       hover effects room to breathe without being clipped. */
+}
+
+/* ============================================================
+   LOGO TILES — pill-shaped chips
+============================================================ */
 .logoTile {
     display: inline-flex;
     align-items: center;
@@ -74,14 +135,11 @@
     font-size: 14px;
     font-weight: 600;
     color: var(--text-main);
-    transition: transform 0.25s ease, box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.logoTile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+    /* flex-shrink:0 is critical inside the marquee — without it,
+       the flex container would compress chips to fit the visible
+       width instead of letting them overflow into the marquee
+       loop, breaking the scroll illusion. */
 }
 
 .logoImg {
@@ -89,46 +147,78 @@
     height: 22px;
     object-fit: contain;
     flex-shrink: 0;
-    /* Subtle desaturation keeps the wall visually unified even
-       when individual brand SVGs vary in weight. */
     opacity: 0.85;
 }
 
-.logoTile:hover .logoImg {
-    opacity: 1;
+/* Lettermark fallback for tools whose Simple Icons URL fails to
+   load (404, content blocker, network error). First letter of
+   the tool name in a filled black circle, sized to match the
+   real logo footprint so the chip layout doesn't shift when a
+   tile falls back. Same `#111` colour as the SVG icons (which
+   are served as `cdn.simpleicons.org/{slug}/111111`) so the row
+   reads as one cohesive monochrome surface. */
+.logoFallback {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    color: white;
+    border-radius: 50%;
+    font-family: var(--font-title), sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
 }
 
 .logoName {
     white-space: nowrap;
 }
 
-/* Responsive */
+/* Pause the marquee on hover so users can read tools clearly. */
+.scrollWrapper:hover .scrollTrack {
+    animation-play-state: paused;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
 @media (max-width: 768px) {
     .section {
         padding: 72px 0;
     }
 
     .header {
-        margin-bottom: 40px;
+        margin-bottom: 36px;
     }
 
-    .category {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 20px 0;
+    .marqueeStack {
+        gap: 22px;
     }
 
-    .logos {
+    .categoryRow {
+        gap: 10px;
+    }
+
+    .scrollTrack {
         gap: 8px;
     }
 
     .logoTile {
         padding: 8px 14px;
         font-size: 13px;
+        gap: 8px;
     }
 
-    .logoImg {
+    .logoImg,
+    .logoFallback {
         width: 18px;
         height: 18px;
+    }
+
+    .logoFallback {
+        font-size: 9px;
     }
 }

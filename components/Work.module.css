@@ -39,12 +39,17 @@
 }
 
 .content h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
+    font-weight: 600;
+    line-height: var(--lh-sub);
+    letter-spacing: var(--ls-sub);
+    margin-bottom: 14px;
 }
 
 .content p {
-    font-size: 16px;
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body-sm);
     margin-bottom: 20px;
     color: var(--text-muted);
 }

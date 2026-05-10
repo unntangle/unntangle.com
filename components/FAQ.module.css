@@ -38,11 +38,11 @@
 }
 
 .mainTitle {
-    font-family: var(--font-outfit), sans-serif;
-    font-size: clamp(36px, 4vw, 56px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: #111;
     margin: 0;
 }

@@ -7,8 +7,14 @@ import TechStack from "@/components/TechStack";
 import Industries from "@/components/Industries";
 import CTABand from "@/components/CTABand";
 import FAQ from "@/components/FAQ";
-import ClientCarousel from "@/components/ClientCarousel";
 import Footer from "@/components/Footer";
+
+// `ClientCarousel` (the "CLIENTS TRUST US" scrolling logo rows)
+// is hidden because the placeholder logos (Azure, Adobe, Stripe,
+// AWS Sagemaker, Snowflake etc.) referenced platforms we use, not
+// real client engagements — the section heading promised proof we
+// didn't have. Re-import it once we have legitimate client logos
+// with permission to display.
 
 export default function Home() {
   return (
@@ -35,7 +41,6 @@ export default function Home() {
       <Services />
       <Products />
       <Stats />
-      <ClientCarousel />
       <TechStack />
       <Industries />
       <CTABand />

@@ -228,9 +228,10 @@
    it gets its own band. The "SYNQ" half is white (since the band
    background is dark), unlike the SaaS cards where it's black. */
 .usynqWordmark {
-    font-size: clamp(40px, 5vw, 64px);
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
     margin-bottom: 20px;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-hero);
     line-height: 1;
     color: white;
 }
@@ -241,9 +242,9 @@
 }
 
 .usynqDescription {
-    font-size: 17px;
+    font-size: var(--fs-body);
     color: rgba(255, 255, 255, 0.78);
-    line-height: 1.6;
+    line-height: var(--lh-body);
     max-width: 520px;
     margin-bottom: 28px;
 }

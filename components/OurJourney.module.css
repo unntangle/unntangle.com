@@ -5,7 +5,7 @@
 .section {
     background: #0e0f12;
     color: white;
-    padding: 96px 0;
+    padding: 32px 0 40px;
     position: relative;
     overflow: hidden;
 }
@@ -36,7 +36,7 @@
 
 .header {
     text-align: center;
-    margin-bottom: 56px;
+    margin-bottom: 8px;
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
@@ -58,10 +58,10 @@
 
 .title {
     font-family: var(--font-title), sans-serif;
-    font-size: clamp(32px, 4.4vw, 52px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: white;
     margin-bottom: 16px;
 }
@@ -72,8 +72,8 @@
 
 .subtitle {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 16px;
-    line-height: 1.55;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     margin: 0 auto;
     max-width: 600px;
 }
@@ -84,8 +84,8 @@
 ============================================================ */
 .stage {
     position: relative;
-    min-height: 360px;
-    margin-bottom: 64px;
+    min-height: 200px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,7 +97,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-title), sans-serif;
-    font-size: clamp(180px, 24vw, 320px);
+    font-size: clamp(140px, 18vw, 240px);
     font-weight: 800;
     line-height: 0.9;
     letter-spacing: -0.04em;
@@ -118,18 +118,18 @@
 
 .milestoneHeadline {
     font-family: var(--font-title), sans-serif;
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
+    font-size: var(--fs-sub);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-sub);
+    letter-spacing: var(--ls-sub);
     color: white;
     margin-bottom: 20px;
 }
 
 .milestoneDescription {
-    font-size: clamp(15px, 1.2vw, 17px);
+    font-size: var(--fs-body);
     color: rgba(255, 255, 255, 0.78);
-    line-height: 1.65;
+    line-height: var(--lh-body);
     max-width: 580px;
     margin: 0 auto;
 }
@@ -236,16 +236,16 @@
 ============================================================ */
 @media (max-width: 768px) {
     .section {
-        padding: 64px 0;
+        padding: 24px 0 36px;
     }
 
     .stage {
-        min-height: 280px;
-        margin-bottom: 40px;
+        min-height: 180px;
+        margin-bottom: 16px;
     }
 
     .yearDisplay {
-        font-size: 160px;
+        font-size: 120px;
     }
 
     .milestoneHeadline {

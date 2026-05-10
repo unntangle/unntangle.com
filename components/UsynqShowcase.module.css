@@ -69,11 +69,12 @@
 
 .heroTitle {
     /* Override h1 from globals.css */
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 300;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
     color: #0a0a0a;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: var(--ls-hero);
+    line-height: var(--lh-hero);
     margin: 0 0 20px;
 }
 
@@ -87,11 +88,11 @@
 
 .heroSubtitle {
     /* Override p from globals.css */
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     color: #666;
     max-width: 580px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: var(--lh-body);
 }
 
 /* ============================================================
@@ -239,18 +240,19 @@
 
 .sectionTitle {
     /* Override h2 from globals.css */
+    font-family: var(--font-title), sans-serif;
     color: #0a0a0a;
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-size: var(--fs-sub);
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-sub);
     margin: 0 0 8px;
-    line-height: 1.2;
+    line-height: var(--lh-sub);
 }
 
 .sectionDescription {
     color: #666;
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body-sm);
     max-width: 640px;
     margin: 0;
 }
@@ -474,12 +476,13 @@
 .ctaTitle {
     position: relative;
     z-index: 1;
+    font-family: var(--font-title), sans-serif;
     color: #fff;
-    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    font-size: var(--fs-sub);
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-sub);
     margin: 0 0 12px;
-    line-height: 1.2;
+    line-height: var(--lh-sub);
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -487,10 +490,10 @@
     position: relative;
     z-index: 1;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.95rem;
+    font-size: var(--fs-body-sm);
     max-width: 480px;
     margin: 0 auto 24px;
-    line-height: 1.6;
+    line-height: var(--lh-body-sm);
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 

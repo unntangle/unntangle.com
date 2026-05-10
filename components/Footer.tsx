@@ -53,9 +53,9 @@ export default function Footer() {
                             <h4>Contact</h4>
                             <div className={styles.contactInfo}>
                                 <div className={styles.phoneNumbers}>
-                                    <Link href="tel:+919789058391">+91 97890-58391</Link>
+                                    <Link href="tel:+917092747933">+91 70927 47933</Link>
                                     <span> / </span>
-                                    <Link href="tel:+916379388462">+91 63793-88462</Link>
+                                    <Link href="tel:+916379388462">+91 63793 88462</Link>
                                 </div>
                                 <Link href="mailto:info@unntangle.com">info@unntangle.com</Link>
                                 <p className={styles.address}>

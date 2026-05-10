@@ -52,20 +52,21 @@
 
 .sectionTitle {
     /* Override h2 from globals.css */
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
     color: #0a0a0a;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    letter-spacing: var(--ls-section);
+    line-height: var(--lh-section);
     margin: 0 auto 16px;
     max-width: 720px;
 }
 
 .sectionLead {
     /* Override p from globals.css */
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     color: #666;
-    line-height: 1.6;
+    line-height: var(--lh-body);
     max-width: 620px;
     margin: 0 auto;
 }
@@ -116,18 +117,19 @@
 
 .featureTitle {
     /* Override h3 from globals.css */
-    font-size: 1.25rem;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
     font-weight: 600;
     color: #0a0a0a;
     margin: 0;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    letter-spacing: var(--ls-sub);
+    line-height: var(--lh-sub);
 }
 
 .featureDescription {
-    font-size: 0.95rem;
+    font-size: var(--fs-body-sm);
     color: #666;
-    line-height: 1.6;
+    line-height: var(--lh-body-sm);
     margin: 0;
     max-width: none;
 }
@@ -201,18 +203,19 @@
 
 .categoryCardTitle {
     /* Override h3 */
-    font-size: 1.4rem;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
     font-weight: 600;
     color: #0a0a0a;
-    line-height: 1.25;
+    line-height: var(--lh-sub);
     margin: 8px 0 12px;
-    letter-spacing: -0.01em;
+    letter-spacing: var(--ls-sub);
 }
 
 .categoryCardDescription {
-    font-size: 0.92rem;
+    font-size: var(--fs-body-sm);
     color: #666;
-    line-height: 1.55;
+    line-height: var(--lh-body-sm);
     margin: 0;
     max-width: none;
 }
@@ -382,20 +385,21 @@
 }
 
 .shopCtaTitle {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 500;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
     color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: var(--ls-section);
+    line-height: var(--lh-section);
     margin: 0 auto 16px;
     max-width: 720px;
     position: relative;
 }
 
 .shopCtaSubtitle {
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     color: #aaa;
-    line-height: 1.6;
+    line-height: var(--lh-body);
     max-width: 560px;
     margin: 0 auto 32px;
     position: relative;

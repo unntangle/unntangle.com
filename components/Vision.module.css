@@ -5,7 +5,6 @@
 
 .visionCard {
     background: #050505;
-    /* Consistent with the brand's dark background */
     color: #ffffff;
     border-radius: 48px;
     padding: 100px 40px;
@@ -13,18 +12,47 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+    /* Establish stacking context so the image + overlay layer
+       cleanly behind the inner content via z-index. */
+    isolation: isolate;
 }
 
-.visionCard::before {
-    content: '';
+/* Background image — sits behind everything (z-index 0).
+   next/image with `fill` becomes absolutely positioned automatically. */
+.visionImage {
+    object-fit: cover;
+    z-index: 0;
+    /* Slight scale + low opacity so the image reads as a moody
+       backdrop, not a foreground subject. */
+    opacity: 0.45;
+    transform: scale(1.02);
+    transition: transform 1.2s ease;
+}
+
+.visionCard:hover .visionImage {
+    transform: scale(1.05);
+}
+
+/* Dark overlay layered above the image, below the content.
+   A radial gradient gives the cyan-tinted glow at the centre
+   that was previously a ::before pseudo. */
+.visionOverlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 0%, transparent 70%);
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(0, 209, 255, 0.12) 0%,
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(5, 5, 5, 0.78) 0%,
+            rgba(5, 5, 5, 0.55) 50%,
+            rgba(5, 5, 5, 0.85) 100%
+        );
 }
 
 .visionInner {
@@ -45,11 +73,15 @@
 }
 
 .visionText {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1.3;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: #ffffff;
-    letter-spacing: -0.01em;
+    /* Subtle text shadow improves legibility against the most
+       chaotic patches of background imagery. */
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 768px) {

@@ -75,10 +75,11 @@
 }
 
 .headline {
-    font-family: var(--font-outfit), sans-serif;
-    font-size: clamp(32px, 5vw, 64px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-hero);
+    letter-spacing: var(--ls-hero);
     margin-bottom: 24px;
     display: flex;
     align-items: center;
@@ -108,11 +109,11 @@
 }
 
 .subheadline {
-    font-size: clamp(16px, 1.2vw, 20px);
+    font-size: var(--fs-body);
     color: rgba(255, 255, 255, 0.7);
     max-width: 600px;
     margin: 0 auto 48px;
-    line-height: 1.6;
+    line-height: var(--lh-body);
 }
 
 .ctaLink {

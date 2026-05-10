@@ -11,13 +11,17 @@
 }
 
 .title {
-    font-size: 48px;
-    margin-bottom: 24px;
-    font-weight: 700;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
+    margin-bottom: 20px;
 }
 
 .description {
-    font-size: 18px;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     color: var(--text-muted);
     max-width: 600px;
     margin: 0 auto;

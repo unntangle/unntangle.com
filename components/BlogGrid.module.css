@@ -15,15 +15,18 @@
 }
 
 .gridHeading {
-    font-size: clamp(28px, 3.5vw, 40px);
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
     margin-bottom: 8px;
-    font-weight: 700;
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
     color: #111;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-section);
 }
 
 .gridSubheading {
-    font-size: 16px;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     color: var(--text-muted);
     font-weight: 400;
 }
@@ -317,12 +320,13 @@
 }
 
 .cardTitle {
-    font-size: 20px;
-    font-weight: 700;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
+    font-weight: 600;
     color: #111;
     margin-bottom: 12px;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    letter-spacing: var(--ls-sub);
+    line-height: var(--lh-sub);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -331,9 +335,9 @@
 }
 
 .cardDescription {
-    font-size: 14px;
+    font-size: var(--fs-body-sm);
     color: #4b5563;
-    line-height: 1.6;
+    line-height: var(--lh-body-sm);
     margin-bottom: 24px;
     display: -webkit-box;
     -webkit-line-clamp: 3;

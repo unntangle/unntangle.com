@@ -1,7 +1,11 @@
 .section {
     position: relative;
     background: #ffffff;
-    padding: 32px 0 80px;
+    padding: 32px 0 24px;
+    /* Bottom padding trimmed (48 → 24) so the section ends closer
+       to where the cards visually finish. The dot-pattern mask
+       below also fades out faster (was 80% → 90%) so the bottom
+       isn't a wide empty band before the next section starts. */
     overflow: hidden;
 }
 
@@ -13,8 +17,8 @@
     background-image: radial-gradient(#e5e7eb 1.5px, transparent 1.5px);
     background-size: 28px 28px;
     opacity: 0.5;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%);
     pointer-events: none;
 }
 
@@ -47,11 +51,11 @@
 }
 
 .title {
-    font-family: var(--font-outfit), sans-serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
     color: #111;
     margin-bottom: 20px;
     padding: 0.1em 0;
@@ -222,7 +226,7 @@
 
 @media (max-width: 640px) {
     .section {
-        padding: 80px 0;
+        padding: 56px 0;
     }
 
     .header {

@@ -1,8 +1,33 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import styles from './MarketingCTA.module.css';
+
+/**
+ * /services page closing CTA band.
+ *
+ * Sits below OurProcess, just before the Footer. Functions as the
+ * decision moment for someone who's read through the three service
+ * pillars and the process — gives them a concrete next action.
+ *
+ * Two CTAs split by intent:
+ *   1. "Start a project"   — scoped, ready-to-engage prospects
+ *   2. "Book a discovery call" — exploratory, still scoping
+ *
+ * The pillar chips below the headline reinforce that whichever
+ * service they came in for, the same accountable team handles it
+ * — which is the core "why Unntangle" pitch from the WhyChooseUs
+ * comparison table further up.
+ */
+
+const pillars = [
+    'Technology Solutions',
+    'Creative Design',
+    'Growth Marketing',
+];
 
 export default function MarketingCTA() {
     return (
@@ -18,7 +43,7 @@ export default function MarketingCTA() {
                             y: [0, 50, 0],
                             scale: [1, 1.1, 1],
                         }}
-                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
                     />
                     <motion.div
                         className={`${styles.blob} ${styles.blob2}`}
@@ -26,7 +51,7 @@ export default function MarketingCTA() {
                             x: [0, -80, 0],
                             y: [0, 100, 0],
                         }}
-                        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                     />
                 </div>
             </div>
@@ -43,7 +68,7 @@ export default function MarketingCTA() {
                         <div className={styles.logoWrapper}>
                             <Image
                                 src="/images/unntangle_logo_white.png"
-                                alt="Unntangle Logo"
+                                alt="Unntangle"
                                 width={140}
                                 height={35}
                                 className={styles.logo}
@@ -51,23 +76,41 @@ export default function MarketingCTA() {
                             />
                         </div>
                         <h2 className={styles.title}>
-                            Have a Vision?<br />
-                            <span className={styles.gradientText}>Let's Discuss!</span>
+                            One brief.{' '}
+                            <span className={styles.gradientText}>One accountable team.</span>
                         </h2>
+
+                        <div className={styles.pillars}>
+                            {pillars.map((pillar) => (
+                                <span key={pillar} className={styles.pillarChip}>
+                                    <span
+                                        className={styles.pillarDot}
+                                        aria-hidden="true"
+                                    />
+                                    {pillar}
+                                </span>
+                            ))}
+                        </div>
                     </div>
 
                     <div className={styles.divider} />
 
                     <div className={styles.rightSide}>
                         <p className={styles.description}>
-                            Connect with our experts to explore how we can turn your ideas into reality.
-                            We're here to brainstorm, strategize, and build your next digital success story together.
+                            Whether you&apos;re launching a product, modernising a legacy
+                            platform, or scaling growth, we ship in weeks — not quarters. Tell
+                            us what you&apos;re building and we&apos;ll come back with a scoped
+                            plan within 48 hours.
                         </p>
                         <div className={styles.buttonWrapper}>
-                            <button className={styles.primaryBtn}>
-                                Let's Talk
+                            <Link href="/contact" className={styles.primaryBtn}>
+                                Start a project
+                                <ArrowRight size={18} />
                                 <div className={styles.btnGlow} />
-                            </button>
+                            </Link>
+                            <Link href="/contact" className={styles.secondaryBtn}>
+                                Book a discovery call
+                            </Link>
                         </div>
                     </div>
                 </motion.div>

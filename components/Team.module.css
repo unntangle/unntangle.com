@@ -9,9 +9,12 @@
 }
 
 .title {
-    font-size: clamp(32px, 5vw, 48px);
-    margin-bottom: 24px;
-    font-weight: 700;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
+    margin-bottom: 20px;
 }
 
 .grid {
@@ -52,24 +55,27 @@
 }
 
 .content h3 {
-    font-size: 22px;
-    font-weight: 700;
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
+    font-weight: 600;
+    line-height: var(--lh-sub);
+    letter-spacing: var(--ls-sub);
     margin-bottom: 8px;
     color: #111;
 }
 
 .role {
     color: var(--primary);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--fs-eyebrow);
+    font-weight: 700;
     margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: var(--ls-eyebrow);
 }
 
 .content p {
-    font-size: 15px;
+    font-size: var(--fs-body-sm);
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: var(--lh-body-sm);
     max-width: 100%;
 }
