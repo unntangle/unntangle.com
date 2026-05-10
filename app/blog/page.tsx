@@ -10,12 +10,14 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    title: "Insights — Digital, AI & Cloud Engineering Blog",
+    // Bare page name; template appends " | Unntangle". Renders as:
+    // "Insights | Unntangle"
+    title: "Insights",
     description:
         "Deep-dive perspectives from the engineers, designers, and growth strategists shaping how modern brands ship products, scale platforms, and capture demand.",
     alternates: { canonical: "/blog" },
     openGraph: {
-        title: "Unntangle Insights — Digital, AI & Cloud Engineering Blog",
+        title: "Insights | Unntangle",
         description:
             "Deep-dive perspectives on Digital, AI, Cloud, design, and growth marketing.",
         url: `${SITE_URL}/blog`,

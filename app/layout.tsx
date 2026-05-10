@@ -62,10 +62,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        // Used when a child page sets its own `title`.
-        // %s gets replaced with the page-specific title.
+        // %s gets replaced with the page-specific title set by each child
+        // page. Pages set the bare page name (e.g. "About") and the
+        // template appends " | Unntangle".
+        //
+        // `default` is used when a child page sets NO title. The home page
+        // overrides both the template AND default via `title.absolute`
+        // (see app/page.tsx) so it appears as just "Unntangle — ...".
         template: "%s | Unntangle",
-        default: "Unntangle — Design, Development & Smart Living Solutions",
+        default: "Unntangle — Design, Development & Smart Living",
     },
     description:
         "Unntangle is your growth partner for premium web & app development, creative design, growth marketing, and intelligent smart-living systems. One studio, three disciplines, real outcomes.",
@@ -105,7 +110,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         siteName: "Unntangle",
-        title: "Unntangle — Design, Development & Smart Living Solutions",
+        title: "Unntangle — Design, Development & Smart Living",
         description:
             "Your partner for premium digital products and intelligent living. Web, mobile, ERP, 3D, design, growth marketing, and smart-home hardware — all under one accountable studio.",
         url: SITE_URL,
@@ -115,13 +120,13 @@ export const metadata: Metadata = {
                 url: "/images/hero.png",
                 width: 1200,
                 height: 630,
-                alt: "Unntangle — Design, Development & Smart Living Solutions",
+                alt: "Unntangle — Design, Development & Smart Living",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Unntangle — Design, Development & Smart Living Solutions",
+        title: "Unntangle — Design, Development & Smart Living",
         description:
             "Your partner for premium digital products and intelligent living. Web, mobile, ERP, 3D, design, growth marketing, and smart-home hardware.",
         images: ["/images/hero.png"],
@@ -129,9 +134,22 @@ export const metadata: Metadata = {
         site: "@unntangle",
     },
     icons: {
+        // Order matters: browsers pick the first format they support, so put
+        // the universal ICO first, then the modern WebP. The actual ICO
+        // file lives at app/favicon.ico (auto-served by Next at /favicon.ico
+        // via the App Router file convention).
+        //
+        // Why this fixes the "favicon not showing" issue:
+        //   - Next's app/favicon.ico convention emits one <link> tag for us
+        //     automatically. Declaring it again here is harmless but redundant.
+        //   - The previous config only declared the WebP variant, which is
+        //     fine on Chrome/Edge but silently ignored by older Safari and
+        //     some embed/preview tools — they expected ICO and got nothing.
+        //   - Adding explicit `sizes` hints helps the browser pick the
+        //     correct asset for the tab vs. address bar vs. bookmark.
         icon: [
+            { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
             { url: "/images/unntangle_fav.webp", type: "image/webp" },
-            { url: "/favicon.ico", sizes: "any" },
         ],
         shortcut: "/favicon.ico",
         apple: "/images/unntangle_fav.webp",

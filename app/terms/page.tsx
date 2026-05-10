@@ -9,12 +9,13 @@ const SITE_URL =
     'https://unntangle.com';
 
 export const metadata: Metadata = {
-    title: 'Site Terms of Use',
+    // Templated → "Terms of Use | Unntangle"
+    title: 'Terms of Use',
     description:
         "The terms that govern your use of Unntangle's website and services.",
     alternates: { canonical: '/terms' },
     openGraph: {
-        title: 'Site Terms of Use | Unntangle',
+        title: 'Terms of Use | Unntangle',
         description:
             "The terms that govern your use of Unntangle's website and services.",
         url: `${SITE_URL}/terms`,

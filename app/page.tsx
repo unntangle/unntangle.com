@@ -22,16 +22,19 @@ const SITE_URL =
   "https://unntangle.com";
 
 // Home-page-specific metadata.
-// Title is intentionally NOT prefixed by the layout template
-// (we use `default` in the template, which the homepage takes)
-// — but to be explicit and override cleanly, we set it here.
+// The home page intentionally does NOT use the title template — we want
+// the bare "Unntangle — ..." form for the root URL, since putting
+// "Unntangle | Unntangle" via the template would be silly. Setting an
+// absolute title here overrides the template just for this page.
 export const metadata: Metadata = {
-  title: "Unntangle — Design, Development & Smart Living Solutions",
+  title: {
+    absolute: "Unntangle — Design, Development & Smart Living",
+  },
   description:
     "From premium web & app development to ZigBee smart-home automation, Unntangle bridges digital excellence and intelligent living. One studio, three disciplines.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Unntangle — Design, Development & Smart Living Solutions",
+    title: "Unntangle — Design, Development & Smart Living",
     description:
       "From premium web & app development to ZigBee smart-home automation, Unntangle bridges digital excellence and intelligent living.",
     url: SITE_URL,
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1200,
         height: 630,
-        alt: "Unntangle — Design, Development & Smart Living Solutions",
+        alt: "Unntangle — Design, Development & Smart Living",
       },
     ],
   },

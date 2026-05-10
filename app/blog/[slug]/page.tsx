@@ -29,6 +29,7 @@ export async function generateMetadata(props: {
     const blog = blogsData.find((b) => b.id === params.slug);
     if (!blog) {
         return {
+            // Templated → "Article Not Found | Unntangle"
             title: "Article Not Found",
             description: "The requested article could not be found.",
         };
@@ -41,13 +42,18 @@ export async function generateMetadata(props: {
     })();
 
     return {
+        // Bare post title; template appends " | Unntangle".
+        // e.g. "Edge Rendering Is the New Default" →
+        //      "Edge Rendering Is the New Default | Unntangle"
         title: blog.title,
         description: blog.description,
         authors: [{ name: blog.author }],
         category: blog.category,
         alternates: { canonical: `/blog/${blog.id}` },
         openGraph: {
-            title: blog.title,
+            // Explicit brand suffix here since OG titles are absolute (the
+            // template doesn't apply to OG fields).
+            title: `${blog.title} | Unntangle`,
             description: blog.description,
             url,
             type: "article",
@@ -65,7 +71,7 @@ export async function generateMetadata(props: {
         },
         twitter: {
             card: "summary_large_image",
-            title: blog.title,
+            title: `${blog.title} | Unntangle`,
             description: blog.description,
             images: [blog.image],
         },

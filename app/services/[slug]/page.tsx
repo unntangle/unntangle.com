@@ -30,6 +30,7 @@ export async function generateMetadata(props: {
     const service = servicesData.find((s) => s.id === params.slug);
     if (!service) {
         return {
+            // Templated → "Service Not Found | Unntangle"
             title: "Service Not Found",
             description: "The requested service could not be found.",
         };
@@ -40,7 +41,9 @@ export async function generateMetadata(props: {
     const ogImage = service.heroImage;
 
     return {
-        title: `${service.title} — ${service.categoryLabel}`,
+        // Bare service title; template appends " | Unntangle".
+        // e.g. "Web Development" → "Web Development | Unntangle"
+        title: service.title,
         description,
         alternates: { canonical: `/services/${service.id}` },
         openGraph: {

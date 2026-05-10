@@ -21,16 +21,21 @@ export default function manifest(): MetadataRoute.Manifest {
         theme_color: "#0a0a0a",
         orientation: "portrait",
         icons: [
+            // We only have one favicon-sized WebP today. Declaring it without
+            // a `sizes` attribute lets the browser use it at whatever size it
+            // needs without lying about dimensions. Chrome DevTools'
+            // Manifest panel will warn about a missing 192/512 maskable icon
+            // — that's the next thing to fix: generate proper 192×192 and
+            // 512×512 PNGs from the brand mark and add them here with
+            // accurate `sizes`. Until then this is the honest declaration.
             {
                 src: "/images/unntangle_fav.webp",
-                sizes: "192x192",
                 type: "image/webp",
                 purpose: "any",
             },
             {
-                src: "/images/unntangle_fav.webp",
-                sizes: "512x512",
-                type: "image/webp",
+                src: "/favicon.ico",
+                type: "image/x-icon",
                 purpose: "any",
             },
         ],

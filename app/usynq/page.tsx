@@ -9,7 +9,9 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    title: "uSYNQ — Smart Living by Unntangle",
+    // Bare page name; template appends " | Unntangle". Renders as:
+    // "uSYNQ — Smart Living | Unntangle"
+    title: "uSYNQ — Smart Living",
     description:
         "uSYNQ is Unntangle's smart living brand. Premium ZigBee switch panels, touch switches, retrofit modules, and biometric smart locks engineered as one ecosystem.",
     keywords: [
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     ],
     alternates: { canonical: "/usynq" },
     openGraph: {
-        title: "uSYNQ — Smart Living by Unntangle",
+        title: "uSYNQ — Smart Living | Unntangle",
         description:
             "Premium ZigBee switch panels, touch switches, retrofit modules, and biometric smart locks engineered as one ecosystem.",
         url: `${SITE_URL}/usynq`,

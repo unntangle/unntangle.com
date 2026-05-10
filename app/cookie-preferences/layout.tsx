@@ -5,6 +5,7 @@ const SITE_URL =
     'https://unntangle.com';
 
 export const metadata: Metadata = {
+    // Templated → "Cookie Preferences | Unntangle"
     title: 'Cookie Preferences',
     description:
         'Control how Unntangle uses cookies on our website. Toggle analytics cookies on or off, learn what each cookie does, and review our cookie policy.',

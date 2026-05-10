@@ -9,6 +9,7 @@ const SITE_URL =
     'https://unntangle.com';
 
 export const metadata: Metadata = {
+    // Templated → "Privacy Policy | Unntangle"
     title: 'Privacy Policy',
     description:
         'How Unntangle collects, uses, stores, and protects your personal data when you use our website, products, and services.',
