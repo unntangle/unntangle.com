@@ -138,7 +138,7 @@ export default function ServiceTechStack() {
                                         </span>
                                     ) : (
                                         <img
-                                            src={`https://cdn.simpleicons.org/${tool.slug}/111111`}
+                                            src={`https://unpkg.com/simple-icons@latest/icons/${tool.slug}.svg`}
                                             alt=""
                                             className={styles.icon}
                                             width={36}

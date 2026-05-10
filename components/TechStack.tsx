@@ -172,7 +172,7 @@ function MarqueeRow({
                                 </span>
                             ) : (
                                 <img
-                                    src={`https://cdn.simpleicons.org/${tech.slug}/111111`}
+                                    src={`https://unpkg.com/simple-icons@latest/icons/${tech.slug}.svg`}
                                     alt=""
                                     className={styles.logoImg}
                                     width={22}

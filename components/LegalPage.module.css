@@ -1,0 +1,333 @@
+/* Reusable layout for legal/policy pages
+   /privacy, /terms, and /cookie-preferences all share this layout.
+   - Top: header with eyebrow, title, last-updated stamp, intro
+   - Body: 2-column grid — sticky TOC on the left, content on right
+   - Single-column stack on tablet/mobile */
+
+.page {
+    background: var(--bg-light);
+    padding: 56px 0 96px;
+    min-height: 70vh;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 36px;
+    margin-bottom: 48px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: var(--fs-eyebrow);
+    font-weight: 700;
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.08);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    border-radius: 999px;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
+    color: var(--text-main);
+    margin: 0 0 12px;
+    max-width: 720px;
+}
+
+.updated {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 500;
+}
+
+.updated time {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.intro {
+    margin-top: 24px;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--text-muted);
+    max-width: 720px;
+}
+
+.intro p {
+    margin: 0 0 12px;
+}
+
+.intro p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   BODY — TOC + content grid
+============================================================ */
+.body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+/* ---- TOC sidebar ---- */
+.toc {
+    position: sticky;
+    top: 96px;
+    /* 96px keeps the TOC clear of the fixed 80px navbar plus a bit
+       of breathing room. align-items:start on the parent prevents
+       the sidebar from stretching to match the content height. */
+}
+
+.tocLabel {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.tocList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.tocItem {
+    margin: 0;
+}
+
+.tocLink {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 14px;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 500;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tocLink:hover {
+    color: var(--text-main);
+}
+
+.tocItemActive .tocLink {
+    color: var(--text-main);
+    border-left-color: var(--primary);
+    font-weight: 600;
+}
+
+.tocIndex {
+    font-variant-numeric: tabular-nums;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding-top: 2px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.tocItemActive .tocIndex {
+    opacity: 1;
+}
+
+.tocText {
+    flex: 1;
+}
+
+/* ---- Content column ---- */
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    /* Wider top scroll-margin so when you click a TOC link the
+       section heading lands below the fixed navbar instead of
+       right under it. */
+    scroll-padding-top: 100px;
+}
+
+.section {
+    /* Apply scroll-margin to each section so anchor jumps from
+       the TOC don't slide the heading under the fixed navbar. */
+    scroll-margin-top: 100px;
+}
+
+.sectionHeading {
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-sub);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-sub);
+    letter-spacing: var(--ls-sub);
+    color: var(--text-main);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+}
+
+.sectionIndex {
+    font-family: var(--font-title), sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+
+.sectionBody {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: #2a2a2a;
+    /* Slightly darker than --text-muted so legal text is highly
+       legible on the light background. Body copy in policy pages
+       earns the contrast. */
+}
+
+/* Generic prose styles inside sections — handles whatever JSX
+   each policy passes in (paragraphs, lists, links). */
+.sectionBody p {
+    margin: 0 0 14px;
+}
+
+.sectionBody p:last-child {
+    margin-bottom: 0;
+}
+
+.sectionBody ul,
+.sectionBody ol {
+    margin: 0 0 14px;
+    padding-left: 24px;
+}
+
+.sectionBody li {
+    margin-bottom: 6px;
+}
+
+.sectionBody li:last-child {
+    margin-bottom: 0;
+}
+
+.sectionBody strong {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.sectionBody a {
+    color: var(--primary-hover);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.sectionBody a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.sectionBody h3 {
+    font-family: var(--font-title), sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 24px 0 10px;
+    letter-spacing: -0.005em;
+}
+
+.sectionBody h3:first-child {
+    margin-top: 0;
+}
+
+/* Inline contact block (used in Contact section of each policy) */
+.sectionBody .contactBlock {
+    margin-top: 14px;
+    padding: 18px 22px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+    .body {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .toc {
+        position: relative;
+        top: 0;
+        padding: 18px 20px;
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+    }
+
+    .tocList {
+        border-left: none;
+        gap: 2px;
+    }
+
+    .tocLink {
+        padding: 6px 0;
+        border-left: none;
+        margin-left: 0;
+    }
+
+    .tocItemActive .tocLink {
+        border-left: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: 40px 0 64px;
+    }
+
+    .header {
+        padding-bottom: 24px;
+        margin-bottom: 32px;
+    }
+
+    .content {
+        gap: 40px;
+    }
+
+    .sectionHeading {
+        gap: 10px;
+    }
+}

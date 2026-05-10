@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -11,10 +12,59 @@ import BeyondWordmark from "@/components/BeyondWordmark";
 import Roadmap from "@/components/Roadmap";
 import Vision from "@/components/Vision";
 
-export const metadata = {
-    title: 'About | Unntangle',
+const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+    "https://unntangle.com";
+
+export const metadata: Metadata = {
+    title: "About Unntangle — Studio, Story, and Vision",
     description:
-        'Unntangle is a full-stack technology and digital company building products, platforms, and brands behind ambitious businesses across India and beyond.',
+        "Unntangle is a full-stack technology and digital studio building products, platforms, and brands behind ambitious businesses across India and beyond. Engineering, design, growth, and smart-living hardware in one accountable team.",
+    alternates: { canonical: "/about" },
+    openGraph: {
+        title: "About Unntangle — Studio, Story, and Vision",
+        description:
+            "A full-stack technology and digital studio bringing engineering, design, growth, and smart-living hardware under one accountable team.",
+        url: `${SITE_URL}/about`,
+        type: "website",
+        images: [
+            {
+                url: "/images/hero.png",
+                width: 1200,
+                height: 630,
+                alt: "About Unntangle",
+            },
+        ],
+    },
+};
+
+const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${SITE_URL}/about#aboutpage`,
+    url: `${SITE_URL}/about`,
+    name: "About Unntangle",
+    description:
+        "A full-stack technology and digital studio bringing engineering, design, growth, and smart-living hardware under one accountable team.",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#organization` },
+    breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: SITE_URL,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "About",
+                item: `${SITE_URL}/about`,
+            },
+        ],
+    },
 };
 
 /**
@@ -49,6 +99,15 @@ export const metadata = {
 export default function AboutPage() {
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(aboutJsonLd).replace(
+                        /</g,
+                        "\\u003c"
+                    ),
+                }}
+            />
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
                 <PageHero

@@ -148,6 +148,13 @@
     object-fit: contain;
     flex-shrink: 0;
     opacity: 0.85;
+    /* Force monochrome regardless of incoming SVG colour.
+       The unpkg CDN serves Simple Icons SVGs in their original
+       brand colours (e.g. React = cyan, Postgres = blue), but
+       we want a unified monochrome wall so brand colours don't
+       compete for attention. brightness(0) turns any non-transparent
+       pixel solid black; saturate(100%) preserves transparency. */
+    filter: brightness(0) saturate(100%);
 }
 
 /* Lettermark fallback for tools whose Simple Icons URL fails to

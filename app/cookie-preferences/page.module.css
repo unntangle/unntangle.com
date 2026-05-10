@@ -1,0 +1,246 @@
+/* /cookie-preferences page-specific styles
+   Houses just the interactive preference panel — the surrounding
+   policy prose uses LegalPage.module.css. */
+
+.panel {
+    margin-top: 18px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panelHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.panelTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.panelDescription {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   CATEGORY ROWS
+============================================================ */
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.categoryRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.categoryRow:last-child {
+    border-bottom: none;
+}
+
+.categoryText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.categoryNameRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.categoryName {
+    font-family: var(--font-title), sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.005em;
+}
+
+.alwaysOn {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-hover);
+    background: rgba(0, 209, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 209, 255, 0.2);
+}
+
+.categoryDesc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 540px;
+}
+
+/* ============================================================
+   TOGGLE SWITCH — accessible iOS-style
+============================================================ */
+.toggle {
+    flex-shrink: 0;
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 26px;
+    cursor: pointer;
+    margin-top: 2px;
+    /* Native checkbox is hidden but kept in DOM for keyboard +
+       screen-reader access. The visual is the .toggleSlider span. */
+}
+
+.toggle input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    /* Even though invisible, the checkbox must remain interactive
+       so click-on-toggle works without JS. */
+}
+
+.toggleSlider {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+.toggleSlider::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle input:checked ~ .toggleSlider {
+    background: var(--primary-hover);
+}
+
+.toggle input:checked ~ .toggleSlider::before {
+    transform: translateX(18px);
+}
+
+.toggle input:focus-visible ~ .toggleSlider {
+    box-shadow: 0 0 0 3px rgba(0, 209, 255, 0.35);
+}
+
+/* Disabled (always-on) variant — slider sits in the "on" position
+   but visually muted to show it's not interactive. */
+.toggleDisabled {
+    cursor: not-allowed;
+}
+
+.toggleDisabled input {
+    cursor: not-allowed;
+}
+
+.toggleDisabled .toggleSlider {
+    background: rgba(0, 209, 255, 0.4);
+    opacity: 0.7;
+}
+
+/* ============================================================
+   ACTIONS — buttons row
+============================================================ */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease,
+        border-color 0.2s ease;
+    font-family: inherit;
+    border: 1px solid transparent;
+}
+
+.btnPrimary {
+    background: var(--text-main);
+    color: white;
+    border-color: var(--text-main);
+}
+
+.btnPrimary:hover {
+    background: #000;
+    border-color: #000;
+}
+
+.btnGhost {
+    background: transparent;
+    color: var(--text-main);
+    border-color: rgba(0, 0, 0, 0.14);
+}
+
+.btnGhost:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.22);
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 640px) {
+    .panel {
+        padding: 22px 20px 18px;
+        border-radius: 16px;
+    }
+
+    .categoryRow {
+        gap: 16px;
+        padding: 16px 0;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

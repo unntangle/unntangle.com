@@ -2,8 +2,26 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Twitter, Linkedin, Youtube, Github, ArrowUp } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin, ArrowUp } from 'lucide-react';
 import styles from './Footer.module.css';
+
+/**
+ * Sitewide footer.
+ *
+ * Link audit notes:
+ *   - Removed "Case studies" / "Case studies CMS" — there's no
+ *     /case-studies route yet, and "CMS" links shouldn't ship to
+ *     production. Re-add once a real case-studies surface exists.
+ *   - Removed "Blog post CMS" for the same reason.
+ *   - Removed the per-category blog links (/blog/ai, /modernization,
+ *     /case-studies) — those paths are blog post slugs, not category
+ *     filters, so they 404'd. The blog index already lets users
+ *     filter by service category, which is the correct surface.
+ *   - Legal links now point at real /privacy, /terms, and
+ *     /cookie-preferences pages instead of `#`.
+ *   - Social links remain `#` because the company doesn't have
+ *     official handles yet — wire them up when accounts exist.
+ */
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -35,18 +53,17 @@ export default function Footer() {
                             <h4>Quick Links</h4>
                             <Link href="/about">About us</Link>
                             <Link href="/services">Services</Link>
-                            <Link href="/case-studies">Case studies</Link>
-                            <Link href="#">Case studies CMS</Link>
+                            <Link href="/usynq">uSYNQ</Link>
+                            <Link href="/blog">Blog</Link>
                             <Link href="/contact">Contact</Link>
                         </div>
 
                         <div className={styles.column}>
-                            <h4>Blog</h4>
-                            <Link href="/blog">Our Blog</Link>
-                            <Link href="#">Blog post CMS</Link>
-                            <Link href="/blog/ai">AI & Tech</Link>
-                            <Link href="/blog/modernization">Modernization</Link>
-                            <Link href="/blog/case-studies">Success Stories</Link>
+                            <h4>What we do</h4>
+                            <Link href="/services">Technology</Link>
+                            <Link href="/services">Creative Design</Link>
+                            <Link href="/services">Growth Marketing</Link>
+                            <Link href="/usynq">Smart Living (uSYNQ)</Link>
                         </div>
 
                         <div className={styles.column}>
@@ -86,9 +103,9 @@ export default function Footer() {
                     <div className={styles.bottomBar}>
                         <div className={styles.splitRow}>
                             <div className={styles.legalLinks}>
-                                <Link href="#">Privacy</Link>
-                                <Link href="#">Site Terms</Link>
-                                <Link href="#">Cookie Preferences</Link>
+                                <Link href="/privacy">Privacy</Link>
+                                <Link href="/terms">Site Terms</Link>
+                                <Link href="/cookie-preferences">Cookie Preferences</Link>
                             </div>
 
                             <p className={styles.copyright}>

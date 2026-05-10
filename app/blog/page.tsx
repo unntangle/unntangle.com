@@ -1,16 +1,82 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import BlogGrid from "@/components/BlogGrid";
+import { blogsData } from "@/data/blogs";
 
-export const metadata = {
-    title: 'Blog | Unntangle',
-    description: 'Insights and expert perspectives on Digital, AI, and Cloud engineering.',
+const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+    "https://unntangle.com";
+
+export const metadata: Metadata = {
+    title: "Insights — Digital, AI & Cloud Engineering Blog",
+    description:
+        "Deep-dive perspectives from the engineers, designers, and growth strategists shaping how modern brands ship products, scale platforms, and capture demand.",
+    alternates: { canonical: "/blog" },
+    openGraph: {
+        title: "Unntangle Insights — Digital, AI & Cloud Engineering Blog",
+        description:
+            "Deep-dive perspectives on Digital, AI, Cloud, design, and growth marketing.",
+        url: `${SITE_URL}/blog`,
+        type: "website",
+        images: [
+            {
+                url: "/images/latest_blog.png",
+                width: 1200,
+                height: 630,
+                alt: "Unntangle Insights",
+            },
+        ],
+    },
+};
+
+// Blog as a CollectionPage with a sorted ItemList of all posts. Helps
+// Google build the "more articles" sitelink pattern under the blog.
+const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${SITE_URL}/blog#blog`,
+    url: `${SITE_URL}/blog`,
+    name: "Unntangle Insights",
+    description:
+        "Deep-dive perspectives on Digital, AI, Cloud, design, and growth marketing.",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    blogPost: blogsData.map((b) => ({
+        "@type": "BlogPosting",
+        headline: b.title,
+        url: `${SITE_URL}/blog/${b.id}`,
+        datePublished: b.date,
+        author: { "@type": "Organization", name: b.author },
+        image: b.image,
+    })),
+    breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: `${SITE_URL}/blog`,
+            },
+        ],
+    },
 };
 
 export default function BlogPage() {
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(blogJsonLd).replace(
+                        /</g,
+                        "\\u003c"
+                    ),
+                }}
+            />
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
                 <PageHero

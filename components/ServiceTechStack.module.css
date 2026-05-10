@@ -73,6 +73,13 @@
     height: 36px;
     object-fit: contain;
     opacity: 0.9;
+    /* Force monochrome black regardless of the source SVG's
+       brand colour. unpkg serves Simple Icons in original brand
+       colours (cyan React, blue PostgreSQL, red Adobe, etc.);
+       brightness(0) turns the colour layer fully black while
+       saturate(100%) preserves transparency. Net effect: a
+       unified monochrome wall instead of a sponsorship grid. */
+    filter: brightness(0) saturate(100%);
 }
 
 /* Lettermark fallback for tools without a Simple Icons entry.

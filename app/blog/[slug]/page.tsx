@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { blogsData } from '@/data/blogs';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,6 +8,10 @@ import { ArrowLeft, Send } from 'lucide-react';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
+const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+    "https://unntangle.com";
+
 export async function generateStaticParams() {
     return blogsData.map((blog) => ({
         slug: blog.id,
@@ -14,6 +19,58 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ slug: string }>;
+
+// Per-post metadata. Critical for blog SEO — rich previews on social,
+// canonical URL per post, and unique title/description per slug.
+export async function generateMetadata(props: {
+    params: Params;
+}): Promise<Metadata> {
+    const params = await props.params;
+    const blog = blogsData.find((b) => b.id === params.slug);
+    if (!blog) {
+        return {
+            title: "Article Not Found",
+            description: "The requested article could not be found.",
+        };
+    }
+
+    const url = `${SITE_URL}/blog/${blog.id}`;
+    const publishedISO = (() => {
+        const d = new Date(blog.date);
+        return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+    })();
+
+    return {
+        title: blog.title,
+        description: blog.description,
+        authors: [{ name: blog.author }],
+        category: blog.category,
+        alternates: { canonical: `/blog/${blog.id}` },
+        openGraph: {
+            title: blog.title,
+            description: blog.description,
+            url,
+            type: "article",
+            publishedTime: publishedISO,
+            authors: [blog.author],
+            tags: [blog.category],
+            images: [
+                {
+                    url: blog.image,
+                    width: 1200,
+                    height: 630,
+                    alt: blog.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.title,
+            description: blog.description,
+            images: [blog.image],
+        },
+    };
+}
 
 export default async function BlogDetailPage(props: { params: Params }) {
     const params = await props.params;
@@ -23,8 +80,76 @@ export default async function BlogDetailPage(props: { params: Params }) {
         notFound();
     }
 
+    const url = `${SITE_URL}/blog/${blog.id}`;
+    const publishedISO = (() => {
+        const d = new Date(blog.date);
+        return Number.isNaN(d.getTime()) ? blog.date : d.toISOString();
+    })();
+
+    // Article schema → enables Google to feature the post in Top Stories /
+    // Discover, with byline, image, and date. mainEntityOfPage anchors it
+    // back to the canonical URL.
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": `${url}#blogposting`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        headline: blog.title,
+        description: blog.description,
+        image: [blog.image],
+        datePublished: publishedISO,
+        dateModified: publishedISO,
+        author: {
+            "@type": "Organization",
+            name: blog.author,
+            url: SITE_URL,
+        },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        articleSection: blog.category,
+        url,
+        wordCount: blog.content.split(/\s+/).filter(Boolean).length,
+    };
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: `${SITE_URL}/blog`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: blog.title,
+                item: url,
+            },
+        ],
+    };
+
     return (
         <main style={{ backgroundColor: '#fff', color: '#111' }}>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(articleJsonLd).replace(
+                        /</g,
+                        "\\u003c"
+                    ),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbJsonLd).replace(
+                        /</g,
+                        "\\u003c"
+                    ),
+                }}
+            />
             <Navbar />
             
             <article style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
