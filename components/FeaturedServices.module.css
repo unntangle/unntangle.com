@@ -1,6 +1,17 @@
+/* ============================================================
+   /services horizontal-scroll showcase
+   - Pinned section, vertical scroll → horizontal card translation
+   - Tab bar with underline-style sliding indicator
+   - Cards use a center-aware scale + opacity treatment
+============================================================ */
+
 .scrollSection {
     position: relative;
-    height: 350vh;
+    height: 180vh;
+    /* Tight scroll runway — prioritises minimal whitespace before
+       the next section. Card translations will feel snappier than
+       at 220vh; if the slide feels too rushed on slower scroll
+       wheels, bump this back up. */
     background-color: #ffffff;
 }
 
@@ -11,90 +22,124 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 48px;
+    padding-top: 32px;
+    /* No bottom padding — the cardContainer's flex centering inside
+       its own area handles vertical placement. */
     overflow: hidden;
 }
 
-/* Tabs Sticky Styling - Refined Light Theme */
+/* ============================================================
+   TAB BAR — underline progress tabs
+   Reads as an editorial chapter selector, not a chunky pill
+   switcher. The sliding cyan indicator at the bottom tracks
+   scroll progress smoothly.
+============================================================ */
 .tabsStickyContainer {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     z-index: 20;
+    padding: 0 24px;
+    flex-shrink: 0;
 }
 
-.categoriesList {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
-    border-radius: 999px;
-    padding: 6px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+.tabsBar {
+    width: 100%;
+    max-width: 720px;
 }
 
-.categoryItem {
+.tabsTrack {
     position: relative;
-    padding: 10px 22px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #6b7280;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: color 0.25s ease, background-color 0.25s ease;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.tab {
+    flex: 1;
+    background: none;
     border: none;
-    background: transparent;
+    cursor: pointer;
+    padding: 14px 12px 18px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
     font-family: inherit;
-    letter-spacing: -0.005em;
+    color: #9ca3af;
+    transition: color 0.25s ease;
+    /* No background, no border-radius — pure underline style. */
 }
 
-.categoryItem:hover {
+.tab:hover {
+    color: #4b5563;
+}
+
+.tabActive {
     color: #111;
-    background: #f3f4f6;
 }
 
-.categoryActive {
-    color: #ffffff;
-    background: #111;
+.tabIndex {
+    font-size: 12px;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    /* Faded for inactive tabs */
+    opacity: 0.5;
+    transition: opacity 0.25s ease;
 }
 
-.categoryActive:hover {
-    color: #ffffff;
-    background: #111;
-}
-
-.tabIcon {
-    margin-left: 2px;
-    opacity: 0;
-    width: 0;
-    transition: opacity 0.25s ease, width 0.25s ease;
-    overflow: hidden;
-}
-
-.categoryActive .tabIcon {
+.tabActive .tabIndex {
     opacity: 1;
-    width: 14px;
 }
 
+.tabLabel {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+}
+
+/* The sliding underline — animated by inline width + translateX
+   based on the active tab index. ease-out so it settles fast. */
+.tabIndicator {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   HORIZONTAL TRACK & CARDS
+============================================================ */
 .horizontalTrack {
     display: flex;
     padding-left: 10vw;
     gap: 5vw;
+    flex: 1;
+    align-items: center;
+    /* The track now fills the remaining vertical space inside the
+       sticky wrapper (after tabs + padding) and centers cards
+       within it. This removes the dead empty space that previously
+       sat below the cards when the card height was less than the
+       remaining wrapper height. */
 }
 
 .cardContainer {
     flex-shrink: 0;
     width: 80vw;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 8px 0 24px;
+    /* Small bottom padding gives the box-shadow room to breathe
+       without being clipped by the wrapper's overflow:hidden. */
 }
 
 .cardWrapper {
@@ -106,28 +151,14 @@
 .card {
     position: relative;
     width: 100%;
-    height: clamp(400px, 65vh, 600px);
+    height: min(78vh, 640px);
+    /* Card now scales with viewport height so it always fills the
+       available pinned-stage area cleanly. Capped at 640px so it
+       doesn't get gargantuan on tall ultrawide displays. */
     background: #111;
-    border-radius: 24px;
+    border-radius: 28px;
     overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-}
-
-/* Soft Glow Border Effect (kept but tuned for light bg) */
-.glowBorder {
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, #C084FC 0%, #3b82f6 50%, #8B9DFF 100%);
-    z-index: 0;
-    border-radius: 26px;
-    opacity: 0.25;
-    filter: blur(10px);
-    transition: opacity 0.3s ease;
-}
-
-.card:hover .glowBorder {
-    opacity: 0.55;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
 }
 
 .imageWrapper {
@@ -144,87 +175,144 @@
 }
 
 .card:hover .image {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
-/* Subtle dark scrim on the card image so white text stays legible */
+/* Stronger gradient overlay so the white text + chips read
+   crisply against busy hero photography. */
 .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.45) 0%,
-        rgba(0, 0, 0, 0.15) 35%,
-        rgba(0, 0, 0, 0.55) 100%
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.25) 30%,
+        rgba(0, 0, 0, 0.7) 100%
     );
     z-index: 1;
 }
 
+/* TOP CONTENT — category tag + deliverables list */
 .topContent {
     position: absolute;
-    top: 32px;
-    left: 40px;
+    top: 36px;
+    left: 44px;
+    right: 44px;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .tag {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    padding: 6px 16px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    font-family: monospace;
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
+.deliverables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.deliverable {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.deliverableDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+/* BOTTOM CONTENT — title, description, CTA */
 .bottomContent {
     position: absolute;
-    bottom: 48px;
-    left: 48px;
-    right: 48px;
+    bottom: 44px;
+    left: 44px;
+    right: 44px;
     z-index: 2;
-    max-width: 800px;
+    max-width: 780px;
 }
 
 .title {
     font-family: var(--font-outfit), sans-serif;
-    font-size: clamp(32px, 5vw, 64px);
-    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 700;
     color: #ffffff;
-    margin-bottom: 20px;
-    line-height: 1.05;
+    margin-bottom: 16px;
+    line-height: 1.1;
     letter-spacing: -0.02em;
-    text-transform: uppercase;
 }
 
 .description {
-    font-size: clamp(18px, 1.5vw, 24px);
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 32px;
-    line-height: 1.4;
-    max-width: 650px;
+    font-size: clamp(15px, 1.2vw, 18px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 24px;
+    line-height: 1.55;
+    max-width: 700px;
 }
 
 .viewButton {
-    background: none;
-    border: none;
-    color: #ffffff;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0;
+    gap: 10px;
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
     transition: gap 0.3s ease;
 }
 
 .viewButton:hover {
     gap: 16px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+    .topContent {
+        top: 28px;
+        left: 28px;
+        right: 28px;
+        gap: 14px;
+    }
+
+    .bottomContent {
+        bottom: 32px;
+        left: 28px;
+        right: 28px;
+    }
+
+    .deliverable {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -233,10 +321,49 @@
     }
 
     .card {
-        aspect-ratio: 4/5;
+        height: clamp(440px, 75vh, 600px);
     }
 
     .stickyWrapper {
         padding-top: 80px;
+    }
+
+    .tabsBar {
+        max-width: 100%;
+    }
+
+    .tabIndex {
+        display: none;
+        /* Collapse the "01/02/03" prefix on narrow screens to
+           keep tab labels from clipping. The underline indicator
+           still keeps the active state legible. */
+    }
+
+    .tabLabel {
+        font-size: 13px;
+    }
+
+    .tab {
+        padding: 12px 6px 16px;
+    }
+
+    .topContent {
+        top: 24px;
+        left: 22px;
+        right: 22px;
+    }
+
+    .bottomContent {
+        bottom: 28px;
+        left: 22px;
+        right: 22px;
+    }
+
+    .description {
+        margin-bottom: 18px;
+    }
+
+    .deliverables {
+        gap: 6px 10px;
     }
 }

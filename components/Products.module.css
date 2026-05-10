@@ -1,0 +1,360 @@
+/* Home-page Products section
+   Two categories visually:
+     1. SaaS grid (top)  — 3-card row, mirrors Work card style
+     2. uSYNQ hero band  — full-width feature for the hardware brand */
+
+.products {
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    gap: 24px;
+}
+
+.header h2 {
+    margin-bottom: 16px;
+}
+
+.header p {
+    max-width: 540px;
+}
+
+/* ============================================================
+   CATEGORY LABEL — small uppercase eyebrow with horizontal rule
+   used to separate the SaaS grid and the uSYNQ band.
+============================================================ */
+.categoryLabel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.categoryEyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    flex-shrink: 0;
+}
+
+.categoryRule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+/* ============================================================
+   SAAS GRID
+============================================================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 88px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardLink {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.cardDisabled .cardLink {
+    cursor: default;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 32px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background-color: #f3f3f3;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:not(.cardDisabled):hover .image {
+    transform: scale(1.05);
+}
+
+.cardDisabled .image {
+    filter: grayscale(0.4) brightness(0.95);
+}
+
+.badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
+
+.badgeLive {
+    background-color: rgba(0, 209, 255, 0.92);
+    color: #001418;
+}
+
+.badgeSoon {
+    background-color: rgba(255, 255, 255, 0.92);
+    color: #444;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.wordmark {
+    font-size: 28px;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+
+/* Two-tone brand wordmark: leading "u" in primary cyan, rest in
+   normal heading colour. Mirrors the navbar product item style. */
+.wordmarkU {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.wordmarkRest {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.viewLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    margin-top: auto;
+}
+
+.card:not(.cardDisabled):hover .viewLink {
+    color: var(--text-main);
+}
+
+.cardDisabled .viewLink {
+    opacity: 0.6;
+}
+
+/* ============================================================
+   uSYNQ HERO BAND — full-width split card with darker background
+   to set it apart from the SaaS row above. Hardware brand vibe.
+============================================================ */
+.usynqBand {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0e0f12 0%, #1a1d24 100%);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.usynqLink {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    text-decoration: none;
+    color: inherit;
+    min-height: 460px;
+}
+
+.usynqContent {
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.usynqEyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 20px;
+}
+
+/* The uSYNQ wordmark is bigger than the SaaS card wordmarks since
+   it gets its own band. The "SYNQ" half is white (since the band
+   background is dark), unlike the SaaS cards where it's black. */
+.usynqWordmark {
+    font-size: clamp(40px, 5vw, 64px);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: white;
+}
+
+.usynqWordmarkRest {
+    color: white;
+    font-weight: 700;
+}
+
+.usynqDescription {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 28px;
+}
+
+.usynqHighlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.usynqHighlight {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+}
+
+.usynqCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--primary);
+    transition: gap 0.3s ease;
+}
+
+.usynqLink:hover .usynqCta {
+    gap: 14px;
+}
+
+.usynqVisual {
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1d24;
+}
+
+.usynqImage {
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.usynqLink:hover .usynqImage {
+    transform: scale(1.04);
+}
+
+.usynqBadge {
+    top: 24px;
+    left: auto;
+    right: 24px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 72px;
+    }
+
+    .usynqLink {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .usynqContent {
+        padding: 48px 40px;
+    }
+
+    .usynqVisual {
+        aspect-ratio: 16/9;
+    }
+
+    .usynqBadge {
+        top: 16px;
+        right: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 56px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .wordmark {
+        font-size: 24px;
+    }
+
+    .usynqContent {
+        padding: 36px 28px;
+    }
+
+    .usynqDescription {
+        font-size: 15px;
+    }
+
+    .usynqHighlight {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

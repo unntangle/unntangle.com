@@ -1,50 +1,55 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
+import AboutStatsHero from "@/components/AboutStatsHero";
 import Philosophy from "@/components/Philosophy";
+import OurJourney from "@/components/OurJourney";
+import OwnResponsibilities from "@/components/OwnResponsibilities";
 import GroupedServices from "@/components/GroupedServices";
-import Roadmap from "@/components/Roadmap";
+import DualSpotlight from "@/components/DualSpotlight";
 import AboutProducts from "@/components/AboutProducts";
+import BeyondWordmark from "@/components/BeyondWordmark";
+import Roadmap from "@/components/Roadmap";
 import Vision from "@/components/Vision";
 
 export const metadata = {
     title: 'About | Unntangle',
-    description: 'Engineers, designers, and strategists building deterministic digital systems.',
+    description:
+        'Unntangle is a full-stack technology and digital company building products, platforms, and brands behind ambitious businesses across India and beyond.',
 };
+
+/**
+ * About page composition
+ *
+ * Section order is the narrative arc:
+ *   1. AboutStatsHero      — bold stat-led intro brick
+ *   2. Philosophy          — the company's worldview
+ *   3. OurJourney          — interactive timeline (2023 → present)
+ *   4. OwnResponsibilities — accountability principles
+ *   5. GroupedServices     — what we do (services overview)
+ *   6. DualSpotlight       — twin AI / Smart Living feature cards
+ *   7. AboutProducts       — product portfolio detail
+ *   8. BeyondWordmark      — typographic transition / vision pivot
+ *   9. Roadmap             — what's coming next
+ *  10. Vision              — long-term vision close
+ *
+ * Hero, Journey and Wordmark are the "company story" beats; the
+ * others are proof points and product context layered around them.
+ */
 
 export default function AboutPage() {
     return (
         <main>
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
-                <PageHero
-                    eyebrow="About Unntangle"
-                    titleParts={[
-                        'Innovation for ',
-                        { accent: 'experiences' },
-                        ' that ',
-                        { accent: 'flow' },
-                        '.',
-                    ]}
-                    description="We converge Digital, AI, Cloud, and Smart Living into a single, deterministic architecture — unntangling complexity across every layer of the modern landscape."
-                    primaryCta={{ label: 'See what we do', href: '/services' }}
-                    secondaryCta={{ label: "Let's talk", href: '/contact' }}
-                    image="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000"
-                    images={[
-                        'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000',
-                        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000',
-                    ]}
-                    imageAlt="The Unntangle team"
-                    pills={[
-                        { text: 'Engineering meets creative', variant: 'cyan', icon: true },
-                    ]}
-                    gradient="green-teal"
-                    imageLayout="collage"
-                />
+                <AboutStatsHero />
             </div>
             <Philosophy />
+            <OurJourney />
+            <OwnResponsibilities />
             <GroupedServices />
+            <DualSpotlight />
             <AboutProducts />
+            <BeyondWordmark />
             <Roadmap />
             <Vision />
             <Footer />

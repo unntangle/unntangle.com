@@ -1,0 +1,75 @@
+/* About-page BEYOND wordmark section
+   Single big typographic statement. Parallax translate on scroll. */
+
+.section {
+    position: relative;
+    background: white;
+    padding: 80px 0 96px;
+    overflow: hidden;
+}
+
+.inner {
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 28px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.08);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    border-radius: 999px;
+}
+
+/* The actual wordmark — full-bleed, super tight letterforms.
+   Set in the heading face (DM Sans) at the heaviest weight so
+   it reads as a graphic, not as body type. */
+.wordmark {
+    font-family: var(--font-title), sans-serif;
+    /* Scale aggressively with viewport width so it always feels
+       full-bleed regardless of screen size. */
+    font-size: clamp(96px, 22vw, 320px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+    margin: 0;
+    user-select: none;
+    /* Slight horizontal overflow allowed — the parallax x-translate
+       can push it outside the container, which is intentional. */
+    white-space: nowrap;
+}
+
+.tagline {
+    margin: 32px auto 0;
+    max-width: 540px;
+    font-size: clamp(15px, 1.2vw, 17px);
+    color: var(--text-muted);
+    line-height: 1.55;
+    padding: 0 24px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+    .section {
+        padding: 56px 0 64px;
+    }
+
+    .wordmark {
+        font-size: 22vw;
+    }
+
+    .tagline {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+}

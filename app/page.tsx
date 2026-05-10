@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
-import Work from "@/components/Work";
+import Products from "@/components/Products";
 import Stats from "@/components/Stats";
-import Testimonials from "@/components/Testimonials";
+import TechStack from "@/components/TechStack";
+import Industries from "@/components/Industries";
+import CTABand from "@/components/CTABand";
 import FAQ from "@/components/FAQ";
 import ClientCarousel from "@/components/ClientCarousel";
 import Footer from "@/components/Footer";
@@ -31,10 +33,12 @@ export default function Home() {
         />
       </div>
       <Services />
-      <Work />
+      <Products />
       <Stats />
       <ClientCarousel />
-      <Testimonials />
+      <TechStack />
+      <Industries />
+      <CTABand />
       <FAQ />
       <Footer />
     </main>

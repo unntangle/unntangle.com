@@ -1,0 +1,195 @@
+/* About-page DualSpotlight — two big tinted feature cards side by side
+   Each uses an accent gradient overlay on the image so the brand
+   colour bleeds through the photo. */
+
+.section {
+    background-color: white;
+    padding: 96px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #0e0f12;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+}
+
+.cardLink {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    aspect-ratio: 4 / 5;
+    position: relative;
+}
+
+.imageWrapper {
+    position: absolute;
+    inset: 0;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.04);
+}
+
+/* Accent-tinted gradient that sits over the image, blending
+   into the bottom for legible content. Each card has its own
+   accent hue applied via .accentBlue or .accentPink. */
+.imageGradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.accentBlue .imageGradient {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 209, 255, 0.4) 0%,
+        rgba(20, 30, 50, 0.5) 40%,
+        rgba(0, 0, 0, 0.92) 100%
+    );
+}
+
+.accentPink .imageGradient {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 80, 145, 0.35) 0%,
+        rgba(50, 20, 40, 0.5) 40%,
+        rgba(0, 0, 0, 0.92) 100%
+    );
+}
+
+/* Content sits at the bottom of the card; image fills the rest */
+.content {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 36px 36px 32px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.iconWrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    margin-bottom: 4px;
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.accentBlue .eyebrow {
+    color: var(--primary);
+}
+
+.accentPink .eyebrow {
+    color: #ff7aa9;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(26px, 2.6vw, 36px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: white;
+    margin: 0;
+}
+
+.description {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 480px;
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    transition: gap 0.3s ease;
+    margin-top: 8px;
+}
+
+.card:hover .cta {
+    gap: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cardLink {
+        aspect-ratio: 16 / 11;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 64px 0;
+    }
+
+    .cardLink {
+        aspect-ratio: 4 / 5;
+    }
+
+    .content {
+        padding: 24px 24px 22px;
+    }
+
+    .iconWrap {
+        width: 36px;
+        height: 36px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}

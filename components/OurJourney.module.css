@@ -1,0 +1,273 @@
+/* About-page "Our Journey" timeline
+   Big year display, milestone card, and a horizontal year scrubber
+   along the bottom — clicking any year animates the headline + card. */
+
+.section {
+    background: #0e0f12;
+    color: white;
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle cyan radial accent in the top-right for depth */
+.section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 209, 255, 0.08) 0%,
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 56px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.12);
+    border: 1px solid rgba(0, 209, 255, 0.25);
+    border-radius: 999px;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.titleAccent {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* ============================================================
+   STAGE — big year numeral overlaid by the milestone card
+   The year sits behind the card to give a magazine layout feel.
+============================================================ */
+.stage {
+    position: relative;
+    min-height: 360px;
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.yearDisplay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(180px, 24vw, 320px);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: rgba(0, 209, 255, 0.18);
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.milestoneCard {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    text-align: center;
+    padding: 0 24px;
+}
+
+.milestoneHeadline {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.milestoneDescription {
+    font-size: clamp(15px, 1.2vw, 17px);
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   SCRUBBER — year buttons along a horizontal line
+============================================================ */
+.scrubber {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.scrubberTrack {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+/* Base track line (gray) */
+.scrubberTrack::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+/* Cyan progress fill (animated by inline width) */
+.scrubberFill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    background: var(--primary);
+    transform: translateY(-50%);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.scrubberStep {
+    position: relative;
+    z-index: 2;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    font-family: inherit;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
+.scrubberStep:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.scrubberDot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #0e0f12;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    transition: border-color 0.3s ease, transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.scrubberStepPast .scrubberDot {
+    border-color: var(--primary);
+    background: var(--primary);
+}
+
+.scrubberStepActive .scrubberDot {
+    border-color: var(--primary);
+    background: var(--primary);
+    transform: scale(1.4);
+    box-shadow: 0 0 0 6px rgba(0, 209, 255, 0.18);
+}
+
+.scrubberYear {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
+}
+
+.scrubberStepActive .scrubberYear {
+    color: var(--primary);
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+    .section {
+        padding: 64px 0;
+    }
+
+    .stage {
+        min-height: 280px;
+        margin-bottom: 40px;
+    }
+
+    .yearDisplay {
+        font-size: 160px;
+    }
+
+    .milestoneHeadline {
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .milestoneDescription {
+        font-size: 14px;
+    }
+
+    .scrubberStep {
+        gap: 10px;
+        padding: 4px;
+    }
+
+    .scrubberDot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .scrubberYear {
+        font-size: 11px;
+    }
+}

@@ -12,6 +12,12 @@
   --radius-lg: 32px;
   --radius-md: 16px;
   --container-max: 1200px;
+  /* Heading font alias.
+     The CSS variable --font-outfit is wired in app/layout.tsx
+     to actually serve DM Sans (the closest free match to Google
+     Sans). This semantic alias means component CSS can just say
+     `font-family: var(--font-title), sans-serif` and stay correct
+     regardless of which face the project ships with later. */
   --font-title: var(--font-outfit);
 }
 

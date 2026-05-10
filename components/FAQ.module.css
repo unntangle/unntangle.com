@@ -2,7 +2,8 @@
     position: relative;
     background: #f5f1eb;
     padding: 100px 0;
-    overflow: hidden;
+    /* Note: do NOT add overflow: hidden here — it would break
+       position: sticky on the .titleColumn descendant. */
 }
 
 .container {
@@ -16,13 +17,24 @@
     display: grid;
     grid-template-columns: 380px 1fr;
     gap: 80px;
-    align-items: flex-start;
+    align-items: start;
+    /* `start` (not `flex-start`) is the correct grid alignment keyword.
+       Crucially, this prevents the title cell from stretching to the
+       full row height, which is required for position: sticky to work
+       on .titleColumn. */
 }
 
-/* Left: Sticky title column */
+/* Left: Sticky title column
+   Sticks below the fixed navbar (nav height + buffer). The parent
+   <section> must NOT have `overflow: hidden` or this won't work. */
 .titleColumn {
     position: sticky;
     top: 120px;
+    align-self: start;
+    /* Must be `start` not `stretch` — a stretched grid item cannot
+       be sticky because its height equals the scroll container's
+       content height, leaving no room for the sticky offset to
+       have effect. */
 }
 
 .mainTitle {

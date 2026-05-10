@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { Plus } from 'lucide-react';
+import { motion, useScroll, useTransform, useMotionValueEvent, MotionValue } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Services.module.css';
 
@@ -13,21 +13,21 @@ const expertiseGroups = [
         title: 'Technology Solutions',
         description: 'Building high-performance digital ecosystems, apps, and immersive 3D web experiences that drive growth and engagement.',
         services: ['Website Development', 'App Development', 'ERP Development', 'Website Revamp', 'Interactive 3D Website'],
-        image: '/images/service_digital.jpg',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000',
     },
     {
         id: 'design',
         title: 'Creative Design',
         description: 'Premium visual identity and spatial modeling. Elevating your brand through 2D graphics, cinematic 3D rendering, and AI-generated art.',
         services: ['2D Graphic Designing', '3D Designing', 'AI Image Rendition'],
-        image: '/images/service_cloud_v3.jpg',
+        image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000',
     },
     {
         id: 'marketing',
         title: 'Growth Marketing',
         description: 'Aggressive growth engines. Cultivating community and capturing high-intent traffic through targeted SEO, Social Media, and Performance Ads.',
         services: ['Meta Ads', 'SMM', 'SEO', 'Google Ads'],
-        image: '/images/service_ai.jpg',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
     }
 ];
 
@@ -87,16 +87,24 @@ const Card = ({ group, index, progress }: CardProps) => {
         { clamp: true }
     );
 
+    // pointer-events: disabled while invisible so a higher-z but invisible card
+    // doesn't swallow clicks meant for the visible card below it in the stack.
+    // First card is always visible; others start hidden until their reveal window.
+    const [interactive, setInteractive] = useState(isFirst);
+    useMotionValueEvent(opacity, 'change', (v) => {
+        setInteractive(v >= 0.5);
+    });
+
     return (
         <div
             className={styles.cardWrapper}
             style={{
-                top: `${index * 25}px`,
                 zIndex: 10 + index,
+                pointerEvents: interactive ? 'auto' : 'none',
             }}
         >
             <motion.div
-                style={{ y, scale, opacity, transformOrigin: 'top center' }}
+                style={{ y, scale, opacity, transformOrigin: 'bottom center' }}
                 className={styles.card}
             >
                 <div className={styles.imageWrapper}>
@@ -127,7 +135,7 @@ const Card = ({ group, index, progress }: CardProps) => {
 
                     <Link href="/services" style={{ textDecoration: 'none' }}>
                         <button className={styles.exploreBtn}>
-                            Explore Solutions <Plus size={18} />
+                            Explore Solutions <ArrowRight size={18} />
                         </button>
                     </Link>
                 </div>
@@ -149,9 +157,9 @@ export default function Services() {
             <div className={styles.stickyStage}>
                 <div className={styles.container}>
                     <div className={styles.header}>
-                        <span className="tag">Our Expertise</span>
-                        <h2>Propel Your Presence</h2>
-                        <p>Strategic solutions designed for the modern enterprise</p>
+                        <span className="tag">What We Do</span>
+                        <h2>Engineered for Your Growth</h2>
+                        <p>Three disciplines, working in sync to move your brand forward.</p>
                     </div>
 
                     <div className={styles.cardStack}>

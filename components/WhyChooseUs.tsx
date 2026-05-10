@@ -11,12 +11,12 @@ const comparisonRows = [
         others: 'Long timelines, legacy frameworks, six-month redesign cycles.',
     },
     {
-        feature: 'Single integrated stack',
-        unntangle: 'Tech, design, and growth under one roof — no agency hand-offs.',
-        others: 'Three separate vendors, three invoices, three timelines.',
+        feature: 'Single integrated team',
+        unntangle: 'Tech, design, growth, and smart-living — one accountable team.',
+        others: 'Three vendors, three invoices, three timelines, zero ownership.',
     },
     {
-        feature: 'Deterministic outcomes',
+        feature: 'Outcome accountability',
         unntangle: 'Every decision is measurable, reversible, and tied to revenue.',
         others: 'Vanity metrics, deck-driven strategy, untracked deliverables.',
     },
@@ -26,9 +26,9 @@ const comparisonRows = [
         others: 'WordPress templates, manual deploys, outdated tooling.',
     },
     {
-        feature: 'Long-term partnership',
-        unntangle: 'Retained engagement model — we stay invested in the outcome.',
-        others: 'Project-based — disappear once the invoice clears.',
+        feature: 'Long-term commitment',
+        unntangle: 'Retained partnership model — we stay invested in the outcome.',
+        others: 'Project-based handoffs — disappear once the invoice clears.',
     },
 ];
 
@@ -45,13 +45,14 @@ export default function WhyChooseUs() {
                 >
                     <span className={styles.eyebrow}>Why Unntangle</span>
                     <h2 className={styles.title}>
-                        The difference between a vendor
+                        A modern tech company,
                         <br />
-                        and a <span className={styles.titleAccent}>growth partner</span>.
+                        <span className={styles.titleAccent}>not just another vendor.</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Most agencies optimize for the deliverable. We optimize for the outcome.
-                        Here is how that shows up across every engagement.
+                        Unntangle is a full-stack technology and digital company — building
+                        the products, platforms, and brands behind ambitious businesses across
+                        India and beyond. Here&apos;s how that shows up in every engagement.
                     </p>
                 </motion.div>
 
@@ -68,7 +69,7 @@ export default function WhyChooseUs() {
                             <span className={styles.headerLabel}>Unntangle</span>
                         </div>
                         <div className={`${styles.headerCell} ${styles.headerOthers}`}>
-                            <span className={styles.headerLabel}>Typical agencies</span>
+                            <span className={styles.headerLabel}>Typical vendors</span>
                         </div>
                     </div>
 

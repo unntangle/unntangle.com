@@ -1,34 +1,52 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Network, Zap, Shield, Cpu, ArrowUpRight, Globe, Layers } from 'lucide-react';
+import { Layers3, Code2, Palette, TrendingUp, ArrowUpRight } from 'lucide-react';
 import styles from './Stats.module.css';
 
-const solutionMetrics = [
+/**
+ * Home-page "Architecture of Impact" section.
+ *
+ * Communicates Unntangle's three core service pillars (Technology
+ * Solutions, Creative Design, Growth Marketing) plus a featured
+ * value-prop card on the left summarising why those pillars work
+ * better when delivered together.
+ *
+ * The right-side metric cards mirror the categories from the
+ * Services section above (expertiseGroups in Services.tsx) so the
+ * narrative is consistent: "here's what we do" → "here's how we
+ * do it together" → product / case-study sections below.
+ */
+
+const pillars = [
     {
-        value: '50+',
-        label: 'Digital Platforms',
-        icon: <Globe size={18} />,
-        description: 'High-performance websites and scalable applications built for global brands.'
+        value: '5',
+        label: 'Technology Solutions',
+        icon: <Code2 size={18} />,
+        description:
+            'Websites, apps, ERPs, revamps and interactive 3D — engineered for performance and scale.',
     },
     {
-        value: '25+',
-        label: 'AI Implementations',
-        icon: <Cpu size={18} />,
-        description: 'Custom intelligent agents and automation workflows deployed for enterprise scale.'
+        value: '3',
+        label: 'Creative Design',
+        icon: <Palette size={18} />,
+        description:
+            '2D brand systems, 3D product visualisation, and AI-generated imagery for premium identities.',
     },
     {
-        value: '99.9%',
-        label: 'Cloud Resilience',
-        icon: <Shield size={18} />,
-        description: 'High-availability infrastructure designed for zero-fail production environments.'
+        value: '4',
+        label: 'Growth Marketing',
+        icon: <TrendingUp size={18} />,
+        description:
+            'Meta Ads, Google Ads, SEO and Social — performance funnels that turn traffic into revenue.',
     },
     {
-        value: '10k+',
-        label: 'Smart Endpoints',
-        icon: <Layers size={18} />,
-        description: 'Connected IoT devices managed through unified intelligent interfaces.'
-    }
+        value: '12+',
+        label: 'Services Under One Roof',
+        icon: <Layers3 size={18} />,
+        description:
+            'A single accountable team across design, development and growth — no agency hand-offs.',
+    },
 ];
 
 export default function Stats() {
@@ -37,16 +55,18 @@ export default function Stats() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.topHeader}>
                     <div className={styles.headerInfo}>
-                        <span className={styles.sublabel}>The Architecture of Impact</span>
-                        <h2 className={styles.mainTitle}>Future-Ready Engineering</h2>
+                        <span className={styles.sublabel}>How We Work</span>
+                        <h2 className={styles.mainTitle}>One Team. Every Layer.</h2>
                     </div>
                     <p className={styles.headerDescription}>
-                        We converge Digital, AI, Cloud, and Smart Living layers into singular, high-performance ecosystems that scale with your vision.
+                        Most agencies hand you off between siloed teams. We don&apos;t. Design,
+                        development and growth marketing live under one roof — so your brand
+                        stays coherent from the first wireframe to the last conversion.
                     </p>
                 </div>
 
                 <div className={styles.layoutGrid}>
-                    {/* Featured Large Card */}
+                    {/* Featured Large Card — value proposition */}
                     <motion.div
                         className={styles.featuredCard}
                         initial={{ opacity: 0, x: -20 }}
@@ -56,22 +76,27 @@ export default function Stats() {
                     >
                         <div className={styles.featuredContent}>
                             <div className={styles.featuredIcon}>
-                                <Network size={32} />
+                                <Layers3 size={32} />
                             </div>
-                            <h3>Holistic Digital Synergy</h3>
-                            <p>Moving beyond isolated deployments, we unntangle complexities to create unified technical landscapes where every component works in perfect harmony.</p>
-                            <button className={styles.ghostLink}>
-                                Our Strategy <ArrowUpRight size={16} />
-                            </button>
+                            <h3>Three Disciplines, One Studio</h3>
+                            <p>
+                                When the same studio designs the brand, builds the platform,
+                                and runs the ads, every layer compounds. No translation losses
+                                between vendors. No finger-pointing when conversion drops.
+                                Just one team accountable for the outcome.
+                            </p>
+                            <a href="/services" className={styles.ghostLink}>
+                                See all services <ArrowUpRight size={16} />
+                            </a>
                         </div>
                         <div className={styles.featuredVisual}>
                             <div className={styles.glowOrb}></div>
                         </div>
                     </motion.div>
 
-                    {/* Solutions Sub-grid */}
+                    {/* Pillars sub-grid — 3 service categories + summary tile */}
                     <div className={styles.metricsGrid}>
-                        {solutionMetrics.map((metric, index) => (
+                        {pillars.map((pillar, index) => (
                             <motion.div
                                 key={index}
                                 className={styles.metricCard}
@@ -81,11 +106,11 @@ export default function Stats() {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
                                 <div className={styles.metricHeader}>
-                                    <span className={styles.metricIcon}>{metric.icon}</span>
-                                    <span className={styles.metricValue}>{metric.value}</span>
+                                    <span className={styles.metricIcon}>{pillar.icon}</span>
+                                    <span className={styles.metricValue}>{pillar.value}</span>
                                 </div>
-                                <div className={styles.metricLabel}>{metric.label}</div>
-                                <p className={styles.metricDesc}>{metric.description}</p>
+                                <div className={styles.metricLabel}>{pillar.label}</div>
+                                <p className={styles.metricDesc}>{pillar.description}</p>
                             </motion.div>
                         ))}
                     </div>
