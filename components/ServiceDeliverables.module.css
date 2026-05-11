@@ -1,0 +1,230 @@
+.section {
+    background: #ffffff;
+    padding: 120px 0;
+    color: var(--text-main);
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.intro {
+    position: sticky;
+    top: 100px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 24px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.08);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    border-radius: 999px;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: var(--lh-section);
+    letter-spacing: var(--ls-section);
+    color: var(--text-main);
+    margin-bottom: 24px;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 500;
+    color: #2563eb;
+}
+
+.subtitle {
+    font-size: var(--fs-body);
+    color: var(--text-muted);
+    line-height: var(--lh-body);
+    max-width: 380px;
+    margin: 0 0 36px;
+}
+
+.countBadge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 16px 22px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+}
+
+.countNumber {
+    font-family: var(--font-title), sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.countLabel {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* Checklist column */
+.checklist {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* A faint vertical guide line on the left edge of the index column */
+.checklist::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 28px;
+    bottom: 28px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #e5e7eb 12%, #e5e7eb 88%, transparent);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.rowIndex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.indexNum {
+    font-family: var(--font-title), sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.checkBubble {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--text-main);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.row:hover .checkBubble {
+    background: var(--primary);
+    color: var(--text-main);
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 209, 255, 0.4);
+}
+
+.rowBody {
+    padding-top: 2px;
+}
+
+.rowHead {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.rowIcon {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.rowBody h3 {
+    font-family: var(--font-title), sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.rowBody p {
+    font-size: var(--fs-body-sm);
+    color: var(--text-muted);
+    line-height: var(--lh-body-sm);
+    margin: 0;
+    max-width: 540px;
+}
+
+@media (max-width: 992px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+    .intro {
+        position: static;
+    }
+    .subtitle {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .section {
+        padding: 72px 0;
+    }
+    .row {
+        grid-template-columns: 44px 1fr;
+        gap: 18px;
+        padding: 22px 0;
+    }
+    .checklist::before {
+        left: 16px;
+    }
+    .checkBubble {
+        width: 24px;
+        height: 24px;
+    }
+    .rowBody h3 {
+        font-size: 17px;
+    }
+    .countBadge {
+        padding: 14px 18px;
+    }
+    .countNumber {
+        font-size: 28px;
+    }
+}

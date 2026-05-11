@@ -1,7 +1,7 @@
 .contentSection {
-    background-color: #050505;
-    padding: 100px 0;
-    color: white;
+    background-color: #ffffff;
+    padding: 110px 0;
+    color: var(--text-main);
     position: relative;
 }
 
@@ -16,16 +16,21 @@
 }
 
 .overviewBox {
-    max-width: 800px;
+    max-width: 820px;
 }
 
 .sectionTitle {
-    font-size: 14px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #a78bfa;
-    margin-bottom: 16px;
-    display: block;
+    color: var(--primary);
+    margin-bottom: 24px;
+    padding: 6px 14px;
+    background: rgba(0, 209, 255, 0.08);
+    border: 1px solid rgba(0, 209, 255, 0.2);
+    border-radius: 999px;
 }
 
 .overviewText {
@@ -34,13 +39,14 @@
     font-weight: 400;
     line-height: 1.4;
     letter-spacing: var(--ls-sub);
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    margin: 0;
 }
 
 .gridSection {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 64px;
 }
 
 .columnTitle {
@@ -50,43 +56,45 @@
     line-height: var(--lh-sub);
     letter-spacing: var(--ls-sub);
     margin-bottom: 40px;
-    color: white;
+    color: var(--text-main);
     padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #ececec;
 }
 
 .featuresList {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 20px;
 }
 
 .featureCard {
     display: flex;
-    gap: 24px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 32px;
-    border-radius: 16px;
-    transition: all 0.3s ease;
+    gap: 22px;
+    background: #ffffff;
+    border: 1px solid #ececec;
+    padding: 26px;
+    border-radius: 18px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .featureCard:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: #fafafa;
+    border-color: rgba(0, 209, 255, 0.35);
     transform: translateY(-2px);
+    box-shadow: 0 20px 40px -28px rgba(0, 0, 0, 0.12);
 }
 
 .iconWrapper {
     width: 48px;
     height: 48px;
     min-width: 48px;
-    background: rgba(167, 139, 250, 0.1);
+    background: rgba(0, 209, 255, 0.1);
+    border: 1px solid rgba(0, 209, 255, 0.22);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #a78bfa;
+    color: var(--primary);
 }
 
 .featureContent h4 {
@@ -94,19 +102,21 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 12px;
-    color: white;
+    margin-bottom: 8px;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
 }
 
 .featureContent p {
     font-size: var(--fs-body-sm);
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-muted);
     line-height: var(--lh-body-sm);
+    margin: 0;
 }
 
 .processList {
     position: relative;
-    padding-left: 24px;
+    padding-left: 28px;
 }
 
 .processList::before {
@@ -115,14 +125,18 @@
     left: 0;
     top: 8px;
     bottom: 24px;
-    width: 2px;
-    background: linear-gradient(to bottom, rgba(167, 139, 250, 0.5), rgba(167, 139, 250, 0));
+    width: 1.5px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 209, 255, 0.6),
+        rgba(0, 209, 255, 0)
+    );
 }
 
 .processItem {
     position: relative;
     padding-left: 32px;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
 }
 
 .processItem:last-child {
@@ -133,17 +147,18 @@
     position: absolute;
     left: -32px;
     top: 0;
-    width: 24px;
-    height: 24px;
-    background: #050505;
-    border: 2px solid #a78bfa;
+    width: 26px;
+    height: 26px;
+    background: #ffffff;
+    border: 2px solid var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     font-weight: 700;
-    color: #a78bfa;
+    color: var(--primary);
+    box-shadow: 0 0 0 4px #ffffff;
 }
 
 .processItem h4 {
@@ -151,20 +166,22 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 12px;
-    color: white;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
 }
 
 .processItem p {
     font-size: var(--fs-body-sm);
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-muted);
     line-height: var(--lh-body-sm);
+    margin: 0;
 }
 
 .benefitsSection {
     margin-top: 100px;
     padding-top: 80px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #ececec;
 }
 
 .benefitsTitle {
@@ -174,44 +191,67 @@
     font-weight: var(--fw-title);
     line-height: var(--lh-section);
     letter-spacing: var(--ls-section);
-    margin-bottom: 48px;
-    color: white;
+    margin-bottom: 56px;
+    color: var(--text-main);
 }
 
 .benefitsGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 24px;
 }
 
 .benefitCard {
-    text-align: center;
-    padding: 32px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 16px;
+    text-align: left;
+    padding: 32px 28px;
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    border: 1px solid #ececec;
+    border-radius: 18px;
+    transition: all 0.35s ease;
+}
+
+.benefitCard:hover {
+    border-color: rgba(0, 209, 255, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 24px 40px -28px rgba(0, 0, 0, 0.1);
 }
 
 .benefitCard h4 {
     font-family: var(--font-title), sans-serif;
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 16px;
-    color: #a78bfa;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
 }
 
 .benefitCard p {
     font-size: var(--fs-body-sm);
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-muted);
     line-height: var(--lh-body-sm);
+    margin: 0;
 }
 
 @media (max-width: 992px) {
     .gridSection {
         grid-template-columns: 1fr;
-        gap: 80px;
+        gap: 64px;
     }
-    
+
     .benefitsGrid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .contentSection {
+        padding: 72px 0;
+    }
+    .featureCard {
+        padding: 22px;
+    }
+    .benefitsSection {
+        margin-top: 64px;
+        padding-top: 56px;
     }
 }

@@ -134,24 +134,13 @@ export const metadata: Metadata = {
         site: "@unntangle",
     },
     icons: {
-        // Order matters: browsers pick the first format they support, so put
-        // the universal ICO first, then the modern WebP. The actual ICO
-        // file lives at app/favicon.ico (auto-served by Next at /favicon.ico
-        // via the App Router file convention).
-        //
-        // Why this fixes the "favicon not showing" issue:
-        //   - Next's app/favicon.ico convention emits one <link> tag for us
-        //     automatically. Declaring it again here is harmless but redundant.
-        //   - The previous config only declared the WebP variant, which is
-        //     fine on Chrome/Edge but silently ignored by older Safari and
-        //     some embed/preview tools — they expected ICO and got nothing.
-        //   - Adding explicit `sizes` hints helps the browser pick the
-        //     correct asset for the tab vs. address bar vs. bookmark.
+        // Use the brand-specific WebP icon as the primary favicon.
+        // We removed the reference to /favicon.ico because it was
+        // showing the default Vercel logo.
         icon: [
-            { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
             { url: "/images/unntangle_fav.webp", type: "image/webp" },
         ],
-        shortcut: "/favicon.ico",
+        shortcut: "/images/unntangle_fav.webp",
         apple: "/images/unntangle_fav.webp",
     },
     manifest: "/manifest.webmanifest",

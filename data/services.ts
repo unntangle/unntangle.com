@@ -7,7 +7,7 @@ export interface ServiceProcessStep {
 export interface ServiceFeature {
     title: string;
     description: string;
-    icon: string; 
+    icon: string;
 }
 
 export interface ServiceBenefit {
@@ -15,8 +15,39 @@ export interface ServiceBenefit {
     description: string;
 }
 
+export interface ServiceDeliverable {
+    title: string;
+    description: string;
+    icon: string;
+}
+
+export interface ServiceUseCase {
+    industry: string;
+    title: string;
+    description: string;
+}
+
+export interface ServiceTechItem {
+    name: string;
+    /** Simple Icons slug — see https://simpleicons.org. Null falls back to a lettermark badge. */
+    slug: string | null;
+    category?: string;
+}
+
+export interface ServiceStat {
+    /** The headline number, e.g. "98+" or "2.3s" */
+    value: string;
+    label: string;
+    description: string;
+}
+
+export interface ServiceFAQ {
+    question: string;
+    answer: string;
+}
+
 export interface ServiceData {
-    id: string; 
+    id: string;
     categoryId: string;
     categoryLabel: string;
     title: string;
@@ -26,6 +57,12 @@ export interface ServiceData {
     features: ServiceFeature[];
     process: ServiceProcessStep[];
     benefits: ServiceBenefit[];
+    /** Optional — rich sections used by tech service pages */
+    deliverables?: ServiceDeliverable[];
+    useCases?: ServiceUseCase[];
+    techStack?: ServiceTechItem[];
+    stats?: ServiceStat[];
+    faqs?: ServiceFAQ[];
 }
 
 export const servicesData: ServiceData[] = [
@@ -53,6 +90,47 @@ export const servicesData: ServiceData[] = [
             { title: "Increased Conversion", description: "Optimized user flows that turn visitors into customers." },
             { title: "Lightning Fast URLs", description: "Sub-second load times that keep engagement high." },
             { title: "Future-Proof Tech", description: "Easily scalable as your business grows." }
+        ],
+        deliverables: [
+            { title: "Production-Ready Codebase", description: "Clean, documented, version-controlled source code hosted on your GitHub or ours.", icon: "FileText" },
+            { title: "Pixel-Perfect Figma Files", description: "Editable design systems, components, and tokens you can hand to any future designer.", icon: "Palette" },
+            { title: "CMS & Admin Panel", description: "A non-technical content interface so your team can publish without engineering tickets.", icon: "Database" },
+            { title: "Performance Audit Report", description: "Lighthouse scores, Core Web Vitals data, and a 90-day post-launch performance baseline.", icon: "BarChart3" },
+            { title: "SEO Foundation Kit", description: "Schema markup, sitemap, robots.txt, OG tags, and a keyword map for ongoing content work.", icon: "Layers" },
+            { title: "Hosting & DNS Setup", description: "Production deployment on Vercel, AWS, or your cloud of choice — fully configured.", icon: "CloudUpload" }
+        ],
+        useCases: [
+            { industry: "SaaS", title: "Product Marketing Sites", description: "Conversion-focused landing pages, pricing pages, and feature tours that turn organic traffic into trials." },
+            { industry: "E-commerce", title: "Headless Storefronts", description: "Shopify Hydrogen and custom Next.js storefronts with sub-second checkout flows." },
+            { industry: "Real Estate", title: "Listing Platforms", description: "Map-integrated property search with high-density imagery and lead-capture funnels." },
+            { industry: "Healthcare", title: "Clinic & Practice Sites", description: "HIPAA-conscious booking flows, doctor profiles, and patient resource libraries." },
+            { industry: "Finance", title: "Corporate Web Presence", description: "Compliance-ready content architectures for banks, NBFCs, and wealth management firms." },
+            { industry: "D2C Brands", title: "Brand Showcases", description: "Editorial-grade brand storytelling sites with rich media and Shopify integrations." }
+        ],
+        techStack: [
+            { name: "Next.js", slug: "nextdotjs", category: "Framework" },
+            { name: "React", slug: "react", category: "Framework" },
+            { name: "TypeScript", slug: "typescript", category: "Language" },
+            { name: "Tailwind CSS", slug: "tailwindcss", category: "Styling" },
+            { name: "Framer Motion", slug: "framer", category: "Animation" },
+            { name: "Sanity", slug: "sanity", category: "CMS" },
+            { name: "Contentful", slug: "contentful", category: "CMS" },
+            { name: "Vercel", slug: "vercel", category: "Hosting" },
+            { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
+            { name: "PostgreSQL", slug: "postgresql", category: "Database" }
+        ],
+        stats: [
+            { value: "98+", label: "Lighthouse Score", description: "Average performance score across our delivered sites." },
+            { value: "<1.5s", label: "Largest Contentful Paint", description: "First meaningful render — under Google's 'good' threshold." },
+            { value: "40%", label: "Avg. Conversion Lift", description: "Median uplift measured on revamped marketing sites within 90 days." },
+            { value: "99.99%", label: "Uptime SLA", description: "Production hosting backed by Vercel and AWS edge networks." }
+        ],
+        faqs: [
+            { question: "How long does a typical website project take?", answer: "Marketing sites (5-10 pages) ship in 4-6 weeks. Larger platforms with CMS, integrations, and complex flows usually run 8-12 weeks. We share a week-by-week timeline in our scoping doc before we start." },
+            { question: "Do you build on Next.js exclusively?", answer: "Next.js is our default for new builds because of its performance and SEO ergonomics, but we also work in Astro, Remix, and SvelteKit where the project demands it." },
+            { question: "Can I edit content myself after launch?", answer: "Yes — every site ships with a CMS (typically Sanity or Contentful) so your marketing team can publish copy, swap images, and launch new pages without filing engineering tickets." },
+            { question: "Do you handle hosting and ongoing maintenance?", answer: "We deploy to Vercel or AWS by default, transfer ownership to your account, and offer optional retainers for security patches, dependency updates, and feature work." },
+            { question: "Will my site be SEO-friendly out of the box?", answer: "Technical SEO is baked in — schema markup, sitemap generation, semantic HTML, optimized Core Web Vitals, and OG metadata. Content-side SEO is a separate workstream our growth team can pick up." }
         ]
     },
     {
@@ -78,6 +156,47 @@ export const servicesData: ServiceData[] = [
             { title: "Omnichannel Presence", description: "Reach your users wherever they are." },
             { title: "Operational Efficiency", description: "Streamline workflows with custom internal tools." },
             { title: "High Engagement", description: "Immersive experiences that drive user retention." }
+        ],
+        deliverables: [
+            { title: "iOS & Android Builds", description: "Signed, production-ready binaries submitted to App Store and Play Store under your developer accounts.", icon: "Smartphone" },
+            { title: "Source Code & CI/CD", description: "Full repository access with automated build, test, and deploy pipelines configured for your team.", icon: "FileText" },
+            { title: "Backend & API Layer", description: "Scalable REST or GraphQL APIs, authentication, and database schemas — all documented.", icon: "Database" },
+            { title: "Design System", description: "Reusable component library in Figma plus matching code components for future feature work.", icon: "Palette" },
+            { title: "QA & Test Suite", description: "Unit, integration, and end-to-end tests with reports — so future changes don't break production.", icon: "ShieldCheck" },
+            { title: "Analytics & Crash Reporting", description: "Mixpanel, Amplitude, or your tool of choice wired in, plus Sentry/Firebase Crashlytics.", icon: "BarChart3" }
+        ],
+        useCases: [
+            { industry: "FinTech", title: "Consumer Banking Apps", description: "KYC flows, secure transactions, biometric auth, and PCI-DSS-aligned architectures." },
+            { industry: "Logistics", title: "Fleet & Driver Apps", description: "Real-time GPS tracking, offline-first sync, route optimization, and proof-of-delivery capture." },
+            { industry: "Healthcare", title: "Patient & Provider Apps", description: "Tele-consultation, prescription management, EHR integrations, and appointment scheduling." },
+            { industry: "Retail & D2C", title: "Loyalty & Commerce Apps", description: "In-app purchases, push-driven re-engagement, AR product preview, and social commerce." },
+            { industry: "Education", title: "Learning Platforms", description: "Video streaming, offline downloads, live classes, and progress-tracking dashboards." },
+            { industry: "Enterprise", title: "Internal Tooling", description: "Field-force apps, approval workflows, and SAP/Salesforce-integrated companion apps." }
+        ],
+        techStack: [
+            { name: "React Native", slug: "react", category: "Mobile" },
+            { name: "Flutter", slug: "flutter", category: "Mobile" },
+            { name: "Swift", slug: "swift", category: "iOS Native" },
+            { name: "Kotlin", slug: "kotlin", category: "Android Native" },
+            { name: "Expo", slug: "expo", category: "Tooling" },
+            { name: "Node.js", slug: "nodedotjs", category: "Backend" },
+            { name: "GraphQL", slug: "graphql", category: "API" },
+            { name: "Firebase", slug: "firebase", category: "BaaS" },
+            { name: "PostgreSQL", slug: "postgresql", category: "Database" },
+            { name: "Redis", slug: "redis", category: "Cache" }
+        ],
+        stats: [
+            { value: "60fps", label: "Native Performance", description: "Buttery animations on both iOS and Android, even on mid-tier devices." },
+            { value: "<3s", label: "Cold Start", description: "Time-to-interactive on first launch — well under industry median." },
+            { value: "4.7★", label: "Avg. Store Rating", description: "Across apps we've shipped over the last 24 months." },
+            { value: "70%", label: "Code Reuse", description: "Shared logic across iOS and Android using cross-platform stacks." }
+        ],
+        faqs: [
+            { question: "Native or cross-platform — which should I pick?", answer: "We default to React Native or Flutter for 90% of apps because the cost-to-feature ratio is unbeatable. We recommend fully native only when your app needs deep OS integration (advanced AR, custom Bluetooth protocols, etc.) — we'll be upfront if that's your case." },
+            { question: "Do you handle App Store and Play Store submission?", answer: "Yes — we manage the entire submission process including listing copy, screenshots, app review responses, and post-launch update rollouts." },
+            { question: "What about backend infrastructure?", answer: "We typically build the backend in Node.js with PostgreSQL, deploy to AWS or GCP, and document everything. You get the keys — no vendor lock-in." },
+            { question: "How do you handle ongoing app maintenance?", answer: "Apps need quarterly maintenance: iOS/Android OS updates, dependency patches, and crash fixes. We offer retainer plans starting at 20 engineering hours/month." },
+            { question: "Can the app work offline?", answer: "Yes — for logistics, field-service, and travel apps we build offline-first architectures with local storage, conflict resolution, and background sync." }
         ]
     },
     {
@@ -103,6 +222,47 @@ export const servicesData: ServiceData[] = [
             { title: "Cost Reduction", description: "Eliminate inefficiencies and redundant software costs." },
             { title: "Complete Visibility", description: "See the exact state of your business at any moment." },
             { title: "Scalable Operations", description: "Infrastructure designed to handle exponential growth." }
+        ],
+        deliverables: [
+            { title: "Custom ERP Platform", description: "A modular, role-based web application tailored to your exact operational workflows.", icon: "Layers" },
+            { title: "Role-Based Access Control", description: "Granular permissions for finance, sales, ops, HR, and executive leadership.", icon: "Lock" },
+            { title: "Migrated Historical Data", description: "Clean, validated import of your legacy data — Excel, Tally, SAP, or whatever you're on.", icon: "Database" },
+            { title: "Reporting & BI Dashboards", description: "Real-time finance, inventory, and operations dashboards with export-to-Excel/PDF.", icon: "BarChart3" },
+            { title: "API & Integration Layer", description: "Pre-built connectors to your CRM, payment gateway, accounting tool, and logistics partners.", icon: "RefreshCw" },
+            { title: "Team Training & SOPs", description: "Onboarding sessions, role-specific user guides, and a 60-day adoption support window.", icon: "FileText" }
+        ],
+        useCases: [
+            { industry: "Manufacturing", title: "Production & Inventory ERP", description: "BOMs, work orders, shop-floor tracking, MRP, and finished-goods inventory in one system." },
+            { industry: "Distribution", title: "Warehouse & Logistics ERP", description: "Multi-warehouse stock, route planning, dispatch, and reverse logistics workflows." },
+            { industry: "Real Estate", title: "Project & Sales CRM-ERP", description: "Inventory management, lead-to-booking pipelines, payment schedules, and broker payouts." },
+            { industry: "Education", title: "Institute Management Systems", description: "Admissions, fee collection, attendance, exam workflows, and parent communication." },
+            { industry: "Healthcare", title: "Hospital Information Systems", description: "OPD/IPD billing, pharmacy stock, lab integration, and insurance claim processing." },
+            { industry: "Professional Services", title: "Agency Operations ERP", description: "Project tracking, timesheet billing, resource allocation, and P&L per engagement." }
+        ],
+        techStack: [
+            { name: "Next.js", slug: "nextdotjs", category: "Frontend" },
+            { name: "TypeScript", slug: "typescript", category: "Language" },
+            { name: "Node.js", slug: "nodedotjs", category: "Backend" },
+            { name: "NestJS", slug: "nestjs", category: "Backend Framework" },
+            { name: "PostgreSQL", slug: "postgresql", category: "Database" },
+            { name: "Redis", slug: "redis", category: "Cache" },
+            { name: "Prisma", slug: "prisma", category: "ORM" },
+            { name: "Docker", slug: "docker", category: "Infrastructure" },
+            { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
+            { name: "Power BI", slug: null, category: "Analytics" }
+        ],
+        stats: [
+            { value: "60%", label: "Manual Effort Reduced", description: "Average reduction in data-entry hours after ERP rollout." },
+            { value: "4x", label: "Reporting Speed", description: "Faster month-end close compared to Excel-based workflows." },
+            { value: "Zero", label: "Data Silos", description: "All operational data unified into a single normalized source of truth." },
+            { value: "12 wk", label: "Avg. Time to Launch", description: "From scoping to first production rollout for mid-size operations." }
+        ],
+        faqs: [
+            { question: "Custom ERP vs SAP/Oracle/Zoho — why build from scratch?", answer: "Off-the-shelf ERPs work great if your operations fit their model. For businesses with unique workflows — custom pricing logic, non-standard inventory rules, hybrid manufacturing — a tailored ERP is cheaper over 3 years and far more agile. We'll do an honest scoping call before we recommend either path." },
+            { question: "Can it integrate with our existing Tally / Zoho Books / SAP?", answer: "Yes — we build connectors for accounting (Tally, Zoho, QuickBooks, SAP), CRM (Salesforce, HubSpot), and logistics partners so your ERP becomes the operational hub without forcing a finance-team migration." },
+            { question: "What about data migration from our legacy system?", answer: "Migration is a dedicated workstream. We audit your existing data, clean inconsistencies, map fields, run dry-runs in staging, and then cut over with a rollback plan. Zero data loss is non-negotiable." },
+            { question: "Is the ERP hosted in the cloud or on-premise?", answer: "Both are options. Most clients go cloud (AWS or Azure) for cost and remote access. For regulated industries we deploy on-premise or in a VPC with your compliance team's approvals." },
+            { question: "How do you handle user training?", answer: "Role-based training sessions (admin, finance, ops, sales), recorded walkthroughs, written SOPs, and a 60-day post-launch hypercare window where our team responds to user queries directly." }
         ]
     },
     {
@@ -127,7 +287,48 @@ export const servicesData: ServiceData[] = [
         benefits: [
             { title: "Bounced Traffic Recaptured", description: "Modern UI drastically lowers bounce rates." },
             { title: "Preserved SEO Rankings", description: "Meticulous 301 mapping safeguards your domain authority." },
-            { title: "Future Scalability", description: "A flexible foundation ready for tomorrow’s feature requests." }
+            { title: "Future Scalability", description: "A flexible foundation ready for tomorrow's feature requests." }
+        ],
+        deliverables: [
+            { title: "Pre-Launch Audit Report", description: "A documented baseline of your current site's traffic, rankings, speed, and conversion benchmarks.", icon: "FileText" },
+            { title: "Redesigned UI Kit", description: "Full Figma file with new design system, components, typography, and brand-aligned tokens.", icon: "Palette" },
+            { title: "Migrated Codebase", description: "Modern Next.js or Astro build replacing your legacy WordPress, Drupal, or custom PHP stack.", icon: "RefreshCw" },
+            { title: "301 Redirect Map", description: "Spreadsheet of every old URL mapped to its new destination — no SEO equity lost.", icon: "Layers" },
+            { title: "Content Migration", description: "All blog posts, case studies, and resources moved with structure intact and metadata preserved.", icon: "Database" },
+            { title: "Post-Launch Monitoring", description: "30-day SEO and traffic monitoring with weekly reports to catch any ranking dips early.", icon: "BarChart3" }
+        ],
+        useCases: [
+            { industry: "Legacy Enterprises", title: "WordPress to Next.js", description: "Migrate aging WordPress sites to headless architectures without losing rankings or content." },
+            { industry: "SaaS", title: "Marketing Site Refresh", description: "Replace a tired marketing site with a high-conversion modern build aligned to your new brand." },
+            { industry: "Agencies & Consultancies", title: "Premium Rebrand Sites", description: "Elevate the digital presence after a brand refresh, repositioning, or M&A event." },
+            { industry: "E-commerce", title: "Shopify or Magento Migration", description: "Move from legacy Magento or custom platforms to Shopify Plus or headless commerce." },
+            { industry: "Education", title: "Institutional Website Modernization", description: "Universities and schools moving from outdated CMS to modern, mobile-first platforms." },
+            { industry: "Hospitality", title: "Hotel & F&B Revamps", description: "Refresh hospitality sites with direct-booking funnels, photography upgrades, and reservation integrations." }
+        ],
+        techStack: [
+            { name: "Next.js", slug: "nextdotjs", category: "Framework" },
+            { name: "Astro", slug: "astro", category: "Framework" },
+            { name: "TypeScript", slug: "typescript", category: "Language" },
+            { name: "Sanity", slug: "sanity", category: "Headless CMS" },
+            { name: "Strapi", slug: "strapi", category: "Headless CMS" },
+            { name: "Vercel", slug: "vercel", category: "Hosting" },
+            { name: "Cloudflare", slug: "cloudflare", category: "CDN" },
+            { name: "Screaming Frog", slug: null, category: "SEO Audit" },
+            { name: "Ahrefs", slug: "ahrefs", category: "SEO" },
+            { name: "GA4", slug: "googleanalytics", category: "Analytics" }
+        ],
+        stats: [
+            { value: "Zero", label: "Downtime Cutover", description: "Hot-swap deployments mean visitors never see a broken site." },
+            { value: "100%", label: "SEO Equity Preserved", description: "Meticulous 301 mapping keeps every backlink's authority intact." },
+            { value: "3-5x", label: "Page Speed Boost", description: "Typical improvement from legacy CMS to modern static/headless architecture." },
+            { value: "+45%", label: "Conversion Increase", description: "Median uplift on lead-gen pages after design and CRO overhaul." }
+        ],
+        faqs: [
+            { question: "Will my SEO rankings drop after a revamp?", answer: "Not with us. Every redirect, every metadata field, every schema entry, and every URL is mapped before launch. We monitor rankings for 30 days post-launch and catch any anomalies within hours. Most clients see rankings hold steady or improve due to the speed boost." },
+            { question: "Can you keep my current content and just modernize the design and tech?", answer: "Absolutely. Content migration is part of every revamp — we preserve blog posts, case studies, and resources with full structure, metadata, and image assets intact." },
+            { question: "How long is the typical revamp timeline?", answer: "4-8 weeks for marketing sites, 8-14 weeks for content-heavy sites with hundreds of pages, integrations, and bespoke features. The old site stays live the entire time." },
+            { question: "What if I'm on WordPress and want to stay there?", answer: "If WordPress is the right fit for your team, we'll modernize within WordPress — new theme, performance optimization, headless API layer if needed. We won't force a stack change just to charge for one." },
+            { question: "Do you handle the actual go-live cutover?", answer: "Yes — DNS, redirects, search-console updates, sitemap submission, and a live monitoring war-room during the cutover window. You won't lose a single visitor." }
         ]
     },
     {
@@ -153,6 +354,47 @@ export const servicesData: ServiceData[] = [
             { title: "Astonishing Metrics", description: "Radically increased average session duration and user engagement." },
             { title: "Unforgettable Branding", description: "A 'wow' factor that fundamentally separates you from competitors." },
             { title: "Visual Storytelling", description: "Communicate complex product features through interactive discovery." }
+        ],
+        deliverables: [
+            { title: "Optimized 3D Asset Library", description: "Compressed .glb / .gltf models with LODs, baked lighting, and mobile-friendly poly counts.", icon: "Layers" },
+            { title: "Three.js / R3F Codebase", description: "Maintainable React Three Fiber code with reusable scene components and shaders.", icon: "FileText" },
+            { title: "Custom GLSL Shaders", description: "Hand-written shaders for unique visual effects you can't get from any template library.", icon: "Cpu" },
+            { title: "Performance Budget Doc", description: "Every asset, draw call, and shader documented with mobile/desktop perf budgets.", icon: "BarChart3" },
+            { title: "Fallback 2D Experience", description: "A graceful 2D version for older devices, low-end mobiles, and accessibility needs.", icon: "Smartphone" },
+            { title: "Source Files", description: "Blender / Cinema 4D source files so your team can iterate on the 3D assets independently.", icon: "Palette" }
+        ],
+        useCases: [
+            { industry: "Product Launches", title: "Hero Product Reveals", description: "Apple-style scrollytelling reveals for hardware, fashion, automotive, and luxury goods." },
+            { industry: "Architecture", title: "Virtual Property Tours", description: "Walkthrough experiences for real estate, hospitality, and museum projects." },
+            { industry: "Gaming & Entertainment", title: "Pre-Launch Microsites", description: "Teaser sites for game releases, films, and music drops with interactive trailers." },
+            { industry: "Automotive", title: "Configurator Experiences", description: "Real-time 3D car configurators with color, trim, and option visualization." },
+            { industry: "Fashion & Luxury", title: "Editorial Brand Sites", description: "Immersive seasonal lookbooks and capsule collection reveals." },
+            { industry: "SaaS & Tech", title: "Abstract Brand Worlds", description: "Visual metaphors and abstract 3D environments to communicate complex technical products." }
+        ],
+        techStack: [
+            { name: "Three.js", slug: "threedotjs", category: "WebGL" },
+            { name: "React Three Fiber", slug: "react", category: "WebGL" },
+            { name: "GLSL", slug: null, category: "Shaders" },
+            { name: "Blender", slug: "blender", category: "3D Modeling" },
+            { name: "Cinema 4D", slug: null, category: "3D Modeling" },
+            { name: "GSAP", slug: "greensock", category: "Animation" },
+            { name: "Lenis", slug: null, category: "Scroll" },
+            { name: "Spline", slug: "spline", category: "3D Design" },
+            { name: "Draco Compression", slug: null, category: "Optimization" },
+            { name: "Next.js", slug: "nextdotjs", category: "Framework" }
+        ],
+        stats: [
+            { value: "60fps", label: "Target Frame Rate", description: "Maintained on mid-tier devices through aggressive optimization." },
+            { value: "+180%", label: "Session Duration", description: "Average uplift compared to standard 2D versions of the same content." },
+            { value: "<3MB", label: "Initial Payload", description: "Compressed and progressively loaded — fast even on 4G." },
+            { value: "8/10", label: "Awwwards Average", description: "Average jury score across our 3D site submissions to date." }
+        ],
+        faqs: [
+            { question: "Will this work on mobile devices?", answer: "Yes — every 3D project we ship has a mobile performance budget from day one. We tune poly counts, texture sizes, and shader complexity for sub-3-second loads on mid-tier Android phones. For very old or low-end devices, we serve a graceful 2D fallback." },
+            { question: "How do 3D sites affect SEO?", answer: "We render text content as standard HTML alongside the 3D canvas — so search engines crawl all your copy, headings, and metadata normally. The 3D layer is a visual enhancement, not a replacement for indexable content." },
+            { question: "Do you need 3D source files from us, or do you build the assets?", answer: "Either works. If you have CAD or Blender files, great — we'll optimize and stage them. If you're starting from scratch, our 3D team models, textures, and rigs everything based on your brief and references." },
+            { question: "What's the typical timeline for a 3D website?", answer: "6-12 weeks depending on scope. Asset creation usually takes 3-5 weeks, with web integration and optimization running in parallel. We prototype the heaviest scene first so we can lock the performance budget early." },
+            { question: "How is this different from Spline or ready-made templates?", answer: "Spline and templates are great for quick demos. We build production-grade, custom-shaded experiences with hand-tuned GLSL and proper LOD strategies — the difference shows up in load time, framerate, and the visual signature that templates can't replicate." }
         ]
     },
 
@@ -216,7 +458,7 @@ export const servicesData: ServiceData[] = [
         heroImage: "https://images.unsplash.com/photo-1681498144214-ddf00bcf4788?auto=format&fit=crop&q=80&w=2000",
         overview: "Harnessing the cutting edge of visual artificial intelligence. We engineer highly specific, sophisticated prompts and utilize custom-trained models to generate breathtaking, uniquely branded imagery at a velocity previously impossible.",
         features: [
-            { title: "Custom Deep Learning", description: "Fine-tuning models (LoRAs) specifically on your brand’s visual style.", icon: "Cpu" },
+            { title: "Custom Deep Learning", description: "Fine-tuning models (LoRAs) specifically on your brand's visual style.", icon: "Cpu" },
             { title: "High-Fidelity Generation", description: "Upscaled, print-ready, artifact-free resolution imagery.", icon: "Bot" },
             { title: "Rapid Iteration", description: "Generating hundreds of stylistic variants in seconds.", icon: "RefreshCw" }
         ],

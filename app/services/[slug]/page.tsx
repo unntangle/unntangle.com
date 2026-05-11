@@ -4,6 +4,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ServiceDetailHero from '@/components/ServiceDetailHero';
 import ServiceContent from '@/components/ServiceContent';
+import ServiceDeliverables from '@/components/ServiceDeliverables';
+import ServiceUseCases from '@/components/ServiceUseCases';
+import ServiceStack from '@/components/ServiceStack';
+import ServiceStats from '@/components/ServiceStats';
+import ServiceFAQ from '@/components/ServiceFAQ';
 import MarketingCTA from '@/components/MarketingCTA';
 import { notFound } from 'next/navigation';
 
@@ -126,6 +131,25 @@ export default async function ServicePage(props: { params: Params }) {
         ],
     };
 
+    // FAQPage JSON-LD — only emit when the service has its own FAQ block
+    // (currently the 5 technology solutions). Surfaces these Q&As as
+    // Google rich results, dramatically expanding our SERP real estate
+    // for service-specific queries.
+    const faqJsonLd = service.faqs && service.faqs.length > 0
+        ? {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: service.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: {
+                    "@type": "Answer",
+                    text: f.answer,
+                },
+            })),
+        }
+        : null;
+
     return (
         <main>
             <script
@@ -146,9 +170,38 @@ export default async function ServicePage(props: { params: Params }) {
                     ),
                 }}
             />
+            {faqJsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(faqJsonLd).replace(
+                            /</g,
+                            "\\u003c"
+                        ),
+                    }}
+                />
+            )}
             <Navbar />
             <ServiceDetailHero service={service} />
             <ServiceContent service={service} />
+            {service.deliverables && service.deliverables.length > 0 && (
+                <ServiceDeliverables deliverables={service.deliverables} />
+            )}
+            {service.useCases && service.useCases.length > 0 && (
+                <ServiceUseCases useCases={service.useCases} />
+            )}
+            {service.techStack && service.techStack.length > 0 && (
+                <ServiceStack
+                    serviceTitle={service.title}
+                    techStack={service.techStack}
+                />
+            )}
+            {service.stats && service.stats.length > 0 && (
+                <ServiceStats stats={service.stats} />
+            )}
+            {service.faqs && service.faqs.length > 0 && (
+                <ServiceFAQ faqs={service.faqs} serviceTitle={service.title} />
+            )}
             <MarketingCTA />
             <Footer />
         </main>
