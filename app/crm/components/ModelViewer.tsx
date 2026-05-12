@@ -4,12 +4,10 @@ import { useEffect, useRef } from 'react';
 
 // ============================================================
 // Wraps Google's <model-viewer> web component for GLB preview.
-// We load the script once on mount via dynamic import, the same
-// way OfficeMate's existing jupiter/index.html does, so the two
-// stay in sync.
+// We create the element imperatively (via the DOM API) rather
+// than as JSX so TypeScript never needs to resolve the custom
+// element type — the build error goes away completely.
 // ============================================================
-
-
 
 type Props = {
   src: string;
@@ -18,32 +16,42 @@ type Props = {
 };
 
 export default function ModelViewer({ src, alt, height = 380 }: Props) {
-  const loaded = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (loaded.current) return;
-    loaded.current = true;
-    // Only inject once per page load.
-    if (document.querySelector('script[data-model-viewer]')) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const s = document.createElement('script');
-    s.type = 'module';
-    s.src =
-      'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-    s.setAttribute('data-model-viewer', '');
-    document.head.appendChild(s);
-  }, []);
+    // Inject the model-viewer script once per page.
+    if (!document.querySelector('script[data-model-viewer]')) {
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src =
+        'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+      s.setAttribute('data-model-viewer', '');
+      document.head.appendChild(s);
+    }
 
-  return (
-    <model-viewer
-      src={src}
-      alt={alt || '3D model preview'}
-      camera-controls
-      auto-rotate
-      shadow-intensity="1"
-      exposure="1"
-      className="crm-model-viewer"
-      style={{ height: `${height}px` }}
-    />
-  );
+    // Create the custom element imperatively — no JSX typing needed.
+    const mv = document.createElement('model-viewer') as HTMLElement;
+    mv.setAttribute('src', src);
+    mv.setAttribute('alt', alt || '3D model preview');
+    mv.setAttribute('camera-controls', '');
+    mv.setAttribute('auto-rotate', '');
+    mv.setAttribute('shadow-intensity', '1');
+    mv.setAttribute('exposure', '1');
+    mv.className = 'crm-model-viewer';
+    mv.style.width = '100%';
+    mv.style.height = `${height}px`;
+    mv.style.display = 'block';
+
+    container.innerHTML = '';
+    container.appendChild(mv);
+
+    return () => {
+      container.innerHTML = '';
+    };
+  }, [src, alt, height]);
+
+  return <div ref={containerRef} style={{ height }} />;
 }
