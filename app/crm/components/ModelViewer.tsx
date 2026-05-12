@@ -9,26 +9,7 @@ import { useEffect, useRef } from 'react';
 // stay in sync.
 // ============================================================
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          src?: string;
-          alt?: string;
-          'camera-controls'?: boolean;
-          'auto-rotate'?: boolean;
-          'shadow-intensity'?: string | number;
-          exposure?: string | number;
-          ar?: boolean;
-          poster?: string;
-        },
-        HTMLElement
-      >;
-    }
-  }
-}
+
 
 type Props = {
   src: string;
