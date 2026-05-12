@@ -12,6 +12,16 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // Route crm.unntangle.com/* → /crm/* (same pattern as officemate).
+  // The CRM lives under app/crm/ with its own layout, auth, and API
+  // routes. We rewrite (not redirect) so the URL bar stays clean.
+  if (host.startsWith('crm.')) {
+    if (!url.pathname.startsWith('/crm')) {
+      url.pathname = `/crm${url.pathname}`;
+      return NextResponse.rewrite(url);
+    }
+  }
+
   // Legacy redirect: the products page used to live at /shop/usynq and was
   // moved to /usynq/products to live under the brand namespace. Anyone with
   // an old bookmark or external link gets a permanent 308 redirect to the

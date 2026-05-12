@@ -1,0 +1,88 @@
+// ============================================================
+// Supabase client (server-side only)
+// ============================================================
+// We use the SERVICE ROLE key because:
+//   1. RLS is disabled on CRM tables (see schema.sql)
+//   2. Auth is gated by our own signed-cookie session middleware
+//   3. This client never runs in the browser
+//
+// The service role key bypasses RLS — it must NEVER be exposed
+// to the client. That's why this file has no 'use client' and
+// is imported only from server components and route handlers.
+// ============================================================
+
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+let cached: SupabaseClient | null = null;
+
+export function supabase(): SupabaseClient {
+  if (cached) return cached;
+
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !key) {
+    throw new Error(
+      'Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY env var. ' +
+      'See app/crm/SETUP.md.'
+    );
+  }
+
+  cached = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  return cached;
+}
+
+// ============================================================
+// Typed row shapes — keep in sync with schema.sql
+// ============================================================
+export type CrmUser = {
+  id: string;
+  email: string;
+  password_hash: string;
+  name: string;
+  role: '3d_artist' | 'qa' | 'admin';
+  created_at: string;
+};
+
+export type CrmClient = {
+  id: string;
+  slug: string;
+  name: string;
+  created_at: string;
+};
+
+export type ProjectStatus = 'draft' | 'qa_pending' | 'rejected' | 'approved';
+
+export type CrmProject = {
+  id: string;
+  client_id: string;
+  slug: string;
+  name: string;
+  status: ProjectStatus;
+  revision_count: number;
+  zip_url: string | null;
+  glb_url: string | null;
+  fbx_url: string | null;
+  gltf_url: string | null;
+  approved_glb_url: string | null;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CrmFeedbackImage = {
+  id: string;
+  project_id: string;
+  revision: number;
+  image_url: string;
+  note: string | null;
+  uploaded_by: string | null;
+  created_at: string;
+};
+
+// Joined view used by the dashboards (project + its client)
+export type ProjectWithClient = CrmProject & {
+  client: Pick<CrmClient, 'slug' | 'name'>;
+};
