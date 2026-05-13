@@ -716,7 +716,9 @@
   letter-spacing: 0.04em;
 }
 
-/* ----- login page ----- */
+/* ----- login page (legacy single-card layout — superseded by
+   .crm-login-split below, kept here in case anything still
+   references these class names) ----- */
 .crm-root .crm-login-wrap {
   min-height: 100vh;
   display: grid;
@@ -749,6 +751,485 @@
   color: var(--danger);
   font-size: 12px;
   margin-top: 8px;
+}
+
+/* ============================================================
+   Login — single centered card (current layout)
+   ============================================================
+   Full-viewport centered wrapper that hosts the same form
+   internals as the split layout did. The .crm-login-form-inner
+   block (logo + title + form + foot link) is reused as-is so
+   future toggles between centered and split-screen layouts
+   only touch the outer wrapper.
+   ============================================================ */
+
+.crm-root .crm-login-center {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  background: var(--bg);
+}
+
+/* ============================================================
+   Login — split-screen layout (legacy, kept for future reuse)
+   ============================================================
+   Two equal-height panes side-by-side. The form pane is on the
+   left (preferred reading order, immediate focus on the action);
+   the brand pane on the right carries the marketing weight. The
+   right pane is hidden on narrow viewports so the form stays
+   readable on phones.
+   ============================================================ */
+
+.crm-root .crm-login-split {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) 1.15fr;
+  background: var(--bg);
+}
+
+@media (max-width: 960px) {
+  .crm-root .crm-login-split {
+    grid-template-columns: 1fr;
+  }
+  .crm-root .crm-login-pane-brand {
+    display: none;
+  }
+}
+
+/* ----- shared pane ----- */
+.crm-root .crm-login-pane {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 56px;
+  min-height: 100vh;
+}
+
+@media (max-width: 600px) {
+  .crm-root .crm-login-pane {
+    padding: 32px 24px;
+  }
+}
+
+/* ----- LEFT pane: sign-in card ----- */
+.crm-root .crm-login-pane-form {
+  background: var(--surface);
+}
+.crm-root .crm-login-form-inner {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Brand mark above the form. Logo + tiny attribution tagline
+   ("by unntangle"), matching the sidebar's brand block so the
+   identity stays consistent across surfaces. The whole stack
+   is centered on its own axis so the tagline reads as sitting
+   directly under the logo rather than off to one side. */
+.crm-root .crm-login-brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 28px;
+  align-self: center;
+}
+.crm-root .crm-login-brand-logo {
+  height: 36px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+.crm-root .crm-login-brand-tagline {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+.crm-root .crm-login-brand-tagline-accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.crm-root .crm-login-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  line-height: 1.15;
+  text-align: center;
+}
+.crm-root .crm-login-sub {
+  margin: 6px 0 28px;
+  color: var(--text-dim);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ----- form fields (login-scoped, so the rest of the CRM keeps
+   its plainer .crm-input / .crm-form-group styles) ----- */
+.crm-root .crm-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.crm-root .crm-login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.crm-root .crm-login-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Input wrapper hosts both the leading icon and the trailing
+   reveal toggle. The input fills the remaining space and gets
+   left/right padding so its text doesn't sit under the icons. */
+.crm-root .crm-login-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.crm-root .crm-login-input-wrap:focus-within {
+  border-color: var(--accent);
+  background: var(--surface);
+  /* Subtle focus ring — thin halo, low opacity. */
+  box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+}
+.crm-root .crm-login-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+.crm-root .crm-login-input-wrap:focus-within .crm-login-input-icon {
+  color: var(--text-dim);
+}
+.crm-root .crm-login-input {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 14px 12px 40px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+}
+.crm-root .crm-login-input::placeholder {
+  color: var(--text-faint);
+}
+/* Password fields reserve room on the right for the eye toggle. */
+.crm-root .crm-login-input-wrap:has(.crm-login-input-toggle)
+  .crm-login-input {
+  padding-right: 44px;
+}
+.crm-root .crm-login-input-toggle {
+  position: absolute;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color 0.12s, background 0.12s;
+}
+.crm-root .crm-login-input-toggle:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ----- Remember me + Forgot password row ----- */
+.crm-root .crm-login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 2px;
+}
+.crm-root .crm-login-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+.crm-root .crm-login-check input[type='checkbox'] {
+  /* Native checkbox styled minimally — keeps native a11y
+     semantics and form submission behaviour. */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition: background 0.12s, border-color 0.12s;
+}
+.crm-root .crm-login-check input[type='checkbox']:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.crm-root .crm-login-check input[type='checkbox']:checked::after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+.crm-root .crm-login-forgot {
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.12s;
+}
+.crm-root .crm-login-forgot:hover {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ----- error pill ----- */
+.crm-root .crm-login-error {
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 25%, transparent);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-top: -2px;
+}
+
+/* ----- submit ----- */
+.crm-root .crm-login-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 16px;
+  margin-top: 6px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.06s;
+}
+.crm-root .crm-login-submit:hover {
+  background: var(--accent-hover);
+}
+.crm-root .crm-login-submit:active {
+  transform: translateY(1px);
+}
+.crm-root .crm-login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ----- foot link beneath the form ----- */
+.crm-root .crm-login-foot {
+  margin: 24px 0 0;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+}
+.crm-root .crm-login-foot a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+.crm-root .crm-login-foot a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ----- RIGHT pane: brand / marketing panel -----
+   Deep ink background with a soft radial highlight in the top-right
+   so the surface has motion without being noisy. A massive
+   semi-transparent wordmark sits behind the content as a watermark. */
+.crm-root .crm-login-pane-brand {
+  background:
+    radial-gradient(
+      ellipse at top right,
+      rgba(56, 189, 248, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at bottom left,
+      rgba(99, 102, 241, 0.14),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0b1220 0%, #060912 100%);
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+/* Decorative wordmark. Huge, low-opacity, italic-ish via heavy
+   letter-spacing, rotated slightly so it reads as artwork rather
+   than a label. Positioned absolutely so the foreground content
+   sits on top of it. */
+.crm-root .crm-login-watermark {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  font-size: clamp(180px, 26vw, 360px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.crm-root .crm-login-brand-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 520px;
+  width: 100%;
+}
+.crm-root .crm-login-brand-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.crm-root .crm-login-brand-heading {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #fff;
+}
+.crm-root .crm-login-brand-accent {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.crm-root .crm-login-brand-lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(248, 250, 252, 0.72);
+  max-width: 460px;
+}
+
+/* Stat strip — a single inline metric with a coloured numeral. */
+.crm-root .crm-login-brand-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+.crm-root .crm-login-brand-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+.crm-root .crm-login-brand-stat-label {
+  font-size: 13px;
+  color: rgba(248, 250, 252, 0.78);
+  line-height: 1.4;
+  max-width: 280px;
+}
+
+/* ----- testimonial / quote card ----- */
+.crm-root .crm-login-brand-quote {
+  margin: 0;
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  /* Push the quote toward the bottom of the available space
+     when the content column is taller than the headline + stat,
+     so the layout reads as "hero up top, social proof at the
+     bottom" — similar to uVOiZ. */
+  margin-top: auto;
+}
+.crm-root .crm-login-brand-quote-text {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(248, 250, 252, 0.92);
+  font-style: normal;
+}
+.crm-root .crm-login-brand-quote-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(248, 250, 252, 0.7);
+}
+.crm-root .crm-login-brand-quote-meta strong {
+  display: block;
+  color: #fff;
+  font-weight: 600;
+}
+.crm-root .crm-login-brand-quote-role {
+  display: block;
+  font-size: 12px;
+  color: rgba(248, 250, 252, 0.55);
+  margin-top: 1px;
+}
+.crm-root .crm-login-brand-quote-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 /* ----- upload widget ----- */

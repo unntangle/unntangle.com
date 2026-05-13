@@ -2,12 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { crmFetch, crmPath } from '../lib/client-fetch';
 
 export default function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -40,40 +43,97 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="crm-form-group">
-        <label className="crm-label" htmlFor="email">
-          Email
+    <form onSubmit={handleSubmit} className="crm-login-form">
+      {/* Email */}
+      <div className="crm-login-field">
+        <label className="crm-login-label" htmlFor="email">
+          Email address
         </label>
-        <input
-          id="email"
-          type="email"
-          className="crm-input"
-          autoComplete="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="crm-login-input-wrap">
+          <Mail
+            size={16}
+            strokeWidth={1.75}
+            className="crm-login-input-icon"
+            aria-hidden="true"
+          />
+          <input
+            id="email"
+            type="email"
+            className="crm-login-input"
+            placeholder="you@company.com"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="crm-form-group">
-        <label className="crm-label" htmlFor="password">
+
+      {/* Password (with show/hide toggle) */}
+      <div className="crm-login-field">
+        <label className="crm-login-label" htmlFor="password">
           Password
         </label>
-        <input
-          id="password"
-          type="password"
-          className="crm-input"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="crm-login-input-wrap">
+          <Lock
+            size={16}
+            strokeWidth={1.75}
+            className="crm-login-input-icon"
+            aria-hidden="true"
+          />
+          <input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            className="crm-login-input"
+            placeholder="••••••••"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* Reveal toggle. We swap the icon (not a separate
+              "Show"/"Hide" label) so the field stays compact. */}
+          <button
+            type="button"
+            className="crm-login-input-toggle"
+            onClick={() => setShowPassword((v) => !v)}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            {showPassword ? (
+              <EyeOff size={16} strokeWidth={1.75} aria-hidden="true" />
+            ) : (
+              <Eye size={16} strokeWidth={1.75} aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </div>
-      {error && <div className="crm-error">{error}</div>}
+
+      {/* Row: Remember me + Forgot password.
+          "Forgot password" is a mailto for now — there's no
+          reset flow yet, and a dead link would be worse than
+          one that opens an email draft to the admin. */}
+      <div className="crm-login-row">
+        <label className="crm-login-check">
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+          />
+          <span>Remember me</span>
+        </label>
+        <a
+          className="crm-login-forgot"
+          href="mailto:hello@unntangle.com?subject=uFLOW%20password%20reset"
+        >
+          Forgot password?
+        </a>
+      </div>
+
+      {error && <div className="crm-login-error">{error}</div>}
+
       <button
         type="submit"
-        className="crm-btn"
-        style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}
+        className="crm-login-submit"
         disabled={loading}
       >
         {loading ? 'Signing in…' : 'Sign in'}
