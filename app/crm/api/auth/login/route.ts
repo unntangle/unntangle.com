@@ -28,10 +28,10 @@ export async function POST(req: NextRequest) {
   }
 
   const { data, error } = await supabase()
-    .from('crm_users')
+    .from('uflow_users')
     .select('*')
     .eq('email', email.toLowerCase().trim())
-    .maybeSingle<CrmUser>();
+    .maybeSingle<CrmUser & { client_id: string | null }>();
 
   if (error) {
     console.error('[login] db error', error);
@@ -58,6 +58,10 @@ export async function POST(req: NextRequest) {
     email: data.email,
     name: data.name,
     role: data.role,
+    // Only carry client_id for 'client' role sessions — the field
+    // is meaningless for admin/artist and we don't want it in their
+    // JWTs (smaller payload, less leakage if a JWT is ever logged).
+    clientId: data.role === 'client' && data.client_id ? data.client_id : undefined,
   });
 
   return NextResponse.json({ redirect: dashboardPathFor(data.role) });

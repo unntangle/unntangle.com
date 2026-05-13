@@ -26,13 +26,13 @@ type ApprovedModel = {
 
 async function loadModel(slug: string): Promise<ApprovedModel | null> {
   const { data } = await supabase()
-    .from('crm_projects')
+    .from('uflow_projects')
     .select(
-      'name, approved_glb_url, updated_at, client:crm_clients!inner(slug)'
+      'name, approved_glb_url, updated_at, client:uflow_clients!inner(slug)'
     )
     .eq('slug', slug)
     .eq('status', 'approved')
-    .eq('crm_clients.slug', 'officemate')
+    .eq('uflow_clients.slug', 'officemate')
     .maybeSingle();
 
   if (!data || !data.approved_glb_url) return null;

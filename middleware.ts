@@ -12,11 +12,19 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Route crm.unntangle.com/* → /crm/* (same pattern as officemate).
-  // The CRM lives under app/crm/ with its own layout, auth, and API
-  // routes. We rewrite (not redirect) so the URL bar stays clean.
-  if (host.startsWith('crm.')) {
-    if (!url.pathname.startsWith('/crm')) {
+  // Route uflow.unntangle.com/* → /crm/* (same pattern as officemate).
+  // The app source still lives under app/crm/ — only the public-facing
+  // subdomain is renamed. We rewrite (not redirect) so the URL bar
+  // stays clean.
+  //
+  // Exception: static files we ship under /public/uflow/ (logo, favicons,
+  // etc.) must be served as-is, not rewritten to /crm/uflow/* (which
+  // doesn't exist). We detect those by extension. _next/* is already
+  // excluded by the matcher below, but our own assets in /public/ are not.
+  if (host.startsWith('uflow.')) {
+    const isStaticAsset = /\.(webp|png|jpe?g|gif|svg|ico|webmanifest|woff2?|ttf|otf|css|js|map|txt|xml)$/i
+      .test(url.pathname);
+    if (!url.pathname.startsWith('/crm') && !isStaticAsset) {
       url.pathname = `/crm${url.pathname}`;
       return NextResponse.rewrite(url);
     }

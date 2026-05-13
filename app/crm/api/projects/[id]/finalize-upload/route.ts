@@ -2,30 +2,33 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireApiUser } from '../../../../lib/auth';
 import { supabase } from '../../../../lib/supabase';
 import { processArtistZipFromUrl } from '../../../../lib/zip';
+import { isOurPublicUrl } from '../../../../lib/r2';
 
 export const runtime = 'nodejs';
-// Long-running because we still extract + re-upload pieces to Cloudinary.
-// The original zip is already on Cloudinary (uploaded direct from browser),
-// so this server only does the extraction step.
+// Long-running because we fetch the zip back from R2 and extract
+// + re-upload its pieces. The zip is already on R2 (uploaded
+// direct from the browser), so this server only handles the
+// extraction step.
 export const maxDuration = 300;
 
 // ============================================================
 // POST /api/projects/:id/finalize-upload
 // Body: { zip_url: string }
 //
-// Called AFTER the browser has uploaded the .zip directly to
-// Cloudinary. We:
-//   1. Verify the project exists and is in a state that accepts uploads
+// Called AFTER the browser has PUT the .zip directly to R2.
+// We:
+//   1. Verify the project exists and isn't already approved
 //   2. Compute next revision number
-//   3. Fetch the zip from Cloudinary, extract its parts, push each
-//      part back to Cloudinary under .../uploads/rev-N/
+//   3. Fetch the zip from R2, extract its parts, push each
+//      part back to R2 under .../uploads/rev-N/
 //   4. Update project row → qa_pending
 //
-// Why split from upload-signature?
-//   The signature endpoint is hit ONCE before upload — fast.
-//   This endpoint runs AFTER upload — slow (downloads, parses zip,
-//   uploads 3 files). Splitting lets the signing path stay snappy
-//   and lets us safely set a long maxDuration just for the heavy step.
+// Why split from upload-sign?
+//   - The sign endpoint is hit ONCE before upload — fast.
+//   - This endpoint runs AFTER upload — slow (downloads, parses
+//     zip, uploads 3 files). Splitting lets the signing path stay
+//     snappy and lets us safely set a long maxDuration just for
+//     the heavy step.
 // ============================================================
 
 export async function POST(
@@ -44,17 +47,20 @@ export async function POST(
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
   const { zip_url } = body;
-  if (!zip_url || !/^https:\/\/res\.cloudinary\.com\//.test(zip_url)) {
+  if (!zip_url || !isOurPublicUrl(zip_url)) {
+    // Refuse arbitrary URLs — only our R2 bucket is trusted.
+    // (Legacy Cloudinary URLs are rejected on purpose; existing
+    // approved rows aren't re-finalised through here.)
     return NextResponse.json(
-      { error: 'zip_url must be a Cloudinary URL.' },
+      { error: 'zip_url must be an R2 URL from our bucket.' },
       { status: 400 }
     );
   }
 
   // ----- 1. Load project + client -----
   const { data: project, error: pErr } = await supabase()
-    .from('crm_projects')
-    .select('id, slug, status, revision_count, client:crm_clients(slug)')
+    .from('uflow_projects')
+    .select('id, slug, status, revision_count, client:uflow_clients(slug)')
     .eq('id', id)
     .maybeSingle();
 
@@ -101,7 +107,7 @@ export async function POST(
 
   // ----- 3. Update project row -----
   const { error: uErr } = await supabase()
-    .from('crm_projects')
+    .from('uflow_projects')
     .update({
       status: 'qa_pending',
       revision_count: nextRevision,

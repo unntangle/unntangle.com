@@ -1,7 +1,7 @@
 # Unntangle CRM — Setup
 
 This is the internal CRM that lives at **crm.unntangle.com**. It coordinates
-3D Artists and QA reviewers for client projects (currently: OfficeMate).
+3D Artists and QA reviewers for client projects (currently: Officemate).
 
 Tech: Next.js 16 (this same monorepo), Supabase (Postgres + auth users),
 Cloudinary (zip + GLB + feedback image storage), signed-cookie sessions.
@@ -27,7 +27,7 @@ npm install -D @types/adm-zip @types/bcryptjs
 4. Click **Run**
 
 This creates: `crm_users`, `crm_clients`, `crm_projects`,
-`crm_feedback_images`, plus seed rows for the OfficeMate client, the
+`crm_feedback_images`, plus seed rows for the Officemate client, the
 existing Jupiter chair project, and two demo users.
 
 ### 1.3 Create a Cloudinary account
@@ -194,7 +194,7 @@ app/crm/
 ├── components/
 │   ├── NavBar.tsx
 │   ├── StatusBadge.tsx
-│   └── ModelViewer.tsx         ← Google's <model-viewer>, same as OfficeMate
+│   └── ModelViewer.tsx         ← Google's <model-viewer>, same as Officemate
 ├── lib/
 │   ├── supabase.ts             ← server-side client + types
 │   ├── cloudinary.ts           ← upload helpers + folder layout

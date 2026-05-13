@@ -42,7 +42,8 @@ export type CrmUser = {
   email: string;
   password_hash: string;
   name: string;
-  role: '3d_artist' | 'qa' | 'admin';
+  role: '3d_artist' | 'admin' | 'client';
+  client_id: string | null;
   created_at: string;
 };
 
@@ -53,7 +54,32 @@ export type CrmClient = {
   created_at: string;
 };
 
-export type ProjectStatus = 'draft' | 'qa_pending' | 'rejected' | 'approved';
+export type ProjectStatus =
+  | 'draft'
+  | 'qa_pending'
+  | 'rejected'
+  | 'wip'
+  // Admin has approved the model; waiting for the client's final
+  // sign-off in /client/qa/[id]. Public viewer at
+  // officemate.unntangle.com/<slug> does NOT show models in this
+  // state — only 'approved' is published.
+  | 'client_review'
+  | 'approved';
+
+// ============================================================
+// Client-rejection feedback (separate table from artist feedback)
+// ============================================================
+// When a client rejects in /client/qa/[id], the rejection lives
+// in uflow_client_feedback_images (not uflow_feedback_images),
+// so the source of feedback is unambiguous at the data layer.
+export type CrmClientFeedbackImage = {
+  id: string;
+  project_id: string;
+  revision_number: number;
+  image_url: string;
+  uploaded_by: string;
+  created_at: string;
+};
 
 export type CrmProject = {
   id: string;
@@ -67,6 +93,8 @@ export type CrmProject = {
   fbx_url: string | null;
   gltf_url: string | null;
   approved_glb_url: string | null;
+  assigned_to: string | null;
+  brief: string | null;
   created_by: string | null;
   created_at: string;
   updated_at: string;
@@ -85,4 +113,12 @@ export type CrmFeedbackImage = {
 // Joined view used by the dashboards (project + its client)
 export type ProjectWithClient = CrmProject & {
   client: Pick<CrmClient, 'slug' | 'name'>;
+};
+
+export type CrmProjectReference = {
+  id: string;
+  project_id: string;
+  image_url: string;
+  uploaded_by: string | null;
+  created_at: string;
 };

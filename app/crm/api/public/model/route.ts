@@ -23,13 +23,13 @@ export async function GET(req: NextRequest) {
   }
 
   const { data, error } = await supabase()
-    .from('crm_projects')
+    .from('uflow_projects')
     .select(
-      'name, status, approved_glb_url, updated_at, client:crm_clients!inner(slug)'
+      'name, status, approved_glb_url, updated_at, client:uflow_clients!inner(slug)'
     )
     .eq('slug', slug)
     .eq('status', 'approved')
-    .eq('crm_clients.slug', client)
+    .eq('uflow_clients.slug', client)
     .maybeSingle();
 
   if (error) {

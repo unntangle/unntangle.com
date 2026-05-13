@@ -21,7 +21,11 @@ export type SessionPayload = {
   userId: string;
   email: string;
   name: string;
-  role: '3d_artist' | 'qa' | 'admin';
+  role: '3d_artist' | 'admin' | 'client';
+  // Only present on 'client' role sessions — the client brand this
+  // user is scoped to. Used by every /api/client/* route to filter
+  // queries to the user's own brand without trusting client input.
+  clientId?: string;
 };
 
 function getSecret(): Uint8Array {
@@ -73,6 +77,7 @@ export async function getSession(): Promise<SessionPayload | null> {
       email: payload.email as string,
       name: payload.name as string,
       role: payload.role as SessionPayload['role'],
+      clientId: payload.clientId as string | undefined,
     };
   } catch {
     // Signature mismatch, expired, malformed — treat as logged out.

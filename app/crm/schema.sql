@@ -18,7 +18,7 @@ create table if not exists public.crm_users (
 );
 
 -- ============================================================
--- CLIENTS (e.g. "OfficeMate")
+-- CLIENTS (e.g. "Officemate")
 -- Each client = a top-level folder in Cloudinary (officemate/...)
 -- ============================================================
 create table if not exists public.crm_clients (
@@ -89,10 +89,10 @@ create table if not exists public.crm_feedback_images (
 create index if not exists idx_crm_feedback_project on public.crm_feedback_images(project_id, revision);
 
 -- ============================================================
--- SEED: OfficeMate client + Jupiter chair (existing project)
+-- SEED: Officemate client + Jupiter chair (existing project)
 -- ============================================================
 insert into public.crm_clients (slug, name)
-values ('officemate', 'OfficeMate')
+values ('officemate', 'Officemate')
 on conflict (slug) do nothing;
 
 -- Seed the Jupiter project that already exists on disk so the
@@ -141,3 +141,42 @@ alter table public.crm_users           disable row level security;
 alter table public.crm_clients         disable row level security;
 alter table public.crm_projects        disable row level security;
 alter table public.crm_feedback_images disable row level security;
+
+-- ============================================================
+-- MIGRATION (idempotent): role 'qa' → 'admin'
+-- + assigned_to / brief on projects
+-- + crm_project_references table
+-- ============================================================
+
+-- 1) Migrate any existing rows from role 'qa' to 'admin' BEFORE
+--    tightening the check constraint.
+update public.crm_users set role = 'admin' where role = 'qa';
+
+-- 2) Replace the role check constraint so 'qa' is no longer valid.
+alter table public.crm_users drop constraint if exists crm_users_role_check;
+
+alter table public.crm_users
+  add constraint crm_users_role_check
+  check (role in ('3d_artist', 'admin'));
+
+-- 3) Project assignment + brief.
+alter table public.crm_projects
+  add column if not exists assigned_to uuid references public.crm_users(id) on delete set null;
+alter table public.crm_projects
+  add column if not exists brief text;
+
+create index if not exists idx_crm_projects_assigned on public.crm_projects(assigned_to);
+
+-- 4) Reference images attached at job-creation time (admin → artist).
+--    Distinct from crm_feedback_images, which is the rejection-cycle artefact.
+create table if not exists public.crm_project_references (
+  id          uuid primary key default gen_random_uuid(),
+  project_id  uuid not null references public.crm_projects(id) on delete cascade,
+  image_url   text not null,
+  uploaded_by uuid references public.crm_users(id),
+  created_at  timestamptz not null default now()
+);
+
+create index if not exists idx_crm_refs_project on public.crm_project_references(project_id);
+
+alter table public.crm_project_references disable row level security;

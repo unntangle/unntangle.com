@@ -89,7 +89,7 @@ QA decision rule (as specified): submit with ≥1 feedback image → reject; sub
 
 To clean up: `rm -rf app/crm/_components app/crm/api/projects/\[id\]/upload app/crm/api/upload-signature`
 
-## Compatibility with existing OfficeMate site
+## Compatibility with existing Officemate site
 
 The existing `public/officemate/jupiter/index.html` static page still works — Next.js serves static files from `public/` before checking the app router. The seeded Jupiter row in the DB points to that static URL, so it shows up in the CRM dashboard immediately. New models added through the CRM render via the dynamic `app/officemate/[slug]/page.tsx` route.
 

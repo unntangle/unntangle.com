@@ -6,7 +6,7 @@ import { dashboardPathFor } from './lib/auth';
 // Root CRM route. Decides where to send the visitor:
 //  - logged out → /login
 //  - 3d_artist → /artist
-//  - qa        → /qa
+//  - admin     → /admin
 // ============================================================
 
 export default async function CrmRootPage() {

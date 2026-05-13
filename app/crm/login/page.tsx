@@ -11,7 +11,6 @@ export default async function LoginPage() {
   return (
     <div className="crm-login-wrap">
       <div className="crm-login-card">
-        <h1>Unntangle CRM</h1>
         <p>Sign in with your team credentials.</p>
         <LoginForm />
       </div>
