@@ -161,6 +161,11 @@ export default function UsynqLightbox({
                                 )}
                                 <h2 className={styles.captionTitle}>{product.name}</h2>
                             </div>
+                            {typeof product.price === 'number' && (
+                                <p className={styles.captionPrice}>
+                                    ₹{product.price.toLocaleString('en-IN')}
+                                </p>
+                            )}
                             {product.tags.length > 0 && (
                                 <div className={styles.captionTags}>
                                     {product.tags.map((tag) => (

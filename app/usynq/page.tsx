@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import UsynqHero from '@/components/UsynqHero';
+import UsynqBenefits from '@/components/UsynqBenefits';
 import UsynqBrand from '@/components/UsynqBrand';
 
 const SITE_URL =
@@ -108,6 +109,7 @@ export default function UsynqBrandPage() {
             <div style={{ paddingTop: '80px' }}>
                 <UsynqHero />
             </div>
+            <UsynqBenefits />
             <UsynqBrand />
             <Footer />
         </main>

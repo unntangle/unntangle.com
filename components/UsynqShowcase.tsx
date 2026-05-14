@@ -4,7 +4,7 @@ import { Suspense, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { ArrowRight, ChevronUp, ChevronDown, Maximize2 } from 'lucide-react';
+import { ArrowRight, ChevronUp, ChevronDown, Maximize2, Download, Check } from 'lucide-react';
 import {
     usynqCategories,
     usynqProducts,
@@ -177,6 +177,49 @@ function UsynqShowcaseInner() {
             <div className={styles.navbarSpacer} />
 
             {/*
+              * Promo banner — a short, full-width strip pinned directly
+              * below the navbar. It is `position: fixed`, so the category
+              * tabs and the whole product page scroll UP and OVER it.
+              * .bannerSpacer below reserves the banner's height so the
+              * content starts below it, then scrolls up to cover it.
+              *
+              * For the page content to cover the banner cleanly (instead
+              * of the banner showing through), .bodyContainer is given an
+              * opaque background — same trick the sticky tabs already use.
+              */}
+            <div className={styles.promoBanner}>
+                <div className={styles.promoGlowOne} aria-hidden="true" />
+                <div className={styles.promoGlowTwo} aria-hidden="true" />
+                <div className={styles.promoInner}>
+                    <span className={styles.promoBadge}>uSYNQ Smart Living</span>
+                    <h2 className={styles.promoTitle}>
+                        Smarter living, beautifully engineered. The complete uSYNQ range.
+                    </h2>
+                    <div className={styles.promoPerks}>
+                        <span className={styles.promoPerk}>
+                            <Check size={13} strokeWidth={3} className={styles.promoPerkIcon} />
+                            3-Year Warranty
+                        </span>
+                        <span className={styles.promoPerkDivider} aria-hidden="true" />
+                        <span className={styles.promoPerk}>
+                            <Check size={13} strokeWidth={3} className={styles.promoPerkIcon} />
+                            Free Installation
+                        </span>
+                        <span className={styles.promoPerkDivider} aria-hidden="true" />
+                        <span className={styles.promoPerk}>
+                            <Check size={13} strokeWidth={3} className={styles.promoPerkIcon} />
+                            Pan-India Delivery
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Reserves the fixed banner's height in normal flow so the
+                tabs + products start BELOW the banner, then scroll up
+                and over it. */}
+            <div className={styles.bannerSpacer} />
+
+            {/*
               * Sticky Category Tabs — full-bleed band that mirrors the navbar's
               * hide/show animation. When the navbar slides up offscreen on scroll-down,
               * the tabs slide up to take its place (top:80px → top:0). When the user
@@ -187,35 +230,60 @@ function UsynqShowcaseInner() {
                 animate={{ y: navHidden ? -NAVBAR_HEIGHT : 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-                <div className={styles.tabs}>
-                    <button
-                        type="button"
-                        className={`${styles.tab} ${activeFilter === 'all' ? styles.tabActive : ''}`}
-                        onClick={() => handleTabClick('all')}
-                    >
-                        All Products
-                        <span className={styles.tabCount}>{usynqProducts.length}</span>
-                    </button>
-                    {usynqCategories.map((cat) => {
-                        const count = productsByCategory.get(cat.id)?.length ?? 0;
-                        return (
+                <div className={styles.tabsRow}>
+                    {/* Left spacer balances the button width so the tab pill
+                        stays optically centred in the band. */}
+                    <div className={styles.tabsRowSpacer} aria-hidden="true" />
+                    <div className={styles.tabsRowTabs}>
+                        <div className={styles.tabs}>
                             <button
                                 type="button"
-                                key={cat.id}
-                                className={`${styles.tab} ${activeFilter === cat.id ? styles.tabActive : ''}`}
-                                onClick={() => handleTabClick(cat.id)}
+                                className={`${styles.tab} ${activeFilter === 'all' ? styles.tabActive : ''}`}
+                                onClick={() => handleTabClick('all')}
                             >
-                                {cat.label}
-                                <span className={styles.tabCount}>{count}</span>
+                                All Products
+                                <span className={styles.tabCount}>{usynqProducts.length}</span>
                             </button>
-                        );
-                    })}
+                            {usynqCategories.map((cat) => {
+                                const count = productsByCategory.get(cat.id)?.length ?? 0;
+                                return (
+                                    <button
+                                        type="button"
+                                        key={cat.id}
+                                        className={`${styles.tab} ${activeFilter === cat.id ? styles.tabActive : ''}`}
+                                        onClick={() => handleTabClick(cat.id)}
+                                    >
+                                        {cat.label}
+                                        <span className={styles.tabCount}>{count}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className={styles.tabsRowEnd}>
+                        <a
+                            href="/images/uSYNQ/uSYNQ Pricelist Jan 2026.pdf"
+                            download
+                            className={styles.priceListButton}
+                        >
+                            <Download size={15} strokeWidth={2.2} />
+                            <span>Price List</span>
+                        </a>
+                    </div>
                 </div>
             </motion.div>
 
-            {/* Product sections + CTA inside the centred container */}
-            <div className={styles.bodyContainer}>
-                {visibleCategories.map((cat) => {
+            {/* Full-width opaque band wrapping the product sections.
+                The fixed promo banner is full viewport width, so this
+                cover-up surface must also be full width — .bodyContainer
+                alone is capped at 1280px and would let the banner show
+                through on the left/right margins. The band provides the
+                edge-to-edge #fafafa surface + z-index; .bodyContainer
+                inside it just handles the centred max-width column. */}
+            <div className={styles.bodyBand}>
+                {/* Product sections + CTA inside the centred container */}
+                <div className={styles.bodyContainer}>
+                    {visibleCategories.map((cat) => {
                     const items = productsByCategory.get(cat.id) ?? [];
                     return (
                         <div key={cat.id} className={styles.section}>
@@ -259,6 +327,11 @@ function UsynqShowcaseInner() {
                                             </button>
                                             <div className={styles.cardBody}>
                                                 <h3 className={styles.productName}>{product.name}</h3>
+                                                {typeof product.price === 'number' && (
+                                                    <p className={styles.productPrice}>
+                                                        ₹{product.price.toLocaleString('en-IN')}
+                                                    </p>
+                                                )}
                                                 {product.tags.length > 0 && (
                                                     <div className={styles.tagRow}>
                                                         {product.tags.slice(0, 3).map((tag) => (
@@ -277,21 +350,22 @@ function UsynqShowcaseInner() {
                     );
                 })}
 
-                {/* CTA */}
-                <div className={styles.cta}>
-                    <h2 className={styles.ctaTitle}>Planning a smart home or villa project?</h2>
-                    <p className={styles.ctaSubtitle}>
-                        Our team will help you select the right uSYNQ panels, locks and modules
-                        for your space. Get tailored recommendations and early-access pricing.
-                    </p>
-                    <button
-                        type="button"
-                        className={styles.ctaButton}
-                        onClick={() => setContactModalOpen(true)}
-                    >
-                        Talk to our team
-                        <ArrowRight size={16} />
-                    </button>
+                    {/* CTA */}
+                    <div className={styles.cta}>
+                        <h2 className={styles.ctaTitle}>Planning a smart home or villa project?</h2>
+                        <p className={styles.ctaSubtitle}>
+                            Our team will help you select the right uSYNQ panels, locks and modules
+                            for your space. Get tailored recommendations and early-access pricing.
+                        </p>
+                        <button
+                            type="button"
+                            className={styles.ctaButton}
+                            onClick={() => setContactModalOpen(true)}
+                        >
+                            Talk to our team
+                            <ArrowRight size={16} />
+                        </button>
+                    </div>
                 </div>
             </div>
 

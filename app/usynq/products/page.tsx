@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import UsynqShowcase from '@/components/UsynqShowcase';
+import UsynqBenefits from '@/components/UsynqBenefits';
 import { usynqProducts, usynqCategories } from '@/data/usynqProducts';
 
 const SITE_URL =
@@ -112,6 +113,7 @@ export default function UsynqProductsPage() {
             />
             <Navbar />
             <UsynqShowcase />
+            <UsynqBenefits />
             <Footer />
         </main>
     );

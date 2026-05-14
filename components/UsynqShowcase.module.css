@@ -26,8 +26,276 @@
     width: 100%;
 }
 
+/* ============================================================
+ * PROMO BANNER — FIXED full-bleed strip pinned below the navbar
+ *
+ * The banner is `position: fixed` at top:80px (right under the
+ * 80px navbar) and does NOT scroll. The category tabs and the
+ * entire product page scroll UP and OVER it.
+ *
+ * The cover-up works because everything that scrolls over the
+ * banner has an OPAQUE background:
+ *   - .tabsWrapper  — translucent white + blur (already had this)
+ *   - .bodyContainer — solid #fafafa + z-index (added for this)
+ * Without the opaque .bodyContainer the dark banner would show
+ * through the gaps between product cards.
+ *
+ * z-index: 1 — above the page's base layer, below the sticky
+ * tabs (50) and the navbar (1000).
+ *
+ * Background: a high-res Unsplash photo with a dark gradient +
+ * grid + vignette layered on top (see ::before) for readability.
+ * ============================================================ */
+.promoBanner {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 150px;
+    overflow: hidden;
+    isolation: isolate;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    /* The Unsplash photo — a modern, warmly-lit living room — loaded
+       from Unsplash's CDN at 2400px wide for retina sharpness. The
+       dark overlay that keeps the white copy readable is layered on
+       top via ::before. To swap the photo: change the ID after
+       `photo-` in the url() below. */
+    background:
+        url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=85&w=2400')
+        center / cover no-repeat,
+        #0a0a0f;
+}
+
+/* Reserves the fixed banner's height in normal document flow.
+   Without it, the tabs + products would start underneath the
+   banner immediately instead of below it. Matches .promoBanner
+   height exactly. */
+.bannerSpacer {
+    height: 150px;
+    width: 100%;
+}
+
+/* Overlay layer — sits ABOVE the banner's photo background and
+   BELOW the content (.promoInner). Stacks several things in one
+   pseudo-element. NOTE on order: in the CSS `background` shorthand
+   the FIRST layer listed paints on TOP. So the grid lines are
+   listed first — they must sit above the dark gradient or the
+   gradient hides them. */
+.promoBanner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        /* fine geometric grid — listed first so it paints on top */
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        /* soft edge vignette */
+        radial-gradient(
+            ellipse 70% 130% at 50% 50%,
+            transparent 40%,
+            rgba(0, 0, 0, 0.55) 100%
+        ),
+        /* dark gradient overlay — readability + brand tint, painted last (bottom) */
+        linear-gradient(
+            115deg,
+            rgba(12, 14, 26, 0.90) 0%,
+            rgba(10, 10, 15, 0.82) 38%,
+            rgba(8, 9, 13, 0.80) 60%,
+            rgba(10, 20, 24, 0.88) 100%
+        );
+    background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
+}
+
+/* A soft highlight sheen along the top edge — catches the eye and
+   stops the band from looking like a dead black rectangle. */
+.promoBanner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 100%
+    );
+}
+
+/* Decorative glow blobs — soft radial light. Sit ABOVE the photo
+   and dark overlay but BELOW the content, adding colour depth. */
+.promoGlowOne,
+.promoGlowTwo {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.promoGlowOne {
+    width: 420px;
+    height: 420px;
+    top: -220px;
+    left: 6%;
+    background: rgba(99, 102, 241, 0.38);
+}
+
+.promoGlowTwo {
+    width: 380px;
+    height: 380px;
+    bottom: -240px;
+    right: 8%;
+    background: rgba(45, 212, 191, 0.30);
+}
+
+.promoInner {
+    position: relative;
+    z-index: 3;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 0 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.promoBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    /* No uppercase transform — keeps the brand's lowercase 'u' in "uSYNQ". */
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.promoTitle {
+    /* Override h2 from globals.css */
+    font-family: var(--font-title), sans-serif;
+    color: #ffffff;
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 760px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Perks row — a single clean line of assurances. Deliberately
+   restrained to match the rest of the page's monochrome system
+   (hairline borders, muted text, no chunky pills). Thin vertical
+   dividers separate the three items the same way the navbar and
+   tab rail keep things quiet and structured. */
+.promoPerks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.promoPerk {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.78);
+    white-space: nowrap;
+}
+
+/* Check icon sits in a small hairline-bordered circle — the same
+   quiet treatment used elsewhere, just inverted for the dark band. */
+.promoPerkIcon {
+    color: rgba(255, 255, 255, 0.92);
+    flex-shrink: 0;
+}
+
+/* Thin vertical divider between perks. 1px hairline, low opacity —
+   matches the hairline language used across the showcase. */
+.promoPerkDivider {
+    width: 1px;
+    height: 13px;
+    background: rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .promoBanner {
+        height: 124px;
+    }
+
+    .bannerSpacer {
+        height: 124px;
+    }
+
+    .promoInner {
+        padding: 0 18px;
+        gap: 7px;
+    }
+
+    .promoTitle {
+        font-size: 1.15rem;
+    }
+
+    .promoPerk {
+        font-size: 0.74rem;
+        gap: 6px;
+    }
+
+    .promoPerks {
+        gap: 10px;
+    }
+
+    .promoGlowOne,
+    .promoGlowTwo {
+        filter: blur(56px);
+    }
+
+    .promoBanner::before {
+        background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+    }
+}
+
+/* Full-width opaque band that wraps the centred body container.
+   The promo banner above is `position: fixed` and full viewport
+   width; this band is the edge-to-edge cover-up surface that
+   slides over it on scroll. It MUST be full width (not capped at
+   1280px) or the dark banner shows through on the left/right
+   margins. Mirrors how .tabsWrapper is a full-bleed opaque band. */
+.bodyBand {
+    position: relative;
+    z-index: 2;
+    background-color: #fafafa;
+    width: 100%;
+}
+
 /* Body container holds the product sections and CTA, centred.
-   Lives BELOW the sticky tabs so the tabs can be full-bleed. */
+   Lives BELOW the sticky tabs so the tabs can be full-bleed.
+   The opaque cover-up background lives on .bodyBand (its parent)
+   — this element only handles the centred max-width column. */
 .bodyContainer {
     max-width: 1280px;
     margin: 0 auto;
@@ -146,6 +414,76 @@
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 100px;
+}
+
+/* Row that holds the category tab pill and the "Price List" download
+   button. The tabs stay visually centred in the band while the button
+   is pushed hard to the right edge. A zero-width spacer on the left
+   balances the button's width so the tabs don't drift off-centre. */
+.tabsRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    max-width: 1280px;
+    flex-wrap: wrap;
+}
+
+/* Invisible spacer mirroring the button so the centre group stays centred */
+.tabsRowSpacer {
+    flex: 1;
+    min-width: 0;
+}
+
+.tabsRowTabs {
+    display: flex;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.tabsRowEnd {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+/* "Download Price List" button — outlined pill that sits in the sticky
+   tabs band. Light/ghost style so it reads as a secondary action next
+   to the dark active tab, with a subtle fill + lift on hover. */
+.priceListButton {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 15px;
+    background: #fff;
+    color: #0a0a0a;
+    border: 1px solid #0a0a0a;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease,
+        transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.priceListButton:hover {
+    background: #0a0a0a;
+    color: #fff;
+    border-color: #0a0a0a;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.3);
+}
+
+.priceListButton:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .tab {
@@ -412,6 +750,16 @@
     min-height: 2.5em;
 }
 
+.productPrice {
+    /* Override p from globals.css */
+    color: #0a0a0a;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.2;
+}
+
 .tagRow {
     display: flex;
     flex-wrap: wrap;
@@ -650,6 +998,10 @@
     .productName {
         font-size: 0.78rem;
         min-height: 2.2em;
+    }
+
+    .productPrice {
+        font-size: 0.9rem;
     }
 
     .tagPill {
