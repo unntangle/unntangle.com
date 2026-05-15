@@ -263,7 +263,8 @@ function UsynqShowcaseInner() {
                     <div className={styles.tabsRowEnd}>
                         <a
                             href="/images/uSYNQ/uSYNQ Pricelist Jan 2026.pdf"
-                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={styles.priceListButton}
                         >
                             <Download size={15} strokeWidth={2.2} />
