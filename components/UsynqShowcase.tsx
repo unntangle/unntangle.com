@@ -191,9 +191,9 @@ function UsynqShowcaseInner() {
                 <div className={styles.promoGlowOne} aria-hidden="true" />
                 <div className={styles.promoGlowTwo} aria-hidden="true" />
                 <div className={styles.promoInner}>
-                    <span className={styles.promoBadge}>uSYNQ Smart Living</span>
+                    <span className={styles.promoBadge}>uSYNQ</span>
                     <h2 className={styles.promoTitle}>
-                        Smarter living, beautifully engineered. The complete uSYNQ range.
+                        SYNCHRONISED SMART LIVING
                     </h2>
                     <div className={styles.promoPerks}>
                         <span className={styles.promoPerk}>
