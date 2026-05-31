@@ -215,7 +215,7 @@ export default function UbiqSolutionsPage() {
             <section className={`${styles.section} ${styles.hero}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src="/uBIQ/solutions-hero.png"
+                    src="/uBIQ/solutions-hero.webp"
                     alt=""
                     aria-hidden="true"
                     className={styles.heroImage}
