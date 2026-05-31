@@ -60,6 +60,22 @@
   --fw-title: 600;
 }
 
+/* ============================================================
+   uBIQ brand accent — purple. Scoped to uBIQ pages via the
+   .ubiqTheme class on their <main>, so the rest of the
+   Unntangle site keeps its own accent untouched.
+============================================================ */
+.ubiqTheme {
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --primary-glow: rgba(139, 92, 246, 0.15);
+  /* Brand gradient (matches the Unntangle button): blue-violet -> magenta */
+  --ubiq-gradient: linear-gradient(95deg, #6e5bf2 0%, #c44fe0 100%);
+  /* Neutral icon tokens — icons render grey (not brand colour). */
+  --ubiq-icon: #6b7480;
+  --ubiq-icon-bg: #f1f1f4;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

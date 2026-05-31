@@ -20,8 +20,8 @@
 .band {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(160deg, #eaf8fd 0%, #f4fbfe 60%, #ffffff 100%);
-    border: 1px solid rgba(0, 209, 255, 0.18);
+    background: linear-gradient(160deg, #edeff3 0%, #f6f7f9 58%, #ffffff 100%);
+    border: 1px solid rgba(15, 23, 42, 0.1);
     border-radius: 28px;
     padding: 72px 48px;
     text-align: center;
@@ -34,7 +34,7 @@
     transform: translateX(-50%);
     width: 900px;
     height: 600px;
-    background: radial-gradient(ellipse at center, rgba(0, 209, 255, 0.22) 0%, rgba(0, 209, 255, 0.06) 38%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(100, 116, 139, 0.16) 0%, rgba(100, 116, 139, 0.05) 38%, transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -61,13 +61,13 @@
     font-size: var(--fs-section);
     font-weight: var(--fw-title);
     letter-spacing: -0.02em;
-    line-height: 1.12;
+    line-height: 1.18;
     color: #111418;
     margin: 0 0 18px;
 }
 
 .titleAccent {
-    color: var(--primary);
+    color: #7c3aed;
     font-style: italic;
     font-weight: 400;
 }
@@ -89,32 +89,32 @@
 .primaryCta {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 30px;
-    background: #111418;
+    gap: 8px;
+    padding: 11px 24px;
+    background: #111111;
     color: #fff;
     border-radius: 100px;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.25s ease;
 }
 
 .primaryCta:hover {
-    background: #2a2f36;
+    background: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.28);
 }
 
 .secondaryCta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 30px;
+    padding: 11px 24px;
     background: transparent;
     color: #1a1a1a;
     border-radius: 100px;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.25s ease;

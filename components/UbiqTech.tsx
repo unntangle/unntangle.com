@@ -1,11 +1,13 @@
 'use client';
 
+import { CSSProperties } from 'react';
 import { motion, Variants } from 'framer-motion';
+import UbiqNodeField from '@/components/UbiqNodeField';
 import styles from './UbiqTech.module.css';
 
 /* uBIQ Technology Ecosystem — intelligence layer ON proven standards. */
 
-const platforms = ['KNX', 'Matter', 'IoT Devices', 'Sensors', 'AV Systems', 'Climate Systems'];
+const platforms = ['KNX', 'Matter', 'Crestron', 'Control4', 'Lutron', 'Savant', 'Zigbee', 'Z-Wave', 'Thread', 'Apple HomeKit', 'Google Home', 'Amazon Alexa', 'Dolby Atmos', 'Sonos', 'Hikvision', 'Ubiquiti UniFi', 'DALI', 'Philips Hue'];
 
 const REVEAL = { once: true, margin: '-70px 0px' };
 const container: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } } };
@@ -17,6 +19,7 @@ const chip: Variants = {
 export default function UbiqTech() {
     return (
         <section id="technology" className={styles.section}>
+            <UbiqNodeField />
             <div className={styles.glow} aria-hidden="true" />
             <div className={styles.inner}>
                 <motion.span
@@ -47,8 +50,9 @@ export default function UbiqTech() {
                     viewport={REVEAL}
                     transition={{ duration: 0.6, delay: 0.12 }}
                 >
-                    uBIQ is an intelligence layer, not another box on the wall. We build on the
-                    open standards and systems you already trust.
+                    uBIQ is an intelligence layer, not another box on the wall. We design with and
+                    integrate the world&apos;s leading platforms and open standards &mdash; from KNX, Matter
+                    and Crestron to Lutron, Sonos and Hikvision &mdash; so everything works as one.
                 </motion.p>
 
                 <motion.div
@@ -58,8 +62,13 @@ export default function UbiqTech() {
                     whileInView="visible"
                     viewport={REVEAL}
                 >
-                    {platforms.map((p) => (
-                        <motion.span key={p} className={styles.chip} variants={chip}>
+                    {platforms.map((p, i) => (
+                        <motion.span
+                            key={p}
+                            className={styles.chip}
+                            variants={chip}
+                            style={{ '--d': `${(i % 10) * 0.16}s` } as CSSProperties}
+                        >
                             {p}
                         </motion.span>
                     ))}

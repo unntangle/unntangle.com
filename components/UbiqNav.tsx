@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, ArrowRight, Plus, Check, BrainCircuit, Box, LifeBuoy, type LucideIcon } from 'lucide-react';
@@ -16,30 +17,30 @@ import styles from './UbiqNav.module.css';
  * Desktop = hover mega panels; mobile = accordion drawer.
  * ============================================================ */
 
-type MenuLink = { title: string; desc: string };
+type MenuLink = { title: string; desc: string; href?: string };
 type MenuColumn = { head: string; href: string; items: MenuLink[] };
 
 /* ---------- SOLUTIONS — grouped into homepage-style columns ---------- */
 const solutionGroups: MenuColumn[] = [
     {
-        head: 'Living Intelligence', href: '#spaces', items: [
-            { title: 'Smart Home Automation', desc: 'Complete connected living ecosystem designed around lifestyle.' },
-            { title: 'Lighting Intelligence', desc: 'Personalized lighting scenes and intelligent illumination.' },
-            { title: 'Climate Automation', desc: 'Adaptive temperature and comfort experiences.' },
-            { title: 'Smart Curtains & Shades', desc: 'Automated shading responding to lifestyle and environment.' },
+        head: 'Living Intelligence', href: '/ubiq/solutions', items: [
+            { title: 'Smart Home Automation', desc: 'Complete connected living ecosystem designed around lifestyle.', href: '/ubiq/solutions#smart-home-automation' },
+            { title: 'Lighting Intelligence', desc: 'Personalized lighting scenes and intelligent illumination.', href: '/ubiq/solutions#lighting-intelligence' },
+            { title: 'Climate Automation', desc: 'Adaptive temperature and comfort experiences.', href: '/ubiq/solutions#climate-automation' },
+            { title: 'Smart Curtains & Shades', desc: 'Automated shading responding to lifestyle and environment.', href: '/ubiq/solutions#smart-curtains-shades' },
         ],
     },
     {
-        head: 'Media & Security', href: '#spaces', items: [
-            { title: 'Audio & Entertainment', desc: 'Cinema, music and immersive entertainment environments.' },
-            { title: 'Security & Access Intelligence', desc: 'Connected protection and intelligent access.' },
+        head: 'Media & Security', href: '/ubiq/solutions', items: [
+            { title: 'Audio & Entertainment', desc: 'Cinema, music and immersive entertainment environments.', href: '/ubiq/solutions#audio-entertainment' },
+            { title: 'Security & Access Intelligence', desc: 'Connected protection and intelligent access.', href: '/ubiq/solutions#security-access' },
         ],
     },
     {
-        head: 'Infrastructure & Scale', href: '#spaces', items: [
-            { title: 'Energy Intelligence', desc: 'Smart monitoring and optimized consumption.' },
-            { title: 'Networking & Connectivity', desc: 'Reliable infrastructure powering connected spaces.' },
-            { title: 'Commercial Automation', desc: 'Future-ready offices, hospitality and enterprise environments.' },
+        head: 'Infrastructure & Scale', href: '/ubiq/solutions', items: [
+            { title: 'Energy Intelligence', desc: 'Smart monitoring and optimized consumption.', href: '/ubiq/solutions#energy-intelligence' },
+            { title: 'Networking & Connectivity', desc: 'Reliable infrastructure powering connected spaces.', href: '/ubiq/solutions#networking-connectivity' },
+            { title: 'Commercial Automation', desc: 'Future-ready offices, hospitality and enterprise environments.', href: '/ubiq/solutions#commercial-automation' },
         ],
     },
 ];
@@ -49,19 +50,19 @@ const ecosystem: { icon: LucideIcon; name: string; mark?: string; category: stri
     {
         icon: BrainCircuit, name: 'uBIQ', mark: 'Senz', category: 'Adaptive Intelligence Layer',
         desc: 'An intelligent layer that understands routines, preferences, and environments to personalize automation experiences.',
-        img: '/images/service_ai.jpg',
+        img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=70',
         features: ['Behaviour-based automation', 'Occupancy intelligence', 'Lifestyle scenes', 'Adaptive environments'],
     },
     {
         icon: Box, name: 'uBIQ', mark: 'Twin', category: 'Digital Experience Layer',
         desc: 'Interactive digital representation of spaces combining visualization and connected experiences.',
-        img: '/images/service_digital.jpg',
+        img: 'https://images.unsplash.com/photo-1650682009477-52fd77302b78?auto=format&fit=crop&w=900&q=70',
         features: ['3D space visualization', 'Interactive smart controls', 'Digital walkthroughs', 'Future space planning'],
     },
     {
         icon: LifeBuoy, name: 'uBIQ', mark: 'Care+', category: 'Smart Ownership Program',
         desc: 'Continuous care ensuring your intelligent environment stays optimized.',
-        img: '/images/service_smart.jpg',
+        img: 'https://images.unsplash.com/photo-1545259742-b4fd8fea67e4?auto=format&fit=crop&w=900&q=70',
         features: ['System health checks', 'Priority support', 'Maintenance', 'Technology upgrades'],
     },
 ];
@@ -112,7 +113,7 @@ function LinkColumn({ col, onNav }: { col: MenuColumn; onNav: () => void }) {
         <div className={styles.col}>
             <span className={styles.colHead}>{col.head}</span>
             {col.items.map((it) => (
-                <a key={it.title} href={col.href} className={styles.menuLink} onClick={onNav}>
+                <a key={it.title} href={it.href ?? col.href} className={styles.menuLink} onClick={onNav}>
                     <span className={styles.menuLinkTitle}>{it.title}</span>
                     <span className={styles.menuLinkDesc}>{it.desc}</span>
                 </a>
@@ -128,6 +129,7 @@ export default function UbiqNav() {
     const [mobileOpen, setMobileOpen] = useState<MenuKey | null>(null); // mobile accordion
     const [techCat, setTechCat] = useState(0); // active Technologies category (left rail)
     const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const pathname = usePathname();
 
     const { scrollY } = useScroll();
     useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 20));
@@ -169,22 +171,37 @@ export default function UbiqNav() {
                         <Link href="/ubiq" className={styles.link} onMouseEnter={() => setActive(null)}>
                             Home
                         </Link>
-                        <Link href="/about" className={styles.link} onMouseEnter={() => setActive(null)}>
+                        <Link href="/ubiq/about" className={`${styles.link} ${pathname === '/ubiq/about' ? styles.linkActive : ''}`} onMouseEnter={() => setActive(null)}>
                             About
                         </Link>
-                        {topItems.map((t) => (
-                            <button
-                                key={t.key}
-                                type="button"
-                                className={`${styles.link} ${styles.trigger} ${active === t.key ? styles.triggerActive : ''}`}
-                                onMouseEnter={() => openMenu(t.key)}
-                                onFocus={() => openMenu(t.key)}
-                                aria-expanded={active === t.key}
-                            >
-                                {t.label}
-                                <ChevronDown size={14} className={styles.chev} />
-                            </button>
-                        ))}
+                        {topItems.map((t) =>
+                            t.key === 'solutions' ? (
+                                <Link
+                                    key={t.key}
+                                    href="/ubiq/solutions"
+                                    className={`${styles.link} ${styles.trigger} ${(active === t.key || pathname === '/ubiq/solutions') ? styles.triggerActive : ''}`}
+                                    onMouseEnter={() => openMenu(t.key)}
+                                    onFocus={() => openMenu(t.key)}
+                                    onClick={closeAll}
+                                    aria-expanded={active === t.key}
+                                >
+                                    {t.label}
+                                    <ChevronDown size={14} className={styles.chev} />
+                                </Link>
+                            ) : (
+                                <button
+                                    key={t.key}
+                                    type="button"
+                                    className={`${styles.link} ${styles.trigger} ${active === t.key ? styles.triggerActive : ''}`}
+                                    onMouseEnter={() => openMenu(t.key)}
+                                    onFocus={() => openMenu(t.key)}
+                                    aria-expanded={active === t.key}
+                                >
+                                    {t.label}
+                                    <ChevronDown size={14} className={styles.chev} />
+                                </button>
+                            )
+                        )}
                     </div>
 
                     {/* Mega panel — centered via auto-margins (no transform, so the
@@ -238,7 +255,7 @@ export default function UbiqNav() {
                                                                         ))}
                                                                     </span>
                                                                 )}
-                                                                <span className={styles.ecoLink}>Explore layer <ArrowRight size={14} /></span>
+                                                                <span className={styles.ecoLink}>Explore <ArrowRight size={14} /></span>
                                                             </span>
                                                         </a>
                                                     );
@@ -336,7 +353,7 @@ export default function UbiqNav() {
                         transition={{ duration: 0.2 }}
                     >
                         <Link href="/ubiq" className={styles.mobileLink} onClick={closeAll}>Home</Link>
-                        <Link href="/about" className={styles.mobileLink} onClick={closeAll}>About</Link>
+                        <Link href="/ubiq/about" className={`${styles.mobileLink} ${pathname === '/ubiq/about' ? styles.mobileLinkActive : ''}`} onClick={closeAll}>About</Link>
 
                         {topItems.map((t) => (
                             <div key={t.key} className={styles.mAccordion}>
@@ -362,7 +379,7 @@ export default function UbiqNav() {
                                                 <div key={g.head}>
                                                     <span className={styles.mSubGroup}>{g.head}</span>
                                                     {g.items.map((it) => (
-                                                        <a key={it.title} href={g.href} className={styles.mSub} onClick={closeAll}>{it.title}</a>
+                                                        <a key={it.title} href={it.href ?? g.href} className={styles.mSub} onClick={closeAll}>{it.title}</a>
                                                     ))}
                                                 </div>
                                             ))}

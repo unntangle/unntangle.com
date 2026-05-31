@@ -38,7 +38,7 @@ export interface PageHeroProps {
      *  'stacked-strips' = three horizontal capsule strips with optional CTA pill
      *  'collage' = asymmetric two-rectangle collage with offset
      *  'diamond-grid' = four rotated squares forming a tilted cluster */
-    imageLayout?: 'circle' | 'stacked-strips' | 'collage' | 'diamond-grid';
+    imageLayout?: 'circle' | 'stacked-strips' | 'collage' | 'diamond-grid' | 'bento';
     /** Optional CTA shown as a colored gradient pill overlaid on stacked-strips layout. */
     overlayCta?: PageHeroCTA;
 }
@@ -304,6 +304,69 @@ export default function PageHero({
                                     >
                                         {pills[0].text}
                                         {pills[0].icon && <span className={styles.pillIcon}>✦</span>}
+                                    </motion.div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* ====== BENTO LAYOUT (smart-home dashboard) ====== */}
+                        {imageLayout === 'bento' && (
+                            <div className={styles.bentoWrapper}>
+                                <div className={styles.bentoGrid}>
+                                    <motion.div
+                                        className={`${styles.bentoTile} ${styles.bentoTileLarge}`}
+                                        initial={{ opacity: 0, scale: 0.94 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.7, delay: 0.3 }}
+                                    >
+                                        <img src={img(0)} alt={imageAlt} className={styles.bentoImage} />
+                                    </motion.div>
+                                    <motion.div
+                                        className={styles.bentoTile}
+                                        initial={{ opacity: 0, y: -24 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, delay: 0.45 }}
+                                    >
+                                        <img src={img(1)} alt="" aria-hidden="true" className={styles.bentoImage} />
+                                    </motion.div>
+                                    <motion.div
+                                        className={styles.bentoTile}
+                                        initial={{ opacity: 0, y: 24 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, delay: 0.6 }}
+                                    >
+                                        <img src={img(2)} alt="" aria-hidden="true" className={styles.bentoImage} />
+                                    </motion.div>
+                                </div>
+
+                                {pills?.[0] && (
+                                    <motion.div
+                                        className={`${styles.bentoPill} ${styles.bentoPillA}`}
+                                        initial={{ opacity: 0, scale: 0.8, y: -8 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.85, type: 'spring' }}
+                                    >
+                                        <span className={`${styles.bentoDot} ${styles.dotGreen}`} />{pills[0].text}
+                                    </motion.div>
+                                )}
+                                {pills?.[1] && (
+                                    <motion.div
+                                        className={`${styles.bentoPill} ${styles.bentoPillB}`}
+                                        initial={{ opacity: 0, scale: 0.8, x: 12 }}
+                                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: 1.0, type: 'spring' }}
+                                    >
+                                        <span className={`${styles.bentoDot} ${styles.dotAmber}`} />{pills[1].text}
+                                    </motion.div>
+                                )}
+                                {pills?.[2] && (
+                                    <motion.div
+                                        className={`${styles.bentoPill} ${styles.bentoPillC}`}
+                                        initial={{ opacity: 0, scale: 0.8, y: 8 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 1.15, type: 'spring' }}
+                                    >
+                                        <span className={`${styles.bentoDot} ${styles.dotViolet}`} />{pills[2].text}
                                     </motion.div>
                                 )}
                             </div>

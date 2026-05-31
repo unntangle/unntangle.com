@@ -104,6 +104,13 @@
     background: rgba(0, 0, 0, 0.05);
 }
 
+/* Current page indicator */
+.linkActive,
+.linkActive:hover {
+    color: var(--primary);
+    background: rgba(139, 92, 246, 0.12);
+}
+
 .chev {
     opacity: 0.55;
     transition: transform 0.25s ease, opacity 0.25s ease;
@@ -137,9 +144,7 @@
     border: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: 26px;
     box-shadow: 0 28px 70px -18px rgba(15, 23, 42, 0.22), 0 2px 8px rgba(15, 23, 42, 0.05);
-    padding: 32px 36px;
-    overflow-y: auto;
-    max-height: calc(100vh - 96px);
+    padding: 24px 36px;
 }
 
 .mega::-webkit-scrollbar { width: 8px; }
@@ -153,8 +158,8 @@
 .mega_about { max-width: 760px; margin: 0 auto; }
 
 .megaHead {
-    margin-bottom: 24px;
-    padding-bottom: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -212,7 +217,11 @@
     display: block;
     font-size: 0.98rem;
     font-weight: 500;
-    color: var(--primary);
+    background: var(--ubiq-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     letter-spacing: -0.01em;
     margin-bottom: 4px;
     transition: opacity 0.2s ease;
@@ -221,6 +230,7 @@
 .menuLink:hover .menuLinkTitle {
     opacity: 0.65;
     text-decoration: underline;
+    text-decoration-color: var(--primary);
     text-underline-offset: 3px;
 }
 
@@ -253,7 +263,7 @@
 }
 
 .ecoCard:hover {
-    border-color: rgba(0, 209, 255, 0.4);
+    border-color: rgba(139, 92, 246, 0.4);
     transform: translateY(-4px);
     box-shadow: 0 22px 46px rgba(2, 8, 23, 0.16);
 }
@@ -261,7 +271,7 @@
 /* Real-image header */
 .ecoHead {
     position: relative;
-    height: 150px;
+    height: 110px;
     background-color: #e8edf1;
     background-size: cover;
     background-position: center;
@@ -279,25 +289,25 @@
 .ecoIcon {
     position: absolute;
     left: 22px;
-    bottom: -26px;
+    bottom: -22px;
     z-index: 2;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 8px 20px rgba(2, 8, 23, 0.18);
-    color: var(--primary);
+    color: var(--ubiq-icon);
 }
 
 .ecoBody {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 42px 22px 22px;
+    padding: 30px 20px 18px;
 }
 
 .ecoCat {
@@ -315,25 +325,29 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     color: #111418;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .ecoMark {
-    color: var(--primary);
+    background: var(--ubiq-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .ecoDesc {
     font-size: 0.82rem;
     line-height: 1.5;
     color: #5a626b;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .ecoFeatures {
     display: flex;
     flex-direction: column;
-    gap: 9px;
-    margin: 4px 0 18px;
+    gap: 6px;
+    margin: 2px 0 12px;
 }
 
 .ecoFeature {
@@ -346,7 +360,7 @@
 }
 
 .ecoCheck {
-    color: var(--primary);
+    color: var(--ubiq-icon);
     flex-shrink: 0;
 }
 
@@ -451,7 +465,7 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--primary);
-    background: rgba(0, 209, 255, 0.1);
+    background: rgba(139, 92, 246, 0.1);
     padding: 4px 11px;
     border-radius: 100px;
     white-space: nowrap;
@@ -546,8 +560,8 @@
 }
 
 .techPill:hover {
-    border-color: rgba(0, 209, 255, 0.5);
-    background: rgba(0, 209, 255, 0.06);
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.06);
     color: #0a0f14;
 }
 
@@ -624,7 +638,7 @@
     transition: background 0.2s ease;
 }
 
-.aboutItem:hover { background: rgba(0, 209, 255, 0.07); }
+.aboutItem:hover { background: rgba(139, 92, 246, 0.07); }
 
 .aboutLabel {
     font-size: 0.95rem;
@@ -651,7 +665,7 @@
     align-items: center;
     padding: 10px 22px;
     border-radius: 100px;
-    background: #111418;
+    background: #111111;
     color: #fff;
     font-size: 0.86rem;
     font-weight: 600;
@@ -661,9 +675,9 @@
 }
 
 .cta:hover {
-    background: #2a2f36;
+    background: #000000;
     transform: translateY(-1px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
 }
 
 .menuBtn {
@@ -712,6 +726,10 @@
         padding: 15px 4px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         text-decoration: none;
+    }
+
+    .mobileLinkActive {
+        color: var(--primary);
     }
 
     .mAccordion {
@@ -777,7 +795,7 @@
         text-align: center;
         padding: 14px 22px;
         border-radius: 100px;
-        background: #111418;
+        background: #111111;
         color: #fff;
         font-weight: 600;
         text-decoration: none;

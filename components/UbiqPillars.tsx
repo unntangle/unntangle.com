@@ -14,7 +14,8 @@ import styles from './UbiqPillars.module.css';
 
 const pillars = [
     {
-        icon: <Brain size={24} strokeWidth={1.7} />,
+        icon: <Brain size={22} strokeWidth={1.8} />,
+        img: 'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?auto=format&fit=crop&w=900&q=70',
         role: 'The Brain',
         name: 'Senz',
         concept: 'AI behavioural intelligence engine',
@@ -27,7 +28,8 @@ const pillars = [
         message: 'Your space learns you.',
     },
     {
-        icon: <Box size={24} strokeWidth={1.7} />,
+        icon: <Box size={22} strokeWidth={1.8} />,
+        img: 'https://images.unsplash.com/photo-1650682009477-52fd77302b78?auto=format&fit=crop&w=900&q=70',
         role: 'The Digital Layer',
         name: 'Twin',
         concept: '3D digital twin experience platform',
@@ -40,7 +42,8 @@ const pillars = [
         message: 'Your entire space. Alive digitally.',
     },
     {
-        icon: <HeartPulse size={24} strokeWidth={1.7} />,
+        icon: <HeartPulse size={22} strokeWidth={1.8} />,
+        img: 'https://images.unsplash.com/photo-1545259742-b4fd8fea67e4?auto=format&fit=crop&w=900&q=70',
         role: 'The Lifelong Companion',
         name: 'Care+',
         concept: 'Intelligent monitoring & predictive care',
@@ -89,24 +92,28 @@ export default function UbiqPillars() {
                 >
                     {pillars.map((p) => (
                         <motion.div key={p.name} className={styles.card} variants={item}>
-                            <div className={styles.cardGlow} aria-hidden="true" />
-                            <div className={styles.icon}>{p.icon}</div>
-                            <span className={styles.role}>{p.role}</span>
-                            <h3 className={styles.name}>
-                                <span className={styles.nameU}>uBIQ</span> {p.name}
-                            </h3>
-                            <p className={styles.concept}>{p.concept}</p>
+                            <div className={styles.media} style={{ backgroundImage: `url(${p.img})` }}>
+                                <span className={styles.mediaIcon}>{p.icon}</span>
+                            </div>
 
-                            <ul className={styles.features}>
-                                {p.features.map((f) => (
-                                    <li key={f} className={styles.feature}>
-                                        <Check size={15} strokeWidth={2.4} className={styles.check} />
-                                        {f}
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className={styles.body}>
+                                <span className={styles.role}>{p.role}</span>
+                                <h3 className={styles.name}>
+                                    <span className={styles.nameU}>uBIQ</span> {p.name}
+                                </h3>
+                                <p className={styles.concept}>{p.concept}</p>
 
-                            <p className={styles.message}>{p.message}</p>
+                                <ul className={styles.features}>
+                                    {p.features.map((f) => (
+                                        <li key={f} className={styles.feature}>
+                                            <Check size={15} strokeWidth={2.4} className={styles.check} />
+                                            {f}
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <p className={styles.message}>{p.message}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import UbiqNav from '@/components/UbiqNav';
 import Footer from '@/components/Footer';
-import UbiqHero from '@/components/UbiqHero';
+import PageHero from '@/components/PageHero';
 import UbiqIntelligence from '@/components/UbiqIntelligence';
 import UbiqPillars from '@/components/UbiqPillars';
 import UbiqSpaces from '@/components/UbiqSpaces';
+import UbiqAutomation from '@/components/UbiqAutomation';
 import UbiqTech from '@/components/UbiqTech';
 import UbiqModes from '@/components/UbiqModes';
 import UbiqCTA from '@/components/UbiqCTA';
@@ -105,7 +106,7 @@ const ubiqWebpageJsonLd = {
 
 export default function UbiqBrandPage() {
     return (
-        <main>
+        <main className="ubiqTheme">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -125,10 +126,36 @@ export default function UbiqBrandPage() {
                 }}
             />
             <UbiqNav />
-            <UbiqHero />
+            <div style={{ paddingTop: '76px' }}>
+                <PageHero
+                    eyebrow="The Intelligence Layer for Spaces"
+                    titleParts={[
+                        'Intelligent Spaces. ',
+                        { accent: 'Seamless Experiences.' },
+                    ]}
+                    description="uBIQ by Unntangle transforms homes, workplaces and commercial environments into adaptive, connected spaces — through intelligent automation and immersive technologies."
+                    primaryCta={{ label: 'Book Experience', href: '/contact' }}
+                    secondaryCta={{ label: 'Explore Ecosystem', href: '#platforms' }}
+                    image="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=75"
+                    images={[
+                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=75',
+                        'https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&w=700&q=75',
+                        'https://images.unsplash.com/photo-1633194883650-df448a10d554?auto=format&fit=crop&w=700&q=75',
+                    ]}
+                    imageAlt="Intelligent connected living space"
+                    gradient="purple-pink"
+                    imageLayout="bento"
+                    pills={[
+                        { text: 'All secure' },
+                        { text: '22.5° climate' },
+                        { text: 'Evening scene' },
+                    ]}
+                />
+            </div>
             <UbiqIntelligence />
             <UbiqPillars />
             <UbiqSpaces />
+            <UbiqAutomation />
             <UbiqTech />
             <UbiqModes />
             <UbiqCTA />
