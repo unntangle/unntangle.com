@@ -71,6 +71,8 @@ body {
   max-width: 100vw;
   overflow-x: clip;
   /* clip doesn't break position: sticky like hidden does */
+  scroll-padding-top: 90px;
+  /* offset in-page anchor jumps so they clear the fixed header */
   background-color: var(--bg-light);
   color: var(--text-main);
   line-height: 1.5;

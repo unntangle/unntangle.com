@@ -36,6 +36,7 @@
       background: #ffffff;
       --poster-color: #ffffff;
       outline: none;
+      cursor: default;
     }
 
     /* ─── Custom Loading ─── */
@@ -235,8 +236,10 @@
   <!-- Model Viewer -->
   <model-viewer id="viewer" src="/jupiter/Jupiter6.glb" alt="Jupiter 3D Model" auto-rotate auto-rotate-delay="0"
     rotation-per-second="30deg" camera-controls touch-action="pan-y" interaction-prompt="none" shadow-intensity="1"
-    shadow-softness="1" exposure="1" environment-image="neutral" camera-orbit="45deg 75deg auto"
-    min-camera-orbit="auto auto 5%" max-camera-orbit="auto auto 300%" interpolation-decay="100">
+    shadow-softness="1" exposure="1" environment-image="legacy" camera-orbit="45deg 75deg auto"
+    min-camera-orbit="auto auto 85%" max-camera-orbit="auto auto 120%"
+    min-field-of-view="35deg" max-field-of-view="45deg"
+    interpolation-decay="100">
     <!-- Loading -->
     <div class="loading-overlay" slot="poster" id="loadingOverlay">
       <img src="/jupiter/officemate-logo.webp" alt="Loading" class="loader-logo">
@@ -326,6 +329,21 @@
       progressBar.style.width = '100%';
       loaderText.textContent = 'Ready';
       setTimeout(() => loadingOverlay.classList.add('loaded'), 300);
+
+      // Force standard default black arrow cursor directly onto shadow root canvas!
+      const canvas = viewer.shadowRoot ? viewer.shadowRoot.querySelector('canvas') : null;
+      if (canvas) {
+        canvas.style.cursor = 'default';
+        viewer.addEventListener('pointerdown', () => {
+          canvas.style.cursor = 'default';
+        });
+        const restoreDefault = () => {
+          canvas.style.cursor = 'default';
+        };
+        viewer.addEventListener('pointerup', restoreDefault);
+        viewer.addEventListener('pointercancel', restoreDefault);
+        viewer.addEventListener('pointerleave', restoreDefault);
+      }
     });
 
     // Auto Rotate

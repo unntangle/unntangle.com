@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
 import Products from "@/components/Products";
+import BrandEcosystem from "@/components/BrandEcosystem";
 import Stats from "@/components/Stats";
 import TechStack from "@/components/TechStack";
 import Industries from "@/components/Industries";
@@ -139,6 +140,7 @@ export default function Home() {
       </div>
       <Services />
       <Products />
+      <BrandEcosystem />
       <Stats />
       <TechStack />
       <Industries />

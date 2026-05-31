@@ -9,12 +9,9 @@ import { blogsData } from "@/data/blogs";
  *   1. Static marketing pages
  *   2. Dynamic /services/[slug] pages (one per servicesData entry)
  *   3. Dynamic /blog/[slug] pages (one per blogsData entry)
- *   4. uSYNQ brand & products pages
- *   5. Legal pages
+ *   4. Legal pages
  *
  * Notes on policy:
- *   - We do NOT include the deprecated /shop/usynq* paths — middleware
- *     308-redirects them, so they shouldn't appear as canonical URLs.
  *   - We do NOT include /officemate/* — that subtree is served on the
  *     officemate.unntangle.com host via middleware rewrite, and would
  *     have its own sitemap there.
@@ -68,16 +65,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.6,
         },
         {
-            url: `${SITE_URL}/usynq`,
+            url: `${SITE_URL}/ubiq`,
             lastModified: now,
             changeFrequency: "monthly",
             priority: 0.9,
-        },
-        {
-            url: `${SITE_URL}/usynq/products`,
-            lastModified: now,
-            changeFrequency: "weekly",
-            priority: 0.8,
         },
     ];
 

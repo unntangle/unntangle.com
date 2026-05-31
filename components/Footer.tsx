@@ -36,15 +36,20 @@ export default function Footer() {
                 <div className={styles.container}>
                     {/* Top Bar with Logo */}
                     <div className={styles.topBar}>
-                        <Link href="/" className={styles.logoLink}>
-                            <Image
-                                src="/images/unntangle_logo_white.png"
-                                alt="Unntangle Logo"
-                                width={160}
-                                height={40}
-                                className={styles.footerLogo}
-                            />
-                        </Link>
+                        <div>
+                            <Link href="/" className={styles.logoLink}>
+                                <Image
+                                    src="/images/unntangle_logo_white.png"
+                                    alt="Unntangle Logo"
+                                    width={160}
+                                    height={40}
+                                    className={styles.footerLogo}
+                                />
+                            </Link>
+                            <p style={{ color: '#8b939e', fontSize: '14px', lineHeight: 1.5, marginTop: '14px', maxWidth: '340px' }}>
+                                Building immersive and intelligent experiences since 2023.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Main Links Grid - 4 Columns */}
@@ -53,7 +58,7 @@ export default function Footer() {
                             <h4>Quick Links</h4>
                             <Link href="/about">About us</Link>
                             <Link href="/services">Services</Link>
-                            <Link href="/usynq">uSYNQ</Link>
+                            <Link href="/ubiq">uBIQ</Link>
                             <Link href="/blog">Blog</Link>
                             <Link href="/contact">Contact</Link>
                         </div>
@@ -63,7 +68,11 @@ export default function Footer() {
                             <Link href="/services">Technology</Link>
                             <Link href="/services">Creative Design</Link>
                             <Link href="/services">Growth Marketing</Link>
-                            <Link href="/usynq">Smart Living (uSYNQ)</Link>
+                        </div>
+
+                        <div className={styles.column}>
+                            <h4>Our Brands</h4>
+                            <Link href="/ubiq">uBIQ — Smart Space Automation</Link>
                         </div>
 
                         <div className={styles.column}>

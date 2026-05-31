@@ -99,38 +99,19 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | null>(null);
   const [hidden, setHidden] = useState(false);
 
-  // Route-aware uSYNQ CTA pill:
-  //  - On the brand page (/usynq) → pill becomes "EXPLORE uSYNQ" → /usynq/products
-  //    The label is rendered as two parts so we can keep "EXPLORE" uppercased
-  //    while preserving the mixed-case brand wordmark "uSYNQ".
-  //  - Everywhere else (including /usynq/products) → pill says
-  //    "Smart Living by uSYNQ" → /usynq (brand page)
-  //    Mixed case is preserved here so the brand wordmark renders correctly.
   const pathname = usePathname();
-  // The products page lives at /usynq/products, so we have to detect it BEFORE
-  // (and exclude it from) the broader brand-page check below — otherwise both
-  // would be true and the navbar would show the wrong CTA / wrong Let's Talk
-  // behaviour while the user is browsing products.
-  const isOnShopPage = pathname?.startsWith('/usynq/products') ?? false;
-  const isOnBrandPage =
-    !isOnShopPage && (pathname === '/usynq' || (pathname?.startsWith('/usynq/') ?? false));
-
-  // The whole uSYNQ experience (/usynq + /usynq/products) is a sub-brand,
-  // so the navbar logo swaps to the uSYNQ wordmark while the user is in
-  // that section. Clicking the logo takes them to the uSYNQ brand home,
-  // not the Unntangle root — the convention on sub-brand pages is that
-  // the visible wordmark anchors the section it represents.
-  const isInUsynqSection = isOnBrandPage || isOnShopPage;
-  const logoConfig = isInUsynqSection
+  // On the uBIQ brand page the header logo swaps to the uBIQ wordmark
+  // (the brand owns that section) and links to /ubiq; everywhere else it's
+  // the Unntangle mark linking home. The uBIQ artwork is black-on-transparent
+  // and the navbar is white, so it shows as-is. It's an SVG, hence unoptimized.
+  const isUbiq = pathname === '/ubiq' || (pathname?.startsWith('/ubiq/') ?? false);
+  const logoConfig = isUbiq
     ? {
-        src: '/images/uSYNQ/uSYNQ-brand-logo.webp',
-        alt: 'uSYNQ',
-        href: '/usynq',
-        // uSYNQ wordmark is roughly 3:1; the intrinsic dims are a layout
-        // hint for Next.js — actual on-screen size is set by the
-        // .logoImage CSS class (height: 44px, width: auto).
-        width: 132,
-        height: 44,
+        src: '/uBIQ/uBIQ-logo.svg',
+        alt: 'uBIQ',
+        href: '/ubiq',
+        width: 932,
+        height: 306,
       }
     : {
         src: '/images/unntangle_logo.webp',
@@ -139,20 +120,6 @@ export default function Navbar() {
         width: 120,
         height: 32,
       };
-  const usynqCta = isOnBrandPage
-    ? {
-        // `node` overrides the plain string when present, so the JSX
-        // below can render "EXPLORE" + "uSYNQ" with separate styling
-        // for each half. The string label is kept as a fallback.
-        label: 'EXPLORE uSYNQ',
-        node: (
-          <>
-            EXPLORE&nbsp;<span style={{ textTransform: 'none' }}>uSYNQ</span>
-          </>
-        ),
-        href: '/usynq/products',
-      }
-    : { label: 'Smart Living by uSYNQ', node: null, href: '/usynq' };
 
   // Get the most recent blog post by parsing dates and sorting descending
   const latestBlog = useMemo(() => {
@@ -196,6 +163,7 @@ export default function Navbar() {
               height={logoConfig.height}
               className={styles.logoImage}
               priority
+              unoptimized={isUbiq}
             />
           </Link>
 
@@ -226,43 +194,18 @@ export default function Navbar() {
             </div>
 
             <Link href="/blog">Knowledge Hub</Link>
-            {isOnShopPage ? (
-                /*
-                 * On the shop page — fire a DOM custom event that the
-                 * showcase component (UsynqShowcase) listens for and uses
-                 * to open its contact modal. We use an event rather than
-                 * a shared store / context because:
-                 *   1. The navbar lives outside the showcase tree, so prop
-                 *      drilling is impossible.
-                 *   2. A context would require wiring a provider into the
-                 *      root layout for one button on one page.
-                 *   3. The event is scoped automatically: if no listener
-                 *      is mounted (i.e. user isn't on the shop page) the
-                 *      event simply has no effect. Loose coupling wins.
-                 */
-                <button
-                    type="button"
-                    className={styles.linkAsButton}
-                    onClick={() => {
-                        if (typeof window !== 'undefined') {
-                            window.dispatchEvent(new CustomEvent('usynq:open-contact'));
-                        }
-                    }}
-                >
-                    Let&apos;s Talk
-                </button>
-            ) : (
-                <Link href="/contact">Let&apos;s Talk</Link>
-            )}
+            <Link href="/contact">Let&apos;s Talk</Link>
           </div>
 
-          {/* The CTA pill is always visible — its label and target route
-              switch based on the current page (see usynqCta above).
-              Render the JSX `node` if provided (for mixed-case branding),
-              otherwise fall back to the plain string label. */}
-          <Link href={usynqCta.href} className={styles.ctaBadge}>
-            {usynqCta.node ?? usynqCta.label}
-          </Link>
+          {isUbiq ? (
+            <Link href="/contact" className={styles.ctaBadge}>
+              Book a consultation
+            </Link>
+          ) : (
+            <Link href="/ubiq" className={styles.ctaBadge}>
+              Smart Automation by&nbsp;<span style={{ textTransform: 'none' }}>uBIQ</span>
+            </Link>
+          )}
         </div>
 
         {/* Services Mega Menu */}

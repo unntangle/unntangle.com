@@ -3,20 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import styles from './AboutProducts.module.css';
 
 /**
  * About-page "Our Products" section.
  *
- * Mirrors the home-page Products component's two-category split:
- *   1. SaaS row (3-card grid) — uVOIZ, uDYLR, uSCRIBR
- *   2. uSYNQ hero band — full-width feature for the smart-living
- *      hardware sub-brand
- *
- * uSYNQ is a hardware brand, not SaaS, so it gets its own
- * standalone band rather than competing for attention inside the
- * SaaS grid.
+ * Renders the SaaS product row (3-card grid) — uVOIZ, uDYLR, uSCRIBR.
  *
  * Visual theme is dark (matches About page's existing palette)
  * — distinct from the home-page version which is light.
@@ -101,8 +94,7 @@ export default function AboutProducts() {
                     <span className={styles.sectionBadge}>Our Products</span>
                     <h2 className={styles.title}>What we&apos;ve shipped</h2>
                     <p className={styles.subtitle}>
-                        SaaS tools and a smart-living brand — all in market, all running for
-                        real customers.
+                        SaaS tools — all in market, all running for real customers.
                     </p>
                 </motion.div>
 
@@ -190,67 +182,6 @@ export default function AboutProducts() {
                         );
                     })}
                 </div>
-
-                {/* ============================================================
-                    uSYNQ HERO BAND
-                ============================================================ */}
-                <div className={styles.categoryLabel}>
-                    <span className={styles.categoryEyebrow}>Smart Living Brand</span>
-                    <span className={styles.categoryRule} aria-hidden="true" />
-                </div>
-
-                <motion.div
-                    className={styles.usynqBand}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                >
-                    <Link href="/usynq" className={styles.usynqLink}>
-                        <div className={styles.usynqContent}>
-                            <span className={styles.usynqEyebrow}>
-                                Hardware · Smart Living
-                            </span>
-
-                            <h3 className={styles.usynqWordmark}>
-                                <span className={styles.wordmarkU}>u</span>
-                                <span className={styles.usynqWordmarkRest}>SYNQ</span>
-                            </h3>
-
-                            <p className={styles.usynqDescription}>
-                                Touch switches, TITAN smart panels, biometric door locks and
-                                retrofit modules — engineered for premium homes, villas and
-                                hospitality projects across India.
-                            </p>
-
-                            <div className={styles.usynqHighlights}>
-                                <div className={styles.usynqHighlight}>Touch Switches</div>
-                                <div className={styles.usynqHighlight}>TITAN Panels</div>
-                                <div className={styles.usynqHighlight}>Smart Locks</div>
-                                <div className={styles.usynqHighlight}>Retrofit Modules</div>
-                            </div>
-
-                            <span className={styles.usynqCta}>
-                                Explore the brand <ArrowRight size={18} />
-                            </span>
-                        </div>
-
-                        <div className={styles.usynqVisual}>
-                            <Image
-                                src="/images/usynq_preview.png"
-                                alt="uSYNQ smart living products"
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 50vw"
-                                className={styles.usynqImage}
-                            />
-                            <span
-                                className={`${styles.badge} ${styles.badgeLive} ${styles.usynqBadge}`}
-                            >
-                                LIVE
-                            </span>
-                        </div>
-                    </Link>
-                </motion.div>
             </div>
 
             <div className={styles.backgroundGradients}>

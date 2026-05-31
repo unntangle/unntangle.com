@@ -6,9 +6,6 @@ import type { MetadataRoute } from "next";
  * - Allow everything by default for general crawlers.
  * - Disallow API routes & Next internals (defensive — nothing sensitive
  *   lives there today, but no upside to letting them be indexed).
- * - Disallow legacy /shop/usynq paths — they're 308-redirected to
- *   /usynq/products by middleware, but Google occasionally indexes the
- *   redirect source itself; this keeps the canonical URL clean.
  * - Point to the dynamic sitemap.
  */
 
@@ -22,14 +19,14 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/api/", "/_next/", "/shop/usynq"],
+                disallow: ["/api/", "/_next/"],
             },
             // Optional: be explicit with major bots so Google/Bing/etc. see
             // an unambiguous rule and don't fall back to the wildcard above.
             {
                 userAgent: ["Googlebot", "Bingbot"],
                 allow: "/",
-                disallow: ["/api/", "/_next/", "/shop/usynq"],
+                disallow: ["/api/", "/_next/"],
             },
         ],
         sitemap: `${SITE_URL}/sitemap.xml`,

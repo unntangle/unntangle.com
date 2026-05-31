@@ -1,0 +1,76 @@
+/* uBIQ "What is uBIQ?" — dark premium. */
+
+.section {
+    width: 100%;
+    background: #0b1118;
+    display: block;
+    padding: 104px 24px;
+    box-sizing: border-box;
+}
+
+.inner {
+    max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.endorse {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #cbd2da;
+    margin-bottom: 28px;
+}
+
+.endorseDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 28px;
+}
+
+.accent {
+    color: #38bdf8;
+}
+
+.body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #a1a1aa;
+    margin: 0 auto 18px;
+    max-width: 720px;
+}
+
+.body:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 72px 18px;
+    }
+
+    .body {
+        font-size: 0.98rem;
+    }
+}

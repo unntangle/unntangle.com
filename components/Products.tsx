@@ -3,18 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import styles from './Products.module.css';
 
 /**
  * Home-page "Our Products" section.
  *
- * Renders TWO distinct product categories:
- *   1. SaaS row (3-card grid) — uVOIZ live, uDYLR + uSCRIBR coming soon
- *   2. uSYNQ hero band — full-width feature for the smart-living
- *      hardware sub-brand. Treated separately because uSYNQ is
- *      hardware (touch switches, smart locks, retrofit modules),
- *      not SaaS, and shouldn't sit inside the SaaS grid.
+ * Renders the SaaS product row (3-card grid) — uVOIZ live, uDYLR +
+ * uSCRIBR coming soon.
  *
  * Brand wordmarks use the "u + rest" two-tone treatment to match
  * the navbar's productItemTitleRow style.
@@ -89,17 +85,14 @@ export default function Products() {
                         <span className="tag">Our Products</span>
                         <h2>Built by Unntangle</h2>
                         <p>
-                            SaaS tools and a smart-living brand — shipped, in market, and
-                            quietly running for our customers.
+                            SaaS tools — shipped, in market, and quietly running
+                            for our customers.
                         </p>
                     </div>
-                    {/* No "View all" CTA — there's no /products listing route
-                       yet, and pointing it at /usynq or any single product
-                       would be misleading because we have multiple SaaS
-                       products plus the hardware brand. The cards and uSYNQ
-                       band below already give every product its own
-                       direct entry point, so an extra header CTA isn't
-                       adding navigation, just visual noise. */}
+                    {/* No "View all" CTA — there's no /products listing
+                       route yet, and the cards below already give every
+                       product its own direct entry point, so an extra
+                       header CTA isn't adding navigation, just visual noise. */}
                 </div>
 
                 {/* ============================================================
@@ -177,63 +170,6 @@ export default function Products() {
                         );
                     })}
                 </div>
-
-                {/* ============================================================
-                    uSYNQ HERO BAND — separate full-width feature
-                ============================================================ */}
-                <div className={styles.categoryLabel}>
-                    <span className={styles.categoryEyebrow}>Smart Living Brand</span>
-                    <span className={styles.categoryRule} aria-hidden="true" />
-                </div>
-
-                <motion.div
-                    className={styles.usynqBand}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                >
-                    <Link href="/usynq" className={styles.usynqLink}>
-                        <div className={styles.usynqContent}>
-                            <span className={styles.usynqEyebrow}>Hardware · Smart Living</span>
-
-                            <h3 className={styles.usynqWordmark}>
-                                <span className={styles.wordmarkU}>u</span>
-                                <span className={styles.usynqWordmarkRest}>SYNQ</span>
-                            </h3>
-
-                            <p className={styles.usynqDescription}>
-                                Touch switches, TITAN smart panels, biometric door locks and
-                                retrofit modules — engineered for premium homes, villas and
-                                hospitality projects across India.
-                            </p>
-
-                            <div className={styles.usynqHighlights}>
-                                <div className={styles.usynqHighlight}>Touch Switches</div>
-                                <div className={styles.usynqHighlight}>TITAN Panels</div>
-                                <div className={styles.usynqHighlight}>Smart Locks</div>
-                                <div className={styles.usynqHighlight}>Retrofit Modules</div>
-                            </div>
-
-                            <span className={styles.usynqCta}>
-                                Explore the brand <ArrowRight size={18} />
-                            </span>
-                        </div>
-
-                        <div className={styles.usynqVisual}>
-                            <Image
-                                src="/images/usynq_banner.png"
-                                alt="uSYNQ smart living products"
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 50vw"
-                                className={styles.usynqImage}
-                            />
-                            <span className={`${styles.badge} ${styles.badgeLive} ${styles.usynqBadge}`}>
-                                LIVE
-                            </span>
-                        </div>
-                    </Link>
-                </motion.div>
             </div>
         </section>
     );

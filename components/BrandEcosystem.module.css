@@ -1,0 +1,192 @@
+/* Homepage "Our Ecosystem" — dark premium brand band. */
+
+.section {
+    position: relative;
+    width: 100%;
+    background: #0a0f14;
+    display: block;
+    padding: 110px 24px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.16) 0%, rgba(14, 165, 233, 0.05) 38%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ---- Parent ---- */
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 22px;
+}
+
+.parentName {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #fff;
+    margin: 0 0 12px;
+    padding-left: 0.22em;
+    /* offset the trailing tracking so it reads optically centered */
+}
+
+.parentTag {
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: #8b939e;
+    margin: 0;
+}
+
+.dot {
+    color: #38bdf8;
+    margin: 0 6px;
+}
+
+/* ---- Connector ---- */
+.connector {
+    width: 1px;
+    height: 56px;
+    margin: 26px 0 22px;
+    transform-origin: top center;
+    background: linear-gradient(to bottom, rgba(56, 189, 248, 0.7), rgba(56, 189, 248, 0));
+}
+
+.brandsLabel {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #6b7480;
+    margin-bottom: 30px;
+}
+
+/* ---- Brand grid ---- */
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.brandCard {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 48px 40px;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.brandCard:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.brandGlow {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    height: 320px;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, transparent 68%);
+    pointer-events: none;
+}
+
+.brandLogo {
+    position: relative;
+    z-index: 1;
+    height: 44px;
+    width: auto;
+    margin-bottom: 20px;
+    /* Logo artwork is black-on-transparent; whiten it for the dark card. */
+    filter: brightness(0) invert(1);
+}
+
+.brandTagline {
+    position: relative;
+    z-index: 1;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 16px;
+}
+
+.brandDesc {
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #a1a1aa;
+    margin: 0 0 26px;
+    max-width: 540px;
+}
+
+.brandCta {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 100px;
+    background: #fff;
+    color: #0a0f14;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: gap 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brandCard:hover .brandCta {
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 18px;
+    }
+
+    .brandCard {
+        padding: 40px 24px;
+    }
+}

@@ -1,0 +1,119 @@
+/* uBIQ Industries — dark premium, compact horizontal cards. */
+
+.section {
+    width: 100%;
+    background: #0b1118;
+    display: block;
+    padding: 104px 24px;
+    box-sizing: border-box;
+}
+
+.inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header {
+    max-width: 720px;
+    margin: 0 auto 52px;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 16px;
+}
+
+.title {
+    font-family: var(--font-title), sans-serif;
+    font-size: var(--fs-section);
+    font-weight: var(--fw-title);
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+    color: #fff;
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 540px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 22px 22px;
+    transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.card:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cardTitle {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.cardNote {
+    color: #8b939e;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 72px 18px;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+}

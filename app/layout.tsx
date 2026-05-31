@@ -95,10 +95,14 @@ export const metadata: Metadata = {
         "SEO services",
         "Google Ads",
         "smart home",
+        "home automation",
+        "uBIQ",
+        "Crestron",
+        "Control4",
+        "KNX",
         "smart switches",
         "ZigBee",
         "biometric door lock",
-        "uSYNQ",
         "OfficeMate",
         "Chennai",
         "India",
@@ -208,8 +212,8 @@ const organizationJsonLd = {
     brand: [
         {
             "@type": "Brand",
-            name: "uSYNQ",
-            url: `${SITE_URL}/usynq`,
+            name: "uBIQ",
+            url: `${SITE_URL}/ubiq`,
         },
         {
             "@type": "Brand",
