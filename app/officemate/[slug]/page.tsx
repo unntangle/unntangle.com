@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { supabase } from '../../crm/lib/supabase';
+import { supa as supabase } from '@/lib/crm/supabase';
 
 // ============================================================
 // officemate.unntangle.com/<slug>
@@ -26,19 +26,19 @@ type ApprovedModel = {
 
 async function loadModel(slug: string): Promise<ApprovedModel | null> {
   const { data } = await supabase()
-    .from('uflow_projects')
+    .from('crm_projects')
     .select(
-      'name, approved_glb_url, updated_at, client:uflow_clients!inner(slug)'
+      'name, glb_url, updated_at, client:crm_clients!inner(slug)'
     )
     .eq('slug', slug)
     .eq('status', 'approved')
-    .eq('uflow_clients.slug', 'officemate')
+    .eq('crm_clients.slug', 'officemate')
     .maybeSingle();
 
-  if (!data || !data.approved_glb_url) return null;
+  if (!data || !data.glb_url) return null;
   return {
     name: data.name,
-    glb_url: data.approved_glb_url,
+    glb_url: data.glb_url,
     updated_at: data.updated_at,
   };
 }

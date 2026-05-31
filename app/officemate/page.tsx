@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { supabase } from '../crm/lib/supabase';
+import { supa as supabase } from '@/lib/crm/supabase';
 
 // ============================================================
 // officemate.unntangle.com/  (the root of the subdomain)
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 type Row = {
   name: string;
   slug: string;
-  approved_glb_url: string | null;
+  glb_url: string | null;
   updated_at: string;
 };
 
@@ -27,7 +27,7 @@ export default async function OfficeMateIndex() {
   const { data } = await supabase()
     .from('crm_projects')
     .select(
-      'name, slug, approved_glb_url, updated_at, client:crm_clients!inner(slug)'
+      'name, slug, glb_url, updated_at, client:crm_clients!inner(slug)'
     )
     .eq('status', 'approved')
     .eq('crm_clients.slug', 'officemate')
