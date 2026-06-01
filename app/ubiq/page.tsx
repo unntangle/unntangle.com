@@ -134,7 +134,7 @@ export default function UbiqBrandPage() {
                         { accent: 'Seamless Experiences.' },
                     ]}
                     description="uBIQ by Unntangle transforms homes, workplaces and commercial environments into adaptive, connected spaces — through intelligent automation and immersive technologies."
-                    {/* HIDDEN-CONTACT: primaryCta={{ label: 'Book Experience', href: '/ubiq/contact' }} */}
+                    // HIDDEN-CONTACT: primaryCta={{ label: 'Book Experience', href: '/ubiq/contact' }}
                     secondaryCta={{ label: 'Explore Ecosystem', href: '#platforms' }}
                     image="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=75"
                     images={[
