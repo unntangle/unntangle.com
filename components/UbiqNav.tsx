@@ -46,21 +46,21 @@ const solutionGroups: MenuColumn[] = [
 ];
 
 /* ---------- ECOSYSTEM (experience layers, not products) ---------- */
-const ecosystem: { icon: LucideIcon; name: string; mark?: string; category: string; desc: string; img: string; features: string[] }[] = [
+const ecosystem: { icon: LucideIcon; name: string; mark?: string; category: string; desc: string; img: string; features: string[]; href: string }[] = [
     {
-        icon: BrainCircuit, name: 'uBIQ', mark: 'Senz', category: 'Adaptive Intelligence Layer',
+        icon: BrainCircuit, name: 'uBIQ', mark: 'Senz', category: 'Adaptive Intelligence Layer', href: '/ubiq/senz',
         desc: 'An intelligent layer that understands routines, preferences, and environments to personalize automation experiences.',
         img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=70',
         features: ['Behaviour-based automation', 'Occupancy intelligence', 'Lifestyle scenes', 'Adaptive environments'],
     },
     {
-        icon: Box, name: 'uBIQ', mark: 'Twin', category: 'Digital Experience Layer',
+        icon: Box, name: 'uBIQ', mark: 'Twin', category: 'Digital Experience Layer', href: '/ubiq/twin',
         desc: 'Interactive digital representation of spaces combining visualization and connected experiences.',
         img: 'https://images.unsplash.com/photo-1650682009477-52fd77302b78?auto=format&fit=crop&w=900&q=70',
         features: ['3D space visualization', 'Interactive smart controls', 'Digital walkthroughs', 'Future space planning'],
     },
     {
-        icon: LifeBuoy, name: 'uBIQ', mark: 'Care+', category: 'Smart Ownership Program',
+        icon: LifeBuoy, name: 'uBIQ', mark: 'Care+', category: 'Smart Ownership Program', href: '/ubiq/care-plus',
         desc: 'Continuous care ensuring your intelligent environment stays optimized.',
         img: 'https://images.unsplash.com/photo-1545259742-b4fd8fea67e4?auto=format&fit=crop&w=900&q=70',
         features: ['System health checks', 'Priority support', 'Maintenance', 'Technology upgrades'],
@@ -106,6 +106,12 @@ const topItems: { key: MenuKey; label: string }[] = [
     { key: 'technologies', label: 'Technologies' },
     { key: 'experiences', label: 'Experiences' },
 ];
+
+/* Top items that also navigate to their own page (in addition to opening the mega panel). */
+const triggerHref: Partial<Record<MenuKey, string>> = {
+    solutions: '/ubiq/solutions',
+    technologies: '/ubiq/technologies',
+};
 
 /* Reusable homepage-style link column */
 function LinkColumn({ col, onNav }: { col: MenuColumn; onNav: () => void }) {
@@ -175,11 +181,11 @@ export default function UbiqNav() {
                             About
                         </Link>
                         {topItems.map((t) =>
-                            t.key === 'solutions' ? (
+                            triggerHref[t.key] ? (
                                 <Link
                                     key={t.key}
-                                    href="/ubiq/solutions"
-                                    className={`${styles.link} ${styles.trigger} ${active === t.key ? styles.triggerActive : ''} ${pathname === '/ubiq/solutions' ? styles.linkActive : ''}`}
+                                    href={triggerHref[t.key]!}
+                                    className={`${styles.link} ${styles.trigger} ${active === t.key ? styles.triggerActive : ''} ${pathname === triggerHref[t.key] ? styles.linkActive : ''}`}
                                     onMouseEnter={() => openMenu(t.key)}
                                     onFocus={() => openMenu(t.key)}
                                     onClick={closeAll}
@@ -236,7 +242,7 @@ export default function UbiqNav() {
                                                 {ecosystem.map((e) => {
                                                     const Icon = e.icon;
                                                     return (
-                                                        <a key={e.name + e.category} href="#intelligence" className={styles.ecoCard} onClick={closeAll}>
+                                                        <a key={e.name + e.category} href={e.href} className={styles.ecoCard} onClick={closeAll}>
                                                             <span className={styles.ecoHead} style={{ backgroundImage: `url(${e.img})` }}>
                                                                 <span className={styles.ecoIcon}><Icon size={24} strokeWidth={1.7} /></span>
                                                             </span>
@@ -384,13 +390,18 @@ export default function UbiqNav() {
                                                 </div>
                                             ))}
                                             {t.key === 'ecosystem' && ecosystem.map((e) => (
-                                                <a key={e.name + e.category} href="#intelligence" className={styles.mSub} onClick={closeAll}>
+                                                <a key={e.name + e.category} href={e.href} className={styles.mSub} onClick={closeAll}>
                                                     {e.name}{e.mark ? ` ${e.mark}` : ''} · <span className={styles.mSubMuted}>{e.category}</span>
                                                 </a>
                                             ))}
-                                            {t.key === 'technologies' && technologies.map((g) => (
-                                                <span key={g.group} className={styles.mSubGroup}>{g.group}</span>
-                                            ))}
+                                            {t.key === 'technologies' && (
+                                                <>
+                                                    <Link href="/ubiq/technologies" className={styles.mSub} onClick={closeAll}>View all technologies →</Link>
+                                                    {technologies.map((g) => (
+                                                        <span key={g.group} className={styles.mSubGroup}>{g.group}</span>
+                                                    ))}
+                                                </>
+                                            )}
                                             {t.key === 'experiences' && experienceGroups.map((g) => (
                                                 <div key={g.head}>
                                                     <span className={styles.mSubGroup}>{g.head}</span>
