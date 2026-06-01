@@ -39,7 +39,7 @@ export default function UbiqCTA() {
                         </p>
 
                         <div className={styles.actions}>
-                            <Link href="/contact" className={styles.primaryCta}>
+                            <Link href="/ubiq/contact" className={styles.primaryCta}>
                                 Book a consultation <ArrowRight size={18} />
                             </Link>
                             <Link href="tel:+917092747933" className={styles.secondaryCta}>

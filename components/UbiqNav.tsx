@@ -83,14 +83,14 @@ const technologies: { group: string; blurb: string; items: string[] }[] = [
 /* ---------- EXPERIENCES (lifestyle, replaces industries) ---------- */
 const experienceGroups: MenuColumn[] = [
     {
-        head: 'Residential', href: '#experiences', items: [
+        head: 'Residential', href: '/ubiq/experiences', items: [
             { title: 'Luxury Homes', desc: 'Whole-home intelligence, beautifully unified.' },
             { title: 'Premium Villas', desc: 'Estate-scale automation and effortless control.' },
             { title: 'Smart Apartments', desc: 'Premium connected living, scaled per unit.' },
         ],
     },
     {
-        head: 'Commercial & Hospitality', href: '#experiences', items: [
+        head: 'Commercial & Hospitality', href: '/ubiq/experiences', items: [
             { title: 'Future-ready Offices', desc: 'Productive, efficient, adaptive workplaces.' },
             { title: 'Hotels & Hospitality', desc: 'Guest experiences that anticipate and delight.' },
             { title: 'Experience Centres', desc: 'Immersive showcases that captivate and engage.' },
@@ -111,6 +111,7 @@ const topItems: { key: MenuKey; label: string }[] = [
 const triggerHref: Partial<Record<MenuKey, string>> = {
     solutions: '/ubiq/solutions',
     technologies: '/ubiq/technologies',
+    experiences: '/ubiq/experiences',
 };
 
 /* Reusable homepage-style link column */
@@ -306,7 +307,7 @@ export default function UbiqNav() {
                                                     </div>
                                                     <div className={styles.techPaneFoot}>
                                                         <span className={styles.techPaneFootText}>Don&apos;t see your platform? We integrate more systems on request.</span>
-                                                        <Link href="/contact" className={styles.techPaneFootCta} onClick={closeAll}>Talk to us <ArrowRight size={14} /></Link>
+                                                        <Link href="/ubiq/contact" className={styles.techPaneFootCta} onClick={closeAll}>Talk to us <ArrowRight size={14} /></Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,7 +335,7 @@ export default function UbiqNav() {
                 </div>
 
                 <div className={styles.right}>
-                    <Link href="/contact" className={styles.cta}>
+                    <Link href="/ubiq/contact" className={styles.cta}>
                         Book Experience
                     </Link>
                     <button
@@ -416,7 +417,7 @@ export default function UbiqNav() {
                             </div>
                         ))}
 
-                        <Link href="/contact" className={styles.mobileCta} onClick={closeAll}>
+                        <Link href="/ubiq/contact" className={styles.mobileCta} onClick={closeAll}>
                             Book Experience
                         </Link>
                         <Link href="/" className={styles.mobileHome} onClick={closeAll}>

@@ -83,7 +83,7 @@ export default function Footer() {
                                     <span> / </span>
                                     <Link href="tel:+916379388462">+91 63793 88462</Link>
                                 </div>
-                                <Link href="mailto:info@unntangle.com">info@unntangle.com</Link>
+                                <Link href="mailto:gokul@unntangle.com">gokul@unntangle.com</Link>
                                 <p className={styles.address}>
                                     SBS Office Space, Old No.470, New No.700,<br />
                                     Anna Salai, Nandanam, Chennai 600035.

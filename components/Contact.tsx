@@ -43,8 +43,7 @@ export default function Contact() {
                                     </div>
                                     <div className={styles.itemText}>
                                         <h4>Email Us</h4>
-                                        <p>contact@unntangle.com</p>
-                                        <p>engineering@unntangle.com</p>
+                                        <p>gokul@unntangle.com</p>
                                     </div>
                                 </div>
                                 <div className={styles.contactItem}>

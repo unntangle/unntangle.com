@@ -128,7 +128,7 @@ export default function UbiqAutomation() {
                     viewport={REVEAL}
                     transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                    <Link href="/contact" className={styles.footCta}>
+                    <Link href="/ubiq/contact" className={styles.footCta}>
                         Plan your automation <ArrowRight size={16} />
                     </Link>
                     <Link href="#technology" className={styles.footLink}>

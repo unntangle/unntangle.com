@@ -137,7 +137,7 @@ export default function ContactHero() {
                                     <div className={styles.itemIcon}><Mail size={18} /></div>
                                     <div className={styles.itemText}>
                                         <span>Email</span>
-                                        <p><a href="mailto:info@unntangle.com">info@unntangle.com</a></p>
+                                        <p><a href="mailto:gokul@unntangle.com">gokul@unntangle.com</a></p>
                                     </div>
                                 </div>
                                 <div className={styles.contactItem}>
