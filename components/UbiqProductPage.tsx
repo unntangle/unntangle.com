@@ -434,11 +434,9 @@ export default function UbiqProductPage({ product }: { product: ProductKey }) {
                         </Reveal>
                         <Reveal delay={0.18}>
                             <div className={styles.heroActions}>
-                                {/* HIDDEN-CONTACT:
                                 <Link href="/ubiq/contact" className={styles.primaryCta}>
                                     Book Experience <ArrowRight size={16} />
                                 </Link>
-                                */}
                                 <Link href="/ubiq#platforms" className={styles.secondaryCta}>
                                     Explore the ecosystem
                                 </Link>
@@ -608,7 +606,7 @@ export default function UbiqProductPage({ product }: { product: ProductKey }) {
                                     Tell us about your home, workplace or project and we&apos;ll show you what an intelligent space feels like — no pressure, no jargon.
                                 </p>
                                 <div className={styles.heroActions}>
-                                    {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.primaryCta}>Book Experience <ArrowRight size={16} /></Link> */}
+                                    <Link href="/ubiq/contact" className={styles.primaryCta}>Book Experience <ArrowRight size={16} /></Link>
                                     <Link href="/ubiq" className={styles.secondaryCta}>Back to uBIQ</Link>
                                 </div>
                             </div>

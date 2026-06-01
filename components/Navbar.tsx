@@ -194,11 +194,9 @@ export default function Navbar() {
             </div>
 
             <Link href="/blog">Knowledge Hub</Link>
-            {/* HIDDEN-CONTACT: <Link href="/contact">Let&apos;s Talk</Link> */}
+            <Link href="/contact">Let&apos;s Talk</Link>
           </div>
 
-          {/* HIDDEN-CONTACT: the uBIQ "Book a consultation" badge linked to /contact.
-              While contact is hidden, always show the brand badge instead.
           {isUbiq ? (
             <Link href="/contact" className={styles.ctaBadge}>
               Book a consultation
@@ -207,10 +205,7 @@ export default function Navbar() {
             <Link href="/ubiq" className={styles.ctaBadge}>
               Smart Automation by&nbsp;<span style={{ textTransform: 'none' }}>uBIQ</span>
             </Link>
-          )} */}
-          <Link href="/ubiq" className={styles.ctaBadge}>
-            Smart Automation by&nbsp;<span style={{ textTransform: 'none' }}>uBIQ</span>
-          </Link>
+          )}
         </div>
 
         {/* Services Mega Menu */}

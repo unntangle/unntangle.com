@@ -184,7 +184,7 @@ export default function UbiqTechnologiesPage() {
                         </Reveal>
                         <Reveal delay={0.18}>
                             <div className={styles.actions}>
-                                {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link> */}
+                                <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link>
                                 <Link href="/ubiq/solutions" className={styles.secondary}>Explore solutions</Link>
                             </div>
                         </Reveal>
@@ -297,7 +297,7 @@ export default function UbiqTechnologiesPage() {
                                     <span key={p} className={styles.noteCheck}><Check size={15} strokeWidth={2.6} />{p}</span>
                                 ))}
                             </div>
-                            {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.noteCta}>Talk to us <ArrowRight size={16} /></Link> */}
+                            <Link href="/ubiq/contact" className={styles.noteCta}>Talk to us <ArrowRight size={16} /></Link>
                         </div>
                     </Reveal>
                 </div>
@@ -316,7 +316,7 @@ export default function UbiqTechnologiesPage() {
                                     technologies and unify them into one seamless experience.
                                 </p>
                                 <div className={styles.actions}>
-                                    {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link> */}
+                                    <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link>
                                     <Link href="/ubiq" className={styles.secondary}>Back to uBIQ</Link>
                                 </div>
                             </div>

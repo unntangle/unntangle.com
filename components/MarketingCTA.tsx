@@ -103,7 +103,6 @@ export default function MarketingCTA() {
                             plan within 48 hours.
                         </p>
                         <div className={styles.buttonWrapper}>
-                            {/* HIDDEN-CONTACT:
                             <Link href="/contact" className={styles.primaryBtn}>
                                 Start a project
                                 <ArrowRight size={18} />
@@ -112,7 +111,6 @@ export default function MarketingCTA() {
                             <Link href="/contact" className={styles.secondaryBtn}>
                                 Book a discovery call
                             </Link>
-                            */}
                         </div>
                     </div>
                 </motion.div>

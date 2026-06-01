@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    ArrowRight, ChevronDown, Mail, Phone, MapPin, Home, Building2, Hotel,
+    ArrowRight, ChevronDown, MapPin, Home, Building2, Hotel,
     Clock, ShieldCheck, Sparkles, CheckCircle2, Loader2, AlertCircle,
 } from 'lucide-react';
 import styles from './UbiqContactPage.module.css';
@@ -139,16 +139,8 @@ export default function UbiqContactPage() {
                         </div>
 
                         <div className={styles.details}>
-                            {/* HIDDEN-CONTACT: email + phone
-                            <a className={styles.detail} href="mailto:gokul@unntangle.com">
-                                <span className={styles.detailIcon}><Mail size={17} /></span>
-                                <div className={styles.detailText}><span>Email</span><p>gokul@unntangle.com</p></div>
-                            </a>
-                            <a className={styles.detail} href="tel:+917092747933">
-                                <span className={styles.detailIcon}><Phone size={17} /></span>
-                                <div className={styles.detailText}><span>Call</span><p>+91 70927 47933 · +91 63793 88462</p></div>
-                            </a>
-                            */}
+                            {/* Email and phone intentionally not shown here.
+                                Visitors reach us through the form on this page. */}
                             <a
                                 className={styles.detail}
                                 href="https://www.google.com/maps/search/?api=1&query=SBS+Office+Space+Old+No+470+New+No+700+Anna+Salai+Nandanam+Chennai+600035"

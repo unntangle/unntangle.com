@@ -40,10 +40,8 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
                     >
-                        {/* HIDDEN-CONTACT:
                         <button className="btn btn-primary">Get in touch</button>
                         <button className="btn btn-outline">Book a call</button>
-                        */}
                     </motion.div>
                 </div>
 

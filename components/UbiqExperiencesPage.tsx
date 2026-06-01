@@ -125,7 +125,7 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
                             <li key={h} className={styles.showcaseItem}><Sparkles size={15} strokeWidth={2} />{h}</li>
                         ))}
                     </ul>
-                    {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.showcaseLink}>Book this experience <ArrowRight size={15} /></Link> */}
+                    <Link href="/ubiq/contact" className={styles.showcaseLink}>Book this experience <ArrowRight size={15} /></Link>
                 </div>
             </div>
         </Reveal>
@@ -156,7 +156,7 @@ export default function UbiqExperiencesPage() {
                         </Reveal>
                         <Reveal delay={0.18}>
                             <div className={styles.actions}>
-                                {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link> */}
+                                <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link>
                                 <Link href="/ubiq/solutions" className={styles.secondary}>Explore solutions</Link>
                             </div>
                         </Reveal>
@@ -301,7 +301,7 @@ export default function UbiqExperiencesPage() {
                                     shaped entirely around it.
                                 </p>
                                 <div className={styles.actions}>
-                                    {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link> */}
+                                    <Link href="/ubiq/contact" className={styles.primary}>Book Experience <ArrowRight size={16} /></Link>
                                     <Link href="/ubiq" className={styles.secondary}>Back to uBIQ</Link>
                                 </div>
                             </div>

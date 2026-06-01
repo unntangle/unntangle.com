@@ -56,12 +56,10 @@ export default function ServiceFAQ({ faqs, serviceTitle }: Props) {
                                 Still curious? Drop us a line and a real human responds
                                 within a working day — no chatbots, no SDR funnel.
                             </p>
-                            {/* HIDDEN-CONTACT:
                             <a href="/contact" className={styles.contactLink}>
                                 Talk to the team
                                 <span className={styles.contactArrow}>→</span>
                             </a>
-                            */}
                         </motion.div>
                     </div>
                 </aside>

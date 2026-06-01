@@ -60,7 +60,7 @@ export default function Footer() {
                             <Link href="/services">Services</Link>
                             <Link href="/ubiq">uBIQ</Link>
                             <Link href="/blog">Blog</Link>
-                            {/* HIDDEN-CONTACT: <Link href="/contact">Contact</Link> */}
+                            <Link href="/contact">Contact</Link>
                         </div>
 
                         <div className={styles.column}>

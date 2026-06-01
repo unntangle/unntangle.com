@@ -307,7 +307,7 @@ export default function UbiqNav() {
                                                     </div>
                                                     <div className={styles.techPaneFoot}>
                                                         <span className={styles.techPaneFootText}>Don&apos;t see your platform? We integrate more systems on request.</span>
-                                                        {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.techPaneFootCta} onClick={closeAll}>Talk to us <ArrowRight size={14} /></Link> */}
+                                                        <Link href="/ubiq/contact" className={styles.techPaneFootCta} onClick={closeAll}>Talk to us <ArrowRight size={14} /></Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,7 +335,9 @@ export default function UbiqNav() {
                 </div>
 
                 <div className={styles.right}>
-                    {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.cta}>Book Experience</Link> */}
+                    <Link href="/ubiq/contact" className={styles.cta}>
+                        Book Experience
+                    </Link>
                     <button
                         type="button"
                         className={styles.menuBtn}
@@ -415,11 +417,9 @@ export default function UbiqNav() {
                             </div>
                         ))}
 
-                        {/* HIDDEN-CONTACT:
                         <Link href="/ubiq/contact" className={styles.mobileCta} onClick={closeAll}>
                             Book Experience
                         </Link>
-                        */}
                         <Link href="/" className={styles.mobileHome} onClick={closeAll}>
                             ← Unntangle home
                         </Link>
