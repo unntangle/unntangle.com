@@ -133,6 +133,7 @@ export default function ContactHero() {
                             </p>
 
                             <div className={styles.contactDetails}>
+                                {/* HIDDEN-CONTACT: email + phone
                                 <div className={styles.contactItem}>
                                     <div className={styles.itemIcon}><Mail size={18} /></div>
                                     <div className={styles.itemText}>
@@ -148,6 +149,7 @@ export default function ContactHero() {
                                         <p><a href="tel:+916379388462">+91 63793 88462</a></p>
                                     </div>
                                 </div>
+                                */}
                                 <div className={styles.contactItem}>
                                     <div className={styles.itemIcon}><Globe size={18} /></div>
                                     <div className={styles.itemText}>

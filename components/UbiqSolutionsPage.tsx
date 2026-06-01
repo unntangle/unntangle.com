@@ -296,9 +296,11 @@ export default function UbiqSolutionsPage() {
                                         <div className={styles.rowTech}>
                                             {s.tech.map((t) => <span key={t} className={styles.techTag}>{t}</span>)}
                                         </div>
+                                        {/* HIDDEN-CONTACT:
                                         <Link href="/ubiq/contact" className={styles.rowCta}>
                                             Plan this solution <ArrowRight size={16} />
                                         </Link>
+                                        */}
                                     </motion.div>
 
                                     <motion.div
@@ -333,7 +335,7 @@ export default function UbiqSolutionsPage() {
                         you actually live and work — across any mix of these solutions.
                     </p>
                     <div className={styles.ctaActions}>
-                        <Link href="/ubiq/contact" className={styles.ctaPrimary}>Book a consultation <ArrowRight size={16} /></Link>
+                        {/* HIDDEN-CONTACT: <Link href="/ubiq/contact" className={styles.ctaPrimary}>Book a consultation <ArrowRight size={16} /></Link> */}
                         <Link href="/ubiq#platforms" className={styles.ctaSecondary}>Explore the ecosystem</Link>
                     </div>
                 </motion.div>

@@ -324,9 +324,11 @@ export default function UbiqAboutPage() {
                         </Reveal>
                         <Reveal delay={0.18}>
                             <div className={styles.heroActions}>
+                                {/* HIDDEN-CONTACT:
                                 <Link href="/ubiq/contact" className={styles.heroPrimary}>
                                     Book Experience <ArrowRight size={16} />
                                 </Link>
+                                */}
                                 <Link href="/ubiq" className={styles.heroSecondary}>
                                     Explore uBIQ
                                 </Link>
@@ -592,9 +594,11 @@ export default function UbiqAboutPage() {
                                     possible — no pressure, no jargon.
                                 </p>
                                 <div className={styles.ctaActions}>
+                                    {/* HIDDEN-CONTACT:
                                     <Link href="/ubiq/contact" className={styles.ctaPrimary}>
                                         Book Experience <ArrowRight size={16} />
                                     </Link>
+                                    */}
                                     <Link href="/ubiq" className={styles.ctaSecondary}>
                                         Explore uBIQ
                                     </Link>

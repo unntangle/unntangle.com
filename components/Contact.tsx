@@ -37,6 +37,7 @@ export default function Contact() {
                                         <p>123 Innovation Drive, Silicon Valley, CA 94025, USA</p>
                                     </div>
                                 </div>
+                                {/* HIDDEN-CONTACT: email + phone
                                 <div className={styles.contactItem}>
                                     <div className={styles.iconWrapper}>
                                         <Mail size={24} />
@@ -56,6 +57,7 @@ export default function Contact() {
                                         <p>Mon - Fri, 9am - 6pm PST</p>
                                     </div>
                                 </div>
+                                */}
                             </div>
                         </div>
 

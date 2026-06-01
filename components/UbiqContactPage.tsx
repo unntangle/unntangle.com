@@ -139,6 +139,7 @@ export default function UbiqContactPage() {
                         </div>
 
                         <div className={styles.details}>
+                            {/* HIDDEN-CONTACT: email + phone
                             <a className={styles.detail} href="mailto:gokul@unntangle.com">
                                 <span className={styles.detailIcon}><Mail size={17} /></span>
                                 <div className={styles.detailText}><span>Email</span><p>gokul@unntangle.com</p></div>
@@ -147,6 +148,7 @@ export default function UbiqContactPage() {
                                 <span className={styles.detailIcon}><Phone size={17} /></span>
                                 <div className={styles.detailText}><span>Call</span><p>+91 70927 47933 · +91 63793 88462</p></div>
                             </a>
+                            */}
                             <a
                                 className={styles.detail}
                                 href="https://www.google.com/maps/search/?api=1&query=SBS+Office+Space+Old+No+470+New+No+700+Anna+Salai+Nandanam+Chennai+600035"

@@ -52,12 +52,14 @@ export default function CTABand() {
                         </p>
 
                         <div className={styles.actions}>
+                            {/* HIDDEN-CONTACT:
                             <Link href="/contact" className={styles.primaryCta}>
                                 Start a project <ArrowRight size={18} />
                             </Link>
                             <Link href="/contact" className={styles.secondaryCta}>
                                 <Calendar size={16} /> Book a discovery call
                             </Link>
+                            */}
                         </div>
                     </div>
 

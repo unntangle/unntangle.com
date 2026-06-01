@@ -39,12 +39,14 @@ export default function UbiqCTA() {
                         </p>
 
                         <div className={styles.actions}>
+                            {/* HIDDEN-CONTACT:
                             <Link href="/ubiq/contact" className={styles.primaryCta}>
                                 Book a consultation <ArrowRight size={18} />
                             </Link>
                             <Link href="tel:+917092747933" className={styles.secondaryCta}>
                                 <PhoneCall size={16} /> +91 70927 47933
                             </Link>
+                            */}
                         </div>
                     </div>
                 </motion.div>
