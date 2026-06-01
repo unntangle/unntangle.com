@@ -26,7 +26,7 @@ export default function UbiqIntelligence() {
                     viewport={{ once: true, margin: '-80px 0px' }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>The uBIQ Intelligence Layer</span>
+                    <span className={styles.eyebrow}>The <span style={{ textTransform: 'none' }}>uBIQ</span> Intelligence Layer</span>
                     <h2 className={styles.title}>
                         We don&apos;t just automate your space.{' '}
                         <span className={styles.accent}>We give it intelligence.</span>

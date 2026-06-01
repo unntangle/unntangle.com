@@ -168,7 +168,7 @@ export default function UbiqNav() {
                 {/* Desktop nav + mega panel share one hover region */}
                 <div className={styles.navWrap} onMouseLeave={scheduleClose}>
                     <div className={styles.links}>
-                        <Link href="/ubiq" className={styles.link} onMouseEnter={() => setActive(null)}>
+                        <Link href="/ubiq" className={`${styles.link} ${pathname === '/ubiq' ? styles.linkActive : ''}`} onMouseEnter={() => setActive(null)}>
                             Home
                         </Link>
                         <Link href="/ubiq/about" className={`${styles.link} ${pathname === '/ubiq/about' ? styles.linkActive : ''}`} onMouseEnter={() => setActive(null)}>
@@ -179,7 +179,7 @@ export default function UbiqNav() {
                                 <Link
                                     key={t.key}
                                     href="/ubiq/solutions"
-                                    className={`${styles.link} ${styles.trigger} ${(active === t.key || pathname === '/ubiq/solutions') ? styles.triggerActive : ''}`}
+                                    className={`${styles.link} ${styles.trigger} ${active === t.key ? styles.triggerActive : ''} ${pathname === '/ubiq/solutions' ? styles.linkActive : ''}`}
                                     onMouseEnter={() => openMenu(t.key)}
                                     onFocus={() => openMenu(t.key)}
                                     onClick={closeAll}

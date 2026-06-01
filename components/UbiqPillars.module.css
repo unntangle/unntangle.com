@@ -173,6 +173,10 @@
 }
 
 .nameU {
+    color: #111418;
+}
+
+.nameWord {
     background: var(--ubiq-gradient);
     -webkit-background-clip: text;
     background-clip: text;

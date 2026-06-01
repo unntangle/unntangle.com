@@ -75,7 +75,7 @@ export default function UbiqPillars() {
                     viewport={REVEAL}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>The uBIQ Platform</span>
+                    <span className={styles.eyebrow}>The <span style={{ textTransform: 'none' }}>uBIQ</span> Platform</span>
                     <h2 className={styles.title}>Three layers of intelligence</h2>
                     <p className={styles.subtitle}>
                         The brain that learns, the digital twin that visualises, and the care
@@ -99,7 +99,8 @@ export default function UbiqPillars() {
                             <div className={styles.body}>
                                 <span className={styles.role}>{p.role}</span>
                                 <h3 className={styles.name}>
-                                    <span className={styles.nameU}>uBIQ</span> {p.name}
+                                    <span className={styles.nameU}>uBIQ</span>{' '}
+                                    <span className={styles.nameWord}>{p.name}</span>
                                 </h3>
                                 <p className={styles.concept}>{p.concept}</p>
 

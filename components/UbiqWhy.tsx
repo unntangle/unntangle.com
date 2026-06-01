@@ -55,7 +55,7 @@ export default function UbiqWhy() {
                     viewport={REVEAL}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>Why uBIQ</span>
+                    <span className={styles.eyebrow}>Why <span style={{ textTransform: 'none' }}>uBIQ</span></span>
                     <h2 className={styles.title}>A specialist edge, an established backbone</h2>
                 </motion.div>
 
