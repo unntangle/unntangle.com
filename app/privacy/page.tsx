@@ -236,8 +236,8 @@ const sections: LegalSection[] = [
                 </ul>
                 <p>
                     To exercise any of these rights, email us at{' '}
-                    <a href="mailto:privacy@unntangle.com">
-                        privacy@unntangle.com
+                    <a href="mailto:gokul@unntangle.com">
+                        gokul@unntangle.com
                     </a>
                     . We&apos;ll respond within 30 days.
                 </p>
@@ -317,8 +317,8 @@ const sections: LegalSection[] = [
                     </p>
                     <p>
                         <strong>Email:</strong>{' '}
-                        <a href="mailto:privacy@unntangle.com">
-                            privacy@unntangle.com
+                        <a href="mailto:gokul@unntangle.com">
+                            gokul@unntangle.com
                         </a>
                     </p>
                     <p>

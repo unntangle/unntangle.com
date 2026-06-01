@@ -394,8 +394,8 @@ const sections: LegalSection[] = [
                 <p>
                     Questions about cookies, this preference panel, or your
                     privacy on the Site? Email us at{' '}
-                    <a href="mailto:privacy@unntangle.com">
-                        privacy@unntangle.com
+                    <a href="mailto:gokul@unntangle.com">
+                        gokul@unntangle.com
                     </a>
                     .
                 </p>

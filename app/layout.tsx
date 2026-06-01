@@ -204,7 +204,7 @@ const organizationJsonLd = {
         {
             "@type": "ContactPoint",
             contactType: "customer support",
-            email: "hello@unntangle.com",
+            email: "gokul@unntangle.com",
             url: `${SITE_URL}/contact`,
             availableLanguage: ["English"],
         },

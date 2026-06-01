@@ -299,8 +299,8 @@ const sections: LegalSection[] = [
                     </p>
                     <p>
                         <strong>Email:</strong>{' '}
-                        <a href="mailto:legal@unntangle.com">
-                            legal@unntangle.com
+                        <a href="mailto:gokul@unntangle.com">
+                            gokul@unntangle.com
                         </a>
                     </p>
                     <p>
