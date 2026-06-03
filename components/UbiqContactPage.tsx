@@ -141,6 +141,7 @@ export default function UbiqContactPage() {
                         <div className={styles.details}>
                             {/* Email and phone intentionally not shown here.
                                 Visitors reach us through the form on this page. */}
+                            {/* HIDDEN-CONTACT: office address
                             <a
                                 className={styles.detail}
                                 href="https://www.google.com/maps/search/?api=1&query=SBS+Office+Space+Old+No+470+New+No+700+Anna+Salai+Nandanam+Chennai+600035"
@@ -150,6 +151,7 @@ export default function UbiqContactPage() {
                                 <span className={styles.detailIcon}><MapPin size={17} /></span>
                                 <div className={styles.detailText}><span>Visit</span><p>SBS Office Space, Anna Salai, Nandanam, Chennai 600035.</p></div>
                             </a>
+                            */}
                         </div>
                     </motion.div>
 

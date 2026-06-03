@@ -75,25 +75,26 @@ export default function Footer() {
                             <Link href="/ubiq">uBIQ — Smart Space Automation</Link>
                         </div>
 
+                        {/* HIDDEN-CONTACT: entire Contact column hidden — phone, email,
+                            and office address are all suppressed, which left this column
+                            empty (just a dangling heading). Restore the inner items below
+                            when contact details should be shown again.
                         <div className={styles.column}>
                             <h4>Contact</h4>
                             <div className={styles.contactInfo}>
-                                {/* HIDDEN-CONTACT: phone numbers
                                 <div className={styles.phoneNumbers}>
                                     <Link href="tel:+917092747933">+91 70927 47933</Link>
                                     <span> / </span>
                                     <Link href="tel:+916379388462">+91 63793 88462</Link>
                                 </div>
-                                */}
-                                {/* HIDDEN-CONTACT: email
                                 <Link href="mailto:gokul@unntangle.com">gokul@unntangle.com</Link>
-                                */}
                                 <p className={styles.address}>
                                     SBS Office Space, Old No.470, New No.700,<br />
                                     Anna Salai, Nandanam, Chennai 600035.
                                 </p>
                             </div>
                         </div>
+                        */}
 
                         <div className={styles.column}>
                             <h4>Follow us</h4>

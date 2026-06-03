@@ -150,6 +150,7 @@ export default function ContactHero() {
                                     </div>
                                 </div>
                                 */}
+                                {/* HIDDEN-CONTACT: office address
                                 <div className={styles.contactItem}>
                                     <div className={styles.itemIcon}><Globe size={18} /></div>
                                     <div className={styles.itemText}>
@@ -166,6 +167,7 @@ export default function ContactHero() {
                                         </p>
                                     </div>
                                 </div>
+                                */}
                             </div>
                         </div>
                     </motion.div>
