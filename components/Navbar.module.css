@@ -115,6 +115,22 @@
     color: var(--text-muted);
 }
 
+/* More specific rule so the CTA inside .links keeps its pill styling
+   and white text even though .links a sets a generic link color. */
+.links a.ctaBadge {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.links a.ctaBadge:hover {
+    opacity: 0.95;
+}
+
 .dropdownTrigger {
     height: 100%;
     display: flex;
