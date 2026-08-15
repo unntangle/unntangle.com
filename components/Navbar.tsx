@@ -202,28 +202,8 @@ export default function Navbar() {
             </div>
 
             <Link href="/blog">Knowledge Hub</Link>
-            <Link href="/contact">Let&apos;s Talk</Link>
+            <Link href="/contact" className={styles.ctaBadge}>Let&apos;s Talk</Link>
           </div>
-
-          {/* HIDDEN-UBIQ: the header CTA used to point at /ubiq
-              ("Smart Automation by uBIQ") on every non-uBIQ page. With the
-              brand site hidden, that link would 404, so the CTA falls back to
-              the "Book a consultation" variant sitewide. Restore the original
-              two-branch version below when unhiding.
-
-          {isUbiq ? (
-            <Link href="/contact" className={styles.ctaBadge}>
-              Book a consultation
-            </Link>
-          ) : (
-            <Link href="/ubiq" className={styles.ctaBadge}>
-              Smart Automation by&nbsp;<span style={{ textTransform: 'none' }}>uBIQ</span>
-            </Link>
-          )}
-          */}
-          <Link href="/contact" className={styles.ctaBadge}>
-            Book a consultation
-          </Link>
         </div>
 
         {/* Services Mega Menu */}
