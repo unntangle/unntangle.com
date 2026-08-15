@@ -40,7 +40,7 @@ export default function Footer() {
                             <Link href="/" className={styles.logoLink}>
                                 <Image
                                     src="/images/unntangle_logo_white.png"
-                                    alt="Unntangle Logo"
+                                    alt="Unntangle Technologies Logo"
                                     width={160}
                                     height={40}
                                     className={styles.footerLogo}
@@ -58,7 +58,7 @@ export default function Footer() {
                             <h4>Quick Links</h4>
                             <Link href="/about">About us</Link>
                             <Link href="/services">Services</Link>
-                            <Link href="/ubiq">uBIQ</Link>
+                            {/* HIDDEN-UBIQ: <Link href="/ubiq">uBIQ</Link> */}
                             <Link href="/blog">Blog</Link>
                             <Link href="/contact">Contact</Link>
                         </div>
@@ -70,10 +70,15 @@ export default function Footer() {
                             <Link href="/services">Growth Marketing</Link>
                         </div>
 
+                        {/* HIDDEN-UBIQ: the "Our Brands" column listed only
+                            uBIQ, so the entire column is hidden rather than
+                            leaving a dangling heading. Restore as-is when the
+                            brand site comes back.
                         <div className={styles.column}>
                             <h4>Our Brands</h4>
                             <Link href="/ubiq">uBIQ — Smart Space Automation</Link>
                         </div>
+                        */}
 
                         {/* HIDDEN-CONTACT: entire Contact column hidden — phone, email,
                             and office address are all suppressed, which left this column
@@ -123,7 +128,7 @@ export default function Footer() {
                             </div>
 
                             <p className={styles.copyright}>
-                                © {new Date().getFullYear()}, <span className={styles.accent}>Unntangle</span>. All rights reserved.
+                                © {new Date().getFullYear()}, <span className={styles.accent}>Unntangle Technologies</span>. All rights reserved.
                             </p>
                         </div>
                     </div>

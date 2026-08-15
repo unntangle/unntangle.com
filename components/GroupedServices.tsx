@@ -21,7 +21,7 @@ import styles from './GroupedServices.module.css';
  *   - A hero image representative of the pillar
  *   - A "Know more" CTA to the relevant landing service detail page
  *
- * Previous version mismatched Unntangle's actual services
+ * Previous version mismatched Unntangle Technologies's actual services
  * (Sovereign Cloud, Property Solutions, Autonomous AI Agents, etc.
  * were aspirational categories that don't exist in services.ts).
  * This component now stays in sync with the source-of-truth data.

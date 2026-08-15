@@ -14,7 +14,7 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1>Let's Unntangle Your Future</h1>
+                    <h1>Let's Unntangle Your Future at Unntangle Technologies</h1>
                     <p>Have a complex problem? Let's build a deterministic solution together. Reach out to our engineering team today.</p>
                 </motion.div>
 

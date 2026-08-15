@@ -8,7 +8,7 @@ import styles from './UbiqHero.module.css';
 /*
  * uBIQ hero — "intelligence layer for spaces" positioning.
  * Dark premium, SENSE · LEARN · ADAPT · CARE badges, twin CTAs,
- * and the Unntangle / since-2023 trust line.
+ * and the Unntangle Technologies / since-2023 trust line.
  */
 
 const badges = ['Sense', 'Learn', 'Adapt', 'Care'];

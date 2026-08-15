@@ -8,24 +8,24 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Layout template appends " | Unntangle".
+    // Layout template appends " | Unntangle Technologies".
     title: "About uBIQ",
     description:
-        "About uBIQ - Unntangle's smart space automation brand. A vendor-independent integrator that designs intelligent, connected ecosystems for homes, workplaces and commercial spaces. Built on Unntangle's innovation expertise since 2023.",
+        "About uBIQ - Unntangle Technologies's smart space automation brand. A vendor-independent integrator that designs intelligent, connected ecosystems for homes, workplaces and commercial spaces. Built on Unntangle Technologies's innovation expertise since 2023.",
     keywords: [
         "about uBIQ",
         "uBIQ brand",
         "smart space automation brand",
-        "powered by Unntangle",
+        "powered by Unntangle Technologies",
         "vendor-independent integrator",
         "intelligent spaces",
         "smart home integrator India",
     ],
     alternates: { canonical: "/ubiq/about" },
     openGraph: {
-        title: "About uBIQ - Smart Space Automation by Unntangle",
+        title: "About uBIQ - Smart Space Automation by Unntangle Technologies",
         description:
-            "We design intelligent spaces, not just install devices. uBIQ by Unntangle unites world-class technologies into one seamless intelligence layer.",
+            "We design intelligent spaces, not just install devices. uBIQ by Unntangle Technologies unites world-class technologies into one seamless intelligence layer.",
         url: `${SITE_URL}/ubiq/about`,
         type: "website",
         images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
                 url: "/images/hero.png",
                 width: 1200,
                 height: 630,
-                alt: "About uBIQ - Smart Space Automation by Unntangle",
+                alt: "About uBIQ - Smart Space Automation by Unntangle Technologies",
             },
         ],
     },
@@ -44,7 +44,7 @@ const aboutPageJsonLd = {
     "@type": "AboutPage",
     "@id": `${SITE_URL}/ubiq/about#webpage`,
     url: `${SITE_URL}/ubiq/about`,
-    name: "About uBIQ - Smart Space Automation by Unntangle",
+    name: "About uBIQ - Smart Space Automation by Unntangle Technologies",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/ubiq#brand` },
     breadcrumb: {

@@ -17,16 +17,16 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Bare page name; template in app/layout.tsx appends " | Unntangle".
-    // Renders as: "About | Unntangle"
+    // Bare page name; template in app/layout.tsx appends " | Unntangle Technologies".
+    // Renders as: "About | Unntangle Technologies"
     title: "About",
     description:
-        "Unntangle is a full-stack technology and digital studio building products, platforms, and brands behind ambitious businesses across India and beyond. Engineering, design, growth, and smart-living hardware in one accountable team.",
+        "Unntangle Technologies is a full-stack technology and digital studio building products, platforms, and brands behind ambitious businesses across India and beyond. Engineering, design, growth, and smart-living hardware in one accountable team.",
     alternates: { canonical: "/about" },
     openGraph: {
         // OG titles are emitted as absolute strings (no template), so we
         // write the full standalone form here for cleaner social previews.
-        title: "About | Unntangle",
+        title: "About | Unntangle Technologies",
         description:
             "A full-stack technology and digital studio bringing engineering, design, growth, and smart-living hardware under one accountable team.",
         url: `${SITE_URL}/about`,

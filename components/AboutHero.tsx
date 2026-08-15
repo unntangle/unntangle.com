@@ -29,7 +29,7 @@ export default function AboutHero() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <p className={styles.subtitle}>
-                            Unntangle converges Digital, AI, Cloud, and Smart Living solutions into a single, deterministic architecture, unntangling complexity across every layer of the modern landscape.
+                            Unntangle Technologies converges Digital, AI, Cloud, and Smart Living solutions into a single, deterministic architecture, unntangling complexity across every layer of the modern landscape.
                         </p>
                     </motion.div>
                 </div>

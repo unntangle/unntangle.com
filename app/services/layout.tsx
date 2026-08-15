@@ -6,14 +6,14 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Bare page name; template appends " | Unntangle". Renders as:
-    // "Services | Unntangle"
+    // Bare page name; template appends " | Unntangle Technologies". Renders as:
+    // "Services | Unntangle Technologies"
     title: "Services",
     description:
         "Twelve services across Technology Solutions, Creative Design, and Growth Marketing. Web & app development, ERP, 3D, AI, Meta Ads, SEO, and more — from one accountable studio.",
     alternates: { canonical: "/services" },
     openGraph: {
-        title: "Services | Unntangle",
+        title: "Services | Unntangle Technologies",
         description:
             "Twelve services across Technology Solutions, Creative Design, and Growth Marketing. Web & app development, ERP, 3D, AI, Meta Ads, SEO, and more.",
         url: `${SITE_URL}/services`,

@@ -64,12 +64,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "yearly",
             priority: 0.6,
         },
-        {
-            url: `${SITE_URL}/ubiq`,
-            lastModified: now,
-            changeFrequency: "monthly",
-            priority: 0.9,
-        },
+        // HIDDEN-UBIQ: /ubiq now 404s (see HIDE_UBIQ in middleware.ts), so
+        // it must not be advertised in the sitemap — submitting a URL that
+        // returns 404 is a Search Console error. Restore this entry when the
+        // brand site is unhidden.
+        // {
+        //     url: `${SITE_URL}/ubiq`,
+        //     lastModified: now,
+        //     changeFrequency: "monthly",
+        //     priority: 0.9,
+        // },
     ];
 
     // --- 2. Service detail pages ---

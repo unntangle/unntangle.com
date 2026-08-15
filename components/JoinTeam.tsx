@@ -19,7 +19,7 @@ export default function JoinTeam() {
                         <div className={styles.imageCard}>
                             <img
                                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
-                                alt="Unntangle Team"
+                                alt="Unntangle Technologies Team"
                                 className={styles.teamImg}
                             />
                             <div className={styles.logoOverlay}>

@@ -9,7 +9,7 @@ import styles from './BrandEcosystem.module.css';
 /* ============================================================
  * Homepage "Our Ecosystem" section.
  *
- * Frames the parent → brand hierarchy: Unntangle (the established
+ * Frames the parent → brand hierarchy: Unntangle Technologies (the established
  * innovation company, since 2023) at the top, then its specialized
  * brands below — currently uBIQ. Dark premium band so it reads as a
  * deliberate brand statement, distinct from the SaaS "Products" grid.
@@ -30,7 +30,7 @@ export default function BrandEcosystem() {
                     transition={{ duration: 0.6 }}
                 >
                     <span className={styles.eyebrow}>Our Ecosystem</span>
-                    <h2 className={styles.parentName}>UNNTANGLE</h2>
+                    <h2 className={styles.parentName}>UNNTANGLE TECHNOLOGIES</h2>
                     <p className={styles.parentTag}>
                         Technology Innovation Company <span className={styles.dot}>·</span> Since 2023
                     </p>
@@ -75,10 +75,10 @@ export default function BrandEcosystem() {
                             className={styles.brandLogo}
                         />
                         <span className={styles.brandTagline}>
-                            Smart Space Automation by Unntangle
+                            Smart Space Automation by Unntangle Technologies
                         </span>
                         <p className={styles.brandDesc}>
-                            Powered by Unntangle&apos;s technology expertise since 2023, uBIQ
+                            Powered by Unntangle Technologies' technology expertise since 2023, uBIQ
                             creates intelligent living and working environments through
                             automation, connected systems, and future-ready technologies.
                         </p>

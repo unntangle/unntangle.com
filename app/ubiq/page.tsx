@@ -15,11 +15,11 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Bare page name; layout template appends " | Unntangle". Renders as:
-    // "uBIQ — Smart Home Automation | Unntangle"
+    // Bare page name; layout template appends " | Unntangle Technologies". Renders as:
+    // "uBIQ — Smart Home Automation | Unntangle Technologies"
     title: "uBIQ — Smart Space Automation",
     description:
-        "uBIQ is Unntangle's smart space automation brand — intelligent automation for homes, workplaces and commercial spaces: smart home, lighting, KNX, AV, climate, security, energy management and building automation. Built on Unntangle's innovation expertise since 2023.",
+        "uBIQ is Unntangle Technologies's smart space automation brand — intelligent automation for homes, workplaces and commercial spaces: smart home, lighting, KNX, AV, climate, security, energy management and building automation. Built on Unntangle Technologies's innovation expertise since 2023.",
     keywords: [
         "uBIQ",
         "smart space automation",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     ],
     alternates: { canonical: "/ubiq" },
     openGraph: {
-        title: "uBIQ — Smart Space Automation by Unntangle",
+        title: "uBIQ — Smart Space Automation by Unntangle Technologies",
         description:
-            "Intelligent spaces, seamless experiences. uBIQ by Unntangle automates homes, workplaces and commercial environments — smart home, KNX, lighting, AV, climate, security and energy.",
+            "Intelligent spaces, seamless experiences. uBIQ by Unntangle Technologies automates homes, workplaces and commercial environments — smart home, KNX, lighting, AV, climate, security and energy.",
         url: `${SITE_URL}/ubiq`,
         type: "website",
         images: [

@@ -7,15 +7,15 @@ import styles from './FAQ.module.css';
 
 const faqs = [
     {
-        question: "How does Unntangle ensure the ethical and responsible use of AI?",
+        question: "How does Unntangle Technologies ensure the ethical and responsible use of AI?",
         answer: "We prioritize data privacy, algorithmic fairness, and transparency in all our AI implementations. Our models undergo rigorous bias testing and comply with industry-standard ethical guidelines."
     },
     {
-        question: "How does Unntangle leverage AI in business and enterprise solutions?",
+        question: "How does Unntangle Technologies leverage AI in business and enterprise solutions?",
         answer: "We build custom AI agents for customer support, predictive analytics for supply chains, and intelligent automation workflows that seamlessly integrate with your existing ERP or CRM platforms."
     },
     {
-        question: "What types of digital products and services does Unntangle offer?",
+        question: "What types of digital products and services does Unntangle Technologies offer?",
         answer: "From high-performance corporate websites and scalable web applications to immersive smart living ecosystems and IoT dashboards."
     },
     {

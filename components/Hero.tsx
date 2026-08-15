@@ -31,7 +31,7 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        At Unntangle, we bridge the gap between digital excellence and intelligent living. From high-end web and app development to state-of-the-art smart home automation and sustainable energy, we provide comprehensive solutions that elevate your business and lifestyle.
+                        At Unntangle Technologies, we bridge the gap between digital excellence and intelligent living. From high-end web and app development to state-of-the-art smart home automation and sustainable energy, we provide comprehensive solutions that elevate your business and lifestyle.
                     </motion.p>
 
                     <motion.div

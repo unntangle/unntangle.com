@@ -29,7 +29,7 @@ export async function generateMetadata(props: {
     const blog = blogsData.find((b) => b.id === params.slug);
     if (!blog) {
         return {
-            // Templated → "Article Not Found | Unntangle"
+            // Templated → "Article Not Found | Unntangle Technologies"
             title: "Article Not Found",
             description: "The requested article could not be found.",
         };
@@ -42,9 +42,9 @@ export async function generateMetadata(props: {
     })();
 
     return {
-        // Bare post title; template appends " | Unntangle".
+        // Bare post title; template appends " | Unntangle Technologies".
         // e.g. "Edge Rendering Is the New Default" →
-        //      "Edge Rendering Is the New Default | Unntangle"
+        //      "Edge Rendering Is the New Default | Unntangle Technologies"
         title: blog.title,
         description: blog.description,
         authors: [{ name: blog.author }],

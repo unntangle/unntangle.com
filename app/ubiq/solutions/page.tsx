@@ -8,7 +8,7 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Layout template appends " | Unntangle".
+    // Layout template appends " | Unntangle Technologies".
     title: "Solutions",
     description:
         "uBIQ smart space solutions — smart home automation, lighting and climate intelligence, smart shades, audio & entertainment, security & access, energy intelligence, networking and commercial automation. Designed, integrated and unified.",

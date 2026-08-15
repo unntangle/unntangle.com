@@ -3,7 +3,9 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
 import Products from "@/components/Products";
-import BrandEcosystem from "@/components/BrandEcosystem";
+// HIDDEN-UBIQ: `BrandEcosystem` is the "Our Ecosystem" band whose only
+// brand card is uBIQ, linking to /ubiq. Hidden while the brand site is off.
+// import BrandEcosystem from "@/components/BrandEcosystem";
 import Stats from "@/components/Stats";
 import TechStack from "@/components/TechStack";
 import Industries from "@/components/Industries";
@@ -24,20 +26,20 @@ const SITE_URL =
 
 // Home-page-specific metadata.
 // The home page intentionally does NOT use the title template — we want
-// the bare "Unntangle — ..." form for the root URL, since putting
-// "Unntangle | Unntangle" via the template would be silly. Setting an
+// the bare "Unntangle Technologies — ..." form for the root URL, since putting
+// "Unntangle Technologies | Unntangle Technologies" via the template would be silly. Setting an
 // absolute title here overrides the template just for this page.
 export const metadata: Metadata = {
   title: {
-    absolute: "Unntangle — Design, Development & Smart Living",
+    absolute: "Unntangle Technologies — Design, Development & Smart Living",
   },
   description:
-    "From premium web & app development to ZigBee smart-home automation, Unntangle bridges digital excellence and intelligent living. One studio, three disciplines.",
+    "From premium web & app development to ZigBee smart-home automation, Unntangle Technologies bridges digital excellence and intelligent living. One studio, three disciplines.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Unntangle — Design, Development & Smart Living",
+    title: "Unntangle Technologies — Design, Development & Smart Living",
     description:
-      "From premium web & app development to ZigBee smart-home automation, Unntangle bridges digital excellence and intelligent living.",
+      "From premium web & app development to ZigBee smart-home automation, Unntangle Technologies bridges digital excellence and intelligent living.",
     url: SITE_URL,
     type: "website",
     images: [
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1200,
         height: 630,
-        alt: "Unntangle — Design, Development & Smart Living",
+        alt: "Unntangle Technologies — Design, Development & Smart Living",
       },
     ],
   },
@@ -140,7 +142,7 @@ export default function Home() {
       </div>
       <Services />
       <Products />
-      <BrandEcosystem />
+      {/* HIDDEN-UBIQ: <BrandEcosystem /> */}
       <Stats />
       <TechStack />
       <Industries />

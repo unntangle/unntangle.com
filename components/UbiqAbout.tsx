@@ -6,7 +6,7 @@ import styles from './UbiqAbout.module.css';
 /* ============================================================
  * uBIQ — "What is uBIQ?"
  *
- * Frames uBIQ as Unntangle's dedicated smart-space automation
+ * Frames uBIQ as Unntangle Technologies's dedicated smart-space automation
  * vertical — borrowing the parent's credibility while staking out
  * a focused premium specialism. Dark premium theme.
  * ============================================================ */
@@ -24,7 +24,7 @@ export default function UbiqAbout() {
                 >
                     <span className={styles.endorse}>
                         <span className={styles.endorseDot} aria-hidden="true" />
-                        A brand by Unntangle
+                        A brand by Unntangle Technologies
                     </span>
 
                     <h2 className={styles.title}>
@@ -33,7 +33,7 @@ export default function UbiqAbout() {
                     </h2>
 
                     <p className={styles.body}>
-                        uBIQ is the automation arm of Unntangle — the technology company
+                        uBIQ is the automation arm of Unntangle Technologies — the technology company
                         building immersive and intelligent experiences since 2023. Where
                         Unntangle engineers digital products, 3D and immersive experiences,
                         uBIQ brings that same technology-first rigour into physical space:

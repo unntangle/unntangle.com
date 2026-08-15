@@ -6,7 +6,7 @@ import styles from './UbiqWhy.module.css';
 
 /* ============================================================
  * uBIQ — "Why uBIQ?" differentiators.
- * Dark premium card grid. Leads with the Unntangle endorsement.
+ * Dark premium card grid. Leads with the Unntangle Technologies endorsement.
  * ============================================================ */
 
 const reasons = [

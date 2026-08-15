@@ -9,15 +9,15 @@ const SITE_URL =
     'https://unntangle.com';
 
 export const metadata: Metadata = {
-    // Templated → "Terms of Use | Unntangle"
+    // Templated → "Terms of Use | Unntangle Technologies"
     title: 'Terms of Use',
     description:
-        "The terms that govern your use of Unntangle's website and services.",
+        "The terms that govern your use of Unntangle Technologies's website and services.",
     alternates: { canonical: '/terms' },
     openGraph: {
-        title: 'Terms of Use | Unntangle',
+        title: 'Terms of Use | Unntangle Technologies',
         description:
-            "The terms that govern your use of Unntangle's website and services.",
+            "The terms that govern your use of Unntangle Technologies's website and services.",
         url: `${SITE_URL}/terms`,
         type: 'website',
     },
@@ -66,18 +66,18 @@ const sections: LegalSection[] = [
     },
     {
         id: 'about-unntangle',
-        heading: 'About Unntangle',
+        heading: 'About Unntangle Technologies',
         body: (
             <>
                 <p>
-                    Unntangle is a registered company in Chennai, India. We
+                    Unntangle Technologies is a registered company in Chennai, India. We
                     operate as a full-stack technology and digital company
                     delivering services in technology, creative design, growth
                     marketing, and smart-living hardware.
                 </p>
                 <p>
                     Throughout these Terms, &quot;we&quot;, &quot;us&quot;, and
-                    &quot;our&quot; refer to Unntangle. &quot;You&quot; refers to
+                    &quot;our&quot; refer to Unntangle Technologies. &quot;You&quot; refers to
                     the person accessing the Site.
                 </p>
             </>

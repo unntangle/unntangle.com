@@ -421,7 +421,7 @@ export default function UbiqNav() {
                             Book Experience
                         </Link>
                         <Link href="/" className={styles.mobileHome} onClick={closeAll}>
-                            ← Unntangle home
+                            ← Unntangle Technologies home
                         </Link>
                     </motion.div>
                 )}

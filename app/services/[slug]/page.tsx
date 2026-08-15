@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 
 type Params = Promise<{ slug: string }>;
 
-// Per-service metadata. Title is `${service.title} | Unntangle` via the
+// Per-service metadata. Title is `${service.title} | Unntangle Technologies` via the
 // layout template, but we explicitly set it for clarity. Description uses
 // the curated `shortDescription` from the data file — already keyword-rich
 // and 140-160 chars, ideal for SERP snippets.
@@ -35,7 +35,7 @@ export async function generateMetadata(props: {
     const service = servicesData.find((s) => s.id === params.slug);
     if (!service) {
         return {
-            // Templated → "Service Not Found | Unntangle"
+            // Templated → "Service Not Found | Unntangle Technologies"
             title: "Service Not Found",
             description: "The requested service could not be found.",
         };
@@ -46,8 +46,8 @@ export async function generateMetadata(props: {
     const ogImage = service.heroImage;
 
     return {
-        // Bare service title; template appends " | Unntangle".
-        // e.g. "Web Development" → "Web Development | Unntangle"
+        // Bare service title; template appends " | Unntangle Technologies".
+        // e.g. "Web Development" → "Web Development | Unntangle Technologies"
         title: service.title,
         description,
         alternates: { canonical: `/services/${service.id}` },

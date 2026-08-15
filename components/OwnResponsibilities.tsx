@@ -8,7 +8,7 @@ import styles from './OwnResponsibilities.module.css';
 /**
  * About-page accountability section.
  *
- * Two-column statement of how Unntangle approaches client work:
+ * Two-column statement of how Unntangle Technologies approaches client work:
  *   1. "We keep our eye on the ROI" — outcome-led, not deliverable-led
  *   2. "We own responsibilities" — accountability instead of finger-pointing
  *

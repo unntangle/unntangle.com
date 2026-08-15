@@ -1,5 +1,5 @@
 -- =====================================================================
--- Unntangle CRM Schema  —  run this in Supabase → SQL Editor
+-- Unntangle Technologies CRM Schema  —  run this in Supabase → SQL Editor
 -- =====================================================================
 -- This is idempotent: safe to re-run. It will create what's missing
 -- and skip what exists.

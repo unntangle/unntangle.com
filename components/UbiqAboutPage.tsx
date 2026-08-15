@@ -265,7 +265,7 @@ function IntelligenceFlow() {
  * STATIC DATA
  * ============================================================ */
 const journey: { year: string; title: string; text: string }[] = [
-    { year: '2023', title: 'Unntangle is founded', text: 'An innovation studio built around immersive, interactive and intelligent technology.' },
+    { year: '2023', title: 'Unntangle Technologies is founded', text: 'An innovation studio built around immersive, interactive and intelligent technology.' },
     { year: '2024', title: 'Intelligence meets the built environment', text: 'We begin applying AI, IoT and immersive design to real, lived-in spaces.' },
     { year: '2025', title: 'uBIQ takes shape', text: 'The smart-space brand forms around one idea — an intelligence layer for spaces.' },
     { year: '2026', title: 'Connected ecosystems', text: 'Senz, Twin and Care+ unite adaptive automation, digital twins and lifelong care.' },
@@ -333,7 +333,7 @@ export default function UbiqAboutPage() {
                             </div>
                         </Reveal>
                         <Reveal delay={0.24}>
-                            <p className={styles.heroCredit}>A smart-space brand by Unntangle · Since 2023</p>
+                            <p className={styles.heroCredit}>A smart-space brand by Unntangle Technologies · Since 2023</p>
                         </Reveal>
                     </div>
 
@@ -384,16 +384,16 @@ export default function UbiqAboutPage() {
                 </div>
             </section>
 
-            {/* ---------------- POWERED BY UNNTANGLE ---------------- */}
+            {/* ---------------- POWERED BY UNNTANGLE TECHNOLOGIES ---------------- */}
             <section className={`${styles.section} ${styles.parent}`}>
                 <div className={styles.inner}>
                     <Reveal>
                         <div className={styles.center}>
-                            <span className={styles.tag}>Powered by Unntangle</span>
+                            <span className={styles.tag}>Powered by Unntangle Technologies</span>
                             <h2 className={styles.h2}>Backed by an innovation company.</h2>
 
                             <div className={styles.lineage} aria-hidden="true">
-                                <span className={styles.lineageNode}>Unntangle</span>
+                                <span className={styles.lineageNode}>Unntangle Technologies</span>
                                 <span className={styles.lineageWire}>
                                     <span className={styles.lineagePulse} />
                                 </span>
@@ -401,12 +401,12 @@ export default function UbiqAboutPage() {
                             </div>
 
                             <p className={styles.pCenter}>
-                                Unntangle is a technology innovation company established in 2023, building immersive and
+                                Unntangle Technologies is a technology innovation company established in 2023, building immersive and
                                 intelligent experiences. uBIQ channels that expertise into the built environment — applying
-                                what Unntangle knows about interaction, visualisation and AI to physical spaces.
+                                what Unntangle Technologies knows about interaction, visualisation and AI to physical spaces.
                             </p>
                             <Link href="/" className={styles.textLink}>
-                                Visit Unntangle <ArrowRight size={16} />
+                                Visit Unntangle Technologies <ArrowRight size={16} />
                             </Link>
                         </div>
                     </Reveal>

@@ -11,7 +11,7 @@ import styles from './UbiqContactPage.module.css';
 /* ============================================================
  * uBIQ — dedicated contact / "Book an Experience" page.
  * On-brand (purple) booking experience, distinct from the parent
- * Unntangle /contact page.
+ * Unntangle Technologies /contact page.
  *
  * SUBMISSION: posts to Web3Forms (https://web3forms.com), a free
  * no-backend form service. Submissions are delivered by email to

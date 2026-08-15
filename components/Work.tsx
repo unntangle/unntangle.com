@@ -31,7 +31,7 @@ export default function Work() {
                     <div>
                         <span className="tag">Case studies</span>
                         <h2>See our work</h2>
-                        <p>Welcome to the spotlight, where Unntangle's expertise touches down, turning the ordinary into the extraordinary.</p>
+                        <p>Welcome to the spotlight, where Unntangle Technologies's expertise touches down, turning the ordinary into the extraordinary.</p>
                     </div>
                     <button className="btn btn-primary">View all</button>
                 </div>

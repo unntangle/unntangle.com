@@ -18,7 +18,7 @@ import styles from './Industries.module.css';
  *
  * A grid of vertical-specific cards. Each card pairs a Lucide icon
  * with the industry name and a one-line description of how
- * Unntangle's three pillars (tech / design / growth) typically map
+ * Unntangle Technologies's three pillars (tech / design / growth) typically map
  * onto that vertical.
  *
  * Industries chosen based on Unntangle's actual product portfolio

@@ -9,15 +9,15 @@ const SITE_URL =
     'https://unntangle.com';
 
 export const metadata: Metadata = {
-    // Templated → "Privacy Policy | Unntangle"
+    // Templated → "Privacy Policy | Unntangle Technologies"
     title: 'Privacy Policy',
     description:
         'How Unntangle collects, uses, stores, and protects your personal data when you use our website, products, and services.',
     alternates: { canonical: '/privacy' },
     openGraph: {
-        title: 'Privacy Policy | Unntangle',
+        title: 'Privacy Policy | Unntangle Technologies',
         description:
-            'How Unntangle collects, uses, stores, and protects your personal data when you use our website, products, and services.',
+            'How Unntangle Technologies collects, uses, stores, and protects your personal data when you use our website, products, and services.',
         url: `${SITE_URL}/privacy`,
         type: 'website',
     },
@@ -54,7 +54,7 @@ const sections: LegalSection[] = [
         body: (
             <>
                 <p>
-                    Unntangle is a full-stack technology and digital company
+                    Unntangle Technologies is a full-stack technology and digital company
                     headquartered in Chennai, India. We build products, platforms,
                     and brands for businesses across India and beyond — including
                     our own SaaS suite (uVOIZ, uDYLR, uSCRIBR) and our smart-living

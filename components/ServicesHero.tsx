@@ -72,7 +72,7 @@ export default function ServicesHero({ activeCategoryId, onCategoryChange, categ
                             <span className={styles.separator}>|</span>
                             <span className={styles.textGold}>Unnleash</span>
                             <span className={styles.separator}>|</span>
-                            <span className={styles.textBlue}>Unntangle</span>
+                            <span className={styles.textBlue}>Unntangle Technologies</span>
                         </motion.h1>
 
                         <motion.p

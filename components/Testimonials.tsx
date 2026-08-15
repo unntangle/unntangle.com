@@ -6,7 +6,7 @@ import styles from './Testimonials.module.css';
 
 const testimonials = [
     {
-        quote: "Unntangle transformed our digital presence within weeks. Their AI solutions are not just innovative; they're truly transformative for our daily operations.",
+        quote: "Unntangle Technologies transformed our digital presence within weeks. Their AI solutions are not just innovative; they're truly transformative for our daily operations.",
         author: "Sarah Chen",
         role: "CEO, NexaCorp",
         company: "Digital Transformation"

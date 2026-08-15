@@ -125,7 +125,7 @@ export default function ContactHero() {
                         <div className={styles.glassPanel}>
                             <h1 className={styles.title}>
                                 Elevate Your Digital Frontier <br />
-                                With Unntangle
+                                With Unntangle Technologies
                             </h1>
                             <p className={styles.subtitle}>
                                 From bespoke software to autonomous AI agents, we provide the engineering excellence

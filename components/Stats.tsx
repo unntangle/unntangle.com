@@ -7,7 +7,7 @@ import styles from './Stats.module.css';
 /**
  * Home-page "Architecture of Impact" section.
  *
- * Communicates Unntangle's three core service pillars (Technology
+ * Communicates Unntangle Technologies's three core service pillars (Technology
  * Solutions, Creative Design, Growth Marketing) plus a featured
  * value-prop card on the left summarising why those pillars work
  * better when delivered together.

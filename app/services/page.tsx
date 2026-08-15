@@ -41,7 +41,7 @@ export default function ServicesPage() {
                         'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800',
                         'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
                     ]}
-                    imageAlt="What we do at Unntangle"
+                    imageAlt="What we do at Unntangle Technologies"
                     pills={[
                         { text: 'Tech · Design · Growth — in one stack', variant: 'cyan', icon: true },
                     ]}

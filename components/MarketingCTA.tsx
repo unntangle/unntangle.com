@@ -19,7 +19,7 @@ import styles from './MarketingCTA.module.css';
  *
  * The pillar chips below the headline reinforce that whichever
  * service they came in for, the same accountable team handles it
- * — which is the core "why Unntangle" pitch from the WhyChooseUs
+ * — which is the core "why Unntangle Technologies" pitch from the WhyChooseUs
  * comparison table further up.
  */
 

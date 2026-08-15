@@ -50,7 +50,7 @@ export default function WhyChooseUs() {
                         <span className={styles.titleAccent}>not just another vendor.</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Unntangle is a full-stack technology and digital company — building
+                        Unntangle Technologies is a full-stack technology and digital company — building
                         the products, platforms, and brands behind ambitious businesses across
                         India and beyond. Here&apos;s how that shows up in every engagement.
                     </p>

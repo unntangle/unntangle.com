@@ -12,7 +12,7 @@ import styles from './OurJourney.module.css';
  * a large numeral and a milestone description card. Clicking a year
  * swaps the displayed milestone.
  *
- * For Unntangle (founded 2023), the milestones cover the early
+ * For Unntangle Technologies (founded 2023), the milestones cover the early
  * journey honestly. As the company grows, append new years rather
  * than padding old ones — credibility lives in the specifics.
  */

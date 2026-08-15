@@ -3,7 +3,9 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+// HIDDEN-UBIQ: `usePathname` was only used for the uBIQ logo swap below.
+// Restore this import when unhiding the brand site.
+// import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
   ChevronDown,
@@ -99,27 +101,33 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | null>(null);
   const [hidden, setHidden] = useState(false);
 
-  const pathname = usePathname();
-  // On the uBIQ brand page the header logo swaps to the uBIQ wordmark
-  // (the brand owns that section) and links to /ubiq; everywhere else it's
-  // the Unntangle mark linking home. The uBIQ artwork is black-on-transparent
-  // and the navbar is white, so it shows as-is. It's an SVG, hence unoptimized.
-  const isUbiq = pathname === '/ubiq' || (pathname?.startsWith('/ubiq/') ?? false);
-  const logoConfig = isUbiq
-    ? {
-        src: '/uBIQ/uBIQ-logo.svg',
-        alt: 'uBIQ',
-        href: '/ubiq',
-        width: 932,
-        height: 306,
-      }
-    : {
-        src: '/images/unntangle_logo.webp',
-        alt: 'Unntangle Logo',
-        href: '/',
-        width: 120,
-        height: 32,
-      };
+  // HIDDEN-UBIQ: the uBIQ brand site is switched off (see HIDE_UBIQ in
+  // middleware.ts), so the header no longer swaps to the uBIQ wordmark and
+  // `isUbiq` is pinned to false. The original logic is preserved below.
+  //
+  // const pathname = usePathname();
+  // // On the uBIQ brand page the header logo swaps to the uBIQ wordmark
+  // // (the brand owns that section) and links to /ubiq; everywhere else it's
+  // // the Unntangle Technologies mark linking home. The uBIQ artwork is black-on-transparent
+  // // and the navbar is white, so it shows as-is. It's an SVG, hence unoptimized.
+  // const isUbiq = pathname === '/ubiq' || (pathname?.startsWith('/ubiq/') ?? false);
+  // const logoConfig = isUbiq
+  //   ? {
+  //       src: '/uBIQ/uBIQ-logo.svg',
+  //       alt: 'uBIQ',
+  //       href: '/ubiq',
+  //       width: 932,
+  //       height: 306,
+  //     }
+  //   : { ...Unntangle Technologies mark, as below... };
+  const isUbiq = false;
+  const logoConfig = {
+    src: '/images/unntangle_logo.webp',
+    alt: 'Unntangle Logo',
+    href: '/',
+    width: 120,
+    height: 32,
+  };
 
   // Get the most recent blog post by parsing dates and sorting descending
   const latestBlog = useMemo(() => {
@@ -197,6 +205,12 @@ export default function Navbar() {
             <Link href="/contact">Let&apos;s Talk</Link>
           </div>
 
+          {/* HIDDEN-UBIQ: the header CTA used to point at /ubiq
+              ("Smart Automation by uBIQ") on every non-uBIQ page. With the
+              brand site hidden, that link would 404, so the CTA falls back to
+              the "Book a consultation" variant sitewide. Restore the original
+              two-branch version below when unhiding.
+
           {isUbiq ? (
             <Link href="/contact" className={styles.ctaBadge}>
               Book a consultation
@@ -206,6 +220,10 @@ export default function Navbar() {
               Smart Automation by&nbsp;<span style={{ textTransform: 'none' }}>uBIQ</span>
             </Link>
           )}
+          */}
+          <Link href="/contact" className={styles.ctaBadge}>
+            Book a consultation
+          </Link>
         </div>
 
         {/* Services Mega Menu */}

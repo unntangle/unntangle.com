@@ -64,23 +64,23 @@ export const metadata: Metadata = {
     title: {
         // %s gets replaced with the page-specific title set by each child
         // page. Pages set the bare page name (e.g. "About") and the
-        // template appends " | Unntangle".
+        // template appends " | Unntangle Technologies".
         //
         // `default` is used when a child page sets NO title. The home page
         // overrides both the template AND default via `title.absolute`
-        // (see app/page.tsx) so it appears as just "Unntangle — ...".
-        template: "%s | Unntangle",
-        default: "Unntangle — Design, Development & Smart Living",
+        // (see app/page.tsx) so it appears as just "Unntangle Technologies — ...".
+        template: "%s | Unntangle Technologies",
+        default: "Unntangle Technologies — Design, Development & Smart Living",
     },
     description:
-        "Unntangle is your growth partner for premium web & app development, creative design, growth marketing, and intelligent smart-living systems. One studio, three disciplines, real outcomes.",
-    applicationName: "Unntangle",
-    authors: [{ name: "Unntangle", url: SITE_URL }],
-    creator: "Unntangle",
-    publisher: "Unntangle",
+        "Unntangle Technologies is your growth partner for premium web & app development, creative design, growth marketing, and intelligent smart-living systems. One studio, three disciplines, real outcomes.",
+    applicationName: "Unntangle Technologies",
+    authors: [{ name: "Unntangle Technologies", url: SITE_URL }],
+    creator: "Unntangle Technologies",
+    publisher: "Unntangle Technologies",
     generator: "Next.js",
     keywords: [
-        "Unntangle",
+        "Unntangle Technologies",
         "web development",
         "app development",
         "ERP development",
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
         "Google Ads",
         "smart home",
         "home automation",
-        "uBIQ",
+        // HIDDEN-UBIQ: "uBIQ",
         "Crestron",
         "Control4",
         "KNX",
@@ -113,8 +113,8 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: "website",
-        siteName: "Unntangle",
-        title: "Unntangle — Design, Development & Smart Living",
+        siteName: "Unntangle Technologies",
+        title: "Unntangle Technologies — Design, Development & Smart Living",
         description:
             "Your partner for premium digital products and intelligent living. Web, mobile, ERP, 3D, design, growth marketing, and smart-home hardware — all under one accountable studio.",
         url: SITE_URL,
@@ -124,13 +124,13 @@ export const metadata: Metadata = {
                 url: "/images/hero.png",
                 width: 1200,
                 height: 630,
-                alt: "Unntangle — Design, Development & Smart Living",
+                alt: "Unntangle Technologies — Design, Development & Smart Living",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Unntangle — Design, Development & Smart Living",
+        title: "Unntangle Technologies — Design, Development & Smart Living",
         description:
             "Your partner for premium digital products and intelligent living. Web, mobile, ERP, 3D, design, growth marketing, and smart-home hardware.",
         images: ["/images/hero.png"],
@@ -210,11 +210,13 @@ const organizationJsonLd = {
         },
     ],
     brand: [
-        {
-            "@type": "Brand",
-            name: "uBIQ",
-            url: `${SITE_URL}/ubiq`,
-        },
+        // HIDDEN-UBIQ: this entry pointed crawlers at ${SITE_URL}/ubiq, which
+        // now 404s. Restore when the brand site is unhidden.
+        // {
+        //     "@type": "Brand",
+        //     name: "uBIQ",
+        //     url: `${SITE_URL}/ubiq`,
+        // },
         {
             "@type": "Brand",
             name: "OfficeMate",

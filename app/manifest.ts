@@ -11,8 +11,8 @@ import type { MetadataRoute } from "next";
  */
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "Unntangle — Design, Development & Smart Living",
-        short_name: "Unntangle",
+        name: "Unntangle Technologies — Design, Development & Smart Living",
+        short_name: "Unntangle Technologies",
         description:
             "Your partner for premium digital products and intelligent living.",
         start_url: "/",

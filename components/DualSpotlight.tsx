@@ -15,7 +15,7 @@ import styles from './DualSpotlight.module.css';
  *
  * Mirrors Appinventiv's "Pioneer the AI Revolution" /
  * "Amplify Your Market Presence" twin spotlights, but anchored to
- * Unntangle's actual product portfolio. Each card is a clickable
+ * Unntangle Technologies's actual product portfolio. Each card is a clickable
  * tile linking to the relevant product or section.
  */
 
