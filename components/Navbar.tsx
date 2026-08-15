@@ -69,7 +69,7 @@ const productCategories = [
         path: "https://uvoiz.unntangle.com",
         external: true,
         disabled: false,
-        badge: "LIVE",
+        badge: "Beta",
       },
     ],
   },
