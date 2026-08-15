@@ -8,7 +8,11 @@ import { blogsData } from '@/data/blogs';
 import styles from './BlogGrid.module.css';
 
 const CATEGORIES = ['All', 'Technology Solutions', 'Creative Design', 'Growth Marketing'];
-const POSTS_PER_PAGE = 6;
+
+// 9 posts per page fills the 3-column grid (see .grid in BlogGrid.module.css)
+// as a complete 3x3 block. Keep this a multiple of 3 so the last row never
+// ends up with orphaned cards on desktop.
+const POSTS_PER_PAGE = 9;
 
 interface PaginationProps {
     currentPage: number;
@@ -208,7 +212,7 @@ export default function BlogGrid() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: (index % 6) * 0.08 }}
+                                transition={{ duration: 0.5, delay: (index % POSTS_PER_PAGE) * 0.08 }}
                             >
                                 <div className={styles.imageContainer}>
                                     <img src={post.image} alt={post.title} className={styles.cardImage} />
