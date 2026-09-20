@@ -97,8 +97,43 @@ const productCategories = [
   },
 ];
 
+// Brands are deliberately kept separate from the products above. A brand
+// has its own identity, its own domain and its own customers, and may ship
+// products of its own beneath it (uBIQ has Senz, Twin and Care+). The
+// entries in `productCategories` are Unntangle-branded SaaS by contrast.
+//
+// uBIQ lives on its own domain now, so this is an external link — the old
+// /ubiq route on this site 301s there anyway (see middleware.ts), but
+// linking direct avoids the redirect hop.
+//
+// OfficeMate is the other brand and is intentionally not listed yet.
+// With a single brand the menu shows a hero banner in the wide left column
+// rather than a category list; add a `brandCategories`-style list back (see
+// `productCategories` for the shape) when a second brand arrives.
+const featuredBrand = {
+  logo: "/uBIQ/uBIQ-logo.svg",
+  // Brand banner. Must live in THIS project's public/uBIQ/ folder — the
+  // original is in the ubiqautomation.com project, which Next can't reach
+  // across from here.
+  preview: "/uBIQ/uBIQ-banner.png",
+  previewAlt: "uBIQ smart home automation",
+  tagline: "Smart Space Automation",
+  description:
+    "Intelligent automation for homes, villas, offices and hotels — one layer that senses, learns and adapts the space around the people in it.",
+  stats: [
+    { value: "9+", label: "Technology categories" },
+    { value: "100%", label: "Vendor-independent" },
+  ],
+  // Platform wordmarks rather than logo images: the real marks are the
+  // vendors' trademarks and we hold no asset files for them. Mirrors the
+  // `techStack` array on the uBIQ site's about page.
+  platforms: ["KNX", "Matter", "Crestron", "Lutron"],
+  href: "https://ubiqautomation.com",
+  cta: "Explore uBIQ",
+};
+
 export default function Navbar() {
-  const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<'services' | 'products' | 'brands' | null>(null);
   const [hidden, setHidden] = useState(false);
 
   // HIDDEN-UBIQ: the uBIQ brand site is switched off (see HIDE_UBIQ in
@@ -198,6 +233,18 @@ export default function Navbar() {
                   diminished — the user just can't tap into a 404. */}
               <span className={`${styles.linkWithIcon} ${styles.linkWithIconStatic}`}>
                 Products <ChevronDown size={14} />
+              </span>
+            </div>
+
+            <div
+              className={styles.dropdownTrigger}
+              onMouseEnter={() => setActiveDropdown('brands')}
+            >
+              {/* Same reasoning as Products: there's no `/brands`
+                  listing route, so the trigger is a non-navigating
+                  span and the dropdown carries the actual link. */}
+              <span className={`${styles.linkWithIcon} ${styles.linkWithIconStatic}`}>
+                Our Brands <ChevronDown size={14} />
               </span>
             </div>
 
@@ -390,6 +437,96 @@ export default function Navbar() {
                     className={styles.featuredProductCtaLink}
                   >
                     Try now <ArrowRight size={13} />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Brands Mega Menu — hero banner fills the wide left column,
+            brand detail sits in the right rail. */}
+        <AnimatePresence>
+          {activeDropdown === 'brands' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className={styles.megaMenu}
+              onMouseEnter={() => setActiveDropdown('brands')}
+            >
+              <div className={styles.megaMenuContainer}>
+                {/* Brand banner (left) — fills the whole wide column and
+                    stretches to the rail's height via align-items: stretch. */}
+                <Link
+                  href={featuredBrand.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.brandsBanner}
+                >
+                  <Image
+                    src={featuredBrand.preview}
+                    alt={featuredBrand.previewAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 960px"
+                    className={styles.brandsBannerImg}
+                  />
+                </Link>
+
+                {/* Brand detail (right) */}
+                <div
+                  className={`${styles.featuredPromo} ${styles.featuredProduct} ${styles.brandsDetail}`}
+                >
+                  <span className={styles.promoEyebrow}>Our brand</span>
+
+                  {/* The uBIQ mark is black-on-transparent and this rail is
+                      near-white, so it shows as-is. SVG, hence unoptimized. */}
+                  <div className={styles.featuredProductHeaderText}>
+                    <Image
+                      src={featuredBrand.logo}
+                      alt="uBIQ"
+                      width={932}
+                      height={306}
+                      className={styles.featuredProductLogo}
+                      unoptimized
+                    />
+                    <span className={styles.featuredProductHeaderTag}>
+                      {featuredBrand.tagline}
+                    </span>
+                  </div>
+
+                  <p className={styles.featuredProductDescription}>
+                    {featuredBrand.description}
+                  </p>
+
+                  <div className={styles.featuredProductStats}>
+                    {featuredBrand.stats.map((stat) => (
+                      <div key={stat.label} className={styles.statTile}>
+                        <span className={styles.statValue}>{stat.value}</span>
+                        <span className={styles.statLabel}>{stat.label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className={styles.brandsPlatforms}>
+                    <span className={styles.brandsPlatformsLabel}>Works with</span>
+                    <div className={styles.brandsPlatformRow}>
+                      {featuredBrand.platforms.map((platform) => (
+                        <span key={platform} className={styles.brandsPlatformChip}>
+                          {platform}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Link
+                    href={featuredBrand.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.featuredProductCtaLink}
+                  >
+                    {featuredBrand.cta} <ArrowRight size={13} />
                   </Link>
                 </div>
               </div>

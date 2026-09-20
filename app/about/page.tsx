@@ -91,7 +91,8 @@ const aboutJsonLd = {
  *   - Home:      blue-cyan
  *   - Services:  orange-pink
  *   - About:     green-teal
- *   - Blog:      purple-pink (default)
+ *   - Blog:      crimson-rose (was purple-pink; purple is uBIQ's brand
+ *                colour and that brand now lives on its own domain)
  *
  * AboutStatsHero stays below the PageHero — the two beats together
  * are: "here's who we are at a glance" (gradient hero) → "here's

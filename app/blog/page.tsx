@@ -99,7 +99,7 @@ export default function BlogPage() {
                         { text: 'In an Unntangled world', variant: 'cyan' },
                         { text: 'ideas ship faster', variant: 'dark', icon: true },
                     ]}
-                    gradient="purple-pink"
+                    gradient="crimson-rose"
                 />
                 <div id="latest">
                     <BlogGrid />

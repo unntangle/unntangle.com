@@ -96,14 +96,13 @@ export const metadata: Metadata = {
         "Google Ads",
         "smart home",
         "home automation",
-        // HIDDEN-UBIQ: "uBIQ",
+        "uBIQ",
         "Crestron",
         "Control4",
         "KNX",
         "smart switches",
         "ZigBee",
         "biometric door lock",
-        "OfficeMate",
         "Chennai",
         "India",
         "digital agency",
@@ -211,15 +210,12 @@ const organizationJsonLd = {
     ],
     brand: [
         // HIDDEN-UBIQ: this entry pointed crawlers at ${SITE_URL}/ubiq, which
-        // now 404s. Restore when the brand site is unhidden.
-        // {
-        //     "@type": "Brand",
-        //     name: "uBIQ",
-        //     url: `${SITE_URL}/ubiq`,
-        // },
+        // now 301s. It points at the brand's own domain instead, so Google
+        // resolves ubiqautomation.com as a brand of this organization.
         {
             "@type": "Brand",
-            name: "OfficeMate",
+            name: "uBIQ",
+            url: "https://ubiqautomation.com",
         },
     ],
 };

@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // HIDDEN-UBIQ: master switch for the uBIQ brand site.
 //
-// While `true`, every /ubiq and /ubiq/* route returns the standard 404
-// instead of rendering. The source under app/ubiq/ is untouched and still
-// compiles — it's just unreachable. Flip this to `false` to bring the whole
-// brand site back online in one edit.
+// The brand site has moved to its own domain (ubiqautomation.com). While
+// `true`, every /ubiq and /ubiq/* route 301s to the matching path there,
+// so existing links and indexed pages carry their ranking across instead
+// of dying on a 404. The source under app/ubiq/ is untouched and still
+// compiles — it's just no longer served from this domain.
+//
+// Flip this to `false` only if the brand site is ever brought back onto
+// unntangle.com; the /ubiq routes would then render from here again.
 //
 // Other uBIQ surfaces are hidden separately and each is marked with a
 // HIDDEN-UBIQ comment. To fully unhide, search the repo for HIDDEN-UBIQ:
@@ -17,41 +21,29 @@ import { NextRequest, NextResponse } from 'next/server';
 //   - app/layout.tsx           (uBIQ keyword + Organization brand JSON-LD)
 const HIDE_UBIQ = true;
 
+// HIDDEN-UBIQ: the domain the uBIQ brand site now lives on.
+const UBIQ_SITE_URL = 'https://ubiqautomation.com';
+
 export function middleware(req: NextRequest) {
-  const host = req.headers.get('host') || '';
   const url = req.nextUrl.clone();
 
-  // HIDDEN-UBIQ: serve a 404 for the whole /ubiq subtree.
+  // HIDDEN-UBIQ: 301 the whole /ubiq subtree to the brand's own domain.
+  //   /ubiq            -> https://ubiqautomation.com/
+  //   /ubiq/about      -> https://ubiqautomation.com/about
+  //   /ubiq/senz?x=1   -> https://ubiqautomation.com/senz?x=1
+  // 301 (not 307) so search engines transfer ranking to the new URLs.
   if (HIDE_UBIQ && (url.pathname === '/ubiq' || url.pathname.startsWith('/ubiq/'))) {
-    url.pathname = '/_ubiq-hidden';
-    return NextResponse.rewrite(url);
+    const path = url.pathname.slice('/ubiq'.length) || '/';
+    return NextResponse.redirect(`${UBIQ_SITE_URL}${path}${url.search}`, 301);
   }
 
-  // Route officemate.unntangle.com/* → /officemate/* (rewrite, URL stays clean)
-  if (host.startsWith('officemate.')) {
-    if (!url.pathname.startsWith('/officemate')) {
-      url.pathname = `/officemate${url.pathname}`;
-      return NextResponse.rewrite(url);
-    }
-  }
-
-  // Route uflow.unntangle.com/* → /crm/* (same pattern as officemate).
-  // The app source still lives under app/crm/ — only the public-facing
-  // subdomain is renamed. We rewrite (not redirect) so the URL bar
-  // stays clean.
-  //
-  // Exception: static files we ship under /public/uflow/ (logo, favicons,
-  // etc.) must be served as-is, not rewritten to /crm/uflow/* (which
-  // doesn't exist). We detect those by extension. _next/* is already
-  // excluded by the matcher below, but our own assets in /public/ are not.
-  if (host.startsWith('uflow.')) {
-    const isStaticAsset = /\.(webp|png|jpe?g|gif|svg|ico|webmanifest|woff2?|ttf|otf|css|js|map|txt|xml)$/i
-      .test(url.pathname);
-    if (!url.pathname.startsWith('/crm') && !isStaticAsset) {
-      url.pathname = `/crm${url.pathname}`;
-      return NextResponse.rewrite(url);
-    }
-  }
+  // Host-based rewrites used to live here for officemate.unntangle.com and
+  // uflow.unntangle.com. Both brands are their own standalone projects and
+  // deployments now, so neither host reaches this middleware and both
+  // rewrites pointed at app/ subtrees that no longer exist. Removed rather
+  // than left dangling — a rewrite to a missing route serves a 404, which
+  // is worse than no rule at all. If a subdomain ever needs to be served
+  // from this app again, add it back in the shape of the /ubiq block above.
 
   return NextResponse.next();
 }

@@ -837,3 +837,81 @@
     color: #1e40af;
 }
 
+/* Platform strip in the Brands rail. Text wordmarks, not logo images —
+   KNX, Crestron and Lutron are the vendors' trademarks and we hold no
+   licensed asset files for them. Drop real SVGs into /public and swap
+   these chips for <Image> if usage rights are confirmed. */
+.brandsPlatforms {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 2px;
+}
+
+.brandsPlatformsLabel {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+.brandsPlatformRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.brandsPlatformChip {
+    font-family: var(--font-outfit), sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 4px 9px;
+    line-height: 1.2;
+}
+
+/* ============================
+   Brands Mega Menu
+   With a single brand there's no category list to show, so the wide left
+   column carries a full-bleed hero banner and the right rail carries the
+   brand detail. .megaMenuContainer already sets align-items: stretch, so
+   the banner matches the rail's height whatever the copy length.
+   ============================ */
+.brandsBanner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    background: #f1f5f9;
+    min-height: 340px;
+}
+
+.brandsBannerImg {
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+}
+
+.brandsBanner:hover .brandsBannerImg {
+    transform: scale(1.04);
+}
+
+/* The shared .featuredPromo rule hides the right rail below 1024px for the
+   Services and Products menus, where it's supplementary. In the Brands menu
+   that rail is the entire content, so re-show it and drop the banner
+   instead. This block sits after that media query, so it wins. */
+@media (max-width: 1024px) {
+    .brandsBanner {
+        display: none;
+    }
+
+    .brandsDetail {
+        display: flex;
+    }
+}
+

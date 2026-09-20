@@ -32,7 +32,7 @@ export interface PageHeroProps {
     images?: string[];
     pills?: PageHeroPill[];
     /** Override the default purple→pink gradient. */
-    gradient?: 'purple-pink' | 'blue-cyan' | 'orange-pink' | 'green-teal';
+    gradient?: 'purple-pink' | 'blue-cyan' | 'orange-pink' | 'green-teal' | 'crimson-rose';
     /** Visual layout for the right side.
      *  'circle' = single circular portrait (default)
      *  'stacked-strips' = three horizontal capsule strips with optional CTA pill
@@ -48,6 +48,10 @@ const gradientPresets: Record<NonNullable<PageHeroProps['gradient']>, string> = 
     'blue-cyan': 'linear-gradient(135deg, #1e40af 0%, #3b82f6 30%, #06b6d4 70%, #22d3ee 100%)',
     'orange-pink': 'linear-gradient(135deg, #f97316 0%, #ef4444 40%, #ec4899 100%)',
     'green-teal': 'linear-gradient(135deg, #059669 0%, #14b8a6 50%, #06b6d4 100%)',
+    // Editorial variant for the blog. Stays in the red family rather than
+    // drifting orange, so it reads as distinct from 'orange-pink' on the
+    // services page — and it's nowhere near uBIQ's purple.
+    'crimson-rose': 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 40%, #f43f5e 75%, #fb7185 100%)',
 };
 
 export default function PageHero({

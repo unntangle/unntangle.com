@@ -70,15 +70,19 @@ export default function Footer() {
                             <Link href="/services">Growth Marketing</Link>
                         </div>
 
-                        {/* HIDDEN-UBIQ: the "Our Brands" column listed only
-                            uBIQ, so the entire column is hidden rather than
-                            leaving a dangling heading. Restore as-is when the
-                            brand site comes back.
+                        {/* uBIQ moved to its own domain — external link, so it
+                            opens in a new tab and skips the /ubiq 301 hop.
+                            OfficeMate is not listed here yet. */}
                         <div className={styles.column}>
                             <h4>Our Brands</h4>
-                            <Link href="/ubiq">uBIQ — Smart Space Automation</Link>
+                            <Link
+                                href="https://ubiqautomation.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                uBIQ - Smart Space Automation
+                            </Link>
                         </div>
-                        */}
 
                         {/* HIDDEN-CONTACT: entire Contact column hidden — phone, email,
                             and office address are all suppressed, which left this column

@@ -12,9 +12,8 @@ import { blogsData } from "@/data/blogs";
  *   4. Legal pages
  *
  * Notes on policy:
- *   - We do NOT include /officemate/* — that subtree is served on the
- *     officemate.unntangle.com host via middleware rewrite, and would
- *     have its own sitemap there.
+ *   - /officemate/* is gone — that subtree was removed from this project
+ *     along with the officemate.* host rewrite. Nothing to exclude.
  *   - `lastModified` for blog posts uses the post's publish date when
  *     parseable; falls back to "now" otherwise.
  */
@@ -64,10 +63,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "yearly",
             priority: 0.6,
         },
-        // HIDDEN-UBIQ: /ubiq now 404s (see HIDE_UBIQ in middleware.ts), so
-        // it must not be advertised in the sitemap — submitting a URL that
-        // returns 404 is a Search Console error. Restore this entry when the
-        // brand site is unhidden.
+        // HIDDEN-UBIQ: /ubiq now 301s to ubiqautomation.com (see HIDE_UBIQ
+        // in middleware.ts). A redirecting URL must not be advertised in the
+        // sitemap — only final destinations belong here, and those live in
+        // that site's own sitemap.
         // {
         //     url: `${SITE_URL}/ubiq`,
         //     lastModified: now,
