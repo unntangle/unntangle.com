@@ -1,51 +1,46 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Layers3, Code2, Palette, TrendingUp, ArrowUpRight } from 'lucide-react';
+import { Search, Hammer, Plug, Rocket, Activity, TrendingUp, ArrowUpRight } from 'lucide-react';
 import styles from './Stats.module.css';
 
 /**
- * Home-page "Architecture of Impact" section.
+ * Home-page deployment methodology section.
  *
- * Communicates Unntangle Technologies's three core service pillars (Technology
- * Solutions, Creative Design, Growth Marketing) plus a featured
- * value-prop card on the left summarising why those pillars work
- * better when delivered together.
- *
- * The right-side metric cards mirror the categories from the
- * Services section above (expertiseGroups in Services.tsx) so the
- * narrative is consistent: "here's what we do" → "here's how we
- * do it together" → product / case-study sections below.
+ * Repurposed from "Architecture of Impact" to communicate the
+ * Assess → Build → Integrate → Deploy → Operate → Improve
+ * AI deployment cycle. Uses the same layout (featured card left,
+ * 3-col metric grid right) so no CSS changes needed.
  */
 
 const pillars = [
     {
-        value: '6',
-        label: 'AI Agent Solutions',
-        icon: <Code2 size={18} />,
+        value: '01',
+        label: 'Assess',
+        icon: <Search size={18} />,
         description:
-            'Sales, Finance, Procurement, Operations, Customer Service and Management Intelligence — AI agents built for each function.',
+            'We map your existing workflows, identify where repetitive manual effort is highest, and prioritise where AI can create measurable impact first.',
     },
     {
-        value: '10+',
-        label: 'System Integrations',
-        icon: <Palette size={18} />,
+        value: '02',
+        label: 'Build',
+        icon: <Hammer size={18} />,
         description:
-            'ERP, CRM, databases, documents, email, WhatsApp and internal applications — AI connects to the systems you already use.',
+            'We build the required AI agent or workflow — trained on your business context, your data formats, and the specific decisions it needs to support.',
     },
     {
-        value: '6+',
-        label: 'Industries Served',
-        icon: <TrendingUp size={18} />,
+        value: '03',
+        label: 'Integrate',
+        icon: <Plug size={18} />,
         description:
-            'Manufacturing, industrial, logistics, distribution, pharma and textiles — complex B2B businesses with repetitive workflows.',
+            'We connect the AI to your existing systems — ERP, CRM, email, WhatsApp, databases and internal applications — without replacing any of them.',
     },
     {
-        value: '100%',
-        label: 'In-House AI Engineering',
-        icon: <Layers3 size={18} />,
+        value: '04',
+        label: 'Deploy & Improve',
+        icon: <Rocket size={18} />,
         description:
-            'A single accountable team across AI engineering, software development and integrations — no hand-offs, no finger-pointing.',
+            'We deploy into your real production workflow with appropriate human controls, then monitor performance and continuously improve as the system learns.',
     },
 ];
 
@@ -55,13 +50,12 @@ export default function Stats() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.topHeader}>
                     <div className={styles.headerInfo}>
-                        <span className={styles.sublabel}>How We Work</span>
-                        <h2 className={styles.mainTitle}>AI That Fits Into Your Business.</h2>
+                        <span className={styles.sublabel}>How We Deploy AI</span>
+                        <h2 className={styles.mainTitle}>Start With Your Workflow. Not With AI.</h2>
                     </div>
                     <p className={styles.headerDescription}>
-                        Most AI tools ask your team to change how they work. We don&apos;t. Our AI agents
-                        connect to the systems you already use — ERP, CRM, email, WhatsApp — and
-                        operate inside your existing workflows without disruption.
+                        We don&apos;t begin by selling a predefined AI product. We first understand how your
+                        business works — then identify the workflows where AI can create real, measurable value.
                     </p>
                 </div>
 
@@ -76,17 +70,17 @@ export default function Stats() {
                     >
                         <div className={styles.featuredContent}>
                             <div className={styles.featuredIcon}>
-                                <Layers3 size={32} />
+                                <Activity size={32} />
                             </div>
-                            <h3>From Experimenting to Actually Operating with AI</h3>
+                            <h3>From Business Problem to Production AI</h3>
                             <p>
-                                Many businesses have tried AI tools that sit outside their real
-                                workflows. We connect AI agents directly to your ERP, CRM, databases
-                                and communication channels — so AI becomes part of how your business
-                                actually runs, not just another dashboard your team ignores.
+                                Most AI projects fail because they start with the technology, not
+                                the workflow. We flip that. Every deployment begins with your teams
+                                — understanding how work happens today, where time is lost, and
+                                which tasks are genuinely worth automating. Only then do we build.
                             </p>
-                            <a href="/services" className={styles.ghostLink}>
-                                See AI solutions <ArrowUpRight size={16} />
+                            <a href="/contact" className={styles.ghostLink}>
+                                Book an AI Workflow Assessment <ArrowUpRight size={16} />
                             </a>
                         </div>
                         <div className={styles.featuredVisual}>
@@ -94,7 +88,7 @@ export default function Stats() {
                         </div>
                     </motion.div>
 
-                    {/* Pillars sub-grid — 3 service categories + summary tile */}
+                    {/* Steps sub-grid */}
                     <div className={styles.metricsGrid}>
                         {pillars.map((pillar, index) => (
                             <motion.div

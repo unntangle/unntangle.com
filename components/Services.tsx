@@ -9,23 +9,23 @@ import styles from './Services.module.css';
 
 const expertiseGroups = [
     {
-        id: 'ai-agents',
-        title: 'AI Agents & Automation',
-        description: 'Intelligent AI agents that connect with your ERP, CRM, databases, documents, email and WhatsApp — automating repetitive workflows so your team can focus on decisions that matter.',
+        id: 'ai-deploy',
+        title: 'We Don\'t Just Build AI. We Deploy It.',
+        description: 'Every business has repetitive workflows that consume valuable employee time. Unntangle works directly with your teams to understand how work actually happens, identify where AI can create measurable value, build the required AI agent, integrate it with your existing systems, and deploy it into production.',
         services: ['AI Sales Agent', 'AI Finance Agent', 'AI Procurement Agent', 'AI Operations Agent', 'AI Customer Service Agent', 'AI Management Intelligence'],
         image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000',
     },
     {
         id: 'tech',
-        title: 'Technology That Makes AI Work',
-        description: 'AI agents are only useful when they can work with the systems your business already depends on. We combine AI engineering with software development, integrations and digital technology.',
-        services: ['Enterprise Software', 'Website Development', 'App Development', 'ERP Development', 'API Integrations', 'Interactive 3D'],
+        title: 'Technology That Makes AI Work.',
+        description: 'AI agents are only useful when they can work with the systems your business already depends on. We combine AI engineering with software development, system integrations and digital technology to connect intelligence with your real operational workflows.',
+        services: ['Enterprise Software', 'Website Development', 'App Development', 'API Integrations', 'Cloud & Infrastructure', 'Interactive 3D'],
         image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000',
     },
     {
         id: 'growth',
-        title: 'AI-Powered Growth',
-        description: 'Combine AI with your existing marketing operations to analyse campaigns, identify opportunities, automate repetitive tasks and accelerate customer acquisition.',
+        title: 'AI-Powered Growth.',
+        description: 'Combine AI with your existing marketing operations to analyse campaign performance, identify growth opportunities, automate repetitive tasks and accelerate customer acquisition — with data-driven precision.',
         services: ['Meta Ads', 'Google Ads', 'SEO', 'SMM'],
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
     }
@@ -158,8 +158,8 @@ export default function Services() {
                 <div className={styles.container}>
                     <div className={styles.header}>
                         <span className="tag">What We Do</span>
-                        <h2>We don&apos;t just build AI. We put it to work.</h2>
-                        <p>Intelligent AI agents connected to your existing systems, automating the workflows that consume your team every day.</p>
+                        <h2>AI deployment for real business workflows.</h2>
+                        <p>We don&apos;t start with AI. We start with how your business actually works — then build and deploy AI that fits into it.</p>
                     </div>
 
                     <div className={styles.cardStack}>

@@ -42,49 +42,49 @@ const industries: Industry[] = [
         icon: <Factory size={26} />,
         name: 'Manufacturing',
         description:
-            'AI for RFQs, quotations, procurement, production reporting, quality workflows, inventory and collections.',
+            'AI-powered workflows for RFQ processing, quotations, procurement, production reporting, quality documentation, inventory and collections.',
     },
     {
         icon: <Cog size={26} />,
         name: 'Industrial & Engineering',
         description:
-            'AI for technical documents, proposals, quotations, project workflows and customer communication.',
+            'AI for technical documentation, project proposals, quotation preparation, project workflows and customer communication.',
     },
     {
         icon: <Truck size={26} />,
         name: 'Logistics & Transportation',
         description:
-            'AI for shipment tracking, documentation, customer updates, billing and operational reporting.',
+            'AI for shipment tracking, documentation processing, customer updates, billing workflows and operational reporting.',
     },
     {
         icon: <Package size={26} />,
         name: 'Distribution',
         description:
-            'AI for dealer enquiries, order processing, inventory, quotations and collections.',
+            'AI for dealer enquiry management, order processing, inventory monitoring, quotations and collections follow-up.',
     },
     {
         icon: <FlaskConical size={26} />,
         name: 'Pharma & Chemicals',
         description:
-            'AI for documentation, compliance workflows, procurement and customer operations.',
+            'AI for documentation workflows, compliance support, procurement processing and customer operations.',
     },
     {
         icon: <Shirt size={26} />,
         name: 'Textiles & Apparel',
         description:
-            'AI for buyer communication, order processing, production, quality and export documentation.',
+            'AI for buyer communication, order processing, production tracking, quality documentation and export workflows.',
     },
     {
         icon: <Headphones size={26} />,
         name: 'BPO & Contact Centers',
         description:
-            'AI voice agents, intelligent dialers and CRM-integrated workflows that scale customer operations.',
+            'AI voice agents, intelligent contact-center workflows and CRM-integrated automation for high-volume customer operations.',
     },
     {
         icon: <Stethoscope size={26} />,
         name: 'Healthcare',
         description:
-            'AI for clinical documentation, patient communication, administrative workflows and compliance.',
+            'AI for clinical documentation, patient communication, administrative workflows and compliance-related processes.',
     },
 ];
 
@@ -94,9 +94,9 @@ export default function Industries() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Industries</span>
-                    <h2>AI for Complex B2B Businesses</h2>
+                    <h2>AI for Complex B2B Operations</h2>
                     <p>
-                        Every industry has repetitive workflows that consume valuable employee time. Unntangle connects AI agents to the processes, systems and data unique to each business.
+                        Established businesses in operationally complex industries have the most to gain from AI deployment. Every industry below has workflows that consume significant employee time — and are strong candidates for AI automation.
                     </p>
                 </div>
 

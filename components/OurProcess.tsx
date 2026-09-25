@@ -1,37 +1,58 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Compass, PenTool, Code2, Rocket } from 'lucide-react';
+import { Search, Map, Target, Hammer, Plug, Rocket, TrendingUp } from 'lucide-react';
 import styles from './OurProcess.module.css';
 
 const steps = [
     {
         number: '01',
-        icon: Compass,
-        title: 'Discovery & Strategy',
-        description: 'We start by understanding your business mechanics — not just what you want built, but the underlying goal it has to serve. Every engagement begins with a structured intake.',
-        deliverables: ['Stakeholder interviews', 'Technical audit', 'Strategic brief'],
+        icon: Search,
+        title: 'Discover',
+        description: 'We work alongside your teams to understand how work actually happens — the day-to-day workflows, handoffs, bottlenecks and the tasks that consume the most time without requiring genuine human judgment.',
+        deliverables: ['Team interviews', 'Workflow observation', 'Process documentation'],
     },
     {
         number: '02',
-        icon: PenTool,
-        title: 'Design & Architecture',
-        description: 'Wireframes, design systems, and infrastructure decisions all happen in parallel. The output is a single source of truth that aligns engineering, design, and growth from day one.',
-        deliverables: ['Design tokens', 'Component library', 'System architecture'],
+        icon: Map,
+        title: 'Map',
+        description: 'We create a detailed map of your existing workflows — who does what, what systems they use, what data moves between steps, and where manual effort is concentrated.',
+        deliverables: ['Workflow diagrams', 'System inventory', 'Data flow mapping'],
     },
     {
         number: '03',
-        icon: Code2,
-        title: 'Build & Iterate',
-        description: 'We ship in 2-week sprints with continuous deployment to a staging environment. You see progress live, give feedback in real time, and we adjust before scope drifts.',
-        deliverables: ['Bi-weekly demos', 'Live staging links', 'Iterative refinement'],
+        icon: Target,
+        title: 'Prioritize',
+        description: 'Not every workflow is worth automating first. We score workflows against effort, frequency, error rate and strategic value — and recommend which to deploy first for maximum impact.',
+        deliverables: ['Prioritization matrix', 'ROI assessment', 'Deployment roadmap'],
     },
     {
         number: '04',
+        icon: Hammer,
+        title: 'Build',
+        description: 'We build the required AI agent or workflow — trained on your business context, your terminology, your data formats and the specific decisions it needs to support or execute.',
+        deliverables: ['AI agent development', 'Prompt engineering', 'Logic configuration'],
+    },
+    {
+        number: '05',
+        icon: Plug,
+        title: 'Integrate',
+        description: 'We connect the AI to your existing systems — ERP, CRM, databases, email, WhatsApp and internal applications. Your infrastructure stays. AI connects to it.',
+        deliverables: ['API integrations', 'System connectors', 'Data pipeline setup'],
+    },
+    {
+        number: '06',
         icon: Rocket,
-        title: 'Launch & Optimize',
-        description: 'Launch is the start, not the end. We instrument analytics, set up A/B testing infrastructure, and stay engaged through the first 90 days to optimize against real-world data.',
-        deliverables: ['Zero-downtime deploy', 'Analytics setup', '90-day optimization'],
+        title: 'Deploy',
+        description: 'We deploy into your real production workflow with appropriate human approval controls, permissions and escalation paths. AI operates inside your real processes — not alongside them.',
+        deliverables: ['Production deployment', 'Human approval gates', 'Escalation workflows'],
+    },
+    {
+        number: '07',
+        icon: TrendingUp,
+        title: 'Operate & Improve',
+        description: 'After deployment, we monitor performance, track outcomes and continuously improve the system. As AI proves value in one area, we expand it to adjacent workflows and departments.',
+        deliverables: ['Performance monitoring', 'Continuous improvement', 'Workflow expansion'],
     },
 ];
 
@@ -46,13 +67,14 @@ export default function OurProcess() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>How we work</span>
+                    <span className={styles.eyebrow}>How we deploy AI</span>
                     <h2 className={styles.title}>
-                        A process built to <span className={styles.titleAccent}>de-risk</span> ambition.
+                        From workflow discovery to <span className={styles.titleAccent}>production AI.</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Big projects fail in predictable ways: scope drift, late surprises, hand-off chaos.
-                        Our four-stage process is engineered to eliminate each one.
+                        We work alongside your team from identifying the opportunity to deploying and
+                        operating the solution in production. Every step is designed to de-risk the deployment
+                        and ensure the AI delivers real, measurable value before we expand.
                     </p>
                 </motion.div>
 
@@ -68,7 +90,7 @@ export default function OurProcess() {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: i * 0.12 }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
                             >
                                 <div className={styles.stepHeader}>
                                     <span className={styles.stepNumber}>{step.number}</span>

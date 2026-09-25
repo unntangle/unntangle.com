@@ -6,29 +6,29 @@ import styles from './WhyChooseUs.module.css';
 
 const comparisonRows = [
     {
-        feature: 'Systems integration',
-        unntangle: 'AI connects to your existing ERP, CRM, email, WhatsApp and databases — no rip-and-replace.',
-        others: 'Generic AI tools that sit outside your real workflows and require manual data entry.',
+        feature: 'How work happens today',
+        unntangle: 'AI reads the RFQ, retrieves product data, drafts the quotation, waits for approval, sends it and updates the CRM — automatically.',
+        others: 'Employee opens the PDF, searches the ERP, copies previous quotes, prepares the document manually and updates the CRM by hand.',
     },
     {
-        feature: 'Workflow depth',
-        unntangle: 'AI agents that analyse, prepare and execute multi-step business workflows end-to-end.',
-        others: 'Chatbots and dashboards that answer questions but cannot take action inside your systems.',
+        feature: 'Follow-up on outstanding payments',
+        unntangle: 'AI monitors receivables daily, prepares tiered reminders, sends them via email or WhatsApp on schedule and escalates overdue accounts to the right person.',
+        others: 'Finance team manually checks the ledger, identifies overdue invoices, writes follow-up emails and tracks responses in a spreadsheet.',
     },
     {
-        feature: 'Enterprise-grade security',
-        unntangle: 'Your data stays in your environment — no third-party model training on your business data.',
-        others: 'Cloud SaaS tools where your data feeds into shared models with unknown data governance.',
+        feature: 'Vendor quotation comparison',
+        unntangle: 'AI extracts line-item pricing from every vendor PDF, builds a comparison table, highlights the best option and prepares a draft purchase recommendation.',
+        others: 'Procurement team opens each PDF separately, types prices into Excel, creates comparison manually and prepares recommendations from scratch.',
     },
     {
-        feature: 'Deployment speed',
-        unntangle: 'First AI agents live in 4–8 weeks — phased rollout starting with your highest-value workflow.',
-        others: 'Six-month consulting engagements before a single automated workflow goes live.',
+        feature: 'Customer enquiry handling',
+        unntangle: 'AI reads the customer message, checks order status in the ERP, retrieves the relevant information and sends an accurate response within minutes — 24 hours a day.',
+        others: 'Customer service team reads the message, logs into the ERP, looks up the order, composes a response and sends it — during business hours only.',
     },
     {
-        feature: 'Ongoing accountability',
-        unntangle: 'Retained partnership model — we stay invested, iterate and expand as your business grows.',
-        others: 'Project handoffs — you get a system, a manual, and a goodbye once the invoice is paid.',
+        feature: 'Management reporting',
+        unntangle: 'AI pulls data from ERP, CRM and operations systems each morning, compiles the management briefing and delivers it to leadership automatically.',
+        others: 'Operations or finance team manually compiles reports from multiple systems each day — consuming 2–3 hours that could be spent on higher-value work.',
     },
 ];
 
@@ -43,16 +43,16 @@ export default function WhyChooseUs() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>Why Unntangle</span>
+                    <span className={styles.eyebrow}>Real Workflow Examples</span>
                     <h2 className={styles.title}>
-                        AI that actually runs inside
+                        Turn Repetitive Work
                         <br />
-                        <span className={styles.titleAccent}>your business.</span>
+                        <span className={styles.titleAccent}>Into AI-Powered Workflows.</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Most AI tools are built for demos, not for the messy reality of how mid-market
-                        businesses actually operate. Unntangle builds AI agents that connect to your real
-                        systems, run your real workflows, and are accountable for real outcomes.
+                        Here is what the same business task looks like before and after AI deployment.
+                        The right column is not a futuristic vision — it is what Unntangle builds and deploys
+                        into real business operations.
                     </p>
                 </motion.div>
 
@@ -66,10 +66,10 @@ export default function WhyChooseUs() {
                     <div className={styles.tableHeader}>
                         <div className={styles.headerCell} aria-hidden="true" />
                         <div className={`${styles.headerCell} ${styles.headerUnntangle}`}>
-                            <span className={styles.headerLabel}>Unntangle</span>
+                            <span className={styles.headerLabel}>With Unntangle AI</span>
                         </div>
                         <div className={`${styles.headerCell} ${styles.headerOthers}`}>
-                            <span className={styles.headerLabel}>Typical vendors</span>
+                            <span className={styles.headerLabel}>Manual today</span>
                         </div>
                     </div>
 

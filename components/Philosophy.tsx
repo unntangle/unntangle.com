@@ -1,29 +1,34 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, Zap, Shield, Sparkles } from 'lucide-react';
+import { Target, Plug, Users, Rocket, RefreshCw } from 'lucide-react';
 import styles from './Philosophy.module.css';
 
 const values = [
     {
-        title: 'Systems-First Thinking',
+        title: 'Business-First',
         icon: <Target size={24} />,
-        description: 'AI is only valuable when it works inside the systems your business already runs. We start with your ERP, CRM and workflows — not a blank-slate AI prototype.'
+        description: 'We start with the workflow and the business problem — not the technology. Every AI deployment begins with understanding how your teams work and where the real friction is.'
     },
     {
-        title: 'Workflow Depth',
-        icon: <Zap size={24} />,
-        description: 'We build agents that go beyond answering questions — they analyse data, prepare actions and execute approved workflows end-to-end inside your business processes.'
+        title: 'Built Around Your Systems',
+        icon: <Plug size={24} />,
+        description: 'You don\'t need to replace your ERP, CRM or existing software. Our AI connects to and works with the systems your business already depends on — no rip-and-replace required.'
     },
     {
-        title: 'Outcome Accountability',
-        icon: <Sparkles size={24} />,
-        description: 'Every AI deployment is scoped around measurable business outcomes — hours saved, cycle times reduced, workflows automated. We track what matters, not vanity metrics.'
+        title: 'Human-Controlled',
+        icon: <Users size={24} />,
+        description: 'Critical workflows include appropriate human approval, escalation and oversight. AI analyses and recommends — your team decides when it matters. We design for accountability, not blind automation.'
     },
     {
-        title: 'Radical Simplicity',
-        icon: <Shield size={24} />,
-        description: 'Complex workflows become simple when the right intelligence is applied. We unntangle the knots in your operations and replace manual friction with automated precision.'
+        title: 'Deployment Focused',
+        icon: <Rocket size={24} />,
+        description: 'We don\'t stop at prototypes or proof-of-concept demos. Our focus is production implementation — AI running inside your real workflows, handling real work, delivering real outcomes.'
+    },
+    {
+        title: 'Built To Evolve',
+        icon: <RefreshCw size={24} />,
+        description: 'Every deployment starts with one workflow and is designed to expand. As AI proves value in one area, it can be extended to adjacent workflows and departments — incrementally, without disruption.'
     }
 ];
 
@@ -32,10 +37,10 @@ export default function Philosophy() {
         <section className={styles.philosophy}>
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
-                    <span className="tag">Our Philosophy</span>
-                    <h2 className={styles.title}>The Art of Unntangling</h2>
+                    <span className="tag">Why Unntangle</span>
+                    <h2 className={styles.title}>Why Businesses Work With Us</h2>
                     <p className={styles.description}>
-                        At Unntangle, we are driven by a singular mission: to help businesses move from experimenting with AI to actually operating with it.
+                        We are an AI deployment partner, not an AI product vendor. Here is what that means in practice.
                     </p>
                 </div>
 

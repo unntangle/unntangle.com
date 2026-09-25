@@ -11,6 +11,7 @@ import TechStack from "@/components/TechStack";
 import Industries from "@/components/Industries";
 import CTABand from "@/components/CTABand";
 import FAQ from "@/components/FAQ";
+import Philosophy from "@/components/Philosophy";
 import Footer from "@/components/Footer";
 
 // `ClientCarousel` (the "CLIENTS TRUST US" scrolling logo rows)
@@ -112,25 +113,26 @@ export default function Home() {
       <Navbar />
       <div style={{ paddingTop: '80px' }}>
         <PageHero
-          eyebrow="ENTERPRISE AI • AI AGENTS • AUTOMATION"
+          eyebrow="ENTERPRISE AI DEPLOYMENT & AUTOMATION"
           titleParts={[
             'AI That Works ',
             { accent: 'Inside Your Business.' },
           ]}
-          description="Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service."
+          description="Unntangle identifies repetitive business workflows, builds AI-powered solutions around them, and deploys them into your existing systems — helping teams work faster, smarter and with less manual effort."
           primaryCta={{ label: 'Book an AI Workflow Assessment', href: '/contact' }}
           secondaryCta={{ label: 'Explore AI Solutions', href: '/services' }}
           image="/images/hero.png"
-          imageAlt="Unntangle AI Agents"
+          imageAlt="Unntangle AI Deployment"
           gradient="blue-cyan"
           imageLayout="stacked-strips"
-          overlayCta={{ label: 'Create an Unntangled world', href: '/services' }}
+          overlayCta={{ label: 'Discover your AI workflows', href: '/contact' }}
         />
       </div>
       <Services />
       <Products />
       {/* HIDDEN-UBIQ: <BrandEcosystem /> */}
       <Stats />
+      <Philosophy />
       <TechStack />
       <Industries />
       <CTABand />

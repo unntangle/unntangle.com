@@ -38,17 +38,17 @@ export default function CTABand() {
                     <div className={styles.orb} aria-hidden="true" />
 
                     <div className={styles.content}>
-                        <span className={styles.eyebrow}>Let&apos;s get to work</span>
+                        <span className={styles.eyebrow}>Find where AI can work inside your business</span>
 
                         <h2 className={styles.title}>
-                            Ready to put AI to work{' '}
-                            <span className={styles.titleAccent}>inside your business?</span>
+                            Bring us a workflow.{' '}
+                            <span className={styles.titleAccent}>We&apos;ll show you what AI can do with it.</span>
                         </h2>
 
                         <p className={styles.description}>
-                            Whether you&apos;re ready to automate a specific workflow or want to
-                            understand where AI can have the most impact — start the conversation.
-                            We&apos;ll come back with a scoped assessment within a working day.
+                            Bring us a workflow that&apos;s consuming time, creating bottlenecks or
+                            requiring repetitive manual work. We&apos;ll help you determine whether AI
+                            can automate or augment it — and what that would look like in practice.
                         </p>
 
                         <div className={styles.actions}>
@@ -56,23 +56,26 @@ export default function CTABand() {
                                 Book an AI Workflow Assessment <ArrowRight size={18} />
                             </Link>
                             <Link href="/contact" className={styles.secondaryCta}>
-                                <Calendar size={16} /> Book a discovery call
+                                <Calendar size={16} /> Talk to an AI deployment specialist
                             </Link>
                         </div>
                     </div>
 
-                    {/* Subtle marquee of the capabilities, repeated to fill width */}
                     <div className={styles.marquee} aria-hidden="true">
                         <div className={styles.marqueeTrack}>
                             {[...Array(2)].map((_, copyIndex) => (
                                 <div key={copyIndex} className={styles.marqueeGroup}>
-                                    <span className={styles.marqueeItem}>AI Agents</span>
+                                    <span className={styles.marqueeItem}>Assess</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
-                                    <span className={styles.marqueeItem}>Enterprise Automation</span>
+                                    <span className={styles.marqueeItem}>Build</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
-                                    <span className={styles.marqueeItem}>Technology</span>
+                                    <span className={styles.marqueeItem}>Integrate</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
-                                    <span className={styles.marqueeItem}>Growth Marketing</span>
+                                    <span className={styles.marqueeItem}>Deploy</span>
+                                    <span className={styles.marqueeDot}>&#9679;</span>
+                                    <span className={styles.marqueeItem}>Operate</span>
+                                    <span className={styles.marqueeDot}>&#9679;</span>
+                                    <span className={styles.marqueeItem}>Improve</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
                                 </div>
                             ))}

@@ -7,28 +7,32 @@ import styles from './FAQ.module.css';
 
 const faqs = [
     {
-        question: "What exactly is an AI agent and how is it different from an AI chatbot?",
-        answer: "An AI chatbot answers questions. An AI agent takes action. Our agents connect to your existing systems — ERP, CRM, email, WhatsApp — analyse information, prepare recommendations and execute approved workflows without your team having to do it manually each time."
+        question: "What is an AI Workflow Assessment and why should we start there?",
+        answer: "An AI Workflow Assessment is a structured session — typically 1 to 2 working days — where we work with your teams to map existing processes, identify where repetitive manual effort is highest, and prioritise the workflows where AI can create the most measurable business value. We do not begin by proposing a product. We begin by understanding your business. The assessment gives you a clear, prioritised deployment roadmap before any development starts."
     },
     {
-        question: "Do we need to replace our existing ERP or CRM to use your AI agents?",
-        answer: "No. Our AI agents are designed to work with the systems you already have. We integrate with your existing ERP, CRM, databases, documents and communication tools. You keep your current infrastructure and the AI operates on top of it."
+        question: "Do we need to replace our ERP, CRM or existing software?",
+        answer: "No. This is one of the most important things to understand. Unntangle builds AI that connects to and works with the systems your business already uses — Tally, SAP, Zoho, Salesforce, custom ERPs, email, WhatsApp, databases and internal applications. You do not replace infrastructure. The AI operates on top of what you already have."
     },
     {
-        question: "What kinds of workflows can AI agents automate?",
-        answer: "Any repetitive, rule-based or data-heavy process is a candidate. Common examples include: lead qualification and RFQ responses, invoice matching and payment follow-ups, vendor quotation comparison, purchase order preparation, shipment status updates, and customer enquiry handling across email and WhatsApp."
+        question: "What is the difference between an AI agent and a chatbot?",
+        answer: "A chatbot answers questions from a knowledge base. An AI agent takes action. For example, when an RFQ arrives, an AI Sales Agent reads the document, retrieves your product and pricing data from your ERP, prepares a draft quotation, waits for human approval and then sends it — updating your CRM automatically. It is performing a business workflow, not just responding to a message."
     },
     {
-        question: "How long does it take to deploy an AI agent?",
-        answer: "It depends on the complexity of the workflow and how accessible your existing systems are via APIs or integrations. Simpler deployments — like an AI that handles inbound enquiries or prepares quotation drafts — can be live in 4–6 weeks. More complex multi-system automations typically take 8–12 weeks."
+        question: "How does human approval work in an AI workflow?",
+        answer: "We design every critical workflow with appropriate human controls. The level of automation is configurable — for example, an AI can prepare a quotation draft and queue it for one-click approval, or it can send low-value routine responses autonomously while escalating high-value or unusual cases to a human. You decide where the approval gates sit. AI analyses and prepares; your team approves when it matters."
     },
     {
-        question: "Is our business data safe when using AI agents?",
-        answer: "Yes. We architect AI deployments with data privacy as a requirement, not an afterthought. Your data does not leave your environment to train third-party models. We use secure API integrations, role-based access controls and operate within your existing data governance frameworks."
+        question: "How long does it take to go from assessment to a live AI deployment?",
+        answer: "A focused workflow deployment — such as an AI that processes inbound RFQs and prepares quotation drafts — can typically go from assessment to production in 4 to 8 weeks. More complex deployments involving multiple systems, custom integrations or multi-step workflows generally take 8 to 14 weeks. We phase the rollout so your first AI workflow is live and generating value while subsequent ones are being built."
     },
     {
-        question: "What is an AI Workflow Assessment and how do we get started?",
-        answer: "An AI Workflow Assessment is a structured session where we review your existing processes, identify which workflows have the highest automation potential, and map out a prioritised deployment plan. It typically takes 1–2 working days and gives you a clear picture of where AI can deliver the fastest and highest-value impact. Book one via our contact page."
+        question: "Is our business data secure when AI connects to our systems?",
+        answer: "Yes. We architect every deployment with data security as a foundational requirement. Your data does not leave your environment or feed into shared third-party models. We use secure API integrations with credentials you own and control, role-based access permissions, and operate within your existing data governance frameworks. For regulated industries we can deploy entirely within your private cloud environment."
+    },
+    {
+        question: "Can AI deployment start small and expand over time?",
+        answer: "This is how we recommend approaching it. Start with the single highest-value workflow — the one where your team is losing the most time to repetitive manual work. Prove the value, build confidence in how the system operates, and then expand to adjacent workflows and departments. Every deployment is designed to be modular and extensible from the beginning."
     }
 ];
 
