@@ -21,10 +21,10 @@ import styles from './AboutStatsHero.module.css';
  */
 
 const topStats = [
-    { value: '12+', label: 'Services Across Disciplines' },
-    { value: '4', label: 'Products in Market' },
-    { value: '8', label: 'Industries Served' },
-    { value: '100%', label: 'In-House Talent' },
+    { value: '6', label: 'AI Agent Solutions' },
+    { value: '3', label: 'AI Products in Market' },
+    { value: '8+', label: 'Industries Served' },
+    { value: '100%', label: 'In-House AI Engineering' },
 ];
 
 export default function AboutStatsHero() {
@@ -40,8 +40,8 @@ export default function AboutStatsHero() {
                 >
                     <span className={styles.eyebrow}>By the numbers</span>
                     <h2 className={styles.title}>
-                        Three disciplines.{' '}
-                        <span className={styles.titleAccent}>One accountable team.</span>
+                        Enterprise AI.{' '}
+                        <span className={styles.titleAccent}>Real business outcomes.</span>
                     </h2>
                 </motion.div>
 

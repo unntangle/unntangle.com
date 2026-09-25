@@ -24,9 +24,9 @@ import styles from './MarketingCTA.module.css';
  */
 
 const pillars = [
-    'Technology Solutions',
-    'Creative Design',
-    'Growth Marketing',
+    'AI Agents & Automation',
+    'Enterprise Technology',
+    'AI-Powered Growth',
 ];
 
 export default function MarketingCTA() {
@@ -76,8 +76,8 @@ export default function MarketingCTA() {
                             />
                         </div>
                         <h2 className={styles.title}>
-                            One brief.{' '}
-                            <span className={styles.gradientText}>One accountable team.</span>
+                            AI that works inside{' '}
+                            <span className={styles.gradientText}>your business.</span>
                         </h2>
 
                         <div className={styles.pillars}>
@@ -97,14 +97,14 @@ export default function MarketingCTA() {
 
                     <div className={styles.rightSide}>
                         <p className={styles.description}>
-                            Whether you&apos;re launching a product, modernising a legacy
-                            platform, or scaling growth, we ship in weeks — not quarters. Tell
-                            us what you&apos;re building and we&apos;ll come back with a scoped
-                            plan within 48 hours.
+                            Whether you&apos;re ready to automate a specific workflow or want to
+                            understand where AI can have the most impact — we scope the assessment,
+                            prioritise the highest-value workflows and deploy your first AI agent in
+                            weeks, not months.
                         </p>
                         <div className={styles.buttonWrapper}>
                             <Link href="/contact" className={styles.primaryBtn}>
-                                Start a project
+                                Book an AI Workflow Assessment
                                 <ArrowRight size={18} />
                                 <div className={styles.btnGlow} />
                             </Link>

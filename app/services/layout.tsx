@@ -6,16 +6,14 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Bare page name; template appends " | Unntangle Technologies". Renders as:
-    // "Services | Unntangle Technologies"
     title: "Services",
     description:
-        "Twelve services across Technology Solutions, Creative Design, and Growth Marketing. Web & app development, ERP, 3D, AI, Meta Ads, SEO, and more — from one accountable studio.",
+        "AI agents, enterprise automation and the technology that makes AI work — from one accountable team. Deploy AI across sales, finance, operations, procurement and customer service.",
     alternates: { canonical: "/services" },
     openGraph: {
         title: "Services | Unntangle Technologies",
         description:
-            "Twelve services across Technology Solutions, Creative Design, and Growth Marketing. Web & app development, ERP, 3D, AI, Meta Ads, SEO, and more.",
+            "AI agents, enterprise automation and the technology that makes AI work. Connect intelligent agents to your existing ERP, CRM and workflows.",
         url: `${SITE_URL}/services`,
         type: "website",
         images: [
@@ -39,7 +37,7 @@ const servicesJsonLd = {
     url: `${SITE_URL}/services`,
     name: "Unntangle Services",
     description:
-        "Technology, creative design, and growth marketing services from Unntangle.",
+        "Enterprise AI agents and automation — connecting intelligent AI to your existing business systems.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     breadcrumb: {
         "@type": "BreadcrumbList",

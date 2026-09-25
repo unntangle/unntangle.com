@@ -31,9 +31,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'uvoiz',
         name: 'uVOIZ',
-        eyebrow: 'AI Telecalling',
+        eyebrow: 'AI Voice Workforce',
         description:
-            'AI voice agents that speak 5+ Indian languages and replace telecallers for BPOs. TRAI-compliant, CRM-integrated, always on.',
+            'AI-powered voice agents for customer conversations, lead qualification, support and business calling workflows. Speaks 5+ Indian languages. TRAI-compliant. Always on.',
         image: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&q=80&w=1200',
         href: 'https://uvoiz.unntangle.com',
         external: true,
@@ -42,9 +42,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'udylr',
         name: 'uDYLR',
-        eyebrow: 'Predictive BPO Dialer',
+        eyebrow: 'AI-Powered Contact Center',
         description:
-            'Outbound and inbound BPO dialer with predictive routing, agent assist, and built-in compliance for high-volume campaigns.',
+            'Intelligent calling and contact-center workflows designed to automate repetitive customer interactions with predictive routing, agent assist and built-in compliance.',
         image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
         href: null,
         badge: { label: 'Coming Soon', tone: 'soon' },
@@ -52,9 +52,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'uscribr',
         name: 'uSCRIBR',
-        eyebrow: 'AI Medical Scribe',
+        eyebrow: 'AI Clinical Documentation',
         description:
-            'Captures clinical conversations and generates structured SOAP notes in real time. Built for clinicians who need their hands free.',
+            'AI-powered documentation that helps healthcare professionals reduce repetitive administrative work. Captures clinical conversations and generates structured notes in real time.',
         image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
         href: null,
         badge: { label: 'Coming Soon', tone: 'soon' },
@@ -83,10 +83,9 @@ export default function Products() {
                 <div className={styles.header}>
                     <div>
                         <span className="tag">Our Products</span>
-                        <h2>Built by Unntangle</h2>
+                        <h2>AI Products Built by Unntangle</h2>
                         <p>
-                            SaaS tools — shipped, in market, and quietly running
-                            for our customers.
+                            Alongside enterprise AI deployments, Unntangle builds focused AI products for specific industries and workflows.
                         </p>
                     </div>
                     {/* No "View all" CTA — there's no /products listing

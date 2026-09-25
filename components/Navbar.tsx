@@ -22,31 +22,34 @@ import { blogsData } from '@/data/blogs';
 
 const serviceCategories = [
   {
+    id: "ai-agents",
+    label: "AI Agents & Automation",
+    title: "AI Agents & Automation",
+    services: [
+      { name: "AI Sales Agent", description: "Automate lead qualification, RFQ processing, quotation preparation, CRM updates and customer follow-ups.", path: "/services/erp" },
+      { name: "AI Finance Agent", description: "Monitor receivables, analyse invoices, prepare collection follow-ups and generate financial insights.", path: "/services/erp" },
+      { name: "AI Procurement Agent", description: "Analyse vendor quotations, compare pricing, monitor purchase requirements and prepare procurement recommendations.", path: "/services/erp" },
+      { name: "AI Operations Agent", description: "Automate reporting, document processing, operational monitoring and repetitive back-office workflows.", path: "/services/erp" },
+      { name: "AI Customer Service Agent", description: "Handle customer enquiries across website, WhatsApp and email while escalating complex issues to your team.", path: "/services/erp" },
+      { name: "AI Management Intelligence", description: "Connect ERP, CRM and operational data to deliver actionable management insights automatically.", path: "/services/erp" },
+    ]
+  },
+  {
     id: "tech",
-    label: "Technology Solutions",
-    title: "Technology Solutions",
+    label: "Technology",
+    title: "Technology",
     services: [
-      { name: "Website Development", description: "High-performance, responsive sites for your digital presence.", path: "/services/website" },
+      { name: "Enterprise Software", description: "Custom ERP, workflow systems and integrated platforms built around how your business actually operates.", path: "/services/erp" },
+      { name: "Website Development", description: "High-performance, responsive websites for your digital presence.", path: "/services/website" },
       { name: "App Development", description: "Custom mobile and desktop apps for complex business problems.", path: "/services/app" },
-      { name: "ERP Development", description: "Integrated systems to streamline operations and data management.", path: "/services/erp" },
-      { name: "Website Revamp", description: "Modernize legacy systems into high-converting digital powerhouses.", path: "/services/website-revamp" },
-      { name: "Interactive 3D Website", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d" }
+      { name: "API Integrations", description: "Connect your existing systems — ERP, CRM, databases and third-party platforms — via secure integrations.", path: "/services/erp" },
+      { name: "Interactive 3D", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d" }
     ]
   },
   {
-    id: "design",
-    label: "Creative Design",
-    title: "Creative Design",
-    services: [
-      { name: "2D Graphic Designing", description: "Creative visuals that capture your brand and message.", path: "/services/graphic-designing" },
-      { name: "3D Designing", description: "Hyper-realistic spatial assets and physical product modeling.", path: "/services/3d-designing" },
-      { name: "AI Image Rendition", description: "Next-generation generative art for rapid, bespoke visuals.", path: "/services/ai-rendition" }
-    ]
-  },
-  {
-    id: "marketing",
-    label: "Growth Marketing",
-    title: "Growth Marketing",
+    id: "growth",
+    label: "AI-Powered Growth",
+    title: "AI-Powered Growth",
     services: [
       { name: "Meta Ads", description: "Laser-targeted conversion campaigns across Facebook and Instagram.", path: "/services/meta-ads" },
       { name: "SMM", description: "Cultivate a fiercely loyal community around your brand.", path: "/services/smm" },
@@ -56,16 +59,14 @@ const serviceCategories = [
   }
 ];
 
-// Products organized like services — categories of products with item lists.
-// Today there's one shipping product (uVOIZ) plus a future-roadmap column.
 const productCategories = [
   {
     id: "live",
-    title: "AI & Automation",
+    title: "AI Products",
     items: [
       {
         name: "uVOIZ",
-        description: "Replace telecallers with AI that speaks Hindi, Tamil, Telugu, Kannada and more. TRAI-compliant. Built for Indian BPOs.",
+        description: "AI-powered voice agents for customer conversations, lead qualification, support and business calling workflows. Speaks Hindi, Tamil, Telugu, Kannada and more.",
         path: "https://uvoiz.unntangle.com",
         external: true,
         disabled: false,
@@ -79,7 +80,7 @@ const productCategories = [
     items: [
       {
         name: "uDYLR",
-        description: "Intelligent BPO dialer with predictive routing, agent assist, and built-in compliance for outbound and inbound campaigns.",
+        description: "Intelligent contact-center workflows designed to automate repetitive customer interactions with predictive routing, agent assist and built-in compliance.",
         path: "#",
         disabled: true,
         external: false,
@@ -87,7 +88,7 @@ const productCategories = [
       },
       {
         name: "uSCRIBR",
-        description: "AI medical scribe that captures clinical conversations and generates structured SOAP notes in real time.",
+        description: "AI-powered clinical documentation that helps healthcare professionals reduce repetitive administrative work — structured notes in real time.",
         path: "#",
         disabled: true,
         external: false,

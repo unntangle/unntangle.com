@@ -6,24 +6,24 @@ import styles from './Philosophy.module.css';
 
 const values = [
     {
-        title: 'Deterministic Design',
+        title: 'Systems-First Thinking',
         icon: <Target size={24} />,
-        description: 'We believe in precision and predictability. Every line of code and every design choice is made with a clear, deterministic purpose.'
+        description: 'AI is only valuable when it works inside the systems your business already runs. We start with your ERP, CRM and workflows — not a blank-slate AI prototype.'
     },
     {
-        title: 'Holistic Synergy',
+        title: 'Workflow Depth',
         icon: <Zap size={24} />,
-        description: 'We bridge the gap between Digital, AI, Cloud, and Smart Living, creating ecosystems that work in perfect, unntangled harmony.'
+        description: 'We build agents that go beyond answering questions — they analyse data, prepare actions and execute approved workflows end-to-end inside your business processes.'
     },
     {
-        title: 'Future-First',
+        title: 'Outcome Accountability',
         icon: <Sparkles size={24} />,
-        description: 'We engineer today for the breakthroughs of tomorrow, ensuring your business is always ahead of the curve in a rapidly evolving world.'
+        description: 'Every AI deployment is scoped around measurable business outcomes — hours saved, cycle times reduced, workflows automated. We track what matters, not vanity metrics.'
     },
     {
         title: 'Radical Simplicity',
         icon: <Shield size={24} />,
-        description: 'Complexity is the enemy of progress. We unntangle the knots of legacy systems to reveal the simple, high-performance truth beneath.'
+        description: 'Complex workflows become simple when the right intelligence is applied. We unntangle the knots in your operations and replace manual friction with automated precision.'
     }
 ];
 
@@ -35,7 +35,7 @@ export default function Philosophy() {
                     <span className="tag">Our Philosophy</span>
                     <h2 className={styles.title}>The Art of Unntangling</h2>
                     <p className={styles.description}>
-                        At Unntangle, we are driven by a singular mission: to simplify the complex and empower brands through high-performance engineering.
+                        At Unntangle, we are driven by a singular mission: to help businesses move from experimenting with AI to actually operating with it.
                     </p>
                 </div>
 

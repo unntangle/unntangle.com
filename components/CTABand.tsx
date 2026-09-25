@@ -38,22 +38,22 @@ export default function CTABand() {
                     <div className={styles.orb} aria-hidden="true" />
 
                     <div className={styles.content}>
-                        <span className={styles.eyebrow}>Let&apos;s build something</span>
+                        <span className={styles.eyebrow}>Let&apos;s get to work</span>
 
                         <h2 className={styles.title}>
-                            Got a project in mind?{' '}
-                            <span className={styles.titleAccent}>We&apos;re listening.</span>
+                            Ready to put AI to work{' '}
+                            <span className={styles.titleAccent}>inside your business?</span>
                         </h2>
 
                         <p className={styles.description}>
-                            Whether you&apos;re launching a brand, modernising a legacy platform,
-                            or scaling growth for a product that&apos;s already working — start
-                            the conversation. First reply usually within a working day.
+                            Whether you&apos;re ready to automate a specific workflow or want to
+                            understand where AI can have the most impact — start the conversation.
+                            We&apos;ll come back with a scoped assessment within a working day.
                         </p>
 
                         <div className={styles.actions}>
                             <Link href="/contact" className={styles.primaryCta}>
-                                Start a project <ArrowRight size={18} />
+                                Book an AI Workflow Assessment <ArrowRight size={18} />
                             </Link>
                             <Link href="/contact" className={styles.secondaryCta}>
                                 <Calendar size={16} /> Book a discovery call
@@ -61,18 +61,18 @@ export default function CTABand() {
                         </div>
                     </div>
 
-                    {/* Subtle marquee of the three disciplines, repeated to fill width */}
+                    {/* Subtle marquee of the capabilities, repeated to fill width */}
                     <div className={styles.marquee} aria-hidden="true">
                         <div className={styles.marqueeTrack}>
                             {[...Array(2)].map((_, copyIndex) => (
                                 <div key={copyIndex} className={styles.marqueeGroup}>
+                                    <span className={styles.marqueeItem}>AI Agents</span>
+                                    <span className={styles.marqueeDot}>&#9679;</span>
+                                    <span className={styles.marqueeItem}>Enterprise Automation</span>
+                                    <span className={styles.marqueeDot}>&#9679;</span>
                                     <span className={styles.marqueeItem}>Technology</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
-                                    <span className={styles.marqueeItem}>Creative Design</span>
-                                    <span className={styles.marqueeDot}>&#9679;</span>
                                     <span className={styles.marqueeItem}>Growth Marketing</span>
-                                    <span className={styles.marqueeDot}>&#9679;</span>
-                                    <span className={styles.marqueeItem}>Smart Living</span>
                                     <span className={styles.marqueeDot}>&#9679;</span>
                                 </div>
                             ))}

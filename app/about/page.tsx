@@ -17,18 +17,14 @@ const SITE_URL =
     "https://unntangle.com";
 
 export const metadata: Metadata = {
-    // Bare page name; template in app/layout.tsx appends " | Unntangle Technologies".
-    // Renders as: "About | Unntangle Technologies"
     title: "About",
     description:
-        "Unntangle Technologies is a full-stack technology and digital studio building products, platforms, and brands behind ambitious businesses across India and beyond. Engineering, design, growth, and smart-living hardware in one accountable team.",
+        "Unntangle is an Enterprise AI Agents & Automation company — deploying intelligent AI agents that connect with existing business systems and automate repetitive workflows across sales, finance, operations, procurement and customer service.",
     alternates: { canonical: "/about" },
     openGraph: {
-        // OG titles are emitted as absolute strings (no template), so we
-        // write the full standalone form here for cleaner social previews.
         title: "About | Unntangle Technologies",
         description:
-            "A full-stack technology and digital studio bringing engineering, design, growth, and smart-living hardware under one accountable team.",
+            "Enterprise AI agents and automation for mid-market businesses — connecting intelligent AI to your existing systems so your business can actually operate with AI.",
         url: `${SITE_URL}/about`,
         type: "website",
         images: [
@@ -49,7 +45,7 @@ const aboutJsonLd = {
     url: `${SITE_URL}/about`,
     name: "About Unntangle",
     description:
-        "A full-stack technology and digital studio bringing engineering, design, growth, and smart-living hardware under one accountable team.",
+        "Enterprise AI agents and automation for mid-market businesses — connecting intelligent AI to existing systems so businesses can actually operate with AI.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     breadcrumb: {
@@ -118,22 +114,22 @@ export default function AboutPage() {
                 <PageHero
                     eyebrow="Who We Are"
                     titleParts={[
-                        'A studio built to ',
-                        { accent: 'ship work that matters' },
-                        '.',
+                        'We don\'t just build AI.',
+                        ' ',
+                        { accent: 'We put it to work.' },
                     ]}
-                    description="A full-stack technology and digital company bringing engineering, design, growth, and smart-living hardware under one accountable team."
+                    description="Unntangle helps mid-market businesses turn repetitive business processes into AI-powered workflows — connecting intelligent agents to the systems your business already uses."
                     primaryCta={{
-                        label: "Let's talk",
+                        label: "Book an AI Assessment",
                         href: '/contact',
                         showArrow: true,
                     }}
                     secondaryCta={{
-                        label: 'See our work',
+                        label: 'Explore AI Solutions',
                         href: '/services',
                     }}
                     image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600"
-                    imageAlt="The Unntangle team collaborating in studio"
+                    imageAlt="The Unntangle team collaborating"
                     imageLayout="diamond-grid"
                     images={[
                         'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
@@ -141,7 +137,7 @@ export default function AboutPage() {
                         'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
                         'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
                     ]}
-                    pills={[{ text: 'One team. Every layer.', variant: 'cyan', icon: true }]}
+                    pills={[{ text: 'Enterprise AI · AI Agents · Automation', variant: 'cyan', icon: true }]}
                     gradient="green-teal"
                 />
             </div>

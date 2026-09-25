@@ -20,32 +20,32 @@ import styles from './Stats.module.css';
 
 const pillars = [
     {
-        value: '5',
-        label: 'Technology Solutions',
+        value: '6',
+        label: 'AI Agent Solutions',
         icon: <Code2 size={18} />,
         description:
-            'Websites, apps, ERPs, revamps and interactive 3D — engineered for performance and scale.',
+            'Sales, Finance, Procurement, Operations, Customer Service and Management Intelligence — AI agents built for each function.',
     },
     {
-        value: '3',
-        label: 'Creative Design',
+        value: '10+',
+        label: 'System Integrations',
         icon: <Palette size={18} />,
         description:
-            '2D brand systems, 3D product visualisation, and AI-generated imagery for premium identities.',
+            'ERP, CRM, databases, documents, email, WhatsApp and internal applications — AI connects to the systems you already use.',
     },
     {
-        value: '4',
-        label: 'Growth Marketing',
+        value: '6+',
+        label: 'Industries Served',
         icon: <TrendingUp size={18} />,
         description:
-            'Meta Ads, Google Ads, SEO and Social — performance funnels that turn traffic into revenue.',
+            'Manufacturing, industrial, logistics, distribution, pharma and textiles — complex B2B businesses with repetitive workflows.',
     },
     {
-        value: '12+',
-        label: 'Services Under One Roof',
+        value: '100%',
+        label: 'In-House AI Engineering',
         icon: <Layers3 size={18} />,
         description:
-            'A single accountable team across design, development and growth — no agency hand-offs.',
+            'A single accountable team across AI engineering, software development and integrations — no hand-offs, no finger-pointing.',
     },
 ];
 
@@ -56,12 +56,12 @@ export default function Stats() {
                 <div className={styles.topHeader}>
                     <div className={styles.headerInfo}>
                         <span className={styles.sublabel}>How We Work</span>
-                        <h2 className={styles.mainTitle}>One Team. Every Layer.</h2>
+                        <h2 className={styles.mainTitle}>AI That Fits Into Your Business.</h2>
                     </div>
                     <p className={styles.headerDescription}>
-                        Most agencies hand you off between siloed teams. We don&apos;t. Design,
-                        development and growth marketing live under one roof — so your brand
-                        stays coherent from the first wireframe to the last conversion.
+                        Most AI tools ask your team to change how they work. We don&apos;t. Our AI agents
+                        connect to the systems you already use — ERP, CRM, email, WhatsApp — and
+                        operate inside your existing workflows without disruption.
                     </p>
                 </div>
 
@@ -78,15 +78,15 @@ export default function Stats() {
                             <div className={styles.featuredIcon}>
                                 <Layers3 size={32} />
                             </div>
-                            <h3>Three Disciplines, One Studio</h3>
+                            <h3>From Experimenting to Actually Operating with AI</h3>
                             <p>
-                                When the same studio designs the brand, builds the platform,
-                                and runs the ads, every layer compounds. No translation losses
-                                between vendors. No finger-pointing when conversion drops.
-                                Just one team accountable for the outcome.
+                                Many businesses have tried AI tools that sit outside their real
+                                workflows. We connect AI agents directly to your ERP, CRM, databases
+                                and communication channels — so AI becomes part of how your business
+                                actually runs, not just another dashboard your team ignores.
                             </p>
                             <a href="/services" className={styles.ghostLink}>
-                                See all services <ArrowUpRight size={16} />
+                                See AI solutions <ArrowUpRight size={16} />
                             </a>
                         </div>
                         <div className={styles.featuredVisual}>

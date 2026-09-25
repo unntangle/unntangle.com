@@ -47,7 +47,7 @@ export default function Footer() {
                                 />
                             </Link>
                             <p style={{ color: '#8b939e', fontSize: '14px', lineHeight: 1.5, marginTop: '14px', maxWidth: '340px' }}>
-                                Building immersive and intelligent experiences since 2023.
+                                Deploying AI agents and enterprise automation since 2023.
                             </p>
                         </div>
                     </div>
@@ -65,8 +65,8 @@ export default function Footer() {
 
                         <div className={styles.column}>
                             <h4>What we do</h4>
-                            <Link href="/services">Technology</Link>
-                            <Link href="/services">Creative Design</Link>
+                            <Link href="/services">AI Agents & Automation</Link>
+                            <Link href="/services">Enterprise Technology</Link>
                             <Link href="/services">Growth Marketing</Link>
                         </div>
 

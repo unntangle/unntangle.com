@@ -6,29 +6,29 @@ import styles from './WhyChooseUs.module.css';
 
 const comparisonRows = [
     {
-        feature: 'Engineering velocity',
-        unntangle: 'Ship in weeks, not quarters — modern stack with edge deployment.',
-        others: 'Long timelines, legacy frameworks, six-month redesign cycles.',
+        feature: 'Systems integration',
+        unntangle: 'AI connects to your existing ERP, CRM, email, WhatsApp and databases — no rip-and-replace.',
+        others: 'Generic AI tools that sit outside your real workflows and require manual data entry.',
     },
     {
-        feature: 'Single integrated team',
-        unntangle: 'Tech, design, growth, and smart-living — one accountable team.',
-        others: 'Three vendors, three invoices, three timelines, zero ownership.',
+        feature: 'Workflow depth',
+        unntangle: 'AI agents that analyse, prepare and execute multi-step business workflows end-to-end.',
+        others: 'Chatbots and dashboards that answer questions but cannot take action inside your systems.',
     },
     {
-        feature: 'Outcome accountability',
-        unntangle: 'Every decision is measurable, reversible, and tied to revenue.',
-        others: 'Vanity metrics, deck-driven strategy, untracked deliverables.',
+        feature: 'Enterprise-grade security',
+        unntangle: 'Your data stays in your environment — no third-party model training on your business data.',
+        others: 'Cloud SaaS tools where your data feeds into shared models with unknown data governance.',
     },
     {
-        feature: 'Modern infrastructure',
-        unntangle: 'Next.js, edge functions, AI-augmented workflows by default.',
-        others: 'WordPress templates, manual deploys, outdated tooling.',
+        feature: 'Deployment speed',
+        unntangle: 'First AI agents live in 4–8 weeks — phased rollout starting with your highest-value workflow.',
+        others: 'Six-month consulting engagements before a single automated workflow goes live.',
     },
     {
-        feature: 'Long-term commitment',
-        unntangle: 'Retained partnership model — we stay invested in the outcome.',
-        others: 'Project-based handoffs — disappear once the invoice clears.',
+        feature: 'Ongoing accountability',
+        unntangle: 'Retained partnership model — we stay invested, iterate and expand as your business grows.',
+        others: 'Project handoffs — you get a system, a manual, and a goodbye once the invoice is paid.',
     },
 ];
 
@@ -45,14 +45,14 @@ export default function WhyChooseUs() {
                 >
                     <span className={styles.eyebrow}>Why Unntangle</span>
                     <h2 className={styles.title}>
-                        A modern tech company,
+                        AI that actually runs inside
                         <br />
-                        <span className={styles.titleAccent}>not just another vendor.</span>
+                        <span className={styles.titleAccent}>your business.</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Unntangle Technologies is a full-stack technology and digital company — building
-                        the products, platforms, and brands behind ambitious businesses across
-                        India and beyond. Here&apos;s how that shows up in every engagement.
+                        Most AI tools are built for demos, not for the messy reality of how mid-market
+                        businesses actually operate. Unntangle builds AI agents that connect to your real
+                        systems, run your real workflows, and are accountable for real outcomes.
                     </p>
                 </motion.div>
 

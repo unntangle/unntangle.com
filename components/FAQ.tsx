@@ -7,28 +7,28 @@ import styles from './FAQ.module.css';
 
 const faqs = [
     {
-        question: "How does Unntangle Technologies ensure the ethical and responsible use of AI?",
-        answer: "We prioritize data privacy, algorithmic fairness, and transparency in all our AI implementations. Our models undergo rigorous bias testing and comply with industry-standard ethical guidelines."
+        question: "What exactly is an AI agent and how is it different from an AI chatbot?",
+        answer: "An AI chatbot answers questions. An AI agent takes action. Our agents connect to your existing systems — ERP, CRM, email, WhatsApp — analyse information, prepare recommendations and execute approved workflows without your team having to do it manually each time."
     },
     {
-        question: "How does Unntangle Technologies leverage AI in business and enterprise solutions?",
-        answer: "We build custom AI agents for customer support, predictive analytics for supply chains, and intelligent automation workflows that seamlessly integrate with your existing ERP or CRM platforms."
+        question: "Do we need to replace our existing ERP or CRM to use your AI agents?",
+        answer: "No. Our AI agents are designed to work with the systems you already have. We integrate with your existing ERP, CRM, databases, documents and communication tools. You keep your current infrastructure and the AI operates on top of it."
     },
     {
-        question: "What types of digital products and services does Unntangle Technologies offer?",
-        answer: "From high-performance corporate websites and scalable web applications to immersive smart living ecosystems and IoT dashboards."
+        question: "What kinds of workflows can AI agents automate?",
+        answer: "Any repetitive, rule-based or data-heavy process is a candidate. Common examples include: lead qualification and RFQ responses, invoice matching and payment follow-ups, vendor quotation comparison, purchase order preparation, shipment status updates, and customer enquiry handling across email and WhatsApp."
     },
     {
-        question: "How does Unntangle approach digital transformation for legacy enterprises?",
-        answer: "We start with a comprehensive tech audit, then employ an agile, phased rollout strategy to modernize infrastructure without disrupting critical daily operations."
+        question: "How long does it take to deploy an AI agent?",
+        answer: "It depends on the complexity of the workflow and how accessible your existing systems are via APIs or integrations. Simpler deployments — like an AI that handles inbound enquiries or prepares quotation drafts — can be live in 4–6 weeks. More complex multi-system automations typically take 8–12 weeks."
     },
     {
-        question: "How does Unntangle help with scaling existing digital products?",
-        answer: "We optimize cloud architectures, implement efficient CI/CD pipelines, and refactor monolithic codebases into robust microservices for unbounded scalability."
+        question: "Is our business data safe when using AI agents?",
+        answer: "Yes. We architect AI deployments with data privacy as a requirement, not an afterthought. Your data does not leave your environment to train third-party models. We use secure API integrations, role-based access controls and operate within your existing data governance frameworks."
     },
     {
-        question: "Does Unntangle assist with hardware and software integration?",
-        answer: "Yes, our Smart Systems division specializes in creating cohesive environments where custom software interfaces seamlessly control IoT hardware arrays."
+        question: "What is an AI Workflow Assessment and how do we get started?",
+        answer: "An AI Workflow Assessment is a structured session where we review your existing processes, identify which workflows have the highest automation potential, and map out a prioritised deployment plan. It typically takes 1–2 working days and gives you a clear picture of where AI can deliver the fastest and highest-value impact. Book one via our contact page."
     }
 ];
 

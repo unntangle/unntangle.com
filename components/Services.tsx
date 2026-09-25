@@ -9,24 +9,24 @@ import styles from './Services.module.css';
 
 const expertiseGroups = [
     {
-        id: 'tech',
-        title: 'Technology Solutions',
-        description: 'Building high-performance digital ecosystems, apps, and immersive 3D web experiences that drive growth and engagement.',
-        services: ['Website Development', 'App Development', 'ERP Development', 'Website Revamp', 'Interactive 3D Website'],
+        id: 'ai-agents',
+        title: 'AI Agents & Automation',
+        description: 'Intelligent AI agents that connect with your ERP, CRM, databases, documents, email and WhatsApp — automating repetitive workflows so your team can focus on decisions that matter.',
+        services: ['AI Sales Agent', 'AI Finance Agent', 'AI Procurement Agent', 'AI Operations Agent', 'AI Customer Service Agent', 'AI Management Intelligence'],
         image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000',
     },
     {
-        id: 'design',
-        title: 'Creative Design',
-        description: 'Premium visual identity and spatial modeling. Elevating your brand through 2D graphics, cinematic 3D rendering, and AI-generated art.',
-        services: ['2D Graphic Designing', '3D Designing', 'AI Image Rendition'],
+        id: 'tech',
+        title: 'Technology That Makes AI Work',
+        description: 'AI agents are only useful when they can work with the systems your business already depends on. We combine AI engineering with software development, integrations and digital technology.',
+        services: ['Enterprise Software', 'Website Development', 'App Development', 'ERP Development', 'API Integrations', 'Interactive 3D'],
         image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000',
     },
     {
-        id: 'marketing',
-        title: 'Growth Marketing',
-        description: 'Aggressive growth engines. Cultivating community and capturing high-intent traffic through targeted SEO, Social Media, and Performance Ads.',
-        services: ['Meta Ads', 'SMM', 'SEO', 'Google Ads'],
+        id: 'growth',
+        title: 'AI-Powered Growth',
+        description: 'Combine AI with your existing marketing operations to analyse campaigns, identify opportunities, automate repetitive tasks and accelerate customer acquisition.',
+        services: ['Meta Ads', 'Google Ads', 'SEO', 'SMM'],
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
     }
 ];
@@ -158,8 +158,8 @@ export default function Services() {
                 <div className={styles.container}>
                     <div className={styles.header}>
                         <span className="tag">What We Do</span>
-                        <h2>Engineered for Your Growth</h2>
-                        <p>Three disciplines, working in sync to move your brand forward.</p>
+                        <h2>We don&apos;t just build AI. We put it to work.</h2>
+                        <p>Intelligent AI agents connected to your existing systems, automating the workflows that consume your team every day.</p>
                     </div>
 
                     <div className={styles.cardStack}>

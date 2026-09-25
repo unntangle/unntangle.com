@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion';
 import {
-    Building2,
+    Factory,
+    Cog,
+    Truck,
+    Package,
+    FlaskConical,
+    Shirt,
     Headphones,
     Stethoscope,
-    ShoppingBag,
-    GraduationCap,
-    Home,
-    Hotel,
-    Banknote,
 } from 'lucide-react';
 import styles from './Industries.module.css';
 
@@ -39,52 +39,52 @@ interface Industry {
 
 const industries: Industry[] = [
     {
+        icon: <Factory size={26} />,
+        name: 'Manufacturing',
+        description:
+            'AI for RFQs, quotations, procurement, production reporting, quality workflows, inventory and collections.',
+    },
+    {
+        icon: <Cog size={26} />,
+        name: 'Industrial & Engineering',
+        description:
+            'AI for technical documents, proposals, quotations, project workflows and customer communication.',
+    },
+    {
+        icon: <Truck size={26} />,
+        name: 'Logistics & Transportation',
+        description:
+            'AI for shipment tracking, documentation, customer updates, billing and operational reporting.',
+    },
+    {
+        icon: <Package size={26} />,
+        name: 'Distribution',
+        description:
+            'AI for dealer enquiries, order processing, inventory, quotations and collections.',
+    },
+    {
+        icon: <FlaskConical size={26} />,
+        name: 'Pharma & Chemicals',
+        description:
+            'AI for documentation, compliance workflows, procurement and customer operations.',
+    },
+    {
+        icon: <Shirt size={26} />,
+        name: 'Textiles & Apparel',
+        description:
+            'AI for buyer communication, order processing, production, quality and export documentation.',
+    },
+    {
         icon: <Headphones size={26} />,
         name: 'BPO & Contact Centers',
         description:
-            'AI telecalling, dialers, and CRM-integrated workflows that scale outbound operations.',
+            'AI voice agents, intelligent dialers and CRM-integrated workflows that scale customer operations.',
     },
     {
         icon: <Stethoscope size={26} />,
         name: 'Healthcare',
         description:
-            'Clinical scribes, patient portals, and HIPAA-conscious infrastructure for modern practices.',
-    },
-    {
-        icon: <Home size={26} />,
-        name: 'Real Estate',
-        description:
-            'Smart home automation, property listings, and project micro-sites that drive bookings.',
-    },
-    {
-        icon: <Hotel size={26} />,
-        name: 'Hospitality',
-        description:
-            'Guest-facing apps, in-room automation, and luxury brand identities for resorts and villas.',
-    },
-    {
-        icon: <ShoppingBag size={26} />,
-        name: 'D2C & Retail',
-        description:
-            'High-converting storefronts, performance marketing, and creative that sells on the scroll.',
-    },
-    {
-        icon: <Banknote size={26} />,
-        name: 'Finance & Fintech',
-        description:
-            'Compliant app architecture, dashboards, and onboarding flows engineered for trust.',
-    },
-    {
-        icon: <GraduationCap size={26} />,
-        name: 'Education & EdTech',
-        description:
-            'Learning platforms, ERPs, and content-rich websites for institutions and creators.',
-    },
-    {
-        icon: <Building2 size={26} />,
-        name: 'Enterprise & B2B',
-        description:
-            'Internal tools, ERP integrations, and lead-gen funnels for complex sales cycles.',
+            'AI for clinical documentation, patient communication, administrative workflows and compliance.',
     },
 ];
 
@@ -94,10 +94,9 @@ export default function Industries() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Industries</span>
-                    <h2>Where we ship the work</h2>
+                    <h2>AI for Complex B2B Businesses</h2>
                     <p>
-                        We take on projects across verticals where digital, design, and growth
-                        compound — often the same teams come back for all three.
+                        Every industry has repetitive workflows that consume valuable employee time. Unntangle connects AI agents to the processes, systems and data unique to each business.
                     </p>
                 </div>
 

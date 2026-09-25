@@ -31,15 +31,15 @@ const SITE_URL =
 // absolute title here overrides the template just for this page.
 export const metadata: Metadata = {
   title: {
-    absolute: "Unntangle Technologies — Design, Development & Smart Living",
+    absolute: "Unntangle Technologies — Enterprise AI Agents & Automation",
   },
   description:
-    "From premium web & app development to ZigBee smart-home automation, Unntangle Technologies bridges digital excellence and intelligent living. One studio, three disciplines.",
+    "Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Unntangle Technologies — Design, Development & Smart Living",
+    title: "Unntangle Technologies — Enterprise AI Agents & Automation",
     description:
-      "From premium web & app development to ZigBee smart-home automation, Unntangle Technologies bridges digital excellence and intelligent living.",
+      "Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service.",
     url: SITE_URL,
     type: "website",
     images: [
@@ -47,16 +47,12 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1200,
         height: 630,
-        alt: "Unntangle Technologies — Design, Development & Smart Living",
+        alt: "Unntangle Technologies — Enterprise AI Agents & Automation",
       },
     ],
   },
 };
 
-// Page-level structured data: tells Google this is a ProfessionalService
-// landing page and surfaces the four major service categories. Combined
-// with the Organization JSON-LD in layout.tsx, this should populate a
-// rich knowledge panel quickly.
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -65,7 +61,7 @@ const homeJsonLd = {
   url: SITE_URL,
   image: `${SITE_URL}/images/hero.png`,
   description:
-    "Full-stack digital studio: web & app development, creative design, growth marketing, and smart-living hardware.",
+    "Enterprise AI agents and automation — connecting intelligent AI to your existing systems to automate workflows across sales, finance, operations, procurement and customer service.",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -76,36 +72,28 @@ const homeJsonLd = {
   areaServed: ["IN", "AE", "US", "GB"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Unntangle Services",
+    name: "Unntangle AI Solutions",
     itemListElement: [
       {
         "@type": "OfferCatalog",
-        name: "Technology Solutions",
+        name: "AI Agents",
         itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Sales Agent" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Finance Agent" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Procurement Agent" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Operations Agent" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Customer Service Agent" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Management Intelligence" } },
+        ],
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Technology",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Enterprise Software", url: `${SITE_URL}/services/erp` } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Development", url: `${SITE_URL}/services/website` } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "App Development", url: `${SITE_URL}/services/app` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "ERP Development", url: `${SITE_URL}/services/erp` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Revamp", url: `${SITE_URL}/services/website-revamp` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interactive 3D Website", url: `${SITE_URL}/services/interactive-3d` } },
-        ],
-      },
-      {
-        "@type": "OfferCatalog",
-        name: "Creative Design",
-        itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "2D Graphic Design", url: `${SITE_URL}/services/graphic-designing` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "3D Design", url: `${SITE_URL}/services/3d-designing` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Image Rendition", url: `${SITE_URL}/services/ai-rendition` } },
-        ],
-      },
-      {
-        "@type": "OfferCatalog",
-        name: "Growth Marketing",
-        itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Meta Ads", url: `${SITE_URL}/services/meta-ads` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Social Media Marketing", url: `${SITE_URL}/services/smm` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO", url: `${SITE_URL}/services/seo` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads", url: `${SITE_URL}/services/google-ads` } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "API Integrations" } },
         ],
       },
     ],
@@ -124,17 +112,16 @@ export default function Home() {
       <Navbar />
       <div style={{ paddingTop: '80px' }}>
         <PageHero
-          eyebrow="Your Growth Partner"
+          eyebrow="ENTERPRISE AI • AI AGENTS • AUTOMATION"
           titleParts={[
-            'Design, Development & ',
-            { accent: 'Smart Living' },
-            ' Solutions.',
+            'AI That Works ',
+            { accent: 'Inside Your Business.' },
           ]}
-          description="We bridge the gap between digital excellence and intelligent living — from high-end web and app development to smart home automation and sustainable energy systems."
-          primaryCta={{ label: 'Get in touch', href: '/contact' }}
-          secondaryCta={{ label: 'Book a call', href: '/contact' }}
+          description="Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service."
+          primaryCta={{ label: 'Book an AI Workflow Assessment', href: '/contact' }}
+          secondaryCta={{ label: 'Explore AI Solutions', href: '/services' }}
           image="/images/hero.png"
-          imageAlt="Unntangle workspace"
+          imageAlt="Unntangle AI Agents"
           gradient="blue-cyan"
           imageLayout="stacked-strips"
           overlayCta={{ label: 'Create an Unntangled world', href: '/services' }}

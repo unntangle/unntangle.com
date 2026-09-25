@@ -47,8 +47,7 @@ export default function Vision() {
                     <div className={styles.visionInner}>
                         <span className={styles.tag}>Our Vision</span>
                         <h2 className={styles.visionText}>
-                            &ldquo;A world where technology is a seamless extension of human
-                            intent, unntangled from the friction of legacy complexity.&rdquo;
+                            &ldquo;A world where every business operates with an AI workforce — intelligent agents working inside the systems, processes and decisions that drive real commercial outcomes.&rdquo;
                         </h2>
                     </div>
                 </motion.div>
