@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LegalPage, { LegalSection } from '@/components/LegalPage';
-import styles from '@/components/LegalPage.module.css';
+import { heroGradientFor } from '@/components/pastelPalette';
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
@@ -347,34 +347,6 @@ const sections: LegalSection[] = [
             </>
         ),
     },
-    {
-        id: 'contact',
-        heading: 'Contact',
-        body: (
-            <>
-                <p>Questions about these Terms? Get in touch:</p>
-                <div className={styles.contactBlock}>
-                    <p>
-                        <strong>Unntangle</strong>
-                        <br />
-                        SBS Office Space, Old No.470, New No.700,
-                        <br />
-                        Anna Salai, Nandanam, Chennai 600035, India
-                    </p>
-                    <p>
-                        <strong>Email:</strong>{' '}
-                        <a href="mailto:gokul@unntangle.com">
-                            gokul@unntangle.com
-                        </a>
-                    </p>
-                    <p>
-                        <strong>Phone:</strong>{' '}
-                        <a href="tel:+917092747933">+91 70927 47933</a>
-                    </p>
-                </div>
-            </>
-        ),
-    },
 ];
 
 export default function TermsPage() {
@@ -394,6 +366,7 @@ export default function TermsPage() {
                         </p>
                     }
                     sections={sections}
+                    heroBackground={heroGradientFor('terms')}
                 />
             </div>
             <Footer />

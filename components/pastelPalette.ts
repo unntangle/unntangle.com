@@ -40,6 +40,8 @@ const pastels: Record<string, Pastel> = {
     pistachio: { blobs: [[190, 225, 160], [220, 235, 185], [205, 230, 165]], base: ['#f5faef', '#eff7e8', '#f6f9ea'] },
     clay:      { blobs: [[235, 170, 140], [245, 205, 175], [225, 185, 165]], base: ['#fbf1ec', '#f8ece5', '#fcf4ee'] },
     heather:   { blobs: [[200, 185, 225], [225, 205, 225], [185, 180, 215]], base: ['#f6f3fa', '#f2eef6', '#f4f2f9'] },
+    pearl:     { blobs: [[230, 205, 225], [245, 220, 200], [220, 210, 235]], base: ['#fbf8fa', '#f7f2f6', '#fbf6f2'] },
+    linen:     { blobs: [[240, 215, 180], [225, 225, 200], [245, 200, 185]], base: ['#fcf9f3', '#f8f4ec', '#fbf5ef'] },
     // blue / cyan families (CTA cards only; kept off heroes)
     sky:        { blobs: [[130, 190, 255], [190, 165, 255], [120, 220, 245]], base: ['#eef4ff', '#e3edff', '#ede7ff'] },
     aqua:       { blobs: [[110, 215, 235], [150, 190, 255], [130, 230, 200]], base: ['#eafaff', '#e0f5fb', '#e8efff'] },
@@ -68,6 +70,8 @@ const heroByPage: Record<string, PastelName> = {
     blog: 'melon',
     'manufacturing-distribution': 'clay',
     security: 'heather',
+    privacy: 'pearl',
+    terms: 'linen',
 };
 
 /** One unique CTA colour per page, never the same as that page's hero. */

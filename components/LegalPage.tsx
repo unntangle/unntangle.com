@@ -5,23 +5,16 @@ import { motion } from 'framer-motion';
 import styles from './LegalPage.module.css';
 
 /**
- * Reusable layout for legal/policy documents.
+ * Reusable layout for legal/policy documents (/privacy, /terms).
  *
- * Used by /privacy, /terms, and /cookie-preferences. All three
- * share the same structural needs:
- *   - A clean page header (title + last-updated stamp + intro lede)
- *   - A sticky left-rail table of contents (desktop)
- *   - A right-side prose column with section headings + body copy
- *   - Long enough for a "Back to top" affordance to feel useful
+ * Styled to match the rest of the site:
+ *   - Soft pastel gradient header card (unique colour per page, passed in
+ *     via `heroBackground` from components/pastelPalette)
+ *   - Sticky rounded "On this page" card with scroll-spy highlight
+ *   - Each section in its own white card with a pastel numbered badge
  *
- * The component is purely presentational. Content (sections,
- * intro copy, last-updated date) is passed in as props from each
- * page route, so the actual policy text lives next to its
- * page.tsx — easy to find and edit, no central content file.
- *
- * The TOC scroll-spy uses IntersectionObserver to highlight the
- * currently-visible section in the sidebar. Falls back to no
- * highlight on browsers without IO support (very old, rare).
+ * Content (sections, intro, last-updated date) is passed in from each
+ * page route, so the policy text lives next to its page.tsx.
  */
 
 export interface LegalSection {
@@ -29,27 +22,22 @@ export interface LegalSection {
     id: string;
     /** Section heading rendered as h2. */
     heading: string;
-    /** Body content. Pass JSX so each page can mix paragraphs,
-     *  lists, tables, etc. without escaping markdown. */
+    /** Body content as JSX (paragraphs, lists, etc.). */
     body: React.ReactNode;
 }
 
 interface LegalPageProps {
-    /** Eyebrow tag rendered above the title (e.g. "LEGAL"). */
     eyebrow?: string;
-    /** Page title — main h1. */
     title: string;
-    /** ISO-style date string for "Last updated:" stamp.
-     *  Display formatting is handled inside the component. */
+    /** ISO-style date string for the "Last updated" pill. */
     lastUpdated: string;
-    /** Intro paragraph(s) shown above the section list. JSX so
-     *  multi-paragraph or styled intros are easy to author. */
     intro?: React.ReactNode;
-    /** Ordered list of sections rendered in the right column.
-     *  Section ids should be stable kebab-case strings — they
-     *  appear in the TOC anchor links and the URL hash. */
     sections: LegalSection[];
+    /** CSS background for the header card (a soft pastel gradient). */
+    heroBackground?: string;
 }
+
+const badgeTones = ['#ffe4d9', '#e9e1ff', '#d9f4e6', '#fff3c9', '#ffe0ea', '#eef0f5'];
 
 export default function LegalPage({
     eyebrow = 'Legal',
@@ -57,63 +45,32 @@ export default function LegalPage({
     lastUpdated,
     intro,
     sections,
+    heroBackground,
 }: LegalPageProps) {
-    const [activeId, setActiveId] = useState<string | null>(null);
+    const [activeId, setActiveId] = useState<string | null>(sections[0]?.id ?? null);
 
-    // Format the lastUpdated string. Component takes ISO-ish input
-    // and renders it in a human-friendly form so individual page
-    // files don't have to think about formatting.
     const formattedDate = (() => {
-        try {
-            const d = new Date(lastUpdated);
-            if (Number.isNaN(d.getTime())) return lastUpdated;
-            return d.toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-            });
-        } catch {
-            return lastUpdated;
-        }
+        const d = new Date(lastUpdated);
+        if (Number.isNaN(d.getTime())) return lastUpdated;
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     })();
 
-    // Scroll-spy: highlight the TOC entry whose section is
-    // currently in view. Threshold ~40% from top so the
-    // currently-reading section, not the just-entered one,
-    // stays highlighted while the user scrolls.
+    // Scroll-spy: highlight the TOC entry for the section being read.
     useEffect(() => {
-        if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-            return;
-        }
+        if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
 
         const observer = new IntersectionObserver(
             (entries) => {
-                // Find the entry closest to the trigger line that's
-                // currently intersecting. Sort by distance to top
-                // so when multiple sections are visible we pick the
-                // topmost one as "active".
                 const visible = entries
                     .filter((e) => e.isIntersecting)
-                    .sort(
-                        (a, b) =>
-                            a.boundingClientRect.top - b.boundingClientRect.top
-                    );
-                if (visible.length > 0) {
-                    setActiveId(visible[0].target.id);
-                }
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length > 0) setActiveId(visible[0].target.id);
             },
-            {
-                // Trigger when the section's top edge crosses into
-                // the upper third of the viewport. Negative bottom
-                // margin shrinks the "intersection zone" so only one
-                // section reads as active at a time.
-                rootMargin: '-20% 0% -60% 0%',
-                threshold: 0,
-            }
+            { rootMargin: '-20% 0% -60% 0%', threshold: 0 },
         );
 
-        sections.forEach((section) => {
-            const el = document.getElementById(section.id);
+        sections.forEach((s) => {
+            const el = document.getElementById(s.id);
             if (el) observer.observe(el);
         });
 
@@ -122,51 +79,38 @@ export default function LegalPage({
 
     return (
         <article className={styles.page}>
-            <div className={styles.container}>
-                {/* ============================================================
-                    HEADER
-                ============================================================ */}
+            {/* ---------- Header card ---------- */}
+            <div className={styles.heroWrap}>
                 <motion.header
-                    className={styles.header}
+                    className={styles.hero}
+                    style={heroBackground ? { background: heroBackground } : undefined}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
                     <span className={styles.eyebrow}>{eyebrow}</span>
                     <h1 className={styles.title}>{title}</h1>
-                    <p className={styles.updated}>
-                        Last updated:{' '}
-                        <time dateTime={lastUpdated}>{formattedDate}</time>
-                    </p>
+                    <span className={styles.updated}>
+                        Last updated <time dateTime={lastUpdated}>{formattedDate}</time>
+                    </span>
                     {intro && <div className={styles.intro}>{intro}</div>}
                 </motion.header>
+            </div>
 
-                {/* ============================================================
-                    BODY — TOC sidebar + sections
-                ============================================================ */}
+            {/* ---------- Body: TOC + section cards ---------- */}
+            <div className={styles.container}>
                 <div className={styles.body}>
                     <aside className={styles.toc} aria-label="Table of contents">
                         <span className={styles.tocLabel}>On this page</span>
                         <ol className={styles.tocList}>
-                            {sections.map((section, i) => (
-                                <li
-                                    key={section.id}
-                                    className={`${styles.tocItem} ${
-                                        activeId === section.id
-                                            ? styles.tocItemActive
-                                            : ''
-                                    }`}
-                                >
+                            {sections.map((s, i) => (
+                                <li key={s.id}>
                                     <a
-                                        href={`#${section.id}`}
-                                        className={styles.tocLink}
+                                        href={`#${s.id}`}
+                                        className={`${styles.tocLink} ${activeId === s.id ? styles.tocActive : ''}`}
                                     >
-                                        <span className={styles.tocIndex}>
-                                            {String(i + 1).padStart(2, '0')}
-                                        </span>
-                                        <span className={styles.tocText}>
-                                            {section.heading}
-                                        </span>
+                                        <span className={styles.tocIndex}>{String(i + 1).padStart(2, '0')}</span>
+                                        <span>{s.heading}</span>
                                     </a>
                                 </li>
                             ))}
@@ -174,25 +118,26 @@ export default function LegalPage({
                     </aside>
 
                     <div className={styles.content}>
-                        {sections.map((section, i) => (
+                        {sections.map((s, i) => (
                             <motion.section
-                                key={section.id}
-                                id={section.id}
+                                key={s.id}
+                                id={s.id}
                                 className={styles.section}
                                 initial={{ opacity: 0, y: 12 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '-80px' }}
+                                viewport={{ once: true, margin: '-60px' }}
                                 transition={{ duration: 0.4 }}
                             >
-                                <h2 className={styles.sectionHeading}>
-                                    <span className={styles.sectionIndex}>
+                                <div className={styles.sectionHead}>
+                                    <span
+                                        className={styles.badge}
+                                        style={{ background: badgeTones[i % badgeTones.length] }}
+                                    >
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
-                                    {section.heading}
-                                </h2>
-                                <div className={styles.sectionBody}>
-                                    {section.body}
+                                    <h2 className={styles.sectionHeading}>{s.heading}</h2>
                                 </div>
+                                <div className={styles.sectionBody}>{s.body}</div>
                             </motion.section>
                         ))}
                     </div>

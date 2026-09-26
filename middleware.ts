@@ -53,6 +53,15 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  // Cookie Preferences page retired: the site sets no analytics or tracking
+  // cookies, so cookies are covered in the Privacy Policy instead.
+  if (url.pathname.replace(/\/$/, '') === '/cookie-preferences') {
+    url.pathname = '/privacy';
+    url.search = '';
+    url.hash = 'cookies';
+    return NextResponse.redirect(url, 301);
+  }
+
   // Host-based rewrites used to live here for officemate.unntangle.com and
   // uflow.unntangle.com. Both brands are their own standalone projects and
   // deployments now, so neither host reaches this middleware and both

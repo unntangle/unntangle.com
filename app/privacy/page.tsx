@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LegalPage, { LegalSection } from '@/components/LegalPage';
-import styles from '@/components/LegalPage.module.css';
+import { heroGradientFor } from '@/components/pastelPalette';
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
@@ -114,10 +114,12 @@ const sections: LegalSection[] = [
 
                 <h3>4. Automatically, when you visit</h3>
                 <p>
-                    Like most websites, we collect basic technical data about
-                    your visit: IP address, browser type, pages viewed, referrer,
-                    and approximate location (country/city level). This helps us
-                    understand which content is useful and diagnose problems.
+                    Like most websites, our hosting provider records basic
+                    technical data about each visit in server logs: IP address,
+                    browser type, the pages requested and the time of the
+                    request. These logs are used only for security and to
+                    diagnose problems. We don&apos;t use analytics tools or
+                    advertising trackers on this website.
                 </p>
             </>
         ),
@@ -139,8 +141,7 @@ const sections: LegalSection[] = [
                         a separate opt-in.
                     </li>
                     <li>
-                        Improve the website (which pages people read, what
-                        content&apos;s working, where things break).
+                        Keep the website secure and fix things when they break.
                     </li>
                     <li>
                         Meet our legal obligations (tax, accounting, dispute
@@ -231,11 +232,6 @@ const sections: LegalSection[] = [
                         Zoho.
                     </li>
                     <li>
-                        <strong>Analytics</strong> — Google Analytics 4 (privacy-
-                        configured to anonymise IP addresses; see{' '}
-                        <a href="/cookie-preferences">Cookie Preferences</a>).
-                    </li>
-                    <li>
                         <strong>AI model providers</strong> — only within client
                         projects and our AI products, and only as agreed (see{' '}
                         <a href="#client-data">Client Data in AI and Software Projects</a>).
@@ -275,8 +271,9 @@ const sections: LegalSection[] = [
                         retention rules.
                     </li>
                     <li>
-                        <strong>Website analytics:</strong> aggregated and
-                        anonymised after 14 months in Google Analytics.
+                        <strong>Server logs:</strong> kept by our hosting
+                        provider for a limited period for security and
+                        troubleshooting, then deleted.
                     </li>
                 </ul>
                 <p>
@@ -320,11 +317,9 @@ const sections: LegalSection[] = [
                     </li>
                 </ul>
                 <p>
-                    To exercise any of these rights, email us at{' '}
-                    <a href="mailto:gokul@unntangle.com">
-                        gokul@unntangle.com
-                    </a>
-                    . We&apos;ll respond within 30 days.
+                    To exercise any of these rights, send us a request through
+                    our <a href="/contact">contact form</a> and choose
+                    &quot;Something else&quot;. We&apos;ll respond within 30 days.
                 </p>
             </>
         ),
@@ -362,10 +357,18 @@ const sections: LegalSection[] = [
         body: (
             <>
                 <p>
-                    Our website uses cookies and similar technologies. The full
-                    breakdown — what cookies we use, what they do, and how to
-                    control them — is on our{' '}
-                    <a href="/cookie-preferences">Cookie Preferences</a> page.
+                    This website doesn&apos;t use analytics, advertising or
+                    tracking cookies, and we don&apos;t run third-party
+                    tracking pixels. The site may use strictly necessary
+                    technical storage for things like security and keeping a
+                    form working while you fill it in; these can&apos;t be used
+                    to track you across other websites.
+                </p>
+                <p>
+                    If we ever add analytics or other non-essential cookies,
+                    we&apos;ll update this policy first and ask for your consent
+                    where the law requires it. You can also block or delete
+                    cookies at any time in your browser settings.
                 </p>
             </>
         ),
@@ -381,36 +384,6 @@ const sections: LegalSection[] = [
                     of data, new sharing) will also trigger an in-product or
                     email notice if you&apos;re an active customer.
                 </p>
-            </>
-        ),
-    },
-    {
-        id: 'contact',
-        heading: 'Contact Us',
-        body: (
-            <>
-                <p>
-                    Questions about this policy or about your data? Reach out:
-                </p>
-                <div className={styles.contactBlock}>
-                    <p>
-                        <strong>Unntangle</strong>
-                        <br />
-                        SBS Office Space, Old No.470, New No.700,
-                        <br />
-                        Anna Salai, Nandanam, Chennai 600035, India
-                    </p>
-                    <p>
-                        <strong>Email:</strong>{' '}
-                        <a href="mailto:gokul@unntangle.com">
-                            gokul@unntangle.com
-                        </a>
-                    </p>
-                    <p>
-                        <strong>Phone:</strong>{' '}
-                        <a href="tel:+917092747933">+91 70927 47933</a>
-                    </p>
-                </div>
             </>
         ),
     },
@@ -433,6 +406,7 @@ export default function PrivacyPage() {
                         </p>
                     }
                     sections={sections}
+                    heroBackground={heroGradientFor('privacy')}
                 />
             </div>
             <Footer />

@@ -123,12 +123,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "yearly",
             priority: 0.3,
         },
-        {
-            url: `${SITE_URL}/cookie-preferences`,
-            lastModified: now,
-            changeFrequency: "yearly",
-            priority: 0.3,
-        },
+        // /cookie-preferences retired (no analytics or tracking cookies are
+        // used); it now 301s to /privacy, so it's not listed here.
     ];
 
     return [
