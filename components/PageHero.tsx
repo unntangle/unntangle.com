@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './PageHero.module.css';
 
@@ -41,6 +41,9 @@ export interface PageHeroProps {
     imageLayout?: 'circle' | 'stacked-strips' | 'collage' | 'diamond-grid' | 'bento';
     /** Optional CTA shown as a colored gradient pill overlaid on stacked-strips layout. */
     overlayCta?: PageHeroCTA;
+    /** Optional row of links along the bottom edge of the hero card
+     *  (e.g. the three service pillars on the home page). */
+    bottomLinks?: Array<{ label: string; href: string }>;
 }
 
 const gradientPresets: Record<NonNullable<PageHeroProps['gradient']>, string> = {
@@ -67,13 +70,17 @@ export default function PageHero({
     gradient = 'purple-pink',
     imageLayout = 'circle',
     overlayCta,
+    bottomLinks,
 }: PageHeroProps) {
     // Resolve image sources for multi-image layouts (fall back to primary if none provided)
     const img = (i: number) => images?.[i] ?? image;
 
     return (
         <section className={styles.hero}>
-            <div className={styles.heroInner} style={{ background: gradientPresets[gradient] }}>
+            <div
+                className={`${styles.heroInner} ${bottomLinks?.length ? styles.heroInnerWithLinks : ''}`}
+                style={{ background: gradientPresets[gradient] }}
+            >
                 <div className={styles.gradientBg}>
                     <div className={styles.glowOrb1} />
                     <div className={styles.glowOrb2} />
@@ -412,6 +419,24 @@ export default function PageHero({
                         )}
                     </motion.div>
                 </div>
+
+                {bottomLinks && bottomLinks.length > 0 && (
+                    <motion.nav
+                        className={styles.bottomLinks}
+                        aria-label="Explore"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        style={{ gridTemplateColumns: `repeat(${bottomLinks.length}, 1fr)` }}
+                    >
+                        {bottomLinks.map((link) => (
+                            <Link key={link.href + link.label} href={link.href} className={styles.bottomLink}>
+                                {link.label}
+                                <ArrowUpRight size={16} />
+                            </Link>
+                        ))}
+                    </motion.nav>
+                )}
             </div>
         </section>
     );

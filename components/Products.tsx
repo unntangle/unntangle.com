@@ -31,9 +31,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'uvoiz',
         name: 'uVOIZ',
-        eyebrow: 'AI Voice Workforce',
+        eyebrow: 'AI Voice Agents',
         description:
-            'AI-powered voice agents for customer conversations, lead qualification, support and business calling workflows. Speaks 5+ Indian languages. TRAI-compliant. Always on.',
+            'Voice agents that handle routine business calls — lead qualification, follow-ups and first-line support — in multiple Indian languages, and pass conversations to your team when a person is needed. Now in beta.',
         image: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&q=80&w=1200',
         href: 'https://uvoiz.unntangle.com',
         external: true,
@@ -42,9 +42,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'udylr',
         name: 'uDYLR',
-        eyebrow: 'AI-Powered Contact Center',
+        eyebrow: 'AI Contact-Center Workflows',
         description:
-            'Intelligent calling and contact-center workflows designed to automate repetitive customer interactions with predictive routing, agent assist and built-in compliance.',
+            'In development: contact-center workflows that take repetitive customer interactions off your agents’ queue, with routing and agent-assist designed around your existing CRM.',
         image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
         href: null,
         badge: { label: 'Coming Soon', tone: 'soon' },
@@ -54,7 +54,7 @@ const saasProducts: SaasProduct[] = [
         name: 'uSCRIBR',
         eyebrow: 'AI Clinical Documentation',
         description:
-            'AI-powered documentation that helps healthcare professionals reduce repetitive administrative work. Captures clinical conversations and generates structured notes in real time.',
+            'In development: documentation support that turns clinical conversations into structured notes for review, so healthcare professionals spend less time on paperwork.',
         image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
         href: null,
         badge: { label: 'Coming Soon', tone: 'soon' },
@@ -78,14 +78,16 @@ const renderWordmark = (name: string) => {
 
 export default function Products() {
     return (
-        <section className={styles.products}>
+        <section className={styles.products} id="ai-products">
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <div>
-                        <span className="tag">Our Products</span>
-                        <h2>AI Products Built by Unntangle</h2>
+                        <span className="tag">AI Products</span>
+                        <h2>AI Products &amp; Solutions</h2>
                         <p>
-                            Alongside enterprise AI deployments, Unntangle builds focused AI products for specific industries and workflows.
+                            Some workflows come up again and again. For those, we build specialised
+                            AI products on the same deployment foundations — each one at a different
+                            stage, and labelled as such.
                         </p>
                     </div>
                     {/* No "View all" CTA — there's no /products listing
@@ -98,7 +100,7 @@ export default function Products() {
                     SAAS GRID
                 ============================================================ */}
                 <div className={styles.categoryLabel}>
-                    <span className={styles.categoryEyebrow}>SaaS Suite</span>
+                    <span className={styles.categoryEyebrow}>Specialised AI Products</span>
                     <span className={styles.categoryRule} aria-hidden="true" />
                 </div>
 

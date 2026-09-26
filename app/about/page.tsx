@@ -19,12 +19,12 @@ const SITE_URL =
 export const metadata: Metadata = {
     title: "About",
     description:
-        "Unntangle is an Enterprise AI Agents & Automation company — deploying intelligent AI agents that connect with existing business systems and automate repetitive workflows across sales, finance, operations, procurement and customer service.",
+        "Unntangle is an AI implementation and deployment company. We identify repetitive workflows, deploy AI into the systems businesses already use, and build websites, apps and custom software.",
     alternates: { canonical: "/about" },
     openGraph: {
         title: "About | Unntangle Technologies",
         description:
-            "Enterprise AI agents and automation for mid-market businesses — connecting intelligent AI to your existing systems so your business can actually operate with AI.",
+            "AI implementation and deployment, plus websites, apps and custom software — from one team in Chennai, India.",
         url: `${SITE_URL}/about`,
         type: "website",
         images: [
@@ -45,7 +45,7 @@ const aboutJsonLd = {
     url: `${SITE_URL}/about`,
     name: "About Unntangle",
     description:
-        "Enterprise AI agents and automation for mid-market businesses — connecting intelligent AI to existing systems so businesses can actually operate with AI.",
+        "AI implementation and deployment, plus websites, apps and custom software — from one team.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     breadcrumb: {
@@ -118,14 +118,14 @@ export default function AboutPage() {
                         ' ',
                         { accent: 'We put it to work.' },
                     ]}
-                    description="Unntangle helps mid-market businesses turn repetitive business processes into AI-powered workflows — connecting intelligent agents to the systems your business already uses."
+                    description="Unntangle helps businesses turn repetitive work into AI-powered workflows inside the systems they already use — and builds the websites, apps and custom software they run on."
                     primaryCta={{
-                        label: "Book an AI Assessment",
+                        label: "Book an AI Workflow Assessment",
                         href: '/contact',
                         showArrow: true,
                     }}
                     secondaryCta={{
-                        label: 'Explore AI Solutions',
+                        label: 'Explore Our Services',
                         href: '/services',
                     }}
                     image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600"
@@ -137,7 +137,7 @@ export default function AboutPage() {
                         'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
                         'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
                     ]}
-                    pills={[{ text: 'Enterprise AI · AI Agents · Automation', variant: 'cyan', icon: true }]}
+                    pills={[{ text: 'AI Implementation · Websites · Apps · Software', variant: 'cyan', icon: true }]}
                     gradient="green-teal"
                 />
             </div>

@@ -9,7 +9,7 @@ import {
     FlaskConical,
     Shirt,
     Headphones,
-    Stethoscope,
+    Building2,
 } from 'lucide-react';
 import styles from './Industries.module.css';
 
@@ -37,66 +37,72 @@ interface Industry {
     description: string;
 }
 
+// Descriptions name the kinds of workflows AI can take on in each
+// industry. They are deliberately phrased as candidate workflows, not
+// as claims of past deployments — do not add "trusted by" / client
+// language here without verified engagements behind it.
 const industries: Industry[] = [
     {
         icon: <Factory size={26} />,
         name: 'Manufacturing',
         description:
-            'AI-powered workflows for RFQ processing, quotations, procurement, production reporting, quality documentation, inventory and collections.',
-    },
-    {
-        icon: <Cog size={26} />,
-        name: 'Industrial & Engineering',
-        description:
-            'AI for technical documentation, project proposals, quotation preparation, project workflows and customer communication.',
+            'AI-powered sales, RFQ, quotation, procurement, operations and reporting workflows.',
     },
     {
         icon: <Truck size={26} />,
-        name: 'Logistics & Transportation',
+        name: 'Logistics & Distribution',
         description:
-            'AI for shipment tracking, documentation processing, customer updates, billing workflows and operational reporting.',
-    },
-    {
-        icon: <Package size={26} />,
-        name: 'Distribution',
-        description:
-            'AI for dealer enquiry management, order processing, inventory monitoring, quotations and collections follow-up.',
+            'Order processing, customer communication, documentation and operational workflows.',
     },
     {
         icon: <FlaskConical size={26} />,
         name: 'Pharma & Chemicals',
         description:
-            'AI for documentation workflows, compliance support, procurement processing and customer operations.',
+            'Documentation, knowledge workflows, compliance support and operational automation.',
+    },
+    {
+        icon: <Cog size={26} />,
+        name: 'Industrial & Engineering',
+        description:
+            'RFQ processing, technical documentation, quotations and project workflows.',
     },
     {
         icon: <Shirt size={26} />,
         name: 'Textiles & Apparel',
         description:
-            'AI for buyer communication, order processing, production tracking, quality documentation and export workflows.',
+            'Order management, customer communication, procurement and production workflows.',
+    },
+    {
+        icon: <Package size={26} />,
+        name: 'Wholesale & Trading',
+        description:
+            'Dealer enquiries, order entry, stock checks, quotations and collections follow-up.',
     },
     {
         icon: <Headphones size={26} />,
-        name: 'BPO & Contact Centers',
+        name: 'Customer Operations',
         description:
-            'AI voice agents, intelligent contact-center workflows and CRM-integrated automation for high-volume customer operations.',
+            'High-volume calling, support and service workflows connected to your CRM.',
     },
     {
-        icon: <Stethoscope size={26} />,
-        name: 'Healthcare',
+        icon: <Building2 size={26} />,
+        name: 'Other B2B Enterprises',
         description:
-            'AI for clinical documentation, patient communication, administrative workflows and compliance-related processes.',
+            'AI workflow deployment based on your individual business requirements.',
     },
 ];
 
 export default function Industries() {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="industries">
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Industries</span>
-                    <h2>AI for Complex B2B Operations</h2>
+                    <h2>Built for Businesses With Complex Operations</h2>
                     <p>
-                        Established businesses in operationally complex industries have the most to gain from AI deployment. Every industry below has workflows that consume significant employee time — and are strong candidates for AI automation.
+                        We work with mid-market and enterprise B2B organisations where orders,
+                        documents, approvals and customer communication move across many people
+                        and systems. These are the kinds of workflows we look at first.
                     </p>
                 </div>
 

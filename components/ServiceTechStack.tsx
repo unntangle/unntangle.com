@@ -38,17 +38,27 @@ interface TechItem {
 }
 
 const tools: TechItem[] = [
-    // Tech
+    // AI, data & integration
+    { name: 'Python', slug: 'python' },
+    { name: 'Node.js', slug: 'nodedotjs' },
+    { name: 'PostgreSQL', slug: 'postgresql' },
+    { name: 'Redis', slug: 'redis' },
+    { name: 'GraphQL', slug: 'graphql' },
+    { name: 'Supabase', slug: 'supabase' },
+    { name: 'Docker', slug: 'docker' },
+    { name: 'AWS', slug: 'amazonwebservices' },
+    { name: 'Cloudflare', slug: 'cloudflare' },
+
+    // Websites & apps
     { name: 'Next.js', slug: 'nextdotjs' },
     { name: 'React', slug: 'react' },
     { name: 'TypeScript', slug: 'typescript' },
     { name: 'Tailwind CSS', slug: 'tailwindcss' },
     { name: 'React Native', slug: 'react' },
-    { name: 'Node.js', slug: 'nodedotjs' },
-    { name: 'PostgreSQL', slug: 'postgresql' },
+    { name: 'Flutter', slug: 'flutter' },
     { name: 'Three.js', slug: 'threedotjs' },
-    { name: 'AWS', slug: 'amazonwebservices' },
     { name: 'Vercel', slug: 'vercel' },
+    { name: 'Firebase', slug: 'firebase' },
 
     // Design
     { name: 'Figma', slug: 'figma' },
@@ -57,20 +67,9 @@ const tools: TechItem[] = [
     { name: 'After Effects', slug: 'adobeaftereffects' },
     { name: 'Blender', slug: 'blender' },
     { name: 'Cinema 4D', slug: null },
-    { name: 'Midjourney', slug: null },
-    { name: 'Stable Diffusion', slug: null },
-    { name: 'ComfyUI', slug: null },
-
-    // Marketing
-    { name: 'Meta Ads', slug: 'meta' },
-    { name: 'Google Ads', slug: 'googleads' },
-    { name: 'Analytics 4', slug: 'googleanalytics' },
-    { name: 'Search Console', slug: null },
-    { name: 'Tag Manager', slug: 'googletagmanager' },
-    { name: 'Looker Studio', slug: null },
-    { name: 'Ahrefs', slug: 'ahrefs' },
-    { name: 'SEMrush', slug: 'semrush' },
-    { name: 'Hootsuite', slug: 'hootsuite' },
+    { name: 'GitHub Actions', slug: 'githubactions' },
+    { name: 'Prisma', slug: 'prisma' },
+    { name: 'NestJS', slug: 'nestjs' },
 ];
 
 export default function ServiceTechStack() {
@@ -97,9 +96,8 @@ export default function ServiceTechStack() {
                     <span className="tag">Tools &amp; Technologies</span>
                     <h2>The toolkit behind every engagement</h2>
                     <p>
-                        No mystery stack, no aspirational logos. Here&apos;s the actual
-                        toolkit our engineers, designers, and growth team use to ship
-                        every project across web, mobile, design, and performance.
+                        The tools our engineers and designers use to build AI workflows,
+                        integrations, websites, apps and custom software.
                     </p>
                 </div>
 

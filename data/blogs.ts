@@ -895,9 +895,10 @@ The competitive moat in modern Google Ads isn't account management. It's feed en
     // ===========================================
     // 2026 PUBLISHING RUN — MAY ONWARD
     //
-    // Five posts per month from May 2026, spread across all three
-    // categories and rotating through service IDs so every service
-    // detail page keeps picking up fresh related content.
+    // Four published posts per month (Growth Marketing posts in this run
+    // are retired and hidden, so they don't count toward the four).
+    // Spread across categories and rotating through service IDs so every
+    // service detail page keeps picking up fresh related content.
     //
     // Image URLs deliberately reuse Unsplash asset IDs already proven
     // in this file rather than new unverified ones — swap in bespoke
@@ -1593,8 +1594,8 @@ The brands that win here are running a small studio, not a campaign.
     },
 
     // ---------- AUGUST 2026 ----------
-    // Partial month — posts stop at the current date. Continue the
-    // five-per-month cadence from here.
+    // Four published posts (Aug 4, 7, 13, 16); the Aug 11 Meta Ads post
+    // is retired and hidden. AI Implementation posts continue in September.
     {
         id: 'website-accessibility-as-engineering',
         title: 'Accessibility Is Engineering, Not Compliance',
@@ -1838,5 +1839,407 @@ A review at concept stage is cheap. The same conversation after tooling is commi
 
 Visualisation sells the concept, wins the internal decision and drives the marketing. Production modelling makes it real. Strong programmes run both deliberately, with a clear handover — rather than assuming a render can be sent to a factory.
         `
+    },
+
+    // ===========================================
+    // AI IMPLEMENTATION & DEPLOYMENT (Sep–Oct 2026)
+    // Four posts per month. October posts are scheduled: they stay hidden
+    // until their date (see isScheduledBlog below).
+    // Practical guidance only — no invented statistics or client stories.
+    // ===========================================
+    {
+        id: 'start-with-the-workflow-not-the-model',
+        title: 'Start With the Workflow, Not the Model: How to Scope an AI Project',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+        description: 'Most AI projects that disappoint were scoped around a technology, not a piece of work. Here is how to find the right first workflow before anything is built.',
+        date: 'September 2, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '6 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-workflow-assessment',
+        content: `
+# Start With the Workflow, Not the Model: How to Scope an AI Project
+
+The most common way an AI project goes wrong is also the most understandable. Someone sees a capable model, imagines what it could do, and the project is scoped around the technology. A few months later there is an impressive demo and very little change in how the business actually runs.
+
+The fix is simple to describe and harder to do: start with a piece of work, not with a model.
+
+## Look for work, not for use cases
+
+"Use case" is a slippery phrase. It invites brainstorming about what AI could do in theory. A workflow is more concrete: a request arrives, people handle it in a series of steps using particular systems and documents, and something is produced at the end.
+
+Good candidates for a first AI deployment usually share a few traits:
+
+- **They happen often.** Dozens or hundreds of times a week, not twice a quarter.
+- **They follow recognisable rules.** An experienced person could explain how they decide most cases.
+- **They involve reading and re-typing.** Information arrives in emails, PDFs or messages and gets copied into another system.
+- **Mistakes are catchable.** A person can review the output before anything irreversible happens.
+
+Quotation preparation, invoice processing, order entry, collections follow-up and routine customer queries tend to fit this pattern. Strategic decisions and one-off judgement calls usually do not.
+
+## Talk to the people who do the work
+
+Process documents describe how work is supposed to happen. The people doing it know how it actually happens: the spreadsheet everyone relies on, the customer who always sends orders in a strange format, the approval that is technically required but usually skipped.
+
+An hour spent watching someone handle ten real cases is worth more than a week of workshops. It shows where time really goes and which exceptions matter.
+
+## Score before you build
+
+Once you have a list of candidate workflows, compare them on the same few questions:
+
+1. How much time does it take today, and how often does it happen?
+2. How consistent are the inputs and the rules?
+3. Which systems would the AI need to read from and write to?
+4. Where must a person stay in control?
+5. How would we know it is working?
+
+The workflow that scores well on volume and consistency, with manageable integrations and a clear review point, is usually the right first deployment — even if it is not the most exciting one.
+
+## Decide what should stay with people
+
+Scoping is as much about what AI should not do. Some steps should remain human because they carry commercial risk, need relationships, or simply work well today. Writing that down early prevents a project from drifting into automating things nobody wanted automated.
+
+## The output of good scoping
+
+By the end you should be able to state, in a paragraph, what the AI will do, which systems it touches, where people approve, and how success will be measured. If you cannot write that paragraph, you are not ready to build — and that is a useful thing to know before spending the budget.
+        `
+    },
+    {
+        id: 'rfq-to-quotation-first-ai-workflow',
+        title: 'RFQ to Quotation: A Practical First AI Workflow for Manufacturers',
+        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800',
+        description: 'Why the request-for-quotation process is often the best place for a manufacturer to start with AI, and what a sensible first version looks like.',
+        date: 'September 9, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '7 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-agents',
+        content: `
+# RFQ to Quotation: A Practical First AI Workflow for Manufacturers
+
+For many manufacturers and distributors, the request for quotation is where sales time quietly disappears. RFQs arrive by email as PDFs, spreadsheets or plain text. Someone reads each one, matches items to the product catalogue, checks pricing and stock, looks at previous quotes, prepares the document, gets it reviewed and sends it. Then the CRM is updated — if there is time.
+
+It is repetitive, rule-driven and high-volume, which makes it one of the most practical places to start with AI.
+
+## What the AI actually does
+
+A sensible first version keeps the scope tight:
+
+1. **Reads the RFQ.** Extracts customer, items, quantities, delivery dates and special terms from the email and attachments.
+2. **Matches items.** Maps the customer's descriptions to your product codes, flagging anything it cannot match confidently.
+3. **Checks your data.** Pulls pricing, stock and lead times from your ERP and price lists, and looks at recent quotes to the same customer.
+4. **Drafts the quotation.** In your template, with your terms.
+5. **Waits for approval.** A salesperson reviews, edits if needed, and approves.
+6. **Sends and records.** The quote goes out and the CRM is updated automatically.
+
+Nothing reaches a customer without a person saying yes.
+
+## Where the real work is
+
+The model is rarely the hard part. The effort goes into three places:
+
+- **Item matching.** Customers describe products in their own words. Building a reliable mapping between those descriptions and your catalogue, and knowing when to ask a person, is where accuracy is won or lost.
+- **Pricing rules.** Discounts, customer-specific prices, minimum quantities and freight terms often live partly in systems and partly in people's heads. They need to be written down.
+- **Integration.** The AI needs read access to product, price and customer data, and a way to write the finished quote and CRM record back.
+
+## Designing the approval step
+
+The approval screen matters more than it looks. It should show the draft quote, the source RFQ side by side, and anything the AI was unsure about, clearly highlighted. The reviewer's job becomes checking and deciding, not re-doing the work.
+
+Over time you may decide some low-value, standard quotes can go out automatically. That should be a deliberate decision made with evidence, not a default.
+
+## Starting small
+
+It often makes sense to begin with one product line or one customer segment, run the AI alongside the existing process for a period, compare outputs, and widen the scope once the team trusts it. The goal of the first version is not to handle every RFQ — it is to handle the routine ones well and route the rest to people quickly.
+
+## What to measure
+
+Agree the measures before building: time from RFQ received to quote sent, the share of quotes that needed significant edits, and how often items could not be matched. Those numbers tell you whether to expand, adjust or stop.
+        `
+    },
+    {
+        id: 'connecting-ai-to-your-erp-without-replacing-it',
+        title: 'Connecting AI to Your ERP Without Replacing It',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800',
+        description: 'You do not need a new ERP to use AI. Here are the practical ways AI can read from and write to the systems you already run — and the questions to settle with IT first.',
+        date: 'September 16, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '6 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-integration',
+        content: `
+# Connecting AI to Your ERP Without Replacing It
+
+A common assumption is that using AI properly means replacing core systems first. For most businesses that is neither necessary nor sensible. The ERP, CRM and accounting tools you already run hold the data AI needs. The task is to connect to them safely.
+
+## Four common ways to connect
+
+Which route is right depends on what each system supports.
+
+- **APIs.** Most modern ERPs and CRMs offer them. This is the cleanest option: the AI reads and writes through documented, permissioned endpoints.
+- **Database access.** For older or on-premise systems without good APIs, read-only views of specific tables can provide the data an AI workflow needs, with writes handled carefully or kept manual.
+- **Scheduled exports and imports.** Some systems can export reports or accept file imports on a schedule. Slower, but reliable and easy for IT to control.
+- **Email and documents.** Many workflows start in an inbox. Connecting to a shared mailbox is often the simplest way to bring work into an AI workflow.
+
+It is normal for one deployment to use more than one of these.
+
+## Read first, write carefully
+
+A useful principle is to start with reading. An AI that can look up prices, stock and order status already removes a lot of manual effort. Writing back — creating quotes, updating records — comes next, usually behind an approval step and with clear logging of what was changed.
+
+## Questions to settle with IT before building
+
+1. **Which data does this workflow actually need?** Access should be limited to that, not the whole system.
+2. **Whose credentials does the integration use?** Ideally a dedicated account your IT team owns and can revoke.
+3. **Where is data processed and stored?** Especially if AI models from external providers are involved.
+4. **What happens when a system is down?** The workflow should fail gracefully and alert someone, not guess.
+5. **How are changes logged?** Every write should be traceable.
+
+These are not obstacles. Answering them early is what lets IT say yes with confidence.
+
+## Results should land where people already work
+
+One sign of a good integration is that people do not need a new screen to benefit from it. Quotes appear in the ERP, notes appear in the CRM, reminders go out through the email system everyone already uses. AI that lives in its own separate tool tends to be ignored.
+
+## Each connection makes the next one easier
+
+The first integration takes the most effort. Once the AI can safely reach your product, customer and order data, later workflows — collections, procurement, customer queries — can reuse those connections and reach production faster.
+        `
+    },
+    {
+        id: 'human-in-the-loop-is-a-design-decision',
+        title: 'Human-in-the-Loop Is a Design Decision, Not a Safety Net',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+        description: 'Approval steps are often added at the end of an AI project as a precaution. They work much better when they are designed in from the start.',
+        date: 'October 7, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '5 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-agents',
+        content: `
+# Human-in-the-Loop Is a Design Decision, Not a Safety Net
+
+When businesses first deploy AI into real workflows, human approval is often treated as a temporary safety net — something to remove once the AI is good enough. That framing leads to poorly designed review steps and, eventually, to automation nobody fully trusts.
+
+A better approach is to treat the human role as part of the design from day one.
+
+## Decide where judgement belongs
+
+For each step in a workflow, ask a simple question: if this goes wrong, what is the cost, and can it be undone?
+
+- **Low cost, easily reversed** — an internal summary, a draft for review, a lookup. AI can usually do these on its own.
+- **Moderate cost** — a routine customer reply, a standard reminder. AI can prepare these, with a person approving in batches or by exception.
+- **High cost or irreversible** — pricing commitments, payments, anything contractual. A person approves every time.
+
+Writing this map down turns a vague sense of caution into clear rules.
+
+## Make reviewing fast
+
+If approving AI output takes almost as long as doing the work by hand, people will either skip the review or abandon the tool. Good review steps:
+
+- Show the output next to its source, so checking is quick.
+- Highlight what the AI was unsure about rather than hiding it.
+- Allow one-click approve, quick edit, or reject with a reason.
+- Group similar items so they can be approved together.
+
+## Escalation is part of the workflow
+
+An AI that is unsure should not guess. It should hand the case to the right person with the context it has gathered. Unusual requests, high-value orders and upset customers are obvious candidates. Designing these routes up front means the AI handles the routine cases and people get the ones that genuinely need them.
+
+## Keep a record
+
+Every action — what the AI read, what it proposed, who approved it, what changed — should be logged. That record is what lets you answer questions later, spot patterns in edits, and decide with evidence when a step can safely need less oversight.
+
+## Oversight can change, deliberately
+
+Over time, you may find that a category of output is almost never edited. That is the moment to consider reducing review for that category — as a documented decision, based on the record, and easy to reverse. Human-in-the-loop is not about slowing AI down. It is about making sure the business stays in control of the decisions that matter.
+        `
+    },
+    {
+        id: 'why-ai-pilots-stall-before-production',
+        title: 'Why AI Pilots Stall Before Production — and How to Avoid It',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        description: 'A successful demo is not the same as a deployed workflow. The common reasons AI pilots never reach daily use, and what to plan for from the start.',
+        date: 'October 14, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '6 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-agents',
+        content: `
+# Why AI Pilots Stall Before Production — and How to Avoid It
+
+Many businesses have run an AI pilot that looked promising and then quietly stopped. The demo worked. The team was impressed. Months later, nothing has changed in daily operations. This is common, and the reasons are usually predictable.
+
+## 1. The pilot ran on clean, hand-picked examples
+
+Demos are often built on a small set of tidy examples. Real work is messier: scanned PDFs, unusual formats, missing information, customers who write in their own shorthand.
+
+**What helps:** test on a large sample of real, recent cases — including the awkward ones — before calling a pilot successful.
+
+## 2. Nobody owned the outcome
+
+Pilots are often run by an innovation team or an enthusiastic individual. When it is time to change how a department works, there is no business owner with the authority and motivation to make it happen.
+
+**What helps:** name a business owner from the team whose work is changing, and agree the measure they care about before starting.
+
+## 3. Integration was postponed
+
+A pilot that asks people to copy data into a separate tool, then copy results back, adds work rather than removing it. It is easy to defer integration to phase two. Phase two often never comes.
+
+**What helps:** include at least the essential read integrations in the first version, even if writing back stays manual for a while.
+
+## 4. There was no plan for exceptions
+
+The pilot handles the typical case well. Nobody decided what happens with the rest, so staff do not trust it with any of them.
+
+**What helps:** design escalation from the start. The AI should know when to hand a case to a person, and people should see why.
+
+## 5. Success was never defined
+
+Without agreed measures, a pilot can be judged a success or a failure depending on who is asked.
+
+**What helps:** agree two or three measures in advance — time per case, share needing significant edits, share escalated — and review them honestly.
+
+## 6. Operating it was nobody's job
+
+Once live, an AI workflow needs monitoring, occasional adjustment and support when source systems change. Without that, quality drifts and trust erodes.
+
+**What helps:** plan who will watch it, how problems are raised, and how improvements are made after go-live.
+
+## Build for production from the first week
+
+The difference between a pilot and a deployment is not the model. It is ownership, integration, exception handling and operation. Planning for those from the first week is what turns a promising demo into a workflow the business actually relies on.
+        `
+    },
+    {
+        id: 'measuring-an-ai-deployment',
+        title: 'Measuring an AI Deployment: What to Agree Before You Build',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+        description: 'How to decide, before any development starts, whether an AI workflow is working — with measures your operations team will actually trust.',
+        date: 'October 21, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '5 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-workflow-assessment',
+        content: `
+# Measuring an AI Deployment: What to Agree Before You Build
+
+"Is the AI working?" sounds like a simple question. Without agreed measures it becomes a matter of opinion — and opinions tend to follow whoever is most enthusiastic or most sceptical in the room. The time to settle it is before anything is built.
+
+## Measure the workflow, not the model
+
+Technical accuracy scores are useful to engineers, but they rarely answer the business question. Focus instead on what happens to the work itself.
+
+Useful measures usually fall into four groups:
+
+- **Speed** — time from request received to output delivered. For example, RFQ received to quote sent.
+- **Effort** — people-time spent per case, including review.
+- **Quality** — the share of AI outputs approved without significant edits, and the kinds of edits people make.
+- **Coverage** — the share of cases the AI handles versus escalates to a person.
+
+Two or three of these, chosen for the specific workflow, are usually enough.
+
+## Capture a baseline first
+
+Measures only mean something against a starting point. Before the AI goes live, record how the workflow performs today: how long cases take, how many are handled per week, where delays happen. Even a rough baseline from a few weeks of observation is far better than none.
+
+## Decide what good looks like
+
+Agree in advance what result would justify expanding the deployment, what would call for adjustment, and what would mean stopping. Writing this down protects everyone from moving the goalposts later.
+
+## Watch the edits
+
+The edits people make to AI output are one of the most valuable signals you have. If reviewers keep correcting the same thing — a pricing rule, an item mapping, a tone of voice — that tells you exactly what to improve. Logging edits by type turns review from a chore into a feedback loop.
+
+## Look beyond time saved
+
+Time is the obvious benefit, but not the only one. Faster responses to customers, more consistent handling, fewer missed follow-ups and better visibility for managers all matter. Include the ones that matter to the business owner, and measure them as directly as possible.
+
+## Review on a schedule
+
+Set regular reviews — for example after the first few weeks, and then monthly — where the business owner and the team look at the measures together. That rhythm keeps the deployment honest, and makes decisions about extending AI to the next workflow straightforward.
+        `
+    },
+    {
+        id: 'ai-agent-or-chatbot-a-plain-language-guide',
+        title: 'AI Agent or Chatbot? A Plain-Language Guide for Operations Leaders',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+        description: 'The terms get used interchangeably, but they describe very different things. What each one does, and how to tell which your business actually needs.',
+        date: 'September 23, 2026',
+        author: 'Unntangle Technologies Insights',
+        readTime: '5 min read',
+        category: 'AI Implementation',
+        serviceId: 'ai-agents',
+        content: `
+# AI Agent or Chatbot? A Plain-Language Guide for Operations Leaders
+
+"Chatbot" and "AI agent" are often used as if they mean the same thing. For someone deciding where to invest, the difference matters, because they solve different problems.
+
+## A chatbot answers
+
+A chatbot is a conversational interface. Someone asks a question, and it replies — usually from a knowledge base, a set of documents or a product catalogue. Good chatbots are genuinely useful for answering common questions, guiding people to the right page, or collecting details before a person takes over.
+
+What a chatbot typically does not do is carry out work across your systems.
+
+## An AI agent acts
+
+An AI agent is built around a workflow. It takes a trigger — an email, a document, a scheduled check — and works through steps to produce an outcome. Along the way it reads from and writes to business systems.
+
+For example, when an RFQ arrives, an AI agent might read the document, match items to your catalogue, check pricing in the ERP, draft a quotation, wait for approval, send it and update the CRM. There may be no chat window involved at all.
+
+## A simple way to tell them apart
+
+Ask: what is the output?
+
+- If the output is **an answer to a question**, you are probably looking at a chatbot.
+- If the output is **a piece of completed work** — a quote, a reminder batch, an updated record, a report — you are looking at an agent.
+
+## Which one do you need?
+
+It depends on where time is going.
+
+- If your team spends a lot of time answering the same questions from customers or staff, a well-built assistant that draws on your own information can help.
+- If your team spends time reading documents, looking things up in several systems, re-typing information and preparing routine outputs, an AI agent for that workflow is usually the better investment.
+
+Many businesses end up with both, often sharing the same connections to company data.
+
+## What makes agents trustworthy
+
+Because agents act, they need more care. The essentials are limited, permissioned access to systems; human approval for anything with commercial or customer impact; clear escalation when the agent is unsure; and a log of every action.
+
+## Start with the work
+
+Whichever term a vendor uses, the useful question is the same: which piece of repetitive work will this take on, and how will we know it is working? Starting there keeps the conversation practical — and keeps the focus on outcomes rather than labels.
+        `
     }
 ];
+
+/**
+ * Categories Unntangle no longer offers as services. Posts in these
+ * categories are kept in the data (nothing deleted) but hidden from the
+ * blog listing, sitemap and nav, and their URLs redirect to /blog.
+ */
+export const RETIRED_BLOG_CATEGORIES = ['Growth Marketing'];
+
+export const isRetiredBlog = (post: BlogPost) =>
+    RETIRED_BLOG_CATEGORIES.includes(post.category);
+
+/**
+ * Scheduled posts: anything dated in the future stays hidden (listing,
+ * sitemap, homepage, and its own URL) until that date. Publishing
+ * cadence is four posts per month, so future months can be written
+ * ahead and dated in advance.
+ *
+ * Note: the site is statically generated, so a scheduled post appears
+ * on the first build/deploy on or after its date — redeploy (or set up
+ * a daily rebuild) for it to go live on the day.
+ */
+export const isScheduledBlog = (post: BlogPost, now: Date = new Date()) => {
+    const d = new Date(post.date);
+    return !Number.isNaN(d.getTime()) && d.getTime() > now.getTime();
+};
+
+/** Posts that should be publicly listed. Use this instead of `blogsData`. */
+export const publishedBlogs: BlogPost[] = blogsData.filter(
+    (p) => !isRetiredBlog(p) && !isScheduledBlog(p)
+);

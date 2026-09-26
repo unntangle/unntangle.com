@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, Plug, Users, Rocket, RefreshCw } from 'lucide-react';
+import { Target, Plug, Users, Rocket, RefreshCw, Layers } from 'lucide-react';
 import styles from './Philosophy.module.css';
 
 const values = [
@@ -23,12 +23,17 @@ const values = [
     {
         title: 'Deployment Focused',
         icon: <Rocket size={24} />,
-        description: 'We don\'t stop at prototypes or proof-of-concept demos. Our focus is production implementation — AI running inside your real workflows, handling real work, delivering real outcomes.'
+        description: 'We don\'t stop at prototypes or proof-of-concept demos. Our focus is production implementation — AI running inside your real workflows, handling real work, with your team alongside it.'
     },
     {
         title: 'Built To Evolve',
         icon: <RefreshCw size={24} />,
-        description: 'Every deployment starts with one workflow and is designed to expand. As AI proves value in one area, it can be extended to adjacent workflows and departments — incrementally, without disruption.'
+        description: 'Solutions can start with one workflow and expand across departments. As AI proves its value in one area, it can be extended to adjacent workflows — step by step, without disrupting how your teams work.'
+    },
+    {
+        title: 'AI and Software, One Team',
+        icon: <Layers size={24} />,
+        description: 'The same team deploys your AI and builds your websites, apps and custom software. When a workflow needs a new portal, app or system rather than AI, we can build that too.'
     }
 ];
 
@@ -38,9 +43,9 @@ export default function Philosophy() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Why Unntangle</span>
-                    <h2 className={styles.title}>Why Businesses Work With Us</h2>
+                    <h2 className={styles.title}>Why Businesses Work With Unntangle</h2>
                     <p className={styles.description}>
-                        We are an AI deployment partner, not an AI product vendor. Here is what that means in practice.
+                        We are an AI implementation and deployment partner that also builds the software businesses run on. Here is what that means in practice.
                     </p>
                 </div>
 

@@ -44,9 +44,9 @@ const milestones: Milestone[] = [
     },
     {
         year: '2026',
-        headline: 'Expanding the SaaS portfolio.',
+        headline: 'Focused on AI implementation.',
         description:
-            'uDYLR (predictive BPO dialer) and uSCRIBR (AI medical scribe) enter active development. The roadmap broadens into healthcare and contact-centre infrastructure across South Asia.',
+            'Unntangle refocuses on implementing and deploying AI inside businesses, alongside the website, app and custom software work it has always done, and retires growth marketing. uDYLR (AI contact-centre workflows) and uSCRIBR (AI clinical documentation) enter active development.',
     },
 ];
 

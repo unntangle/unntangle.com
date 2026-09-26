@@ -24,6 +24,16 @@ const HIDE_UBIQ = true;
 // HIDDEN-UBIQ: the domain the uBIQ brand site now lives on.
 const UBIQ_SITE_URL = 'https://ubiqautomation.com';
 
+// Retired growth-marketing service pages. Unntangle no longer offers these,
+// so their URLs 301 to /services instead of 404ing for old links and
+// search results.
+const RETIRED_SERVICE_PATHS = new Set([
+  '/services/meta-ads',
+  '/services/google-ads',
+  '/services/seo',
+  '/services/smm',
+]);
+
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
@@ -35,6 +45,12 @@ export function middleware(req: NextRequest) {
   if (HIDE_UBIQ && (url.pathname === '/ubiq' || url.pathname.startsWith('/ubiq/'))) {
     const path = url.pathname.slice('/ubiq'.length) || '/';
     return NextResponse.redirect(`${UBIQ_SITE_URL}${path}${url.search}`, 301);
+  }
+
+  if (RETIRED_SERVICE_PATHS.has(url.pathname.replace(/\/$/, ''))) {
+    url.pathname = '/services';
+    url.search = '';
+    return NextResponse.redirect(url, 301);
   }
 
   // Host-based rewrites used to live here for officemate.unntangle.com and

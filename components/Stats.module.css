@@ -194,6 +194,39 @@
     line-height: 1.5;
 }
 
+/* Eighth tile in the step grid — a CTA, styled dark to stand apart */
+.ctaCard {
+    background: #111111;
+    border-color: #111111;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.ctaCard:hover {
+    background: #1c1c1c;
+}
+
+.ctaCardLabel {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #ffffff;
+    font-family: var(--font-title), sans-serif;
+}
+
+.ctaCardLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
 @media (max-width: 1024px) {
     .layoutGrid {
         grid-template-columns: 1fr;

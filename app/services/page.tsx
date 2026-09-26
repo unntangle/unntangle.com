@@ -11,29 +11,28 @@ import MarketingCTA from "@/components/MarketingCTA";
 import Footer from "@/components/Footer";
 
 const categories = [
-    { id: 'ai-agents', name: 'AI Agents & Automation' },
-    { id: 'tech', name: 'Technology' },
-    { id: 'growth', name: 'AI-Powered Growth' },
+    { id: 'ai', name: 'AI Implementation' },
+    { id: 'web', name: 'Websites & Apps' },
+    { id: 'software', name: 'Custom Software & ERP' },
 ];
 
 export default function ServicesPage() {
-    const [activeCategoryId, setActiveCategoryId] = useState('ai-agents');
+    const [activeCategoryId, setActiveCategoryId] = useState('ai');
 
     return (
         <main>
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
                 <PageHero
-                    eyebrow="What we do"
+                    eyebrow="Services"
                     titleParts={[
-                        'AI Agents.',
+                        'AI Implementation.',
                         ' ',
-                        { accent: 'Enterprise Automation.' },
-                        ' Real Outcomes.',
+                        { accent: 'Websites, Apps & Software.' },
                     ]}
-                    description="Intelligent AI agents connected to your existing systems — automating workflows across sales, finance, operations, procurement and customer service. Backed by the technology that makes AI work."
+                    description="We deploy AI into real business workflows, and we build the websites, apps and custom software businesses run on. One team for both — so the AI and the systems it depends on are built to work together."
                     primaryCta={{ label: 'Book an AI Workflow Assessment', href: '/contact' }}
-                    secondaryCta={{ label: 'Contact us', href: '/contact' }}
+                    secondaryCta={{ label: 'How We Deploy', href: '/#how-we-deploy' }}
                     image="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000"
                     images={[
                         'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
@@ -43,7 +42,7 @@ export default function ServicesPage() {
                     ]}
                     imageAlt="Unntangle AI Solutions"
                     pills={[
-                        { text: 'AI Agents · Automation · Technology — in one team', variant: 'cyan', icon: true },
+                        { text: 'AI · Websites · Apps · Custom Software — one team', variant: 'cyan', icon: true },
                     ]}
                     gradient="orange-pink"
                     imageLayout="diamond-grid"

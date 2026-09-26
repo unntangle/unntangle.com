@@ -21,39 +21,39 @@ import styles from './Roadmap.module.css';
 const milestones = [
     {
         year: '2026',
-        title: 'SaaS Suite Expansion',
+        title: 'Assessment-Led Engagements',
         description:
-            'uDYLR enters production for outbound BPO operations. uSCRIBR moves into pilot with clinical partners. The SaaS portfolio crosses three live products in market.',
+            'The AI Workflow Assessment becomes the standard starting point for every new AI engagement — understanding the workflow before building anything.',
     },
     {
         year: '2026',
-        title: 'uSYNQ Across India',
+        title: 'Production AI Deployments',
         description:
-            'Smart-living hardware reaches premium residential and hospitality projects across the top 10 metros. Retrofit modules and TITAN panels become the default specification for high-end builders.',
+            'AI workflows deployed into sales, finance, procurement and operations for B2B businesses, running inside existing systems with human approval built in.',
     },
     {
         year: '2027',
-        title: 'Vertical AI Agents',
+        title: 'Reusable Integration Library',
         description:
-            'Beyond telecalling and clinical scribes, we expand into purpose-built AI agents for finance, education, and retail — each trained on industry-specific data and compliance requirements.',
+            'A growing set of tested connectors for common ERPs, CRMs, email and WhatsApp, so each new deployment reaches production faster.',
     },
     {
         year: '2027',
-        title: 'International Footprint',
+        title: 'AI Products Mature',
         description:
-            'First overseas client engagements, primarily in Southeast Asia and the Middle East. Localised infrastructure, language coverage, and regional compliance built into the SaaS stack.',
+            'uVOIZ moves beyond beta, and uDYLR and uSCRIBR move into pilots with early customers.',
+    },
+    {
+        year: '2027',
+        title: 'AI-Ready Software by Default',
+        description:
+            'Every website, app and custom system we build is structured so AI workflows can be added on top without rebuilding.',
     },
     {
         year: '2028',
-        title: 'Connected Living Ecosystem',
+        title: 'Wider Footprint',
         description:
-            'uSYNQ hardware and our SaaS platforms converge — voice agents, security, climate, and access control share one unified app and one accountable team behind the experience.',
-    },
-    {
-        year: '2028',
-        title: 'Studio at 100',
-        description:
-            'A senior team of 100+ engineers, designers, and growth strategists — still operating as one accountable studio rather than fragmented practice areas. Same model, more depth.',
+            'AI implementation and software engagements beyond India, starting with the Middle East and Southeast Asia.',
     },
 ];
 

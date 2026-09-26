@@ -7,27 +7,36 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Services.module.css';
 
+// The three things Unntangle does, as stacked cards: AI implementation
+// first, then the website/app and custom-software work the company has
+// always delivered. Each card links to its own service page.
 const expertiseGroups = [
     {
-        id: 'ai-deploy',
+        id: 'ai',
         title: 'We Don\'t Just Build AI. We Deploy It.',
-        description: 'Every business has repetitive workflows that consume valuable employee time. Unntangle works directly with your teams to understand how work actually happens, identify where AI can create measurable value, build the required AI agent, integrate it with your existing systems, and deploy it into production.',
-        services: ['AI Sales Agent', 'AI Finance Agent', 'AI Procurement Agent', 'AI Operations Agent', 'AI Customer Service Agent', 'AI Management Intelligence'],
+        description: 'We find the repetitive workflows in your business, build AI agents and automation around them, connect them to your ERP, CRM, email and documents, and run them in production with your team approving where it matters.',
+        services: ['Assess', 'Build', 'Integrate', 'Deploy', 'Operate', 'Improve'],
         image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000',
+        href: '/services/ai-agents',
+        cta: 'Explore AI Implementation',
     },
     {
-        id: 'tech',
-        title: 'Technology That Makes AI Work.',
-        description: 'AI agents are only useful when they can work with the systems your business already depends on. We combine AI engineering with software development, system integrations and digital technology to connect intelligence with your real operational workflows.',
-        services: ['Enterprise Software', 'Website Development', 'App Development', 'API Integrations', 'Cloud & Infrastructure', 'Interactive 3D'],
+        id: 'web',
+        title: 'Websites & Apps.',
+        description: 'Business websites, web apps, dealer and customer portals, and mobile apps for sales and field teams — fast, secure and connected to your CRM and systems, so they are ready for AI when you are.',
+        services: ['Website Development', 'Website Revamp', 'Web Apps & Portals', 'Mobile Apps', 'Interactive 3D', 'UI/UX Design'],
         image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000',
+        href: '/services/website',
+        cta: 'Explore Websites & Apps',
     },
     {
-        id: 'growth',
-        title: 'AI-Powered Growth.',
-        description: 'Combine AI with your existing marketing operations to analyse campaign performance, identify growth opportunities, automate repetitive tasks and accelerate customer acquisition — with data-driven precision.',
-        services: ['Meta Ads', 'Google Ads', 'SEO', 'SMM'],
+        id: 'software',
+        title: 'Custom Software & ERP.',
+        description: 'When off-the-shelf tools don\'t fit how you work, we build ERP, workflow and approval systems, internal dashboards and integrations around your processes — structured so AI can be added on top.',
+        services: ['Custom ERP', 'Workflow & Approval Systems', 'Internal Dashboards', 'API Integrations', 'Data Migration', 'Cloud Deployment'],
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
+        href: '/services/erp',
+        cta: 'Explore Custom Software',
     }
 ];
 
@@ -133,9 +142,9 @@ const Card = ({ group, index, progress }: CardProps) => {
                         ))}
                     </div>
 
-                    <Link href="/services" style={{ textDecoration: 'none' }}>
+                    <Link href={group.href} style={{ textDecoration: 'none' }}>
                         <button className={styles.exploreBtn}>
-                            Explore Solutions <ArrowRight size={18} />
+                            {group.cta} <ArrowRight size={18} />
                         </button>
                     </Link>
                 </div>
@@ -158,8 +167,8 @@ export default function Services() {
                 <div className={styles.container}>
                     <div className={styles.header}>
                         <span className="tag">What We Do</span>
-                        <h2>AI deployment for real business workflows.</h2>
-                        <p>We don&apos;t start with AI. We start with how your business actually works — then build and deploy AI that fits into it.</p>
+                        <h2>AI Implementation. Websites, Apps &amp; Software.</h2>
+                        <p>One team that deploys AI into your operations and builds the websites, apps and custom software your business runs on.</p>
                     </div>
 
                     <div className={styles.cardStack}>

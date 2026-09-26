@@ -30,9 +30,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'uvoiz',
         name: 'uVOIZ',
-        eyebrow: 'AI Telecalling',
+        eyebrow: 'AI Voice Agents',
         description:
-            'AI voice agents that speak 5+ Indian languages and replace telecallers for BPOs. TRAI-compliant, CRM-integrated, always on.',
+            'Voice agents that handle routine business calls — lead qualification, follow-ups and first-line support — in multiple Indian languages, handing off to your team when a person is needed.',
         image:
             'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&q=80&w=1200',
         href: 'https://uvoiz.unntangle.com',
@@ -42,9 +42,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'udylr',
         name: 'uDYLR',
-        eyebrow: 'Predictive BPO Dialer',
+        eyebrow: 'AI Contact-Center Workflows',
         description:
-            'Outbound and inbound BPO dialer with predictive routing, agent assist, and built-in compliance for high-volume campaigns.',
+            'In development: contact-center workflows that take repetitive customer interactions off your agents’ queue, with routing and agent-assist designed around your CRM.',
         image:
             'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
         href: null,
@@ -53,9 +53,9 @@ const saasProducts: SaasProduct[] = [
     {
         id: 'uscribr',
         name: 'uSCRIBR',
-        eyebrow: 'AI Medical Scribe',
+        eyebrow: 'AI Clinical Documentation',
         description:
-            'Captures clinical conversations and generates structured SOAP notes in real time. Built for clinicians who need their hands free.',
+            'In development: documentation support that turns clinical conversations into structured notes for clinician review.',
         image:
             'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
         href: null,
@@ -91,10 +91,11 @@ export default function AboutProducts() {
                     transition={{ duration: 0.6 }}
                     className={styles.header}
                 >
-                    <span className={styles.sectionBadge}>Our Products</span>
-                    <h2 className={styles.title}>What we&apos;ve shipped</h2>
+                    <span className={styles.sectionBadge}>AI Products</span>
+                    <h2 className={styles.title}>AI products we&apos;re building</h2>
                     <p className={styles.subtitle}>
-                        SaaS tools — all in market, all running for real customers.
+                        Specialised AI products for workflows we see again and again — each
+                        labelled with its current stage.
                     </p>
                 </motion.div>
 
@@ -102,7 +103,7 @@ export default function AboutProducts() {
                     SAAS GRID
                 ============================================================ */}
                 <div className={styles.categoryLabel}>
-                    <span className={styles.categoryEyebrow}>SaaS Suite</span>
+                    <span className={styles.categoryEyebrow}>Specialised AI Products</span>
                     <span className={styles.categoryRule} aria-hidden="true" />
                 </div>
 

@@ -20,11 +20,14 @@ import styles from './AboutStatsHero.module.css';
  * inflating early.
  */
 
+// Only facts that are true today. "3 AI products" counts uVOIZ (beta)
+// plus uDYLR and uSCRIBR (in development) — the label says so. Add
+// client / industry counts only once they can be backed up.
 const topStats = [
-    { value: '6', label: 'AI Agent Solutions' },
-    { value: '3', label: 'AI Products in Market' },
-    { value: '8+', label: 'Industries Served' },
-    { value: '100%', label: 'In-House AI Engineering' },
+    { value: '3', label: 'Service Pillars: AI, Websites & Apps, Custom Software' },
+    { value: '3', label: 'AI Products (1 in Beta, 2 in Development)' },
+    { value: '2023', label: 'Founded in Chennai, India' },
+    { value: '100%', label: 'In-House Engineering Team' },
 ];
 
 export default function AboutStatsHero() {
@@ -38,10 +41,10 @@ export default function AboutStatsHero() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className={styles.eyebrow}>By the numbers</span>
+                    <span className={styles.eyebrow}>At a glance</span>
                     <h2 className={styles.title}>
-                        Enterprise AI.{' '}
-                        <span className={styles.titleAccent}>Real business outcomes.</span>
+                        AI implementation.{' '}
+                        <span className={styles.titleAccent}>Websites, apps &amp; software.</span>
                     </h2>
                 </motion.div>
 

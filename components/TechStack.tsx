@@ -45,9 +45,21 @@ interface TechCategory {
     items: TechItem[];
 }
 
+// The capabilities behind both AI deployment and software builds.
+const capabilities = [
+    'AI & Machine Learning',
+    'Software Engineering',
+    'Web Applications',
+    'Mobile Apps',
+    'API & System Integration',
+    'Cloud & Infrastructure',
+    'Data & Automation',
+    'UI/UX',
+];
+
 const categories: TechCategory[] = [
     {
-        label: 'Frontend',
+        label: 'Applications & Interfaces',
         items: [
             { name: 'React', slug: 'react' },
             { name: 'Next.js', slug: 'nextdotjs' },
@@ -58,7 +70,7 @@ const categories: TechCategory[] = [
         ],
     },
     {
-        label: 'Backend & Data',
+        label: 'Data, APIs & Integration',
         items: [
             { name: 'Node.js', slug: 'nodedotjs' },
             { name: 'Python', slug: 'python' },
@@ -69,7 +81,7 @@ const categories: TechCategory[] = [
         ],
     },
     {
-        label: 'Cloud & DevOps',
+        label: 'Cloud & Infrastructure',
         items: [
             { name: 'AWS', slug: 'amazonwebservices' },
             { name: 'Vercel', slug: 'vercel' },
@@ -80,7 +92,7 @@ const categories: TechCategory[] = [
         ],
     },
     {
-        label: 'Design & Creative',
+        label: 'UI/UX & 3D',
         items: [
             { name: 'Figma', slug: 'figma' },
             { name: 'Blender', slug: 'blender' },
@@ -194,12 +206,18 @@ export default function TechStack() {
         <section className={styles.section}>
             <div className={styles.headerContainer}>
                 <div className={styles.header}>
-                    <span className="tag">Tech Stack</span>
-                    <h2>The toolkit behind every build</h2>
+                    <span className="tag">Engineering Capabilities</span>
+                    <h2>One Engineering Team for AI and Software</h2>
                     <p>
-                        Battle-tested technologies we use to ship fast, scale safely, and
-                        build interfaces that don&apos;t feel boring.
+                        The same team that deploys your AI builds your websites, apps and
+                        custom software — so the systems AI depends on are designed to work
+                        with it from the start.
                     </p>
+                    <ul className={styles.capabilities}>
+                        {capabilities.map((c) => (
+                            <li key={c} className={styles.capability}>{c}</li>
+                        ))}
+                    </ul>
                 </div>
             </div>
 

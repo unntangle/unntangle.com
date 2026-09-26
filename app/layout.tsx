@@ -70,10 +70,10 @@ export const metadata: Metadata = {
         // overrides both the template AND default via `title.absolute`
         // (see app/page.tsx) so it appears as just "Unntangle Technologies — ...".
         template: "%s | Unntangle Technologies",
-        default: "Unntangle Technologies — Enterprise AI Agents & Automation",
+        default: "Unntangle Technologies — AI Implementation & Deployment",
     },
     description:
-        "Unntangle deploys intelligent AI agents that connect with your existing systems and automate repetitive workflows across sales, finance, operations, procurement and customer service.",
+        "Unntangle identifies repetitive business workflows and deploys AI into your existing systems — and builds the websites, apps and custom software your business runs on.",
     applicationName: "Unntangle Technologies",
     authors: [{ name: "Unntangle Technologies", url: SITE_URL }],
     creator: "Unntangle Technologies",
@@ -81,29 +81,31 @@ export const metadata: Metadata = {
     generator: "Next.js",
     keywords: [
         "Unntangle Technologies",
-        "enterprise AI agents",
+        "AI implementation",
+        "AI deployment",
+        "AI workflow assessment",
+        "AI agents",
         "AI automation",
-        "AI workforce",
         "business process automation",
         "AI sales agent",
         "AI finance agent",
         "AI procurement agent",
-        "AI operations agent",
         "AI customer service agent",
         "ERP integration",
         "CRM automation",
         "WhatsApp automation",
-        "mid-market AI",
         "manufacturing AI",
         "B2B AI automation",
+        "website development",
+        "website revamp",
+        "app development",
+        "custom software development",
+        "custom ERP development",
         "uVOIZ",
         "uDYLR",
         "uSCRIBR",
         "Chennai",
         "India",
-        "enterprise software",
-        "web development",
-        "app development",
     ],
     alternates: {
         canonical: "/",
@@ -111,9 +113,9 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         siteName: "Unntangle Technologies",
-        title: "Unntangle Technologies — Enterprise AI Agents & Automation",
+        title: "Unntangle Technologies — AI Implementation & Deployment",
         description:
-            "Unntangle deploys AI agents that connect with your existing systems and automate repetitive workflows across sales, finance, operations and customer service.",
+            "We deploy AI into your existing systems, and build the websites, apps and custom software your business runs on.",
         url: SITE_URL,
         locale: "en_US",
         images: [
@@ -121,15 +123,15 @@ export const metadata: Metadata = {
                 url: "/images/hero.png",
                 width: 1200,
                 height: 630,
-                alt: "Unntangle Technologies — Enterprise AI Agents & Automation",
+                alt: "Unntangle Technologies — AI Implementation & Deployment",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Unntangle Technologies — Enterprise AI Agents & Automation",
+        title: "Unntangle Technologies — AI Implementation & Deployment",
         description:
-            "Unntangle deploys AI agents that connect with your existing systems and automate repetitive workflows across sales, finance, operations and customer service.",
+            "We deploy AI into your existing systems, and build the websites, apps and custom software your business runs on.",
         images: ["/images/hero.png"],
         creator: "@unntangle",
         site: "@unntangle",
@@ -184,7 +186,7 @@ const organizationJsonLd = {
     },
     image: `${SITE_URL}/images/hero.png`,
     description:
-        "Unntangle deploys intelligent AI agents that connect with your existing enterprise systems and automate repetitive workflows — from sales and finance to procurement, operations and customer service.",
+        "Unntangle is an AI implementation and deployment company. It identifies repetitive business workflows, deploys AI into existing ERP, CRM, email and business systems, and builds websites, apps and custom software.",
     foundingDate: "2023",
     address: {
         "@type": "PostalAddress",
@@ -225,7 +227,7 @@ const websiteJsonLd = {
     url: SITE_URL,
     name: "Unntangle",
     description:
-        "Enterprise AI agents and automation solutions from Unntangle.",
+        "AI implementation and deployment, websites, apps and custom software from Unntangle.",
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-US",
     potentialAction: {

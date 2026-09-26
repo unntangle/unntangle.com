@@ -29,7 +29,7 @@ export default function ContactHero() {
                         transition={{ duration: 0.8 }}
                     >
                         <div className={styles.formCard}>
-                            <h3 className={styles.formTitle}>Share Your Project's Vision</h3>
+                            <h3 className={styles.formTitle}>Book an AI Workflow Assessment</h3>
 
                             <form className={styles.contactForm}>
                                 <div className={styles.inputRow}>
@@ -45,27 +45,29 @@ export default function ContactHero() {
 
                                 <div className={styles.inputRow}>
                                     <div className={styles.inputGroup}>
-                                        <label>Service Interest</label>
+                                        <label>What can we help with?</label>
                                         <div className={styles.selectWrapper}>
                                             <select defaultValue="">
-                                                <option value="" disabled>Select a Solution</option>
-                                                <option value="digital">Digital Transformation</option>
-                                                <option value="ai">AI & Automation</option>
-                                                <option value="cloud">Cloud Architecture</option>
-                                                <option value="smart">Smart Living Systems</option>
+                                                <option value="" disabled>Select an option</option>
+                                                <option value="assessment">AI Workflow Assessment</option>
+                                                <option value="deployment">AI agent / workflow deployment</option>
+                                                <option value="integration">System integration (ERP, CRM, APIs)</option>
+                                                <option value="products">AI products (uVOIZ, uDYLR, uSCRIBR)</option>
+                                                <option value="engineering">Software &amp; web engineering</option>
+                                                <option value="other">Something else</option>
                                             </select>
                                             <ChevronDown size={14} className={styles.chevron} />
                                         </div>
                                     </div>
                                     <div className={styles.inputGroup}>
-                                        <label>Budget Range</label>
+                                        <label>Company Size</label>
                                         <div className={styles.selectWrapper}>
                                             <select defaultValue="">
-                                                <option value="" disabled>Select Range</option>
-                                                <option value="small">Up to $5k</option>
-                                                <option value="medium">$5k - $20k</option>
-                                                <option value="large">$20k - $50k</option>
-                                                <option value="enterprise">$50k+</option>
+                                                <option value="" disabled>Select size</option>
+                                                <option value="under-50">Under 50 employees</option>
+                                                <option value="50-200">50 – 200 employees</option>
+                                                <option value="200-1000">200 – 1,000 employees</option>
+                                                <option value="1000-plus">1,000+ employees</option>
                                             </select>
                                             <ChevronDown size={14} className={styles.chevron} />
                                         </div>
@@ -73,8 +75,8 @@ export default function ContactHero() {
                                 </div>
 
                                 <div className={styles.inputGroup}>
-                                    <label>Briefly describe your requirements...</label>
-                                    <textarea placeholder="Tell us what you're looking to build (e.g., custom AI agent, ERP system, etc.)" rows={2} />
+                                    <label>Which workflow is taking up your team&apos;s time?</label>
+                                    <textarea placeholder="e.g. RFQs arrive by email and someone has to check ERP pricing and prepare a quotation by hand" rows={2} />
                                 </div>
 
                                 <div className={styles.inputRow}>
@@ -90,7 +92,7 @@ export default function ContactHero() {
                                         </div>
                                     </div>
                                     <div className={styles.inputGroup}>
-                                        <label>Attach PDF/Doc File</label>
+                                        <label>Attach a sample document (optional)</label>
                                         <div className={styles.fileUpload}>
                                             <input
                                                 type="file"
@@ -108,7 +110,7 @@ export default function ContactHero() {
 
                                 <div className={styles.formFooter}>
                                     <button type="submit" className={styles.submitBtn}>
-                                        Send Message
+                                        Request Assessment
                                     </button>
                                 </div>
                             </form>
@@ -124,12 +126,14 @@ export default function ContactHero() {
                     >
                         <div className={styles.glassPanel}>
                             <h1 className={styles.title}>
-                                Elevate Your Digital Frontier <br />
-                                With Unntangle Technologies
+                                Find Where AI Can Work <br />
+                                Inside Your Business
                             </h1>
                             <p className={styles.subtitle}>
-                                From bespoke software to autonomous AI agents, we provide the engineering excellence
-                                needed to scale your vision.
+                                Bring us a workflow that&apos;s consuming time, creating bottlenecks or
+                                requiring repetitive manual work. An AI deployment specialist will get back
+                                to you to talk it through and tell you honestly whether AI can automate or
+                                augment it.
                             </p>
 
                             <div className={styles.contactDetails}>

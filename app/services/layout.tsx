@@ -8,12 +8,12 @@ const SITE_URL =
 export const metadata: Metadata = {
     title: "Services",
     description:
-        "AI agents, enterprise automation and the technology that makes AI work — from one accountable team. Deploy AI across sales, finance, operations, procurement and customer service.",
+        "AI implementation and deployment, plus website, app and custom software development — from one team. Deploy AI into your existing ERP, CRM and workflows, and build the systems your business runs on.",
     alternates: { canonical: "/services" },
     openGraph: {
         title: "Services | Unntangle Technologies",
         description:
-            "AI agents, enterprise automation and the technology that makes AI work. Connect intelligent agents to your existing ERP, CRM and workflows.",
+            "AI implementation and deployment, plus websites, apps and custom software — built by one team.",
         url: `${SITE_URL}/services`,
         type: "website",
         images: [
@@ -37,7 +37,7 @@ const servicesJsonLd = {
     url: `${SITE_URL}/services`,
     name: "Unntangle Services",
     description:
-        "Enterprise AI agents and automation — connecting intelligent AI to your existing business systems.",
+        "AI implementation and deployment, website development, app development and custom software.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     breadcrumb: {
         "@type": "BreadcrumbList",

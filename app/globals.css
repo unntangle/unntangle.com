@@ -262,3 +262,27 @@ li p,
   line-height: var(--lh-body) !important;
   color: var(--text-muted) !important;
 }
+
+/* ============================================================
+   ARROW ICONS — turn brand blue on hover, site-wide.
+   Targets lucide arrow icons inside any link or button. Components
+   that put the arrow inside a filled circle (home page pill buttons,
+   product cards, carousel arrows) override this with a blue circle
+   and a white arrow using more specific selectors.
+============================================================ */
+:root {
+  --arrow-hover: #1f6bff;
+}
+
+.lucide-arrow-right,
+.lucide-arrow-left,
+.lucide-arrow-up-right,
+.lucide-arrow-down,
+.lucide-arrow-up {
+  transition: color 0.2s ease;
+}
+
+a:hover :is(.lucide-arrow-right, .lucide-arrow-left, .lucide-arrow-up-right, .lucide-arrow-down, .lucide-arrow-up),
+button:hover :is(.lucide-arrow-right, .lucide-arrow-left, .lucide-arrow-up-right, .lucide-arrow-down, .lucide-arrow-up) {
+  color: var(--arrow-hover);
+}

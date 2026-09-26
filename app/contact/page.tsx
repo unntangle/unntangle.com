@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     // "Contact | Unntangle Technologies"
     title: "Contact",
     description:
-        "Get in touch with the Unntangle Technologies team. Web, app, design, growth marketing, or smart-living hardware — tell us what you're building and we'll architect a deterministic solution.",
+        "Book an AI Workflow Assessment with Unntangle. Bring us a workflow that's consuming time or requiring repetitive manual work, and we'll help you determine whether AI can automate or augment it.",
     alternates: { canonical: "/contact" },
     openGraph: {
         title: "Contact | Unntangle Technologies",
         description:
-            "Get in touch with the Unntangle team. Tell us what you're building and we'll architect a deterministic solution.",
+            "Book an AI Workflow Assessment. Find where AI can work inside your business.",
         url: `${SITE_URL}/contact`,
         type: "website",
         images: [
@@ -39,7 +39,7 @@ const contactJsonLd = {
     url: `${SITE_URL}/contact`,
     name: "Contact Unntangle",
     description:
-        "Get in touch with the Unntangle team to start a project or book a discovery call.",
+        "Book an AI Workflow Assessment or talk to an Unntangle AI deployment specialist.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     breadcrumb: {

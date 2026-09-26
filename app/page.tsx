@@ -1,17 +1,29 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
-import PageHero from "@/components/PageHero";
-import Services from "@/components/Services";
-import Products from "@/components/Products";
 // HIDDEN-UBIQ: `BrandEcosystem` is the "Our Ecosystem" band whose only
 // brand card is uBIQ, linking to /ubiq. Hidden while the brand site is off.
 // import BrandEcosystem from "@/components/BrandEcosystem";
-import Stats from "@/components/Stats";
-import TechStack from "@/components/TechStack";
-import Industries from "@/components/Industries";
-import CTABand from "@/components/CTABand";
+//
+// Home page redesign (Sep 2026): the page is now built from the section
+// components in components/home/. The previous home sections (Services,
+// Stats, AIWorkforce, WorkflowExample, ConnectedSystems, HumanInLoop,
+// Industries, DeploymentModel, Philosophy, Products, TechStack, CTABand)
+// are left on disk — some are still used on /about — but no longer render here.
+import PageHero from "@/components/PageHero";
+// HomeHero (components/home/HomeHero.tsx) is kept on disk but not used:
+// the original PageHero hero was restored at the client's request.
+import HomeSystemsStrip from "@/components/home/HomeSystemsStrip";
+import HomeWorkflowDemo from "@/components/home/HomeWorkflowDemo";
+import HomePlatform from "@/components/home/HomePlatform";
+import HomeAgentsTabs from "@/components/home/HomeAgentsTabs";
+import HomePillars from "@/components/home/HomePillars";
+import HomeAssessment from "@/components/home/HomeAssessment";
+import HomeExamples from "@/components/home/HomeExamples";
+import HomeIndustries from "@/components/home/HomeIndustries";
+import HomeResources from "@/components/home/HomeResources";
+import HomeKnowledgeHub from "@/components/home/HomeKnowledgeHub";
+import HomeFinalCTA from "@/components/home/HomeFinalCTA";
 import FAQ from "@/components/FAQ";
-import Philosophy from "@/components/Philosophy";
 import Footer from "@/components/Footer";
 
 // `ClientCarousel` (the "CLIENTS TRUST US" scrolling logo rows)
@@ -32,15 +44,15 @@ const SITE_URL =
 // absolute title here overrides the template just for this page.
 export const metadata: Metadata = {
   title: {
-    absolute: "Unntangle Technologies — Enterprise AI Agents & Automation",
+    absolute: "Unntangle Technologies — AI Implementation & Deployment | Websites, Apps & Software",
   },
   description:
-    "Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service.",
+    "Unntangle helps businesses identify repetitive workflows and deploy AI directly into their existing systems — and builds the websites, apps and custom software they run on.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Unntangle Technologies — Enterprise AI Agents & Automation",
+    title: "Unntangle Technologies — AI Implementation & Deployment",
     description:
-      "Unntangle deploys AI agents that understand your business, connect with your existing systems and execute repetitive workflows across sales, finance, operations and customer service.",
+      "Unntangle helps businesses identify repetitive workflows and deploy AI directly into their existing systems — and builds the websites, apps and custom software they run on.",
     url: SITE_URL,
     type: "website",
     images: [
@@ -48,7 +60,7 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1200,
         height: 630,
-        alt: "Unntangle Technologies — Enterprise AI Agents & Automation",
+        alt: "Unntangle Technologies — AI Implementation & Deployment",
       },
     ],
   },
@@ -62,7 +74,7 @@ const homeJsonLd = {
   url: SITE_URL,
   image: `${SITE_URL}/images/hero.png`,
   description:
-    "Enterprise AI agents and automation — connecting intelligent AI to your existing systems to automate workflows across sales, finance, operations, procurement and customer service.",
+    "AI implementation and deployment — identifying repetitive business workflows and deploying AI into existing ERP, CRM, email and business systems — plus website, app and custom software development.",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -73,12 +85,15 @@ const homeJsonLd = {
   areaServed: ["IN", "AE", "US", "GB"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Unntangle AI Solutions",
+    name: "Unntangle Services",
     itemListElement: [
       {
         "@type": "OfferCatalog",
-        name: "AI Agents",
+        name: "AI Implementation & Deployment",
         itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Workflow Assessment", url: `${SITE_URL}/services/ai-workflow-assessment` } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Agents & Workflow Automation", url: `${SITE_URL}/services/ai-agents` } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI & System Integration", url: `${SITE_URL}/services/ai-integration` } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Sales Agent" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Finance Agent" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Procurement Agent" } },
@@ -89,12 +104,13 @@ const homeJsonLd = {
       },
       {
         "@type": "OfferCatalog",
-        name: "Technology",
+        name: "Software Engineering",
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Enterprise Software", url: `${SITE_URL}/services/erp` } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Development", url: `${SITE_URL}/services/website` } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Revamp", url: `${SITE_URL}/services/website-revamp` } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "App Development", url: `${SITE_URL}/services/app` } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "API Integrations" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Software & ERP Development", url: `${SITE_URL}/services/erp` } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interactive 3D Websites", url: `${SITE_URL}/services/interactive-3d` } },
         ],
       },
     ],
@@ -111,32 +127,45 @@ export default function Home() {
         }}
       />
       <Navbar />
+      {/* Section order: hero → systems strip → live workflow demo (dark) →
+          positioning + capabilities → AI workers tabs → three service
+          pillars → assessment → workflow examples → industries →
+          products & insights → FAQ → closing CTA. */}
       <div style={{ paddingTop: '80px' }}>
         <PageHero
-          eyebrow="ENTERPRISE AI DEPLOYMENT & AUTOMATION"
+          eyebrow="AI IMPLEMENTATION & DEPLOYMENT"
           titleParts={[
             'AI That Works ',
             { accent: 'Inside Your Business.' },
           ]}
-          description="Unntangle identifies repetitive business workflows, builds AI-powered solutions around them, and deploys them into your existing systems — helping teams work faster, smarter and with less manual effort."
+          description="Unntangle identifies repetitive business workflows, builds AI-powered solutions around them, and deploys them into your existing systems. We also build the websites, apps and custom software your business runs on."
           primaryCta={{ label: 'Book an AI Workflow Assessment', href: '/contact' }}
-          secondaryCta={{ label: 'Explore AI Solutions', href: '/services' }}
+          secondaryCta={{ label: 'Explore Our Services', href: '/services' }}
           image="/images/hero.png"
           imageAlt="Unntangle AI Deployment"
           gradient="blue-cyan"
           imageLayout="stacked-strips"
           overlayCta={{ label: 'Discover your AI workflows', href: '/contact' }}
+          bottomLinks={[
+            { label: 'AI Implementation', href: '/services/ai-agents' },
+            { label: 'Websites & Apps', href: '/services/website' },
+            { label: 'Custom Software & ERP', href: '/services/erp' },
+          ]}
         />
       </div>
-      <Services />
-      <Products />
+      <HomeSystemsStrip />
+      <HomeWorkflowDemo />
+      <HomePlatform />
+      <HomeAgentsTabs />
+      <HomePillars />
+      <HomeAssessment />
+      <HomeExamples />
+      <HomeIndustries />
+      <HomeResources />
+      <HomeKnowledgeHub />
       {/* HIDDEN-UBIQ: <BrandEcosystem /> */}
-      <Stats />
-      <Philosophy />
-      <TechStack />
-      <Industries />
-      <CTABand />
       <FAQ />
+      <HomeFinalCTA />
       <Footer />
     </main>
   );

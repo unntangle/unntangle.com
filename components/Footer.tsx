@@ -47,7 +47,7 @@ export default function Footer() {
                                 />
                             </Link>
                             <p style={{ color: '#8b939e', fontSize: '14px', lineHeight: 1.5, marginTop: '14px', maxWidth: '340px' }}>
-                                Deploying AI agents and enterprise automation since 2023.
+                                AI implementation &amp; deployment, plus the websites, apps and custom software your business runs on.
                             </p>
                         </div>
                     </div>
@@ -57,17 +57,22 @@ export default function Footer() {
                         <div className={styles.column}>
                             <h4>Quick Links</h4>
                             <Link href="/about">About us</Link>
-                            <Link href="/services">Services</Link>
+                            <Link href="/#how-we-deploy">How We Deploy</Link>
+                            <Link href="/#industries">Industries</Link>
                             {/* HIDDEN-UBIQ: <Link href="/ubiq">uBIQ</Link> */}
-                            <Link href="/blog">Blog</Link>
+                            <Link href="/blog">Knowledge Hub</Link>
                             <Link href="/contact">Contact</Link>
                         </div>
 
                         <div className={styles.column}>
                             <h4>What we do</h4>
-                            <Link href="/services">AI Agents & Automation</Link>
-                            <Link href="/services">Enterprise Technology</Link>
-                            <Link href="/services">Growth Marketing</Link>
+                            <Link href="/services/ai-workflow-assessment">AI Workflow Assessment</Link>
+                            <Link href="/services/ai-agents">AI Agents &amp; Automation</Link>
+                            <Link href="/services/ai-integration">AI &amp; System Integration</Link>
+                            <Link href="/services/website">Website Development</Link>
+                            <Link href="/services/app">App Development</Link>
+                            <Link href="/services/erp">Custom Software &amp; ERP</Link>
+                            <Link href="/#ai-products">AI Products</Link>
                         </div>
 
                         {/* uBIQ moved to its own domain — external link, so it

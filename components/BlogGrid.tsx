@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { blogsData } from '@/data/blogs';
+import { publishedBlogs as blogsData } from '@/data/blogs';
 import styles from './BlogGrid.module.css';
 
-const CATEGORIES = ['All', 'Technology Solutions', 'Creative Design', 'Growth Marketing'];
+const CATEGORIES = ['All', 'AI Implementation', 'Technology Solutions', 'Creative Design'];
 
 // 9 posts per page fills the 3-column grid (see .grid in BlogGrid.module.css)
 // as a complete 3x3 block. Keep this a multiple of 3 so the last row never

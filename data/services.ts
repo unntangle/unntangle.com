@@ -66,19 +66,188 @@ export interface ServiceData {
 }
 
 export const servicesData: ServiceData[] = [
-    // --- TECH ---
+    // --- AI IMPLEMENTATION & DEPLOYMENT ---
+    // No `stats` on these pages on purpose: add results only once they are
+    // verified and the client has approved publishing them.
+    {
+        id: "ai-workflow-assessment",
+        categoryId: "ai",
+        categoryLabel: "AI Implementation & Deployment",
+        title: "AI Workflow Assessment",
+        shortDescription: "Find where AI can create measurable value in your business before anything is built.",
+        heroImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000",
+        overview: "Every AI deployment we do starts here. We spend time with the teams who do the work, map how requests, documents and data move through your business, and identify which workflows AI should take on first — and which should stay with people. You get a clear, prioritised plan before any development starts.",
+        features: [
+            { title: "Workflow Discovery", description: "Conversations and observation with the people who run the work day to day.", icon: "MessageSquare" },
+            { title: "Process & System Mapping", description: "Every step, hand-off, document and system in the workflow, mapped as it really happens.", icon: "Layers" },
+            { title: "Opportunity Prioritisation", description: "Workflows scored on volume, effort, error risk and business value to decide what to deploy first.", icon: "BarChart3" }
+        ],
+        process: [
+            { step: "01", title: "Discover", description: "Understand how your teams work, the systems they use and where time goes." },
+            { step: "02", title: "Map", description: "Document the repetitive, manual and decision-heavy workflows in detail." },
+            { step: "03", title: "Prioritise", description: "Score each workflow and agree which ones AI should take on first." },
+            { step: "04", title: "Recommend", description: "A first deployment with scope, integrations, approval points and success measures." }
+        ],
+        benefits: [
+            { title: "Clarity Before Investment", description: "Know what AI should do, and what it shouldn't, before committing budget." },
+            { title: "A Plan Your Team Owns", description: "Built with your people, so the recommendations reflect how work really happens." },
+            { title: "Lower Deployment Risk", description: "Integration, data-quality and approval needs are identified up front, not mid-build." }
+        ],
+        deliverables: [
+            { title: "Workflow Maps", description: "Step-by-step maps of the workflows reviewed, including people, documents and systems involved.", icon: "FileText" },
+            { title: "Opportunity Scorecard", description: "Each workflow scored and ranked, with the reasoning behind every score.", icon: "BarChart3" },
+            { title: "System & Data Inventory", description: "The systems and data sources each workflow depends on, and how they can be accessed.", icon: "Database" },
+            { title: "Recommended First Deployment", description: "A scoped proposal for the first workflow: what AI does, what people do, and where approvals sit.", icon: "Zap" },
+            { title: "Integration Approach", description: "How the AI would connect to your ERP, CRM, email and other systems, agreed with your IT team.", icon: "RefreshCw" },
+            { title: "Success Measures", description: "The measures we will use to judge whether the deployment is working.", icon: "ShieldCheck" }
+        ],
+        useCases: [
+            { industry: "Sales", title: "RFQ to Quotation", description: "Assess how enquiries and RFQs become quotations, and which steps AI can prepare." },
+            { industry: "Distribution", title: "Order Entry & Dealer Enquiries", description: "Map how orders arrive by email, phone and WhatsApp, and where re-typing happens." },
+            { industry: "Finance", title: "Collections & Invoices", description: "Review receivables follow-up and invoice processing for repetitive effort." },
+            { industry: "Procurement", title: "Vendor Quote Comparison", description: "Look at how supplier quotes are collected, compared and turned into purchase decisions." },
+            { industry: "Customer Service", title: "Routine Enquiry Handling", description: "Identify the questions that come up again and again and where answers live." },
+            { industry: "Management", title: "Reporting & Exceptions", description: "Find the reports compiled by hand each day or week from several systems." }
+        ],
+        faqs: [
+            { question: "Who from our side needs to be involved?", answer: "A sponsor who owns the outcome, the people who actually do the work in the workflows we review, and someone from IT who knows your systems. Most of the time we need is with the people doing the work." },
+            { question: "What if AI isn't the right answer for a workflow?", answer: "We'll say so. Sometimes a simpler automation, a software change or a process fix is the better answer — and because we also build websites, apps and custom software, we can recommend and deliver that instead." },
+            { question: "How long does the assessment take?", answer: "It depends on how many teams and workflows are in scope. We agree the scope and timeline with you before we start." },
+            { question: "What do we get at the end?", answer: "Workflow maps, a prioritised list of opportunities, and a scoped recommendation for the first deployment — including integrations, approval points and how success will be measured." }
+        ]
+    },
+    {
+        id: "ai-agents",
+        categoryId: "ai",
+        categoryLabel: "AI Implementation & Deployment",
+        title: "AI Agents & Workflow Automation",
+        shortDescription: "AI agents that carry out real business tasks inside your existing workflows, with human approval where it matters.",
+        heroImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
+        overview: "We build AI agents and automations around specific workflows — reading documents and messages, pulling data from your systems, preparing work for review and completing it once approved. Sales, finance, procurement, operations, customer service and management reporting are where we typically start.",
+        features: [
+            { title: "Document & Message Understanding", description: "Reads RFQs, invoices, purchase orders, emails and WhatsApp messages and extracts what matters.", icon: "FileText" },
+            { title: "Actions, Not Just Answers", description: "Drafts quotations, prepares follow-ups, creates tickets and updates records — not just a chat window.", icon: "Bot" },
+            { title: "Human-in-the-Loop Controls", description: "Approval gates, permissions and escalation paths designed into every critical step.", icon: "ShieldCheck" }
+        ],
+        process: [
+            { step: "01", title: "Scope the Workflow", description: "Agree exactly what the agent does, what it hands to people, and how success is measured." },
+            { step: "02", title: "Build & Test", description: "Build the agent around your data and business rules, and test it on real past cases." },
+            { step: "03", title: "Integrate & Add Controls", description: "Connect it to your systems and set up approvals, permissions and escalation." },
+            { step: "04", title: "Deploy & Improve", description: "Go live with your team, monitor results and refine the workflow over time." }
+        ],
+        benefits: [
+            { title: "Less Repetitive Work", description: "Your team spends time on judgement and customers, not copying data between systems." },
+            { title: "Faster Turnaround", description: "Requests are prepared as soon as they arrive, not when someone gets to them." },
+            { title: "Consistent Handling", description: "The same rules applied every time, with every action recorded." }
+        ],
+        deliverables: [
+            { title: "Production AI Agent", description: "The agent or automation running inside your real workflow, not a demo environment.", icon: "Bot" },
+            { title: "Approval & Escalation Flows", description: "Review steps and escalation rules configured to match your business.", icon: "ShieldCheck" },
+            { title: "System Connectors", description: "Integrations with the ERP, CRM, email, WhatsApp or databases the workflow needs.", icon: "RefreshCw" },
+            { title: "Activity Log", description: "A record of what the agent did, when, and on what information.", icon: "FileText" },
+            { title: "Monitoring View", description: "Visibility into volumes, exceptions and approvals so you can see how it is performing.", icon: "BarChart3" },
+            { title: "Team Training & Handover", description: "Training for the people who work with the agent, plus documentation for your IT team.", icon: "LifeBuoy" }
+        ],
+        useCases: [
+            { industry: "Sales", title: "AI Sales Agent", description: "Process leads, analyse RFQs, prepare quotation drafts, follow up with prospects and update the CRM." },
+            { industry: "Finance", title: "AI Finance Agent", description: "Process invoices, identify outstanding payments, prepare collection follow-ups and generate reports." },
+            { industry: "Procurement", title: "AI Procurement Agent", description: "Analyse requirements, compare vendors, process supplier information and prepare recommendations." },
+            { industry: "Operations", title: "AI Operations Agent", description: "Analyse operational data, generate reports, monitor workflows and escalate exceptions." },
+            { industry: "Customer Service", title: "AI Customer Service Agent", description: "Understand requests, search company knowledge, resolve routine queries and escalate complex ones." },
+            { industry: "Leadership", title: "AI Management Intelligence", description: "Combine information across systems into management reports, summaries and exception alerts." }
+        ],
+        techStack: [
+            { name: "Python", slug: "python", category: "AI Engineering" },
+            { name: "TypeScript", slug: "typescript", category: "Language" },
+            { name: "Node.js", slug: "nodedotjs", category: "Backend" },
+            { name: "LLM APIs", slug: null, category: "AI Models" },
+            { name: "Vector Search", slug: null, category: "Retrieval" },
+            { name: "PostgreSQL", slug: "postgresql", category: "Database" },
+            { name: "Redis", slug: "redis", category: "Queue & Cache" },
+            { name: "Docker", slug: "docker", category: "Infrastructure" },
+            { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
+            { name: "Supabase", slug: "supabase", category: "Backend" }
+        ],
+        faqs: [
+            { question: "How is an AI agent different from a chatbot?", answer: "A chatbot answers questions. An AI agent carries out a workflow: when an RFQ arrives, it reads the document, retrieves pricing from your systems, drafts the quotation, waits for approval, sends it and updates your CRM." },
+            { question: "Which AI models do you use?", answer: "We choose models per project based on accuracy, cost and your data requirements, and agree the choice with you — including where your data is processed." },
+            { question: "What happens when the AI isn't sure?", answer: "It hands the case to a person. Escalation rules are part of the design, so unusual, high-value or low-confidence cases go to your team rather than being guessed at." },
+            { question: "Can we start with a single workflow?", answer: "That is what we recommend. Start with the workflow that costs your team the most time, prove it works, then extend to the next one." }
+        ]
+    },
+    {
+        id: "ai-integration",
+        categoryId: "ai",
+        categoryLabel: "AI Implementation & Deployment",
+        title: "AI & System Integration",
+        shortDescription: "Connect AI to your ERP, CRM, email, WhatsApp, documents and databases — without replacing the systems you already run.",
+        heroImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2000",
+        overview: "AI is only useful when it can work with your real data. We build the connections between AI and the systems your teams already use — through APIs, database access, file exports or email, depending on what each system supports — with access controls agreed with your IT team.",
+        features: [
+            { title: "ERP & CRM Connectivity", description: "Read product, pricing, stock, customer and order data, and write results back.", icon: "Database" },
+            { title: "Email, WhatsApp & Documents", description: "Bring the channels where work actually arrives into the workflow.", icon: "MessageSquare" },
+            { title: "Secure Access Design", description: "Role-based access, credentials you control, and only the data each workflow needs.", icon: "Lock" }
+        ],
+        process: [
+            { step: "01", title: "System Audit", description: "Review each system involved and how it can be accessed safely." },
+            { step: "02", title: "Integration Design", description: "Agree data flows, permissions and failure handling with your IT team." },
+            { step: "03", title: "Build & Test", description: "Build the connectors and test them against real data in a safe environment." },
+            { step: "04", title: "Go-Live & Support", description: "Switch on in production with monitoring and alerts in place." }
+        ],
+        benefits: [
+            { title: "Keep Your Systems", description: "No rip-and-replace. Your ERP, CRM and tools stay exactly where they are." },
+            { title: "One Flow of Data", description: "Results land back in the systems your teams already use — no extra screens to check." },
+            { title: "Foundation for More AI", description: "Each connection built makes the next workflow simpler to deploy." }
+        ],
+        deliverables: [
+            { title: "Integration Layer", description: "The service that connects AI workflows to your business systems.", icon: "Layers" },
+            { title: "System Connectors", description: "Connectors for each system in scope, using the access method it supports.", icon: "RefreshCw" },
+            { title: "Data Mapping Documentation", description: "What data moves where, in which format, and why.", icon: "FileText" },
+            { title: "Access & Security Setup", description: "Credentials, roles and permissions configured with your IT team.", icon: "Lock" },
+            { title: "Monitoring & Alerts", description: "Alerts when a connection fails or data looks wrong, so issues are caught early.", icon: "BarChart3" },
+            { title: "Cloud or On-Premise Deployment", description: "Deployed in the environment agreed with you.", icon: "CloudUpload" }
+        ],
+        useCases: [
+            { industry: "ERP", title: "Pricing & Stock Lookups", description: "Let AI check product, price and availability data while preparing quotations or replies." },
+            { industry: "CRM", title: "Automatic Record Updates", description: "Log enquiries, quotations and follow-ups against the right customer without manual entry." },
+            { industry: "Email", title: "Inbox-to-Workflow Routing", description: "Turn incoming emails and attachments into structured work items." },
+            { industry: "WhatsApp", title: "Customer & Dealer Messaging", description: "Handle routine order and status messages and hand the rest to your team." },
+            { industry: "Documents", title: "Company Knowledge Search", description: "Give AI access to specs, SOPs and past documents so answers reflect your business." },
+            { industry: "Databases", title: "Reporting Pipelines", description: "Combine data from several systems for automated management reports." }
+        ],
+        techStack: [
+            { name: "Node.js", slug: "nodedotjs", category: "Integration Services" },
+            { name: "Python", slug: "python", category: "Data & AI" },
+            { name: "TypeScript", slug: "typescript", category: "Language" },
+            { name: "REST APIs", slug: null, category: "Integration" },
+            { name: "GraphQL", slug: "graphql", category: "Integration" },
+            { name: "PostgreSQL", slug: "postgresql", category: "Database" },
+            { name: "Redis", slug: "redis", category: "Queue & Cache" },
+            { name: "Docker", slug: "docker", category: "Infrastructure" },
+            { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
+            { name: "Cloudflare", slug: "cloudflare", category: "Network" }
+        ],
+        faqs: [
+            { question: "Which systems can you connect to?", answer: "It depends on the system. Most modern ERPs and CRMs offer APIs; older or on-premise systems can often be connected through database access, scheduled exports or email. We confirm the approach for each of your systems before building." },
+            { question: "Does our IT team need to be involved?", answer: "Yes. Access, credentials and data flows are agreed with your IT team, and they keep control of the accounts and permissions the integration uses." },
+            { question: "What if our system has no API?", answer: "We look at other routes — database views, file exports, email-based processing or, where appropriate, a small custom service built alongside the system. We'll tell you the trade-offs of each." },
+            { question: "Is our data copied somewhere else?", answer: "We design integrations to access only what each workflow needs. Where data is stored and processed is agreed with you before anything is built." }
+        ]
+    },
+
+    // --- SOFTWARE ENGINEERING (websites, apps, custom software) ---
     {
         id: "website",
         categoryId: "tech",
-        categoryLabel: "Technology Solutions",
+        categoryLabel: "Software Engineering",
         title: "Website Development",
-        shortDescription: "High-performance, responsive sites for your digital presence.",
+        shortDescription: "Fast, secure business websites and web platforms, built to connect with your CRM and workflows.",
         heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
-        overview: "We architect premium web ecosystems designed for scale, speed, and conversion. Going beyond standard templates, we build bespoke digital platforms that serve as the foundational pillar of your brand's online presence.",
+        overview: "We design and build business websites and web platforms that are fast, easy to manage and connected to the rest of your operations — so enquiries flow straight into your CRM or AI workflows instead of sitting in an inbox.",
         features: [
             { title: "Custom Architecture", description: "Built from the ground up using modern frameworks like React and Next.js.", icon: "Monitor" },
-            { title: "Responsive Design", description: "Flawless user experience across all devices and screen sizes.", icon: "Smartphone" },
-            { title: "SEO Optimized", description: "Technical SEO built into the core structure for maximum visibility.", icon: "BarChart3" }
+            { title: "Responsive Design", description: "A consistent experience across phones, tablets and desktops.", icon: "Smartphone" },
+            { title: "Connected to Your Systems", description: "Forms, enquiries and quote requests routed into your CRM or AI workflows.", icon: "RefreshCw" }
         ],
         process: [
             { step: "01", title: "Discovery & Strategy", description: "Understanding your brand, target audience, and digital objectives." },
@@ -87,25 +256,25 @@ export const servicesData: ServiceData[] = [
             { step: "04", title: "Launch", description: "Rigorous testing and seamless deployment to production." }
         ],
         benefits: [
-            { title: "Increased Conversion", description: "Optimized user flows that turn visitors into customers." },
-            { title: "Lightning Fast URLs", description: "Sub-second load times that keep engagement high." },
-            { title: "Future-Proof Tech", description: "Easily scalable as your business grows." }
+            { title: "More Enquiries Captured", description: "Clear user journeys and forms that feed straight into your sales process." },
+            { title: "Fast Load Times", description: "Performance built in from the start, on every device." },
+            { title: "Ready to Grow", description: "Easy to extend with portals, integrations and AI features later." }
         ],
         deliverables: [
             { title: "Production-Ready Codebase", description: "Clean, documented, version-controlled source code hosted on your GitHub or ours.", icon: "FileText" },
             { title: "Pixel-Perfect Figma Files", description: "Editable design systems, components, and tokens you can hand to any future designer.", icon: "Palette" },
             { title: "CMS & Admin Panel", description: "A non-technical content interface so your team can publish without engineering tickets.", icon: "Database" },
-            { title: "Performance Audit Report", description: "Lighthouse scores, Core Web Vitals data, and a 90-day post-launch performance baseline.", icon: "BarChart3" },
-            { title: "SEO Foundation Kit", description: "Schema markup, sitemap, robots.txt, OG tags, and a keyword map for ongoing content work.", icon: "Layers" },
+            { title: "Performance Audit Report", description: "Lighthouse scores and Core Web Vitals measured at launch, as a baseline for future work.", icon: "BarChart3" },
+            { title: "Technical SEO Foundation", description: "Schema markup, sitemap, robots.txt and OG tags set up correctly from day one.", icon: "Layers" },
             { title: "Hosting & DNS Setup", description: "Production deployment on Vercel, AWS, or your cloud of choice — fully configured.", icon: "CloudUpload" }
         ],
         useCases: [
-            { industry: "SaaS", title: "Product Marketing Sites", description: "Conversion-focused landing pages, pricing pages, and feature tours that turn organic traffic into trials." },
-            { industry: "E-commerce", title: "Headless Storefronts", description: "Shopify Hydrogen and custom Next.js storefronts with sub-second checkout flows." },
-            { industry: "Real Estate", title: "Listing Platforms", description: "Map-integrated property search with high-density imagery and lead-capture funnels." },
-            { industry: "Healthcare", title: "Clinic & Practice Sites", description: "HIPAA-conscious booking flows, doctor profiles, and patient resource libraries." },
-            { industry: "Finance", title: "Corporate Web Presence", description: "Compliance-ready content architectures for banks, NBFCs, and wealth management firms." },
-            { industry: "D2C Brands", title: "Brand Showcases", description: "Editorial-grade brand storytelling sites with rich media and Shopify integrations." }
+            { industry: "Manufacturing", title: "Product & Capability Sites", description: "Product catalogues, capability pages and RFQ forms that route enquiries to your sales team." },
+            { industry: "Distribution", title: "Dealer & Partner Portals", description: "Logged-in areas for dealers to check products, place orders and track status." },
+            { industry: "B2B Services", title: "Corporate Websites", description: "Clear, credible company sites that explain what you do and who you do it for." },
+            { industry: "Healthcare", title: "Clinic & Practice Sites", description: "Booking flows, doctor profiles and patient resource libraries." },
+            { industry: "Finance", title: "Corporate Web Presence", description: "Compliance-ready content structures for banks, NBFCs and wealth management firms." },
+            { industry: "E-commerce", title: "Online Storefronts", description: "Shopify and custom Next.js storefronts connected to inventory and order systems." }
         ],
         techStack: [
             { name: "Next.js", slug: "nextdotjs", category: "Framework" },
@@ -119,32 +288,26 @@ export const servicesData: ServiceData[] = [
             { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
             { name: "PostgreSQL", slug: "postgresql", category: "Database" }
         ],
-        stats: [
-            { value: "98+", label: "Lighthouse Score", description: "Average performance score across our delivered sites." },
-            { value: "<1.5s", label: "Largest Contentful Paint", description: "First meaningful render — under Google's 'good' threshold." },
-            { value: "40%", label: "Avg. Conversion Lift", description: "Median uplift measured on revamped marketing sites within 90 days." },
-            { value: "99.99%", label: "Uptime SLA", description: "Production hosting backed by Vercel and AWS edge networks." }
-        ],
         faqs: [
-            { question: "How long does a typical website project take?", answer: "Marketing sites (5-10 pages) ship in 4-6 weeks. Larger platforms with CMS, integrations, and complex flows usually run 8-12 weeks. We share a week-by-week timeline in our scoping doc before we start." },
+            { question: "How long does a typical website project take?", answer: "It depends on the number of pages, integrations and custom features. We share a week-by-week timeline in our scoping document before we start." },
             { question: "Do you build on Next.js exclusively?", answer: "Next.js is our default for new builds because of its performance and SEO ergonomics, but we also work in Astro, Remix, and SvelteKit where the project demands it." },
-            { question: "Can I edit content myself after launch?", answer: "Yes — every site ships with a CMS (typically Sanity or Contentful) so your marketing team can publish copy, swap images, and launch new pages without filing engineering tickets." },
+            { question: "Can I edit content myself after launch?", answer: "Yes — sites can ship with a CMS so your team can update copy, swap images and add pages without filing engineering tickets." },
             { question: "Do you handle hosting and ongoing maintenance?", answer: "We deploy to Vercel or AWS by default, transfer ownership to your account, and offer optional retainers for security patches, dependency updates, and feature work." },
-            { question: "Will my site be SEO-friendly out of the box?", answer: "Technical SEO is baked in — schema markup, sitemap generation, semantic HTML, optimized Core Web Vitals, and OG metadata. Content-side SEO is a separate workstream our growth team can pick up." }
+            { question: "Can the website connect to our CRM or AI workflows?", answer: "Yes. Enquiry and RFQ forms can feed directly into your CRM, and into AI workflows that read the request and prepare a response for your team to review." }
         ]
     },
     {
         id: "app",
         categoryId: "tech",
-        categoryLabel: "Technology Solutions",
+        categoryLabel: "Software Engineering",
         title: "App Development",
-        shortDescription: "Custom mobile and desktop apps for complex business problems.",
+        shortDescription: "Mobile and web apps for customers, field teams and internal operations, with AI features where they help.",
         heroImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2000",
-        overview: "From native mobile applications to comprehensive desktop software, we develop powerful tools that solve complex operational challenges and deliver exceptional user experiences.",
+        overview: "We build mobile and desktop apps for the people who keep your business running — customers, dealers, sales and field teams, and back-office staff. Apps connect to your existing systems, and can include AI features such as document capture or assisted replies where they genuinely save time.",
         features: [
-            { title: "Cross-Platform", description: "Build once, deploy everywhere with React Native and Flutter.", icon: "Smartphone" },
-            { title: "Native Performance", description: "Optimized for iOS, Android, and Desktop environments.", icon: "Zap" },
-            { title: "Secure Architecture", description: "Enterprise-grade security protocols protecting user data.", icon: "ShieldCheck" }
+            { title: "Cross-Platform", description: "Build once for iOS and Android with React Native or Flutter.", icon: "Smartphone" },
+            { title: "Connected to Your Systems", description: "Real-time data from your ERP, CRM and databases, with offline support where needed.", icon: "RefreshCw" },
+            { title: "Secure Architecture", description: "Role-based access and secure authentication protecting business and user data.", icon: "ShieldCheck" }
         ],
         process: [
             { step: "01", title: "Requirements Analysis", description: "Defining core functionalities and technical constraints." },
@@ -153,9 +316,9 @@ export const servicesData: ServiceData[] = [
             { step: "04", title: "Deployment", description: "App Store submission and enterprise rollout." }
         ],
         benefits: [
-            { title: "Omnichannel Presence", description: "Reach your users wherever they are." },
-            { title: "Operational Efficiency", description: "Streamline workflows with custom internal tools." },
-            { title: "High Engagement", description: "Immersive experiences that drive user retention." }
+            { title: "Work From Anywhere", description: "Sales, service and field teams get the information they need on the move." },
+            { title: "Less Manual Entry", description: "Data captured once in the app flows straight into your systems." },
+            { title: "Better Customer Experience", description: "Customers and dealers can order, track and get answers without calling." }
         ],
         deliverables: [
             { title: "iOS & Android Builds", description: "Signed, production-ready binaries submitted to App Store and Play Store under your developer accounts.", icon: "Smartphone" },
@@ -166,12 +329,12 @@ export const servicesData: ServiceData[] = [
             { title: "Analytics & Crash Reporting", description: "Mixpanel, Amplitude, or your tool of choice wired in, plus Sentry/Firebase Crashlytics.", icon: "BarChart3" }
         ],
         useCases: [
-            { industry: "FinTech", title: "Consumer Banking Apps", description: "KYC flows, secure transactions, biometric auth, and PCI-DSS-aligned architectures." },
-            { industry: "Logistics", title: "Fleet & Driver Apps", description: "Real-time GPS tracking, offline-first sync, route optimization, and proof-of-delivery capture." },
-            { industry: "Healthcare", title: "Patient & Provider Apps", description: "Tele-consultation, prescription management, EHR integrations, and appointment scheduling." },
-            { industry: "Retail & D2C", title: "Loyalty & Commerce Apps", description: "In-app purchases, push-driven re-engagement, AR product preview, and social commerce." },
-            { industry: "Education", title: "Learning Platforms", description: "Video streaming, offline downloads, live classes, and progress-tracking dashboards." },
-            { industry: "Enterprise", title: "Internal Tooling", description: "Field-force apps, approval workflows, and SAP/Salesforce-integrated companion apps." }
+            { industry: "Manufacturing", title: "Dealer & Sales Apps", description: "Product catalogues, order capture, stock checks and order tracking for dealers and sales teams." },
+            { industry: "Logistics", title: "Fleet & Driver Apps", description: "GPS tracking, offline-first sync, route planning and proof-of-delivery capture." },
+            { industry: "Field Service", title: "Service Engineer Apps", description: "Job lists, checklists, photo capture and customer sign-off, synced back to your systems." },
+            { industry: "Healthcare", title: "Patient & Provider Apps", description: "Appointments, consultations, prescriptions and records integrations." },
+            { industry: "Retail & D2C", title: "Customer Apps", description: "Ordering, loyalty and account management connected to your inventory and CRM." },
+            { industry: "Enterprise", title: "Internal Tooling", description: "Approval workflows, inspections and field-force apps integrated with your ERP." }
         ],
         techStack: [
             { name: "React Native", slug: "react", category: "Mobile" },
@@ -185,32 +348,27 @@ export const servicesData: ServiceData[] = [
             { name: "PostgreSQL", slug: "postgresql", category: "Database" },
             { name: "Redis", slug: "redis", category: "Cache" }
         ],
-        stats: [
-            { value: "60fps", label: "Native Performance", description: "Buttery animations on both iOS and Android, even on mid-tier devices." },
-            { value: "<3s", label: "Cold Start", description: "Time-to-interactive on first launch — well under industry median." },
-            { value: "4.7★", label: "Avg. Store Rating", description: "Across apps we've shipped over the last 24 months." },
-            { value: "70%", label: "Code Reuse", description: "Shared logic across iOS and Android using cross-platform stacks." }
-        ],
         faqs: [
-            { question: "Native or cross-platform — which should I pick?", answer: "We default to React Native or Flutter for 90% of apps because the cost-to-feature ratio is unbeatable. We recommend fully native only when your app needs deep OS integration (advanced AR, custom Bluetooth protocols, etc.) — we'll be upfront if that's your case." },
+            { question: "Native or cross-platform — which should I pick?", answer: "We default to React Native or Flutter for most apps because they cover iOS and Android from one codebase. We recommend fully native only when your app needs deep OS integration — and we'll be upfront if that's your case." },
             { question: "Do you handle App Store and Play Store submission?", answer: "Yes — we manage the entire submission process including listing copy, screenshots, app review responses, and post-launch update rollouts." },
             { question: "What about backend infrastructure?", answer: "We typically build the backend in Node.js with PostgreSQL, deploy to AWS or GCP, and document everything. You get the keys — no vendor lock-in." },
-            { question: "How do you handle ongoing app maintenance?", answer: "Apps need quarterly maintenance: iOS/Android OS updates, dependency patches, and crash fixes. We offer retainer plans starting at 20 engineering hours/month." },
+            { question: "How do you handle ongoing app maintenance?", answer: "Apps need regular maintenance: iOS and Android updates, dependency patches and bug fixes. We offer maintenance retainers sized to your app." },
+            { question: "Can the app include AI features?", answer: "Yes, where they save real time — for example reading a photographed document, suggesting replies, or pulling answers from your company knowledge. We only add AI where it clearly helps the user." },
             { question: "Can the app work offline?", answer: "Yes — for logistics, field-service, and travel apps we build offline-first architectures with local storage, conflict resolution, and background sync." }
         ]
     },
     {
         id: "erp",
         categoryId: "tech",
-        categoryLabel: "Technology Solutions",
-        title: "ERP Development",
-        shortDescription: "Integrated systems to streamline operations and data management.",
+        categoryLabel: "Software Engineering",
+        title: "Custom Software & ERP Development",
+        shortDescription: "Custom ERP, workflow systems and internal platforms built around how your business actually operates.",
         heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000",
-        overview: "Transform your enterprise with bespoke ERP solutions. We unify fragmented data silos into cohesive, deterministic ecosystems that provide real-time operational clarity and drive efficiency.",
+        overview: "When off-the-shelf software doesn't fit how you work, we build systems that do. Custom ERP, order and inventory management, approval workflows and internal portals — designed around your processes, and structured so AI workflows can be added on top as your business is ready.",
         features: [
-            { title: "Data Unification", description: "Centralize all operational data into a single source of truth.", icon: "Database" },
-            { title: "Process Automation", description: "Automate reporting, inventory, and finance workflows.", icon: "RefreshCw" },
-            { title: "Advanced Analytics", description: "Real-time dashboards for predictive decision making.", icon: "BarChart3" }
+            { title: "Data Unification", description: "Bring operational data from spreadsheets and disconnected tools into one system.", icon: "Database" },
+            { title: "Process Automation", description: "Automate approvals, reporting, inventory and finance workflows.", icon: "RefreshCw" },
+            { title: "AI-Ready Foundation", description: "Clean, structured data and APIs that AI agents can work with later.", icon: "Brain" }
         ],
         process: [
             { step: "01", title: "Systems Audit", description: "Evaluating existing legacy systems and data structures." },
@@ -219,9 +377,9 @@ export const servicesData: ServiceData[] = [
             { step: "04", title: "Training & Adoption", description: "Ensuring smooth transition for your workforce." }
         ],
         benefits: [
-            { title: "Cost Reduction", description: "Eliminate inefficiencies and redundant software costs." },
-            { title: "Complete Visibility", description: "See the exact state of your business at any moment." },
-            { title: "Scalable Operations", description: "Infrastructure designed to handle exponential growth." }
+            { title: "Fits How You Work", description: "Software shaped around your processes, not the other way round." },
+            { title: "Complete Visibility", description: "See the current state of orders, stock and finances in one place." },
+            { title: "Ready for AI", description: "A structured foundation that makes future AI deployment simpler." }
         ],
         deliverables: [
             { title: "Custom ERP Platform", description: "A modular, role-based web application tailored to your exact operational workflows.", icon: "Layers" },
@@ -229,7 +387,7 @@ export const servicesData: ServiceData[] = [
             { title: "Migrated Historical Data", description: "Clean, validated import of your legacy data — Excel, Tally, SAP, or whatever you're on.", icon: "Database" },
             { title: "Reporting & BI Dashboards", description: "Real-time finance, inventory, and operations dashboards with export-to-Excel/PDF.", icon: "BarChart3" },
             { title: "API & Integration Layer", description: "Pre-built connectors to your CRM, payment gateway, accounting tool, and logistics partners.", icon: "RefreshCw" },
-            { title: "Team Training & SOPs", description: "Onboarding sessions, role-specific user guides, and a 60-day adoption support window.", icon: "FileText" }
+            { title: "Team Training & SOPs", description: "Onboarding sessions, role-specific user guides, and post-launch adoption support.", icon: "FileText" }
         ],
         useCases: [
             { industry: "Manufacturing", title: "Production & Inventory ERP", description: "BOMs, work orders, shop-floor tracking, MRP, and finished-goods inventory in one system." },
@@ -251,43 +409,38 @@ export const servicesData: ServiceData[] = [
             { name: "AWS", slug: "amazonwebservices", category: "Cloud" },
             { name: "Power BI", slug: null, category: "Analytics" }
         ],
-        stats: [
-            { value: "60%", label: "Manual Effort Reduced", description: "Average reduction in data-entry hours after ERP rollout." },
-            { value: "4x", label: "Reporting Speed", description: "Faster month-end close compared to Excel-based workflows." },
-            { value: "Zero", label: "Data Silos", description: "All operational data unified into a single normalized source of truth." },
-            { value: "12 wk", label: "Avg. Time to Launch", description: "From scoping to first production rollout for mid-size operations." }
-        ],
         faqs: [
-            { question: "Custom ERP vs SAP/Oracle/Zoho — why build from scratch?", answer: "Off-the-shelf ERPs work great if your operations fit their model. For businesses with unique workflows — custom pricing logic, non-standard inventory rules, hybrid manufacturing — a tailored ERP is cheaper over 3 years and far more agile. We'll do an honest scoping call before we recommend either path." },
-            { question: "Can it integrate with our existing Tally / Zoho Books / SAP?", answer: "Yes — we build connectors for accounting (Tally, Zoho, QuickBooks, SAP), CRM (Salesforce, HubSpot), and logistics partners so your ERP becomes the operational hub without forcing a finance-team migration." },
+            { question: "Custom ERP vs SAP/Oracle/Zoho — why build from scratch?", answer: "Off-the-shelf ERPs work great if your operations fit their model. For businesses with unique workflows — custom pricing logic, non-standard inventory rules, hybrid manufacturing — a tailored ERP can be more cost-effective over time and far more adaptable. We'll do an honest scoping call before we recommend either path." },
+            { question: "Can it integrate with our existing Tally / Zoho Books / SAP?", answer: "Usually, yes. We build connectors to accounting, CRM and logistics systems wherever they allow it, so your ERP becomes the operational hub without forcing a finance-team migration. We confirm the approach for each system during scoping." },
             { question: "What about data migration from our legacy system?", answer: "Migration is a dedicated workstream. We audit your existing data, clean inconsistencies, map fields, run dry-runs in staging, and then cut over with a rollback plan. Zero data loss is non-negotiable." },
             { question: "Is the ERP hosted in the cloud or on-premise?", answer: "Both are options. Most clients go cloud (AWS or Azure) for cost and remote access. For regulated industries we deploy on-premise or in a VPC with your compliance team's approvals." },
-            { question: "How do you handle user training?", answer: "Role-based training sessions (admin, finance, ops, sales), recorded walkthroughs, written SOPs, and a 60-day post-launch hypercare window where our team responds to user queries directly." }
+            { question: "Can AI be added to the system later?", answer: "Yes — and we design for it. Structured data and clean APIs mean AI agents can later read orders, prepare quotations or flag exceptions without rebuilding the system." },
+            { question: "How do you handle user training?", answer: "Role-based training sessions, recorded walkthroughs, written SOPs, and a post-launch support window where our team responds to user queries directly." }
         ]
     },
     {
         id: "website-revamp",
         categoryId: "tech",
-        categoryLabel: "Technology Solutions",
+        categoryLabel: "Software Engineering",
         title: "Website Revamp",
-        shortDescription: "Modernize legacy systems into high-converting digital powerhouses.",
+        shortDescription: "Modernise an outdated website into a fast, credible platform that reflects what your business does today.",
         heroImage: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=2000",
-        overview: "A dated digital presence costs you high-value clients. Our website revamp completely overhauls your existing platform into a cutting-edge standard—retaining your hard-earned SEO authority while injecting modern UI/UX and blazingly fast architecture.",
+        overview: "When your business has moved on but your website hasn't, we rebuild it — new design, modern technology and clearer messaging — while protecting the search rankings and content you've already built up.",
         features: [
-            { title: "UI/UX Overhaul", description: "A fresh, premium design language engineered for maximum conversion.", icon: "Palette" },
-            { title: "Tech Stack Modernization", description: "Migration from sluggish legacy code to modern, headless frameworks.", icon: "Layers" },
-            { title: "Migration Security", description: "Bulletproof processes ensuring zero data loss and flawless URL redirection.", icon: "ShieldCheck" }
+            { title: "UI/UX Overhaul", description: "A fresh design built around clear messaging and easy navigation.", icon: "Palette" },
+            { title: "Tech Stack Modernization", description: "Migration from slow legacy code to modern frameworks.", icon: "Layers" },
+            { title: "Careful Migration", description: "Content moved intact and every old URL redirected correctly.", icon: "ShieldCheck" }
         ],
         process: [
             { step: "01", title: "Legacy Audit", description: "Mapping your current site structure, traffic drops, and technical debt." },
-            { step: "02", title: "Design Revolution", description: "Creating a completely modernized visual identity and user flow." },
+            { step: "02", title: "Redesign", description: "Creating a modernised visual identity and user flow." },
             { step: "03", title: "Development Phase", description: "Building the new platform while your existing site remains fully operational." },
-            { step: "04", title: "Hot Swap Deployment", description: "An instant, zero-downtime transition to the upgraded platform." }
+            { step: "04", title: "Planned Cutover", description: "A planned switch-over to the new platform with minimal disruption." }
         ],
         benefits: [
-            { title: "Bounced Traffic Recaptured", description: "Modern UI drastically lowers bounce rates." },
-            { title: "Preserved SEO Rankings", description: "Meticulous 301 mapping safeguards your domain authority." },
-            { title: "Future Scalability", description: "A flexible foundation ready for tomorrow's feature requests." }
+            { title: "A Site That Reflects You Today", description: "Messaging and design that match what your business now offers." },
+            { title: "Rankings Protected", description: "Careful 301 mapping to preserve the search visibility you've built." },
+            { title: "Easier to Extend", description: "A flexible foundation for portals, integrations and AI features later." }
         ],
         deliverables: [
             { title: "Pre-Launch Audit Report", description: "A documented baseline of your current site's traffic, rankings, speed, and conversion benchmarks.", icon: "FileText" },
@@ -317,28 +470,22 @@ export const servicesData: ServiceData[] = [
             { name: "Ahrefs", slug: "ahrefs", category: "SEO" },
             { name: "GA4", slug: "googleanalytics", category: "Analytics" }
         ],
-        stats: [
-            { value: "Zero", label: "Downtime Cutover", description: "Hot-swap deployments mean visitors never see a broken site." },
-            { value: "100%", label: "SEO Equity Preserved", description: "Meticulous 301 mapping keeps every backlink's authority intact." },
-            { value: "3-5x", label: "Page Speed Boost", description: "Typical improvement from legacy CMS to modern static/headless architecture." },
-            { value: "+45%", label: "Conversion Increase", description: "Median uplift on lead-gen pages after design and CRO overhaul." }
-        ],
         faqs: [
-            { question: "Will my SEO rankings drop after a revamp?", answer: "Not with us. Every redirect, every metadata field, every schema entry, and every URL is mapped before launch. We monitor rankings for 30 days post-launch and catch any anomalies within hours. Most clients see rankings hold steady or improve due to the speed boost." },
+            { question: "Will my SEO rankings drop after a revamp?", answer: "We work to prevent that. Every redirect, metadata field, schema entry and URL is mapped before launch, and we monitor rankings after launch so any dips can be caught and fixed quickly." },
             { question: "Can you keep my current content and just modernize the design and tech?", answer: "Absolutely. Content migration is part of every revamp — we preserve blog posts, case studies, and resources with full structure, metadata, and image assets intact." },
-            { question: "How long is the typical revamp timeline?", answer: "4-8 weeks for marketing sites, 8-14 weeks for content-heavy sites with hundreds of pages, integrations, and bespoke features. The old site stays live the entire time." },
+            { question: "How long is the typical revamp timeline?", answer: "It depends on the number of pages, integrations and custom features. The old site stays live the entire time, and we share the timeline before we start." },
             { question: "What if I'm on WordPress and want to stay there?", answer: "If WordPress is the right fit for your team, we'll modernize within WordPress — new theme, performance optimization, headless API layer if needed. We won't force a stack change just to charge for one." },
-            { question: "Do you handle the actual go-live cutover?", answer: "Yes — DNS, redirects, search-console updates, sitemap submission, and a live monitoring war-room during the cutover window. You won't lose a single visitor." }
+            { question: "Do you handle the actual go-live cutover?", answer: "Yes — DNS, redirects, search-console updates, sitemap submission and close monitoring during the cutover window." }
         ]
     },
     {
         id: "interactive-3d",
         categoryId: "tech",
-        categoryLabel: "Technology Solutions",
+        categoryLabel: "Software Engineering",
         title: "Interactive 3D Website",
-        shortDescription: "Immersive WebGL experiences that captivate and engage.",
+        shortDescription: "Interactive 3D product and experience websites built with WebGL.",
         heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000",
-        overview: "Break free from the constraints of 2D screen design. We engineer breathtaking, interactive 3D websites using WebGL, Three.js, and React Three Fiber—delivering an unforgettable, gamified user experience directly in the browser.",
+        overview: "For products that are easier to understand when you can see them from every angle, we build interactive 3D websites using WebGL, Three.js and React Three Fiber — product viewers, configurators and walkthroughs that run directly in the browser.",
         features: [
             { title: "WebGL Real-Time Rendering", description: "Silky smooth 60fps 3D graphics in the user's browser without plugins.", icon: "Monitor" },
             { title: "Micro-Interactions", description: "Physics-based hovering, scrolling, and interactive particle systems.", icon: "Zap" },
@@ -351,8 +498,8 @@ export const servicesData: ServiceData[] = [
             { step: "04", title: "Optimization", description: "Ensuring smooth framerates universally across all devices." }
         ],
         benefits: [
-            { title: "Astonishing Metrics", description: "Radically increased average session duration and user engagement." },
-            { title: "Unforgettable Branding", description: "A 'wow' factor that fundamentally separates you from competitors." },
+            { title: "Products Explained Visually", description: "Let buyers explore machines, products and spaces before they talk to sales." },
+            { title: "Distinctive Presence", description: "A memorable experience that sets you apart from competitors." },
             { title: "Visual Storytelling", description: "Communicate complex product features through interactive discovery." }
         ],
         deliverables: [
@@ -383,17 +530,11 @@ export const servicesData: ServiceData[] = [
             { name: "Draco Compression", slug: null, category: "Optimization" },
             { name: "Next.js", slug: "nextdotjs", category: "Framework" }
         ],
-        stats: [
-            { value: "60fps", label: "Target Frame Rate", description: "Maintained on mid-tier devices through aggressive optimization." },
-            { value: "+180%", label: "Session Duration", description: "Average uplift compared to standard 2D versions of the same content." },
-            { value: "<3MB", label: "Initial Payload", description: "Compressed and progressively loaded — fast even on 4G." },
-            { value: "8/10", label: "Awwwards Average", description: "Average jury score across our 3D site submissions to date." }
-        ],
         faqs: [
-            { question: "Will this work on mobile devices?", answer: "Yes — every 3D project we ship has a mobile performance budget from day one. We tune poly counts, texture sizes, and shader complexity for sub-3-second loads on mid-tier Android phones. For very old or low-end devices, we serve a graceful 2D fallback." },
+            { question: "Will this work on mobile devices?", answer: "Yes — every 3D project we ship has a mobile performance budget from day one. We tune poly counts, texture sizes and shader complexity for mid-tier phones, and serve a 2D fallback for very old or low-end devices." },
             { question: "How do 3D sites affect SEO?", answer: "We render text content as standard HTML alongside the 3D canvas — so search engines crawl all your copy, headings, and metadata normally. The 3D layer is a visual enhancement, not a replacement for indexable content." },
             { question: "Do you need 3D source files from us, or do you build the assets?", answer: "Either works. If you have CAD or Blender files, great — we'll optimize and stage them. If you're starting from scratch, our 3D team models, textures, and rigs everything based on your brief and references." },
-            { question: "What's the typical timeline for a 3D website?", answer: "6-12 weeks depending on scope. Asset creation usually takes 3-5 weeks, with web integration and optimization running in parallel. We prototype the heaviest scene first so we can lock the performance budget early." },
+            { question: "What's the typical timeline for a 3D website?", answer: "It depends on the number and complexity of 3D assets. We prototype the heaviest scene first so we can lock the performance budget early, and share the timeline before we start." },
             { question: "How is this different from Spline or ready-made templates?", answer: "Spline and templates are great for quick demos. We build production-grade, custom-shaded experiences with hand-tuned GLSL and proper LOD strategies — the difference shows up in load time, framerate, and the visual signature that templates can't replicate." }
         ]
     },
@@ -475,105 +616,6 @@ export const servicesData: ServiceData[] = [
         ]
     },
 
-    // --- DIGITAL MARKETING ---
-    {
-        id: "meta-ads",
-        categoryId: "marketing",
-        categoryLabel: "Growth Marketing",
-        title: "Meta Ads",
-        shortDescription: "Laser-targeted conversion campaigns across Facebook and Instagram.",
-        heroImage: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=2000",
-        overview: "Transform social scrolling into revenue streams. We build, manage, and meticulously optimize data-driven Meta Ad campaigns designed to aggressively acquire your highest-value customers through precise algorithmic targeting.",
-        features: [
-            { title: "Pixel Integration", description: "Flawless server-side tracking (CAPI) for absolute data integrity.", icon: "Database" },
-            { title: "Dynamic Creative", description: "Testing thousands of copy and imagery combinations autonomously.", icon: "RefreshCw" },
-            { title: "Custom Audiences", description: "Retargeting frameworks and high-accuracy lookalike modeling.", icon: "Layers" }
-        ],
-        process: [
-            { step: "01", title: "Account Architecture", description: "Structuring campaigns, ad sets, and pixels for algorithmic success." },
-            { step: "02", title: "Creative Production", description: "Designing scroll-stopping imagery and persuasive ad copy." },
-            { step: "03", title: "Launch & Learning Phase", description: "Carefully feeding data into the Meta algorithm to establish conversion baselines." },
-            { step: "04", title: "Aggressive Scaling", description: "Increasing budgets on winning variants to maximize ROAS." }
-        ],
-        benefits: [
-            { title: "Predictable Acquisition", description: "Turn ad spend into a reliable, mathematical revenue engine." },
-            { title: "Vast Reach", description: "Tap directly into a network of billions of users globally." },
-            { title: "Hyper-Segmentation", description: "Serve ads exclusively to demographics statistically likely to convert." }
-        ]
-    },
-    {
-        id: "smm",
-        categoryId: "marketing",
-        categoryLabel: "Growth Marketing",
-        title: "SMM",
-        shortDescription: "Cultivate a fiercely loyal community around your brand.",
-        heroImage: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80&w=2000",
-        overview: "Social Media Marketing is not just about posting—it's about digital authority. We construct organic social ecosystems that establish your brand as a leading voice, generating compound interest in audience attention across Instagram, LinkedIn, X, and TikTok.",
-        features: [
-            { title: "Content Ecosystems", description: "High-value, omni-channel content strategies mapped to user psychology.", icon: "FileText" },
-            { title: "Virality Engineering", description: "Trend leveraging and algorithm optimization for organic explosion.", icon: "Zap" },
-            { title: "Community Management", description: "Active engagement, response, and sentiment moderation.", icon: "MessageSquare" }
-        ],
-        process: [
-            { step: "01", title: "Voice & Tone Strategy", description: "Establishing exactly how your brand communicates and acts." },
-            { step: "02", title: "Content Calendering", description: "Structuring 30-day pipelines of high-quality multimedia." },
-            { step: "03", title: "Distribution", description: "Executing timed posts optimized for maximum algorithmic lift." },
-            { step: "04", title: "Analytics Feedback", description: "Reviewing engagement metrics to refine the content strategy continuously." }
-        ],
-        benefits: [
-            { title: "Brand Equity", description: "Build a moat of trust and industry authority overtime." },
-            { title: "Zero CPC Traffic", description: "Generate inbound leads continuously without relying on ad spend." },
-            { title: "Direct Customer Feedback", description: "Understand market sentiment through direct audience interaction." }
-        ]
-    },
-    {
-        id: "seo",
-        categoryId: "marketing",
-        categoryLabel: "Growth Marketing",
-        title: "SEO",
-        shortDescription: "Dominate search engine rankings for high-intent keywords.",
-        heroImage: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=2000",
-        overview: "Secure the most valuable real estate on the internet. Our Search Engine Optimization strategy combines grueling technical architecture, authoritative content, and aggressive link-building to guarantee Page 1 dominance.",
-        features: [
-            { title: "Technical On-Page", description: "Core Web Vitals, Schema markup, and crawler optimization.", icon: "Monitor" },
-            { title: "Semantic Architecture", description: "Building topic clusters for supreme topical authority.", icon: "Layers" },
-            { title: "Off-Page Authority", description: "Acquiring high DR (Domain Rating) backlinks from top-tier publications.", icon: "ShieldCheck" }
-        ],
-        process: [
-            { step: "01", title: "Technical Audit", description: "Fixing crawl errors, toxic links, and site-speed penalties." },
-            { step: "02", title: "Keyword Economics", description: "Identifying low-difficulty, massive-ROI search terms." },
-            { step: "03", title: "Content Deployment", description: "Writing hyper-optimized, better-than-competition landing pages." },
-            { step: "04", title: "Authority Building", description: "Executing perpetual outreach and digital PR campaigns." }
-        ],
-        benefits: [
-            { title: "Compound ROI", description: "Efforts stack—generating free, high-intent traffic for years to come." },
-            { title: "Unrivaled Trust", description: "Consumers implicitly trust brands that rank #1 organically." },
-            { title: "Defensible Moat", description: "Once established, organic rankings are difficult for competitors to steal." }
-        ]
-    },
-    {
-        id: "google-ads",
-        categoryId: "marketing",
-        categoryLabel: "Growth Marketing",
-        title: "Google Ads",
-        shortDescription: "Capture active demand exactly when they search for you.",
-        heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000",
-        overview: "Harvesting the world's most intent-driven traffic. We engineer Google Search, Performance Max, and Shopping campaigns that instantly put your offer in front of consumers actively pulling out their credit cards.",
-        features: [
-            { title: "Intent Mapping", description: "Structuring campaigns based precisely on customer purchasing readiness.", icon: "BarChart3" },
-            { title: "Conversion Tracking", description: "Closing the loop between clicks, forms, and offline CRM conversions.", icon: "Database" },
-            { title: "A/B Copy Testing", description: "Relentless iteration of headlines and ad extensions to maximize CTR.", icon: "RefreshCw" }
-        ],
-        process: [
-            { step: "01", title: "Keyword Strategy", description: "Mapping broad, exact, and negative keywords to block wasted spend." },
-            { step: "02", title: "Architecture & Bid Strategy", description: "Building the campaign structure and setting tCPA / tROAS goals." },
-            { step: "03", title: "Landing Page Sync", description: "Ensuring ad promise matches landing page reality for High Quality Scores." },
-            { step: "04", title: "Daily Optimization", description: "Trimming underperforming search terms and reallocating budget to winners." }
-        ],
-        benefits: [
-            { title: "Instant Visibility", description: "Skip the SEO waiting period and appear at the top of Google immediately." },
-            { title: "Highest Conversion Rates", description: "Target users explicitly searching to solve a problem you fix." },
-            { title: "Infinite Granularity", description: "Control exactly how much you pay for a lead down to the cent." }
-        ]
-    }
+    // Growth-marketing services (Meta Ads, SMM, SEO, Google Ads) were
+    // retired. Their old URLs are redirected in middleware.ts.
 ];

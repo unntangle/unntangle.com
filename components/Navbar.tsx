@@ -18,43 +18,33 @@ import {
   Zap,
 } from 'lucide-react';
 import styles from './Navbar.module.css';
-import { blogsData } from '@/data/blogs';
+import { publishedBlogs as blogsData } from '@/data/blogs';
 
+// Two service pillars: AI implementation, and the software engineering
+// (websites, apps, custom software) Unntangle has always delivered.
+// Growth marketing was retired.
 const serviceCategories = [
   {
-    id: "ai-agents",
-    label: "AI Agents & Automation",
-    title: "AI Agents & Automation",
+    id: "ai",
+    label: "AI Implementation & Deployment",
+    title: "AI Implementation & Deployment",
     services: [
-      { name: "AI Sales Agent", description: "Automate lead qualification, RFQ processing, quotation preparation, CRM updates and customer follow-ups.", path: "/services/erp" },
-      { name: "AI Finance Agent", description: "Monitor receivables, analyse invoices, prepare collection follow-ups and generate financial insights.", path: "/services/erp" },
-      { name: "AI Procurement Agent", description: "Analyse vendor quotations, compare pricing, monitor purchase requirements and prepare procurement recommendations.", path: "/services/erp" },
-      { name: "AI Operations Agent", description: "Automate reporting, document processing, operational monitoring and repetitive back-office workflows.", path: "/services/erp" },
-      { name: "AI Customer Service Agent", description: "Handle customer enquiries across website, WhatsApp and email while escalating complex issues to your team.", path: "/services/erp" },
-      { name: "AI Management Intelligence", description: "Connect ERP, CRM and operational data to deliver actionable management insights automatically.", path: "/services/erp" },
+      { name: "AI Workflow Assessment", description: "Find where AI can create measurable value before anything is built.", path: "/services/ai-workflow-assessment" },
+      { name: "AI Agents & Workflow Automation", description: "AI that handles RFQs, invoices, follow-ups, reports and routine queries — with human approval.", path: "/services/ai-agents" },
+      { name: "AI & System Integration", description: "Connect AI to your ERP, CRM, email, WhatsApp, documents and databases.", path: "/services/ai-integration" },
+      { name: "AI Workflow Examples", description: "Sales, finance, procurement, operations, customer service and management reporting.", path: "/#ai-solutions" },
     ]
   },
   {
     id: "tech",
-    label: "Technology",
-    title: "Technology",
+    label: "Software Engineering",
+    title: "Software Engineering",
     services: [
-      { name: "Enterprise Software", description: "Custom ERP, workflow systems and integrated platforms built around how your business actually operates.", path: "/services/erp" },
-      { name: "Website Development", description: "High-performance, responsive websites for your digital presence.", path: "/services/website" },
-      { name: "App Development", description: "Custom mobile and desktop apps for complex business problems.", path: "/services/app" },
-      { name: "API Integrations", description: "Connect your existing systems — ERP, CRM, databases and third-party platforms — via secure integrations.", path: "/services/erp" },
-      { name: "Interactive 3D", description: "Immersive WebGL experiences that captivate and engage.", path: "/services/interactive-3d" }
-    ]
-  },
-  {
-    id: "growth",
-    label: "AI-Powered Growth",
-    title: "AI-Powered Growth",
-    services: [
-      { name: "Meta Ads", description: "Laser-targeted conversion campaigns across Facebook and Instagram.", path: "/services/meta-ads" },
-      { name: "SMM", description: "Cultivate a fiercely loyal community around your brand.", path: "/services/smm" },
-      { name: "SEO", description: "Dominate search engine rankings for high-intent keywords.", path: "/services/seo" },
-      { name: "Google Ads", description: "Capture active demand exactly when they search for you.", path: "/services/google-ads" }
+      { name: "Website Development", description: "Fast, secure business websites connected to your CRM and workflows.", path: "/services/website" },
+      { name: "Website Revamp", description: "Modernise an outdated site while protecting your search rankings.", path: "/services/website-revamp" },
+      { name: "App Development", description: "Mobile and web apps for customers, field teams and internal operations.", path: "/services/app" },
+      { name: "Custom Software & ERP", description: "ERP, workflow systems and internal platforms built around how you operate.", path: "/services/erp" },
+      { name: "Interactive 3D", description: "3D product viewers, configurators and walkthroughs in the browser.", path: "/services/interactive-3d" }
     ]
   }
 ];
@@ -66,7 +56,7 @@ const productCategories = [
     items: [
       {
         name: "uVOIZ",
-        description: "AI-powered voice agents for customer conversations, lead qualification, support and business calling workflows. Speaks Hindi, Tamil, Telugu, Kannada and more.",
+        description: "AI voice agents for lead qualification, follow-ups and first-line support calls, in multiple Indian languages.",
         path: "https://uvoiz.unntangle.com",
         external: true,
         disabled: false,
@@ -80,7 +70,7 @@ const productCategories = [
     items: [
       {
         name: "uDYLR",
-        description: "Intelligent contact-center workflows designed to automate repetitive customer interactions with predictive routing, agent assist and built-in compliance.",
+        description: "Contact-center workflows that take repetitive customer interactions off your agents' queue.",
         path: "#",
         disabled: true,
         external: false,
@@ -88,7 +78,7 @@ const productCategories = [
       },
       {
         name: "uSCRIBR",
-        description: "AI-powered clinical documentation that helps healthcare professionals reduce repetitive administrative work — structured notes in real time.",
+        description: "Clinical conversations turned into structured notes for review, reducing documentation time.",
         path: "#",
         disabled: true,
         external: false,
@@ -212,14 +202,12 @@ export default function Navbar() {
           </Link>
 
           <div className={styles.links}>
-            <Link href="/about">Who we are</Link>
-
             <div
               className={styles.dropdownTrigger}
               onMouseEnter={() => setActiveDropdown('services')}
             >
               <Link href="/services" className={styles.linkWithIcon}>
-                What we do <ChevronDown size={14} />
+                Services <ChevronDown size={14} />
               </Link>
             </div>
 
@@ -227,14 +215,12 @@ export default function Navbar() {
               className={styles.dropdownTrigger}
               onMouseEnter={() => setActiveDropdown('products')}
             >
-              {/* No `/products` listing route exists yet, so the
-                  trigger is a non-navigating span. The mega menu on
-                  hover still surfaces individual product links
-                  (uVOIZ, uDYLR, uSCRIBR) so the experience isn't
-                  diminished — the user just can't tap into a 404. */}
-              <span className={`${styles.linkWithIcon} ${styles.linkWithIconStatic}`}>
-                Products <ChevronDown size={14} />
-              </span>
+              {/* No `/products` route exists, so the trigger jumps to the
+                  home-page AI Products section; the mega menu on hover
+                  still surfaces each product (uVOIZ, uDYLR, uSCRIBR). */}
+              <Link href="/#ai-products" className={styles.linkWithIcon}>
+                AI Products <ChevronDown size={14} />
+              </Link>
             </div>
 
             <div
@@ -249,8 +235,11 @@ export default function Navbar() {
               </span>
             </div>
 
-            <Link href="/blog">Knowledge Hub</Link>
-            <Link href="/contact" className={styles.ctaBadge}>Let&apos;s Talk</Link>
+            {/* "How We Deploy" and "Industries" were removed from the top nav;
+                both sections are still on the home page and linked in the footer. */}
+            <Link href="/blog" onMouseEnter={() => setActiveDropdown(null)}>Knowledge Hub</Link>
+            <Link href="/about" onMouseEnter={() => setActiveDropdown(null)}>About</Link>
+            <Link href="/contact" className={styles.ctaBadge}>Book an Assessment</Link>
           </div>
         </div>
 
@@ -266,8 +255,9 @@ export default function Navbar() {
               onMouseEnter={() => setActiveDropdown('services')}
             >
               <div className={styles.megaMenuContainer}>
-                {/* Service Category Columns */}
-                <div className={styles.categoryColumns}>
+                {/* Service Category Columns — two pillars, so use the
+                    two-column layout the Products menu already uses. */}
+                <div className={`${styles.categoryColumns} ${styles.categoryColumnsTwo}`}>
                   {serviceCategories.map((cat) => (
                     <div key={cat.id} className={styles.categoryColumn}>
                       <h5 className={styles.columnHeading}>{cat.title}</h5>
@@ -412,11 +402,11 @@ export default function Navbar() {
                       height={32}
                       className={styles.featuredProductLogo}
                     />
-                    <span className={styles.featuredProductHeaderTag}>AI Telecalling for BPOs</span>
+                    <span className={styles.featuredProductHeaderTag}>AI Voice Agents · Beta</span>
                   </div>
 
                   <p className={styles.featuredProductDescription}>
-                    Replace telecallers with AI voice agents that speak 5+ Indian languages, integrate with your CRM, and run 24/7.
+                    AI voice agents that take routine calls off your team&apos;s plate — in multiple Indian languages — and hand conversations to a person when needed.
                   </p>
 
                   {/* Stat tiles — Google/Stripe-style metric cards */}

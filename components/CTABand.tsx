@@ -38,17 +38,18 @@ export default function CTABand() {
                     <div className={styles.orb} aria-hidden="true" />
 
                     <div className={styles.content}>
-                        <span className={styles.eyebrow}>Find where AI can work inside your business</span>
+                        <span className={styles.eyebrow}>AI Workflow Assessment</span>
 
                         <h2 className={styles.title}>
-                            Bring us a workflow.{' '}
-                            <span className={styles.titleAccent}>We&apos;ll show you what AI can do with it.</span>
+                            Find Where AI Can Work{' '}
+                            <span className={styles.titleAccent}>Inside Your Business</span>
                         </h2>
 
                         <p className={styles.description}>
                             Bring us a workflow that&apos;s consuming time, creating bottlenecks or
                             requiring repetitive manual work. We&apos;ll help you determine whether AI
-                            can automate or augment it — and what that would look like in practice.
+                            can automate or augment it. Need a website, app or system built instead?
+                            Talk to us about that too.
                         </p>
 
                         <div className={styles.actions}>
@@ -56,7 +57,7 @@ export default function CTABand() {
                                 Book an AI Workflow Assessment <ArrowRight size={18} />
                             </Link>
                             <Link href="/contact" className={styles.secondaryCta}>
-                                <Calendar size={16} /> Talk to an AI deployment specialist
+                                <Calendar size={16} /> Discuss a Software Project
                             </Link>
                         </div>
                     </div>

@@ -6,8 +6,8 @@ import styles from './WhyChooseUs.module.css';
 
 const comparisonRows = [
     {
-        feature: 'How work happens today',
-        unntangle: 'AI reads the RFQ, retrieves product data, drafts the quotation, waits for approval, sends it and updates the CRM — automatically.',
+        feature: 'Quotation preparation',
+        unntangle: 'AI reads the RFQ, retrieves product and pricing data, drafts the quotation for approval, then sends it and updates the CRM once approved.',
         others: 'Employee opens the PDF, searches the ERP, copies previous quotes, prepares the document manually and updates the CRM by hand.',
     },
     {
@@ -22,13 +22,13 @@ const comparisonRows = [
     },
     {
         feature: 'Customer enquiry handling',
-        unntangle: 'AI reads the customer message, checks order status in the ERP, retrieves the relevant information and sends an accurate response within minutes — 24 hours a day.',
+        unntangle: 'AI reads the customer message, checks order status in your systems, answers routine questions and hands anything unusual to your team — including outside business hours.',
         others: 'Customer service team reads the message, logs into the ERP, looks up the order, composes a response and sends it — during business hours only.',
     },
     {
         feature: 'Management reporting',
         unntangle: 'AI pulls data from ERP, CRM and operations systems each morning, compiles the management briefing and delivers it to leadership automatically.',
-        others: 'Operations or finance team manually compiles reports from multiple systems each day — consuming 2–3 hours that could be spent on higher-value work.',
+        others: 'Operations or finance team manually compiles reports from multiple systems every day, taking time away from higher-value work.',
     },
 ];
 
@@ -51,8 +51,8 @@ export default function WhyChooseUs() {
                     </h2>
                     <p className={styles.subtitle}>
                         Here is what the same business task looks like before and after AI deployment.
-                        The right column is not a futuristic vision — it is what Unntangle builds and deploys
-                        into real business operations.
+                        These are the kinds of workflows Unntangle builds and deploys into real business
+                        operations, with your team approving where it matters.
                     </p>
                 </motion.div>
 

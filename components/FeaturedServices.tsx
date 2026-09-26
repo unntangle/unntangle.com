@@ -43,61 +43,63 @@ interface ServiceStory {
 const serviceStories: ServiceStory[] = [
     {
         id: '1',
-        categoryId: 'ai-agents',
-        tag: 'AI Agents & Automation',
-        title: 'AI agents that run your workflows — not just answer questions.',
+        categoryId: 'ai',
+        tag: 'AI Implementation & Deployment',
+        title: 'AI agents that do real business work — not just answer questions.',
         description:
-            'We deploy AI agents that connect to your ERP, CRM, databases, email and WhatsApp — analysing information, preparing actions and executing approved workflows across sales, finance, procurement, operations and customer service.',
+            'We identify repetitive workflows, build AI agents around them and deploy them into your ERP, CRM, email, WhatsApp and databases — analysing information, preparing work for approval and completing it once your team signs off.',
         deliverables: [
-            'AI Sales Agent',
-            'AI Finance Agent',
-            'AI Procurement Agent',
-            'AI Operations Agent',
-            'AI Customer Service Agent',
-            'AI Management Intelligence',
+            'AI Workflow Assessment',
+            'AI Agents & Automation',
+            'AI & System Integration',
+            'Human Approval & Controls',
+            'Production Deployment',
+            'Monitoring & Improvement',
         ],
         image:
             'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600',
-        path: '/services/erp',
-        cta: 'Explore AI agents',
+        path: '/services/ai-agents',
+        cta: 'Explore AI implementation',
     },
     {
         id: '2',
-        categoryId: 'tech',
-        tag: 'Technology',
-        title: 'Technology that makes AI work inside your business.',
+        categoryId: 'web',
+        tag: 'Websites & Apps',
+        title: 'Websites and apps built for how your business works.',
         description:
-            'AI agents are only useful when they can work with the systems your business already depends on. We combine AI engineering with software development, integrations and digital technology to connect intelligence with real business workflows.',
+            'Business websites, web apps, dealer and customer portals, and mobile apps for field and sales teams — fast, secure, and connected to your CRM and systems so they are ready for AI when you are.',
         deliverables: [
-            'Enterprise Software',
             'Website Development',
-            'App Development',
-            'ERP Development',
-            'API Integrations',
+            'Website Revamp',
+            'Web Apps & Portals',
+            'Mobile Apps',
             'Interactive 3D',
+            'UI/UX Design',
         ],
         image:
             'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=1600',
         path: '/services/website',
-        cta: 'Explore technology',
+        cta: 'Explore websites & apps',
     },
     {
         id: '3',
-        categoryId: 'growth',
-        tag: 'AI-Powered Growth',
-        title: 'Combine AI with marketing to accelerate customer acquisition.',
+        categoryId: 'software',
+        tag: 'Custom Software & ERP',
+        title: 'Custom software that fits your operations.',
         description:
-            'Analyse campaigns, identify opportunities and automate repetitive tasks across your marketing operations. Meta Ads, Google Ads, SEO and social media — powered by data and AI-assisted execution.',
+            'When off-the-shelf tools don’t fit, we build ERP, workflow and approval systems, internal dashboards and integrations around your processes — structured so AI can be added on top later.',
         deliverables: [
-            'Meta Ads',
-            'Google Ads',
-            'SEO',
-            'SMM',
+            'Custom ERP',
+            'Workflow & Approval Systems',
+            'Internal Dashboards',
+            'API Integrations',
+            'Data Migration',
+            'Cloud Deployment',
         ],
         image:
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
-        path: '/services/meta-ads',
-        cta: 'Explore growth services',
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600',
+        path: '/services/erp',
+        cta: 'Explore custom software',
     },
 ];
 
@@ -199,16 +201,18 @@ export default function FeaturedServices({
        slides as the user scrolls, not just on click. */
     useEffect(() => {
         const unsubscribe = scrollYProgress.on('change', (latest) => {
-            if (latest < 0.33) {
-                if (activeCategoryId !== 'tech') onCategoryChange('tech');
-            } else if (latest < 0.66) {
-                if (activeCategoryId !== 'design') onCategoryChange('design');
-            } else {
-                if (activeCategoryId !== 'marketing') onCategoryChange('marketing');
-            }
+            // Map scroll progress to the category at the same index.
+            // (Previously compared against 'tech' / 'design' / 'marketing',
+            // which no longer match the category ids, so the tab never moved.)
+            const idx = Math.min(
+                categories.length - 1,
+                Math.floor(latest * categories.length)
+            );
+            const id = categories[idx]?.id;
+            if (id && id !== activeCategoryId) onCategoryChange(id);
         });
         return () => unsubscribe();
-    }, [scrollYProgress, activeCategoryId, onCategoryChange]);
+    }, [scrollYProgress, activeCategoryId, onCategoryChange, categories]);
 
     return (
         <section ref={targetRef} className={styles.scrollSection}>

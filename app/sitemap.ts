@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { servicesData } from "@/data/services";
-import { blogsData } from "@/data/blogs";
+import { publishedBlogs as blogsData } from "@/data/blogs";
 
 /**
  * Dynamic sitemap.xml generator.

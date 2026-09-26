@@ -28,13 +28,13 @@ interface ResponsibilityCard {
 const cards: ResponsibilityCard[] = [
     {
         icon: <Target size={22} />,
-        title: 'We keep our eye on the ROI',
+        title: 'We keep our eye on the outcome',
         body:
-            "Every engagement starts with the metric we're moving — pipeline, conversion, retention, MRR. The deliverable is a means, not the end.",
+            "Every engagement starts with the business result we're working towards — hours saved, faster turnaround, fewer errors, more enquiries handled. The AI, website or system is a means, not the end.",
         bullets: [
-            'Outcomes mapped to revenue from day one',
-            'Working software shipped weekly, not quarterly',
-            'No vanity metrics, no untracked deliverables',
+            'Success measures agreed before we build',
+            'Working software shown early and often',
+            'Results reviewed with you after go-live',
         ],
     },
     {
@@ -43,7 +43,7 @@ const cards: ResponsibilityCard[] = [
         body:
             "Mistakes happen on long projects. When they do, we don't disappear behind a vendor wall — we surface the issue, fix it, and absorb the impact.",
         bullets: [
-            'One accountable team across design, dev, and growth',
+            'One accountable team across AI, software and design',
             'Transparent status, transparent escalations',
             'Retained partnerships, not project-and-ghost',
         ],
@@ -75,14 +75,14 @@ export default function OwnResponsibilities() {
 
                             <div className={styles.visualBadge}>
                                 <Users size={14} />
-                                <span>One Team. One Studio.</span>
+                                <span>One Team. AI &amp; Software.</span>
                             </div>
 
                             <div className={styles.visualQuote}>
                                 <Eye size={16} className={styles.visualQuoteIcon} />
                                 <p>
-                                    The work we ship is the brand. We sign every line of code,
-                                    every campaign, every render — like a craftsman would.
+                                    The work we ship is the brand. We stand behind every workflow,
+                                    every integration and every line of code we put into your business.
                                 </p>
                             </div>
                         </div>

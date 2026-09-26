@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { blogsData } from '@/data/blogs';
+import { blogsData, publishedBlogs, isRetiredBlog, isScheduledBlog } from '@/data/blogs';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Image from 'next/image';
 import { ArrowLeft, Send } from 'lucide-react';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ const SITE_URL =
     "https://unntangle.com";
 
 export async function generateStaticParams() {
-    return blogsData.map((blog) => ({
+    return publishedBlogs.map((blog) => ({
         slug: blog.id,
     }));
 }
@@ -82,8 +82,14 @@ export default async function BlogDetailPage(props: { params: Params }) {
     const params = await props.params;
     const blog = blogsData.find((b) => b.id === params.slug);
 
-    if (!blog) {
+    if (!blog || isScheduledBlog(blog)) {
         notFound();
+    }
+
+    // Posts about retired services (growth marketing) redirect to the
+    // blog index rather than 404ing for old links.
+    if (isRetiredBlog(blog)) {
+        permanentRedirect('/blog');
     }
 
     const url = `${SITE_URL}/blog/${blog.id}`;
@@ -124,7 +130,7 @@ export default async function BlogDetailPage(props: { params: Params }) {
             {
                 "@type": "ListItem",
                 position: 2,
-                name: "Blog",
+                name: "Knowledge Hub",
                 item: `${SITE_URL}/blog`,
             },
             {
@@ -170,9 +176,9 @@ export default async function BlogDetailPage(props: { params: Params }) {
                             padding: '32px 24px',
                             boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
                         }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '8px', color: '#111' }}>Have a problem to solve?</h3>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '8px', color: '#111' }}>Have a workflow or project in mind?</h3>
                             <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '24px', lineHeight: 1.5 }}>
-                                Let our engineers architect a deterministic solution for you.
+                                Tell us what&apos;s slowing your team down, or what you need built. We&apos;ll get back to you.
                             </p>
 
                             <form className="sidebar-form" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -190,7 +196,7 @@ export default async function BlogDetailPage(props: { params: Params }) {
                                 </div>
                                 <div className="form-group">
                                     <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', color: '#444', marginBottom: '6px', letterSpacing: '0.05em' }}>Message</label>
-                                    <textarea rows={4} placeholder="Tell us about your project..." required style={{
+                                    <textarea rows={4} placeholder="Describe the workflow or project..." required style={{
                                         width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #d1d5db', background: '#fff', fontSize: '0.9rem', outline: 'none', transition: 'all 0.2s', resize: 'vertical'
                                     }}></textarea>
                                 </div>
@@ -217,7 +223,7 @@ export default async function BlogDetailPage(props: { params: Params }) {
                             transition: 'color 0.2s ease'
                         }}>
                             <ArrowLeft size={16} />
-                            Back to Insights
+                            Back to Knowledge Hub
                         </Link>
 
                         <span style={{

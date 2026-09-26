@@ -43,46 +43,50 @@ interface PillarTab {
 
 const pillars: PillarTab[] = [
     {
-        id: 'tech',
-        label: 'Technology Solutions',
-        tag: 'Engineering',
-        title: 'Websites, apps, and platforms — built to perform.',
+        id: 'ai',
+        label: 'AI Implementation',
+        tag: 'AI Implementation & Deployment',
+        title: 'AI that works inside your business.',
         description:
-            'High-performance Next.js sites, native and cross-platform mobile apps, custom ERPs, modern revamps, and immersive 3D web experiences. Every build is architected for scale, speed, and the metrics that move your business.',
+            'We identify repetitive workflows, build AI agents and automation around them, connect them to your ERP, CRM, email and documents, and deploy them into production with human approval where it matters.',
         services: [
-            'Website Development',
-            'App Development',
-            'ERP Development',
-            'Website Revamp',
-            'Interactive 3D Website',
+            'AI Workflow Assessment',
+            'AI Agents & Workflow Automation',
+            'AI & System Integration',
         ],
         image:
             'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600',
+        ctaHref: '/services/ai-workflow-assessment',
+    },
+    {
+        id: 'tech',
+        label: 'Software Engineering',
+        tag: 'Websites, Apps & Custom Software',
+        title: 'Websites, apps and systems your business runs on.',
+        description:
+            'Business websites and revamps, mobile and web apps, custom ERP and workflow systems, and interactive 3D experiences — connected to your existing tools and ready for AI when you are.',
+        services: [
+            'Website Development',
+            'Website Revamp',
+            'App Development',
+            'Custom Software & ERP Development',
+            'Interactive 3D Website',
+        ],
+        image:
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
         ctaHref: '/services/website',
     },
     {
         id: 'design',
         label: 'Creative Design',
         tag: 'Visual Identity',
-        title: 'Brand systems and visuals that earn attention.',
+        title: 'Brand and product visuals for the work we build.',
         description:
-            'A complete 2D brand identity system, photo-realistic 3D product renders, and custom-trained AI imagery. We engineer visual systems that look premium, scale across every touchpoint, and ship at the speed of modern marketing.',
+            '2D brand identity, 3D product renders and AI-assisted imagery — usually delivered alongside a website, app or product launch.',
         services: ['2D Graphic Designing', '3D Designing', 'AI Image Rendition'],
         image:
             'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=1600',
         ctaHref: '/services/graphic-designing',
-    },
-    {
-        id: 'marketing',
-        label: 'Growth Marketing',
-        tag: 'Performance',
-        title: 'Performance funnels engineered for revenue.',
-        description:
-            'Meta and Google Ads structured for predictable acquisition, organic SEO that compounds over years, and social content that builds genuine community. Less vanity reporting, more revenue you can trace back to the rupee.',
-        services: ['Meta Ads', 'Google Ads', 'SEO', 'SMM'],
-        image:
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
-        ctaHref: '/services/meta-ads',
     },
 ];
 
@@ -97,8 +101,8 @@ export default function GroupedServices() {
                     <span className="tag">Our Services</span>
                     <h2 className={styles.title}>What we actually do</h2>
                     <p className={styles.description}>
-                        Three disciplines, twelve services, one accountable team. Here&apos;s
-                        the full breakdown of what Unntangle ships across every engagement.
+                        AI implementation first, backed by the websites, apps and
+                        custom software we have always built — all from one accountable team.
                     </p>
                 </div>
 

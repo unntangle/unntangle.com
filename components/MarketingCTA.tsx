@@ -24,9 +24,10 @@ import styles from './MarketingCTA.module.css';
  */
 
 const pillars = [
-    'AI Agents & Automation',
-    'Enterprise Technology',
-    'AI-Powered Growth',
+    'AI Implementation & Deployment',
+    'Websites & Web Apps',
+    'Mobile Apps',
+    'Custom Software & ERP',
 ];
 
 export default function MarketingCTA() {
@@ -76,8 +77,8 @@ export default function MarketingCTA() {
                             />
                         </div>
                         <h2 className={styles.title}>
-                            AI that works inside{' '}
-                            <span className={styles.gradientText}>your business.</span>
+                            Let&apos;s talk about{' '}
+                            <span className={styles.gradientText}>what you need built.</span>
                         </h2>
 
                         <div className={styles.pillars}>
@@ -97,10 +98,9 @@ export default function MarketingCTA() {
 
                     <div className={styles.rightSide}>
                         <p className={styles.description}>
-                            Whether you&apos;re ready to automate a specific workflow or want to
-                            understand where AI can have the most impact — we scope the assessment,
-                            prioritise the highest-value workflows and deploy your first AI agent in
-                            weeks, not months.
+                            Bring us a workflow you want AI to take on, or a website, app or
+                            system you need built. We&apos;ll scope it with you, tell you honestly
+                            what it involves, and propose the right way to deliver it.
                         </p>
                         <div className={styles.buttonWrapper}>
                             <Link href="/contact" className={styles.primaryBtn}>
@@ -109,7 +109,7 @@ export default function MarketingCTA() {
                                 <div className={styles.btnGlow} />
                             </Link>
                             <Link href="/contact" className={styles.secondaryBtn}>
-                                Book a discovery call
+                                Discuss a software project
                             </Link>
                         </div>
                     </div>

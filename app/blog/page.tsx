@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import BlogGrid from "@/components/BlogGrid";
-import { blogsData } from "@/data/blogs";
+import { publishedBlogs as blogsData } from "@/data/blogs";
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -11,15 +11,15 @@ const SITE_URL =
 
 export const metadata: Metadata = {
     // Bare page name; template appends " | Unntangle Technologies". Renders as:
-    // "Insights | Unntangle Technologies"
-    title: "Insights",
+    // "Knowledge Hub | Unntangle Technologies"
+    title: "Knowledge Hub",
     description:
-        "Deep-dive perspectives from the engineers, designers, and growth strategists shaping how modern brands ship products, scale platforms, and capture demand.",
+        "Practical perspectives from the Unntangle team on AI implementation, automation, websites, apps and custom software.",
     alternates: { canonical: "/blog" },
     openGraph: {
-        title: "Insights | Unntangle Technologies",
+        title: "Knowledge Hub | Unntangle Technologies",
         description:
-            "Deep-dive perspectives on Digital, AI, Cloud, design, and growth marketing.",
+            "Practical perspectives on AI implementation, automation, websites, apps and custom software.",
         url: `${SITE_URL}/blog`,
         type: "website",
         images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
                 url: "/images/latest_blog.png",
                 width: 1200,
                 height: 630,
-                alt: "Unntangle Insights",
+                alt: "Unntangle Knowledge Hub",
             },
         ],
     },
@@ -40,9 +40,9 @@ const blogJsonLd = {
     "@type": "Blog",
     "@id": `${SITE_URL}/blog#blog`,
     url: `${SITE_URL}/blog`,
-    name: "Unntangle Insights",
+    name: "Unntangle Knowledge Hub",
     description:
-        "Deep-dive perspectives on Digital, AI, Cloud, design, and growth marketing.",
+        "Practical perspectives on AI implementation, automation, websites, apps and custom software.",
     publisher: { "@id": `${SITE_URL}/#organization` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
     blogPost: blogsData.map((b) => ({
@@ -60,7 +60,7 @@ const blogJsonLd = {
             {
                 "@type": "ListItem",
                 position: 2,
-                name: "Blog",
+                name: "Knowledge Hub",
                 item: `${SITE_URL}/blog`,
             },
         ],
@@ -82,19 +82,19 @@ export default function BlogPage() {
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
                 <PageHero
-                    eyebrow="Unntangled Insights"
+                    eyebrow="Knowledge Hub"
                     titleParts={[
-                        'The frontier of ',
-                        { accent: 'Digital, AI' },
+                        'Practical ideas on ',
+                        { accent: 'AI' },
                         ' & ',
-                        { accent: 'Cloud' },
+                        { accent: 'Software' },
                         '.',
                     ]}
-                    description="Deep-dive perspectives from the engineers, designers, and growth strategists shaping how modern brands ship products, scale platforms, and capture demand."
+                    description="Perspectives from our engineers and designers on putting AI to work inside businesses, and building the websites, apps and systems they run on."
                     primaryCta={{ label: 'Read latest articles', href: '#latest' }}
                     secondaryCta={{ label: 'Talk to our team', href: '/contact' }}
                     image="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=1000"
-                    imageAlt="Unntangle insights"
+                    imageAlt="Unntangle Knowledge Hub"
                     pills={[
                         { text: 'In an Unntangled world', variant: 'cyan' },
                         { text: 'ideas ship faster', variant: 'dark', icon: true },
