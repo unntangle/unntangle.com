@@ -483,19 +483,23 @@
 }
 
 .glassPanel {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    box-shadow: 0 24px 60px rgba(40, 40, 90, 0.08);
+    background:
+        radial-gradient(55% 60% at 100% 0%, rgba(139, 92, 246, 0.55) 0%, rgba(139, 92, 246, 0) 70%),
+        radial-gradient(50% 55% at 0% 100%, rgba(255, 110, 120, 0.4) 0%, rgba(255, 110, 120, 0) 70%),
+        radial-gradient(40% 45% at 85% 95%, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0) 70%),
+        linear-gradient(145deg, #1a1540 0%, #2a1d60 50%, #3a1a52 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 70px rgba(38, 28, 85, 0.3);
 }
 
 .title {
-    color: #0c0d17;
+    color: #ffffff;
 }
 
 .subtitle {
-    color: #3a3f4b;
+    color: rgba(255, 255, 255, 0.78);
 }
 
 .profileInfo h5 {
@@ -612,4 +616,301 @@
 
 .formAgain:hover {
     background: #f5f6fa;
+}
+
+/* ============================================================
+   "Workflow scan" illustration in the right panel
+   One 6s loop: steps light up in turn -> bars fill -> verdict shows.
+============================================================ */
+.scan {
+    position: relative;
+    margin-top: 24px;
+    padding: 14px 16px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.scanHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* Analysing pill and verdict badge stacked in the same grid cell */
+.scanStatus {
+    display: grid;
+    justify-items: end;
+}
+
+.scanStatus > * {
+    grid-area: 1 / 1;
+}
+
+.scanLabel {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.scanLive {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    animation: scanLiveFade 6s ease-in-out infinite;
+}
+
+@keyframes scanLiveFade {
+    0%, 62%   { opacity: 1; }
+    68%, 92%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+.scanLive::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #34d399;
+    animation: scanDot 1.2s ease-in-out infinite;
+}
+
+@keyframes scanDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.35; transform: scale(0.7); }
+}
+
+/* Steps: slim pills, icon beside label */
+.scanSteps {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.scanStep {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    animation: scanStep 6s ease-in-out infinite;
+}
+
+.scanStep1 { --tint: linear-gradient(135deg, #ff8a5c, #ff5e7e); animation-delay: 0.2s; }
+.scanStep2 { --tint: linear-gradient(135deg, #8b5cf6, #6d4dff); animation-delay: 1s; }
+.scanStep3 { --tint: linear-gradient(135deg, #10b981, #14b8a6); animation-delay: 1.8s; }
+
+@keyframes scanStep {
+    0%, 4%    { background: rgba(255, 255, 255, 0.08); transform: translateY(0); box-shadow: none; }
+    10%, 22%  { background: var(--tint); transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25); }
+    30%, 100% { background: rgba(255, 255, 255, 0.08); transform: translateY(0); box-shadow: none; }
+}
+
+.scanIcon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scanLink {
+    flex: 0 0 14px;
+    height: 2px;
+    margin: 0 2px;
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0 4px, transparent 4px 8px);
+    background-size: 16px 2px;
+    animation: scanFlow 0.9s linear infinite;
+}
+
+@keyframes scanFlow {
+    to { background-position: 16px 0; }
+}
+
+/* Scorecard bars */
+.scanBars {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.scanRow {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.scanRowLabel {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.scanTrack {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.scanFill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff8a5c 0%, #ff4f9a 50%, #8b5cf6 100%);
+    box-shadow: 0 0 10px rgba(255, 79, 154, 0.45);
+    animation: scanFill 6s ease-in-out infinite;
+}
+
+@keyframes scanFill {
+    0%, 38%   { width: 0; }
+    58%, 92%  { width: var(--w); }
+    100%      { width: 0; }
+}
+
+/* Verdict */
+.scanBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff8a5c, #ff4f9a 55%, #8b5cf6);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(255, 79, 154, 0.35);
+    opacity: 0;
+    animation: scanBadge 6s ease-in-out infinite;
+}
+
+@keyframes scanBadge {
+    0%, 62%   { opacity: 0; transform: scale(0.92); }
+    70%, 92%  { opacity: 1; transform: scale(1); }
+    100%      { opacity: 0; transform: scale(0.92); }
+}
+
+.contactDetails:empty {
+    display: none;
+}
+
+/* ---------- Cartoon robot mascot peeking over the scan card ---------- */
+.mascot {
+    position: absolute;
+    top: -60px;
+    right: 28px;
+    width: 96px;
+    height: 66px;
+    overflow: visible;
+    pointer-events: none;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+    animation: mBob 3s ease-in-out infinite;
+}
+
+@keyframes mBob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-2px); }
+}
+
+/* Eyes follow the scan: left (step 1) -> centre -> right (step 3) -> down (bars) */
+.mEyes {
+    animation: mLook 6s ease-in-out infinite;
+}
+
+@keyframes mLook {
+    0%, 6%    { transform: translate(-3px, 0); }
+    18%, 24%  { transform: translate(0, 0); }
+    32%, 40%  { transform: translate(3px, 0); }
+    50%, 62%  { transform: translate(0, 2px); }
+    70%, 92%  { transform: translate(0, 0); }
+    100%      { transform: translate(-3px, 0); }
+}
+
+.mBlink {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mBlink 4s ease-in-out infinite;
+}
+
+@keyframes mBlink {
+    0%, 44%, 49%, 100% { transform: scaleY(1); }
+    46.5%              { transform: scaleY(0.1); }
+}
+
+.mAntenna {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mAntenna 1.4s ease-in-out infinite;
+}
+
+@keyframes mAntenna {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.35); opacity: 0.6; }
+}
+
+.mWave {
+    transform-box: view-box;
+    transform-origin: 78.5px 46px;
+    animation: mWave 1.6s ease-in-out infinite;
+}
+
+@keyframes mWave {
+    0%, 100% { transform: rotate(-12deg); }
+    50%      { transform: rotate(18deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mascot,
+    .mEyes,
+    .mBlink,
+    .mAntenna,
+    .mWave {
+        animation: none;
+    }
+
+    .scanLive::before,
+    .scanStep,
+    .scanLink {
+        animation: none;
+    }
+
+    .scanLive {
+        animation: none;
+        opacity: 0;
+    }
+
+    .scanFill {
+        animation: none;
+        width: var(--w);
+    }
+
+    .scanBadge {
+        animation: none;
+        opacity: 1;
+    }
 }

@@ -1,0 +1,190 @@
+/* Subtle "document to structured data" animation (WorkflowScene.tsx).
+   Mostly white at low opacity on the dark panel, one soft lilac accent.
+   One 5s loop:
+     5-55%   scan line sweeps the document, each line brightens as it passes
+     22-60%  extracted field values draw in, one after another
+     62-90%  "Quote draft ready" confirmation fades in
+     90-100% reset */
+
+.scene {
+    position: relative;
+    margin-top: 24px;
+    padding: 14px 14px 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    fill: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Document ---------- */
+.doc {
+    fill: rgba(255, 255, 255, 0.04);
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-width: 1;
+}
+
+.docHead {
+    fill: rgba(255, 255, 255, 0.45);
+}
+
+.docLine {
+    fill: #ffffff;
+    opacity: 0.18;
+    animation: docLine 5s ease-out infinite;
+}
+
+@keyframes docLine {
+    0%        { opacity: 0.18; }
+    3%        { opacity: 0.6; }
+    14%, 80%  { opacity: 0.32; }
+    100%      { opacity: 0.18; }
+}
+
+.scan {
+    opacity: 0;
+    animation: scan 5s ease-in-out infinite;
+}
+
+@keyframes scan {
+    0%        { opacity: 0; transform: translateY(0); }
+    5%        { opacity: 1; transform: translateY(0); }
+    55%       { opacity: 1; transform: translateY(96px); }
+    62%, 100% { opacity: 0; transform: translateY(96px); }
+}
+
+.scanBand {
+    fill: rgba(196, 181, 253, 0.1);
+}
+
+.scanLine {
+    fill: rgba(196, 181, 253, 0.85);
+}
+
+/* ---------- Connector ---------- */
+.dots {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.5;
+    stroke-dasharray: 2 5;
+    stroke-linecap: round;
+}
+
+.traveller {
+    fill: rgba(196, 181, 253, 0.9);
+    animation: travel 1.6s ease-in-out infinite;
+}
+
+@keyframes travel {
+    0%   { opacity: 0; transform: translateX(0); }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(66px); }
+}
+
+/* ---------- Extracted fields ---------- */
+.panel {
+    fill: rgba(255, 255, 255, 0.04);
+    stroke: rgba(255, 255, 255, 0.14);
+    stroke-width: 1;
+}
+
+.fieldLabel {
+    font-size: 11.5px;
+    fill: rgba(255, 255, 255, 0.6);
+}
+
+.fieldTrack {
+    fill: rgba(255, 255, 255, 0.07);
+}
+
+.fieldValue {
+    fill: rgba(255, 255, 255, 0.7);
+    transform-box: fill-box;
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: fieldValue 5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes fieldValue {
+    0%, 22%   { transform: scaleX(0); }
+    32%, 88%  { transform: scaleX(1); }
+    96%, 100% { transform: scaleX(0); }
+}
+
+/* ---------- Confirmation ---------- */
+.done {
+    opacity: 0;
+    animation: done 5s ease-in-out infinite;
+}
+
+@keyframes done {
+    0%, 62%   { opacity: 0; transform: translateY(4px); }
+    70%, 90%  { opacity: 1; transform: translateY(0); }
+    97%, 100% { opacity: 0; transform: translateY(4px); }
+}
+
+.divider {
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 1;
+}
+
+.checkRing {
+    fill: none;
+    stroke: rgba(196, 181, 253, 0.9);
+    stroke-width: 1.4;
+}
+
+.checkMark {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.doneText {
+    font-size: 12px;
+    font-weight: 600;
+    fill: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Reduced motion: still, completed frame ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .docLine,
+    .scan,
+    .traveller,
+    .fieldValue,
+    .done {
+        animation: none;
+    }
+
+    .docLine {
+        opacity: 0.32;
+    }
+
+    .scan,
+    .traveller {
+        opacity: 0;
+    }
+
+    .fieldValue {
+        transform: scaleX(1);
+    }
+
+    .done {
+        opacity: 1;
+    }
+}

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Globe, Upload, CheckCircle2, Mail, Phone } from 'lucide-react';
 import styles from './ContactHero.module.css';
+import WorkflowScene from './WorkflowScene';
 import { useState, type FormEvent } from 'react';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
@@ -224,6 +225,9 @@ export default function ContactHero() {
                                 to you to talk it through and tell you honestly whether AI can automate or
                                 augment it.
                             </p>
+
+                            {/* Cartoon scene: inbox -> AI prepares -> you approve (WorkflowScene.tsx) */}
+                            <WorkflowScene />
 
                             <div className={styles.contactDetails}>
                                 {/* HIDDEN-CONTACT: email + phone (hidden at the client's request)
