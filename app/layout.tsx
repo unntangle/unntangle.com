@@ -133,8 +133,6 @@ export const metadata: Metadata = {
         description:
             "We deploy AI into your existing systems, and build the websites, apps and custom software your business runs on.",
         images: ["/images/hero.png"],
-        creator: "@unntangle",
-        site: "@unntangle",
     },
     icons: {
         // Use the brand-specific WebP icon as the primary favicon.
@@ -195,15 +193,14 @@ const organizationJsonLd = {
         addressCountry: "IN",
     },
     sameAs: [
-        "https://www.linkedin.com/company/unntangle",
-        "https://www.instagram.com/unntangle",
-        "https://x.com/unntangle",
+        "https://www.linkedin.com/company/unntangle/",
+        "https://www.instagram.com/unntangle/",
+        "https://www.facebook.com/unntangle",
     ],
     contactPoint: [
         {
             "@type": "ContactPoint",
             contactType: "customer support",
-            email: "gokul@unntangle.com",
             url: `${SITE_URL}/contact`,
             availableLanguage: ["English"],
         },

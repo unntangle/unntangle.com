@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Twitter, Linkedin, ArrowUp } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, ArrowUp } from 'lucide-react';
 import styles from './Footer.module.css';
 
 /**
@@ -19,8 +19,8 @@ import styles from './Footer.module.css';
  *     filter by service category, which is the correct surface.
  *   - Legal links now point at real /privacy, /terms, and
  *     /cookie-preferences pages instead of `#`.
- *   - Social links remain `#` because the company doesn't have
- *     official handles yet — wire them up when accounts exist.
+ *   - Social links point at the official LinkedIn, Instagram and
+ *     Facebook pages and open in a new tab. Twitter/X was removed.
  */
 
 export default function Footer() {
@@ -116,10 +116,9 @@ export default function Footer() {
                         <div className={styles.column}>
                             <h4>Follow us</h4>
                             <div className={styles.socialCol}>
-                                <Link href="#" className={styles.socialLink}><Linkedin size={18} /> <span>LinkedIn</span></Link>
-                                <Link href="#" className={styles.socialLink}><Instagram size={18} /> <span>Instagram</span></Link>
-                                <Link href="#" className={styles.socialLink}><Facebook size={18} /> <span>Facebook</span></Link>
-                                <Link href="#" className={styles.socialLink}><Twitter size={18} /> <span>Twitter</span></Link>
+                                <Link href="https://www.linkedin.com/company/unntangle/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}><Linkedin size={18} /> <span>LinkedIn</span></Link>
+                                <Link href="https://www.instagram.com/unntangle/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}><Instagram size={18} /> <span>Instagram</span></Link>
+                                <Link href="https://www.facebook.com/unntangle" target="_blank" rel="noopener noreferrer" className={styles.socialLink}><Facebook size={18} /> <span>Facebook</span></Link>
                             </div>
                         </div>
                     </div>
