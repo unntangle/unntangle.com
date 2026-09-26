@@ -56,10 +56,12 @@ const sections: LegalSection[] = [
                     agree, please don&apos;t use the Site.
                 </p>
                 <p>
-                    These Terms apply to the marketing website only. If you sign
-                    up for one of our SaaS products (uVOIZ, uDYLR, uSCRIBR), or
-                    purchase uSYNQ smart-living hardware, separate product or
-                    purchase terms will apply on top of these.
+                    These Terms apply to the website only. Assessments and
+                    delivery projects (AI implementation, websites, apps and
+                    custom software) are governed by the separate agreement or
+                    statement of work for that engagement. Our AI products
+                    (uVOIZ, and uDYLR and uSCRIBR when available) have their own
+                    product terms, which apply on top of these.
                 </p>
             </>
         ),
@@ -70,10 +72,11 @@ const sections: LegalSection[] = [
         body: (
             <>
                 <p>
-                    Unntangle Technologies is a registered company in Chennai, India. We
-                    operate as a full-stack technology and digital company
-                    delivering services in technology, creative design, growth
-                    marketing, and smart-living hardware.
+                    Unntangle Technologies is a registered company in Chennai, India.
+                    We are an AI implementation and deployment company: we help
+                    businesses identify repetitive workflows and deploy AI into
+                    their existing systems, and we build websites, apps and custom
+                    software. We also develop our own AI products.
                 </p>
                 <p>
                     Throughout these Terms, &quot;we&quot;, &quot;us&quot;, and
@@ -91,11 +94,12 @@ const sections: LegalSection[] = [
                 <p>You may use the Site to:</p>
                 <ul>
                     <li>Read content about our services and products</li>
-                    <li>Submit project enquiries or contact us</li>
                     <li>
-                        Click through to our SaaS products or uSYNQ brand pages
+                        Request an AI Workflow Assessment, submit a project
+                        enquiry, or contact us
                     </li>
-                    <li>Read our blog and other publicly-available content</li>
+                    <li>Click through to our AI products</li>
+                    <li>Read articles in our Knowledge Hub</li>
                 </ul>
 
                 <p>You agree not to:</p>
@@ -130,6 +134,67 @@ const sections: LegalSection[] = [
         ),
     },
     {
+        id: 'website-content',
+        heading: 'Website Content Is General Information',
+        body: (
+            <>
+                <p>
+                    The workflow examples, illustrations and articles on this Site
+                    describe the kinds of work we do. They are general information,
+                    not a promise of specific results, timelines or prices for your
+                    business, and not legal, financial or other professional advice.
+                </p>
+                <p>
+                    Examples marked as illustrative are exactly that — they are not
+                    client case studies. What a project will deliver, how long it
+                    will take and what it will cost are agreed in writing for each
+                    engagement.
+                </p>
+            </>
+        ),
+    },
+    {
+        id: 'submissions',
+        heading: 'Information You Submit',
+        body: (
+            <>
+                <p>
+                    When you submit a form or attach a document on this Site, you
+                    confirm that the information is accurate and that you have the
+                    right to share it with us.
+                </p>
+                <p>
+                    Please don&apos;t submit confidential or sensitive personal
+                    data through the website. If an assessment or project needs
+                    access to sensitive material, we&apos;ll agree how it is shared
+                    and protected before you send it. How we handle what you send
+                    us is described in our{' '}
+                    <a href="/privacy">Privacy Policy</a>.
+                </p>
+            </>
+        ),
+    },
+    {
+        id: 'ai-products',
+        heading: 'AI Products and Beta Features',
+        body: (
+            <>
+                <p>
+                    Some of our AI products are in beta or still in development and
+                    are labelled as such on the Site. Beta products may change,
+                    have limited availability, or be withdrawn, and their use is
+                    governed by the product&apos;s own terms.
+                </p>
+                <p>
+                    AI systems can make mistakes. Where our products or the
+                    solutions we build produce outputs that affect customers,
+                    money or contracts, they are designed to be reviewed by a
+                    person before being relied on.
+                </p>
+            </>
+        ),
+    },
+    {
         id: 'intellectual-property',
         heading: 'Intellectual Property',
         body: (
@@ -142,17 +207,16 @@ const sections: LegalSection[] = [
                 </p>
                 <p>
                     The names <strong>Unntangle</strong>, <strong>uVOIZ</strong>,{' '}
-                    <strong>uDYLR</strong>, <strong>uSCRIBR</strong>, and{' '}
-                    <strong>uSYNQ</strong>, along with their associated logos
-                    and wordmarks, are trademarks of Unntangle. You may not use
-                    them without our written permission.
+                    <strong>uDYLR</strong> and <strong>uSCRIBR</strong>, along
+                    with their associated logos and wordmarks, are trademarks of
+                    Unntangle. You may not use them without our written permission.
                 </p>
                 <p>
                     You may view, share, and quote our publicly-published
-                    content (blog posts, case studies once available) for
-                    personal and editorial purposes, with attribution. You may
-                    not republish entire articles, copy our designs, or use our
-                    brand assets in your own marketing without permission.
+                    content (such as Knowledge Hub articles) for personal and
+                    editorial purposes, with attribution. You may not republish
+                    entire articles, copy our designs, or use our brand assets in
+                    your own marketing without permission.
                 </p>
             </>
         ),
@@ -221,8 +285,8 @@ const sections: LegalSection[] = [
                 </p>
                 <p>
                     Our total aggregate liability for any claim arising from your
-                    use of the Site (excluding our SaaS products and hardware
-                    purchases, which have their own contracts) is limited to
+                    use of the Site (excluding our AI products and client
+                    engagements, which have their own contracts) is limited to
                     <strong> ₹10,000</strong> or the amount you paid us in the
                     twelve months before the claim, whichever is greater.
                 </p>
@@ -321,7 +385,7 @@ export default function TermsPage() {
                 <LegalPage
                     eyebrow="Legal"
                     title="Site Terms"
-                    lastUpdated="2026-05-10"
+                    lastUpdated="2026-09-26"
                     intro={
                         <p>
                             These terms govern your use of unntangle.com.

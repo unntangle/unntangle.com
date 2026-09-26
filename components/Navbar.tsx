@@ -32,7 +32,7 @@ const serviceCategories = [
       { name: "AI Workflow Assessment", description: "Find where AI can create measurable value before anything is built.", path: "/services/ai-workflow-assessment" },
       { name: "AI Agents & Workflow Automation", description: "AI that handles RFQs, invoices, follow-ups, reports and routine queries — with human approval.", path: "/services/ai-agents" },
       { name: "AI & System Integration", description: "Connect AI to your ERP, CRM, email, WhatsApp, documents and databases.", path: "/services/ai-integration" },
-      { name: "AI Workflow Examples", description: "Sales, finance, procurement, operations, customer service and management reporting.", path: "/#ai-solutions" },
+      { name: "AI Workflow Examples", description: "Sales, finance, procurement, operations, customer service and management reporting.", path: "/ai-workflow-examples" },
     ]
   },
   {
@@ -108,7 +108,7 @@ const featuredBrand = {
   // across from here.
   preview: "/uBIQ/uBIQ-banner.png",
   previewAlt: "uBIQ smart home automation",
-  tagline: "Smart Space Automation",
+  tagline: "Smart Home Automation",
   description:
     "Intelligent automation for homes, villas, offices and hotels — one layer that senses, learns and adapts the space around the people in it.",
   stats: [
@@ -211,6 +211,8 @@ export default function Navbar() {
               </Link>
             </div>
 
+            <Link href="/about" onMouseEnter={() => setActiveDropdown(null)}>About</Link>
+
             <div
               className={styles.dropdownTrigger}
               onMouseEnter={() => setActiveDropdown('products')}
@@ -219,7 +221,7 @@ export default function Navbar() {
                   home-page AI Products section; the mega menu on hover
                   still surfaces each product (uVOIZ, uDYLR, uSCRIBR). */}
               <Link href="/#ai-products" className={styles.linkWithIcon}>
-                AI Products <ChevronDown size={14} />
+                Products <ChevronDown size={14} />
               </Link>
             </div>
 
@@ -238,7 +240,6 @@ export default function Navbar() {
             {/* "How We Deploy" and "Industries" were removed from the top nav;
                 both sections are still on the home page and linked in the footer. */}
             <Link href="/blog" onMouseEnter={() => setActiveDropdown(null)}>Knowledge Hub</Link>
-            <Link href="/about" onMouseEnter={() => setActiveDropdown(null)}>About</Link>
             <Link href="/contact" className={styles.ctaBadge}>Book an Assessment</Link>
           </div>
         </div>

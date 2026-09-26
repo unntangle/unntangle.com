@@ -3246,6 +3246,222 @@ a.chip:hover {
 }
 
 /* ============================================================
+   CONNECTED SYSTEMS HUB (under the home hero)
+============================================================ */
+.sysSection {
+    display: block;
+    padding: 72px 0 80px;
+    background: #ffffff;
+}
+
+.sysSplit {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.sysTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(26px, 2.8vw, 36px);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: #0c0d17;
+    margin: 0 0 16px;
+}
+
+.sysNote {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #5b5f6b;
+    max-width: 440px;
+    margin-bottom: 22px;
+}
+
+.sysHubWrap {
+    position: relative;
+    height: 420px;
+    border-radius: 32px;
+    background:
+        radial-gradient(45% 50% at 50% 50%, rgba(31, 107, 255, 0.08) 0%, rgba(31, 107, 255, 0) 70%),
+        #f7f8fb;
+}
+
+.sysLines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.sysLine {
+    stroke: #c3c8d4;
+    stroke-width: 1.5;
+    stroke-dasharray: 3 6;
+    stroke-linecap: round;
+    animation: sysFlow 1.4s linear infinite;
+}
+
+@keyframes sysFlow {
+    to { stroke-dashoffset: -18; }
+}
+
+.sysHub {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 18px 44px rgba(31, 60, 140, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.sysHubRing {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(31, 107, 255, 0.25);
+    animation: sysPulse 2.6s ease-out infinite;
+}
+
+@keyframes sysPulse {
+    0%   { transform: scale(0.92); opacity: 0.9; }
+    100% { transform: scale(1.25); opacity: 0; }
+}
+
+.sysHubIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1f6bff, #6b4dff);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sysHubLabel {
+    font-family: var(--font-title), sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0c0d17;
+}
+
+.sysNodes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sysNode {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 14px 7px 7px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid #e8eaf0;
+    box-shadow: 0 8px 22px rgba(40, 40, 90, 0.07);
+    font-size: 14px;
+    font-weight: 600;
+    color: #0c0d17;
+    white-space: nowrap;
+    z-index: 3;
+    animation: sysFloat 4s ease-in-out infinite;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.sysNode:hover {
+    border-color: #d4d8e2;
+    box-shadow: 0 12px 28px rgba(40, 40, 90, 0.12);
+}
+
+@keyframes sysFloat {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50%      { transform: translate(-50%, calc(-50% - 5px)); }
+}
+
+.sysNodeIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #3a3f4b;
+}
+
+.sysT1 { background: #ffe4d9; }
+.sysT2 { background: #e9e1ff; }
+.sysT3 { background: #dcebff; }
+.sysT4 { background: #d9f4e6; }
+.sysT5 { background: #fff3c9; }
+.sysT6 { background: #ffe0ea; }
+.sysT7 { background: #d6f3f7; }
+.sysT8 { background: #eef0f5; }
+
+@media (max-width: 1024px) {
+    .sysSplit {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sysHubWrap {
+        height: auto;
+        padding: 24px 16px;
+    }
+
+    .sysLines,
+    .sysHubRing {
+        display: none;
+    }
+
+    .sysHub {
+        position: static;
+        transform: none;
+        margin: 0 auto 20px;
+        width: 112px;
+        height: 112px;
+    }
+
+    .sysNodes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .sysNode {
+        position: static;
+        transform: none;
+        animation: none;
+        white-space: normal;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sysLine,
+    .sysHubRing,
+    .sysNode {
+        animation: none;
+    }
+}
+
+/* ============================================================
    RESPONSIVE
 ============================================================ */
 

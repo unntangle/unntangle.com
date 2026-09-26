@@ -17,37 +17,37 @@ const steps: { label: string; actor: Actor; headline: string; body: string }[] =
     {
         label: 'RFQ received',
         actor: 'trigger',
-        headline: 'A customer emails an RFQ.',
+        headline: 'A Customer Emails an RFQ.',
         body: 'The request arrives the way it always does \u2014 by email, with a PDF attached. Nothing changes for the customer.',
     },
     {
         label: 'AI reads the RFQ',
         actor: 'ai',
-        headline: 'AI reads and understands the request.',
+        headline: 'AI Reads and Understands the Request.',
         body: 'Products, quantities, delivery dates and special terms are pulled out of the document \u2014 no re-typing.',
     },
     {
         label: 'Checks product & pricing data',
         actor: 'ai',
-        headline: 'It checks your own data.',
+        headline: 'It Checks Your Own Data.',
         body: 'Product codes, stock and pricing come from your ERP, price lists and past quotations \u2014 not from guesswork.',
     },
     {
         label: 'Drafts the quotation',
         actor: 'ai',
-        headline: 'A quotation draft is prepared.',
+        headline: 'A Quotation Draft Is Prepared.',
         body: 'In your format, with your terms, ready for someone to review.',
     },
     {
         label: 'Human approval',
         actor: 'human',
-        headline: 'Your team approves.',
+        headline: 'Your Team Approves.',
         body: 'The right person reviews, edits or rejects the draft. Nothing critical goes out without a person saying yes.',
     },
     {
         label: 'Sent & CRM updated',
         actor: 'ai',
-        headline: 'Sent, logged and tracked.',
+        headline: 'Sent, Logged and Tracked.',
         body: 'The quotation is sent, the CRM is updated, and a follow-up is scheduled \u2014 automatically, once approved.',
     },
 ];
@@ -75,7 +75,7 @@ export default function HomeWorkflowDemo() {
             <div className={styles.container}>
                 <div className={`${styles.center} ${styles.sectionHead}`}>
                     <span className={styles.eyebrow}>See it in action</span>
-                    <h2 className={styles.h2}>How repetitive work becomes an AI workflow</h2>
+                    <h2 className={styles.h2}>How Repetitive Work Becomes an AI Workflow</h2>
                     <p className={styles.lead}>
                         One example, step by step: a request for quotation that used to pass through
                         several people and systems, now prepared by AI and approved by your team.

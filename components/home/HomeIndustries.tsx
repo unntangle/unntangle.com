@@ -85,7 +85,7 @@ export default function HomeIndustries() {
                 <div className={styles.industryHead}>
                     <div>
                         <span className={styles.eyebrow}>Industries</span>
-                        <h2 className={styles.h2}>Built for businesses with complex operations</h2>
+                        <h2 className={styles.h2}>Built for Businesses With Complex Operations</h2>
                     </div>
                     <p className={styles.lead}>
                         Mid-market and enterprise B2B organisations where orders, documents,

@@ -26,7 +26,7 @@ import styles from './AboutStatsHero.module.css';
 const topStats = [
     { value: '3', label: 'Service Pillars: AI, Websites & Apps, Custom Software' },
     { value: '3', label: 'AI Products (1 in Beta, 2 in Development)' },
-    { value: '2023', label: 'Founded in Chennai, India' },
+    { value: '2020', label: 'Founded in Chennai, India' },
     { value: '100%', label: 'In-House Engineering Team' },
 ];
 

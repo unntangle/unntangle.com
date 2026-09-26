@@ -255,7 +255,7 @@ const examples: {
     {
         tab: 'Quotations',
         tag: 'Manufacturing · Sales',
-        title: 'RFQs turned into quotation drafts, ready for approval',
+        title: 'RFQs Turned Into Quotation Drafts, Ready for Approval',
         before: 'Each RFQ read, priced and typed up by hand from several systems.',
         after: 'AI reads the RFQ, checks pricing and drafts the quote for your team to approve.',
         tone: 'sceneQuotes',
@@ -264,7 +264,7 @@ const examples: {
     {
         tab: 'Collections',
         tag: 'Finance',
-        title: 'Outstanding payments followed up without chasing spreadsheets',
+        title: 'Outstanding Payments Followed Up Without Chasing Spreadsheets',
         before: 'Ledgers checked by hand and reminder emails written one by one.',
         after: 'AI flags overdue invoices and prepares reminders; your team approves the batch.',
         tone: 'sceneCollect',
@@ -273,7 +273,7 @@ const examples: {
     {
         tab: 'Procurement',
         tag: 'Procurement',
-        title: 'Vendor quotes compared line by line, automatically',
+        title: 'Vendor Quotes Compared Line by Line, Automatically',
         before: 'Every supplier PDF opened separately and prices typed into Excel.',
         after: 'AI extracts line items into one comparison and drafts a recommendation.',
         tone: 'sceneProcure',
@@ -282,7 +282,7 @@ const examples: {
     {
         tab: 'Customer queries',
         tag: 'Customer Service',
-        title: 'Routine customer questions answered from your own data',
+        title: 'Routine Customer Questions Answered From Your Own Data',
         before: 'Staff log into the ERP to look up every order status request.',
         after: 'AI answers routine questions from your systems and escalates the rest.',
         tone: 'sceneQueries',
@@ -290,7 +290,13 @@ const examples: {
     },
 ];
 
-export default function HomeExamples() {
+export default function HomeExamples({
+    learnMoreHref = '/ai-workflow-examples',
+}: {
+    /** Where each slide's "Learn more" goes. Defaults to the AI Workflow
+     *  Examples page; that page passes the AI Agents service page. */
+    learnMoreHref?: string;
+}) {
     const [index, setIndex] = useState(0);
     const ex = examples[index];
     const go = (d: number) => setIndex((i) => (i + d + examples.length) % examples.length);
@@ -300,7 +306,7 @@ export default function HomeExamples() {
             <div className={styles.container}>
                 <div className={`${styles.center} ${styles.sectionHead}`}>
                     <span className={styles.eyebrow}>Workflow Examples</span>
-                    <h2 className={styles.h2}>What AI deployment looks like in practice</h2>
+                    <h2 className={styles.h2}>What AI Deployment Looks Like in Practice</h2>
                 </div>
 
                 <article className={styles.slide} key={ex.tab}>
@@ -317,7 +323,7 @@ export default function HomeExamples() {
                                 <p>{ex.after}</p>
                             </div>
                         </div>
-                        <Link href="/services/ai-agents" className={`${styles.textLink} ${styles.slideLink}`}>
+                        <Link href={learnMoreHref} className={`${styles.textLink} ${styles.slideLink}`}>
                             Learn more <ArrowRight size={14} />
                         </Link>
                     </div>

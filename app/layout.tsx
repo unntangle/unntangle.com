@@ -187,7 +187,7 @@ const organizationJsonLd = {
     image: `${SITE_URL}/images/hero.png`,
     description:
         "Unntangle is an AI implementation and deployment company. It identifies repetitive business workflows, deploys AI into existing ERP, CRM, email and business systems, and builds websites, apps and custom software.",
-    foundingDate: "2023",
+    foundingDate: "2020",
     address: {
         "@type": "PostalAddress",
         addressLocality: "Chennai",

@@ -60,7 +60,7 @@ export default function HomePillars() {
             <div className={styles.container}>
                 <div className={`${styles.center} ${styles.sectionHead}`}>
                     <span className={styles.eyebrow}>What We Do</span>
-                    <h2 className={styles.h2}>AI, websites, apps and software, from one team</h2>
+                    <h2 className={styles.h2}>AI, Websites, Apps and Software, From One Team</h2>
                     <p className={styles.lead}>
                         The same team that deploys your AI builds the systems it depends on, so
                         everything is designed to work together.

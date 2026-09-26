@@ -59,6 +59,8 @@ export default function Footer() {
                             <Link href="/about">About us</Link>
                             <Link href="/#how-we-deploy">How We Deploy</Link>
                             <Link href="/#industries">Industries</Link>
+                            <Link href="/industries/manufacturing-distribution">Manufacturing &amp; Distribution</Link>
+                            <Link href="/security">Security &amp; Data</Link>
                             {/* HIDDEN-UBIQ: <Link href="/ubiq">uBIQ</Link> */}
                             <Link href="/blog">Knowledge Hub</Link>
                             <Link href="/contact">Contact</Link>
@@ -69,6 +71,7 @@ export default function Footer() {
                             <Link href="/services/ai-workflow-assessment">AI Workflow Assessment</Link>
                             <Link href="/services/ai-agents">AI Agents &amp; Automation</Link>
                             <Link href="/services/ai-integration">AI &amp; System Integration</Link>
+                            <Link href="/ai-workflow-examples">AI Workflow Examples</Link>
                             <Link href="/services/website">Website Development</Link>
                             <Link href="/services/app">App Development</Link>
                             <Link href="/services/erp">Custom Software &amp; ERP</Link>
@@ -85,7 +88,7 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                uBIQ - Smart Space Automation
+                                uBIQ - Smart Home Automation
                             </Link>
                         </div>
 
@@ -134,6 +137,7 @@ export default function Footer() {
                                 <Link href="/privacy">Privacy</Link>
                                 <Link href="/terms">Site Terms</Link>
                                 <Link href="/cookie-preferences">Cookie Preferences</Link>
+                                <Link href="/security">Security &amp; Data</Link>
                             </div>
 
                             <p className={styles.copyright}>

@@ -29,7 +29,7 @@ export default function HomeKnowledgeHub() {
                 <div className={styles.resourceHead}>
                     <div>
                         <span className={styles.eyebrow}>Knowledge Hub</span>
-                        <h2 className={styles.h2}>Practical ideas on AI and software</h2>
+                        <h2 className={styles.h2}>Practical Ideas on AI and Software</h2>
                         <p className={styles.lead}>
                             Perspectives from our engineers and designers on putting AI to work
                             inside businesses, and building the systems they run on.

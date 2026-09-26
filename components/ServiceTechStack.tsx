@@ -94,7 +94,7 @@ export default function ServiceTechStack() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.header}>
                     <span className="tag">Tools &amp; Technologies</span>
-                    <h2>The toolkit behind every engagement</h2>
+                    <h2>The Toolkit Behind Every Engagement</h2>
                     <p>
                         The tools our engineers and designers use to build AI workflows,
                         integrations, websites, apps and custom software.

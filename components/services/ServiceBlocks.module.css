@@ -1,0 +1,522 @@
+/* ============================================================
+   SERVICE BLOCKS — distinct section designs for service pages.
+   Each service page combines a different set of these, in a
+   different order, with its own content (data/serviceLayouts.ts).
+============================================================ */
+
+/* ---------- Shared head ---------- */
+.head {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.headLeft {
+    text-align: left;
+    margin: 0 0 32px;
+}
+
+/* ---------- 1. Timeline (sticky heading + vertical rail) ---------- */
+.timelineWrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 72px;
+    align-items: start;
+}
+
+.timelineHead {
+    position: sticky;
+    top: 120px;
+}
+
+.timeline {
+    position: relative;
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, #d9dcff 0%, #e6e8ee 100%);
+}
+
+.tItem {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    padding-bottom: 30px;
+}
+
+.tItem:last-child {
+    padding-bottom: 0;
+}
+
+.tNum {
+    position: relative;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e3e5eb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title), sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3f4b;
+    box-shadow: 0 6px 16px rgba(40, 40, 90, 0.06);
+}
+
+.tTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin: 9px 0 6px;
+}
+
+.tText {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5b5f6b;
+}
+
+/* ---------- 2. Checklist panel ---------- */
+.checkPanel {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 48px;
+    align-items: center;
+    padding: 56px;
+    border-radius: 32px;
+    background:
+        radial-gradient(60% 80% at 0% 0%, rgba(200, 185, 255, 0.45) 0%, rgba(200, 185, 255, 0) 70%),
+        radial-gradient(60% 80% at 100% 100%, rgba(160, 220, 255, 0.4) 0%, rgba(160, 220, 255, 0) 70%),
+        #f6f5fd;
+}
+
+.checkCard {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 30px 32px;
+    box-shadow: 0 18px 44px rgba(40, 40, 90, 0.08);
+}
+
+.checkGrid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 24px;
+}
+
+.checkGrid li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #0c0d17;
+}
+
+.checkMark {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #eef0f5;
+    color: #3a3f4b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+.aside {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #8a8f9c;
+}
+
+/* ---------- 3. Bento tiles ---------- */
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.tile {
+    border-radius: 24px;
+    padding: 26px 24px;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(40, 40, 90, 0.08);
+}
+
+.tileWide {
+    grid-column: span 2;
+}
+
+.tileIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #3a3f4b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.tileTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin: 22px 0 6px;
+}
+
+.tileText {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #3a3f4b;
+}
+
+.t1 { background: #ffe4d9; }
+.t2 { background: #dcebff; }
+.t3 { background: #d9f4e6; }
+.t4 { background: #e9e1ff; }
+.t5 { background: #ffe0ea; }
+.t6 { background: #fff3c9; }
+.t7 { background: #d6f3f7; }
+.t8 { background: #eef0f5; }
+
+/* ---------- 4. Compare table ---------- */
+.compare {
+    max-width: 980px;
+    margin: 0 auto;
+    border-radius: 28px;
+    background: #ffffff;
+    border: 1px solid #e6e8ee;
+    overflow: hidden;
+}
+
+.compareHead,
+.compareRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.compareHead {
+    background: #f5f6fa;
+}
+
+.compareHead span {
+    padding: 18px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5b5f6b;
+}
+
+.compareHead span + span {
+    color: #1f6bff;
+    border-left: 1px solid #e6e8ee;
+}
+
+.compareRow + .compareRow {
+    border-top: 1px solid #eef0f4;
+}
+
+.compareRow div {
+    padding: 20px 28px;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.compareRow div:first-child {
+    color: #6b7080;
+}
+
+.compareRow div + div {
+    color: #0c0d17;
+    border-left: 1px solid #eef0f4;
+    background: #fbfcff;
+}
+
+/* ---------- 5. Chip groups ---------- */
+.chipGroups {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.chipGroup {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 22px 26px;
+    border-radius: 22px;
+    background: #ffffff;
+    border: 1px solid #e6e8ee;
+}
+
+.chipLabel {
+    font-family: var(--font-title), sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0c0d17;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #f5f6fa;
+    color: #3a3f4b;
+}
+
+/* ---------- 6. Horizontal flow ---------- */
+.flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding: 6px 2px 14px;
+}
+
+.flowStep {
+    flex: 1 1 0;
+    min-width: 170px;
+    display: flex;
+    align-items: stretch;
+}
+
+.flowCard {
+    flex: 1 1 0;
+    min-width: 160px;
+    border-radius: 22px;
+    padding: 22px 20px;
+    background: #ffffff;
+    border: 1px solid #e6e8ee;
+    display: flex;
+    flex-direction: column;
+}
+
+.flowArrow {
+    flex-shrink: 0;
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b4bf;
+}
+
+.actor {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.actorAi     { background: #e6efff; color: #1f4fbf; }
+.actorHuman  { background: #0c0d17; color: #ffffff; }
+.actorSystem { background: #f1f2f5; color: #5b5f6b; }
+
+.flowTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin-bottom: 6px;
+}
+
+.flowText {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #5b5f6b;
+}
+
+/* ---------- 7. Option / tier cards ---------- */
+.tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.tier {
+    position: relative;
+    border-radius: 26px;
+    background: #ffffff;
+    border: 1px solid #e6e8ee;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tier:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(40, 40, 90, 0.08);
+}
+
+.tierBar {
+    height: 8px;
+}
+
+.tierBody {
+    padding: 26px 26px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.tierTag {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #f1f2f5;
+    color: #3a3f4b;
+    margin-bottom: 14px;
+}
+
+.tierName {
+    font-family: var(--font-title), sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin-bottom: 8px;
+}
+
+.tierText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5f6b;
+    margin-bottom: 18px;
+}
+
+.tierPoints {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #eef0f4;
+}
+
+.tierPoints li {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #3a3f4b;
+}
+
+.tierPoints svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #8a8f9c;
+}
+
+.bar1 { background: linear-gradient(90deg, #ffc9b3, #ffb3cf); }
+.bar2 { background: linear-gradient(90deg, #a9c8ff, #c7b6ff); }
+.bar3 { background: linear-gradient(90deg, #a6e8cc, #a9dcf5); }
+.bar4 { background: linear-gradient(90deg, #ffe08a, #c8e8a4); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .timelineWrap,
+    .checkPanel {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .timelineHead {
+        position: static;
+    }
+
+    .checkPanel {
+        padding: 36px;
+    }
+
+    .bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chipGroup {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .flow {
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .flowArrow {
+        width: auto;
+        height: 24px;
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 640px) {
+    .bento,
+    .checkGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .tileWide {
+        grid-column: span 1;
+    }
+
+    .checkPanel {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .compareHead,
+    .compareRow {
+        grid-template-columns: 1fr;
+    }
+
+    .compareHead span + span,
+    .compareRow div + div {
+        border-left: 0;
+        border-top: 1px solid #eef0f4;
+    }
+}

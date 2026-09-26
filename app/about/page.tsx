@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import AboutStatsHero from "@/components/AboutStatsHero";
-import Philosophy from "@/components/Philosophy";
-import OurJourney from "@/components/OurJourney";
-import OwnResponsibilities from "@/components/OwnResponsibilities";
-import GroupedServices from "@/components/GroupedServices";
-import AboutProducts from "@/components/AboutProducts";
-import BeyondWordmark from "@/components/BeyondWordmark";
-import Roadmap from "@/components/Roadmap";
-import Vision from "@/components/Vision";
+// About page redesign (Sep 2026): the body is now components/about/AboutContent.
+// The previous section components (AboutStatsHero, Philosophy, OurJourney,
+// OwnResponsibilities, GroupedServices, AboutProducts, BeyondWordmark,
+// Roadmap, Vision) are left on disk but no longer render here — their
+// content was carried over into AboutContent.
+import AboutContent from "@/components/about/AboutContent";
+import { heroGradientFor } from "@/components/pastelPalette";
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -112,11 +110,11 @@ export default function AboutPage() {
             <Navbar />
             <div style={{ paddingTop: '80px' }}>
                 <PageHero
-                    eyebrow="Who We Are"
+                    eyebrow="About Unntangle"
                     titleParts={[
-                        'We don\'t just build AI.',
+                        'We Don\'t Just Build AI.',
                         ' ',
-                        { accent: 'We put it to work.' },
+                        { accent: 'We Put It to Work.' },
                     ]}
                     description="Unntangle helps businesses turn repetitive work into AI-powered workflows inside the systems they already use — and builds the websites, apps and custom software they run on."
                     primaryCta={{
@@ -128,28 +126,17 @@ export default function AboutPage() {
                         label: 'Explore Our Services',
                         href: '/services',
                     }}
-                    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600"
+                    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200"
                     imageAlt="The Unntangle team collaborating"
-                    imageLayout="diamond-grid"
-                    images={[
-                        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
+                    imageLayout="circle"
+                    pills={[
+                        { text: 'AI Implementation', variant: 'cyan', icon: true },
+                        { text: 'Websites · Apps · Software', variant: 'dark' },
                     ]}
-                    pills={[{ text: 'AI Implementation · Websites · Apps · Software', variant: 'cyan', icon: true }]}
-                    gradient="green-teal"
+                    softBackground={heroGradientFor('about')}
                 />
             </div>
-            <AboutStatsHero />
-            <Philosophy />
-            <OurJourney />
-            <OwnResponsibilities />
-            <GroupedServices />
-            <AboutProducts />
-            <BeyondWordmark />
-            <Roadmap />
-            <Vision />
+            <AboutContent />
             <Footer />
         </main>
     );

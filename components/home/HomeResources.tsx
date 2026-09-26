@@ -146,7 +146,7 @@ export default function HomeResources() {
                 <div className={styles.resourceHead}>
                     <div>
                         <span className={styles.eyebrow}>AI Products</span>
-                        <h2 className={styles.h2}>AI products built by Unntangle</h2>
+                        <h2 className={styles.h2}>AI Products Built by Unntangle</h2>
                         <p className={styles.lead}>
                             Specialised AI products for workflows we see again and again, each
                             labelled with its current stage.

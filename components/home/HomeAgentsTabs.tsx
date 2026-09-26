@@ -60,7 +60,13 @@ const agents = [
     },
 ];
 
-export default function HomeAgentsTabs() {
+export default function HomeAgentsTabs({
+    seeHowHref = '/ai-workflow-examples',
+}: {
+    /** Where the "See how" button goes. Defaults to the AI Workflow
+     *  Examples page; that page passes an in-page anchor instead. */
+    seeHowHref?: string;
+}) {
     const [active, setActive] = useState(0);
     const [paused, setPaused] = useState(false);
     const agent = agents[active];
@@ -81,7 +87,7 @@ export default function HomeAgentsTabs() {
             <div className={styles.container}>
                 <div className={`${styles.center} ${styles.sectionHead}`}>
                     <span className={styles.eyebrow}>AI Solutions</span>
-                    <h2 className={styles.h2}>AI workers for real business work</h2>
+                    <h2 className={styles.h2}>AI Workers for Real Business Work</h2>
                     <p className={styles.lead}>
                         Not chatbots. AI agents that carry out specific tasks inside your
                         departments, and hand the final decision to your team.
@@ -113,7 +119,7 @@ export default function HomeAgentsTabs() {
                                     {isActive && (
                                         <div className={styles.tabDetail}>
                                             <p>{a.summary}</p>
-                                            <Link href="/services/ai-agents" className={`${styles.btn} ${styles.btnDark}`}>
+                                            <Link href={seeHowHref} className={`${styles.btn} ${styles.btnDark}`}>
                                                 <span className={styles.btnIcon}><ArrowRight size={16} /></span>
                                                 See how
                                             </Link>

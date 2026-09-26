@@ -145,7 +145,7 @@ export default function BlogGrid() {
             <div className={`container ${styles.container}`}>
                 <div className={styles.gridHeader} ref={gridRef}>
                     <div>
-                        <h2 className={styles.gridHeading}>Latest articles</h2>
+                        <h2 className={styles.gridHeading}>Latest Articles</h2>
                         <p className={styles.gridSubheading}>
                             Filter by service category to find the playbook you need.
                         </p>

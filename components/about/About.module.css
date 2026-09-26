@@ -1,0 +1,569 @@
+/* ============================================================
+   ABOUT PAGE — section styles
+   Layout follows a corporate "about" rhythm: centred statement,
+   alternating image/text rows, dark numbers band, icon value
+   grid, journey cards, vision quote, gradient CTA. Visual
+   language matches the home page: pastel tones, grey icons,
+   rounded cards, pill buttons.
+============================================================ */
+
+.section {
+    display: block;
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.bgLight {
+    background: #f5f6fa;
+}
+
+.container {
+    width: 90%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.center {
+    text-align: center;
+}
+
+.h2 {
+    font-size: clamp(30px, 3.4vw, 42px);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    color: #0c0d17;
+    margin: 0 0 20px;
+}
+
+/* Brand teal (same as the footer link hover, --primary #00d1ff) */
+.accent {
+    color: var(--primary);
+}
+
+.body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #5b5f6b;
+    max-width: 560px;
+}
+
+.body + .body {
+    margin-top: 14px;
+}
+
+.center .body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 22px;
+}
+
+.center .links {
+    align-items: center;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f6bff;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.link:hover {
+    gap: 9px;
+}
+
+/* ---------- Alternating image / text rows ---------- */
+
+.row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 72px;
+    align-items: center;
+}
+
+.row + .row {
+    margin-top: 110px;
+}
+
+.rowReverse .rowMedia {
+    order: 2;
+}
+
+.rowMedia {
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #eef0f4;
+}
+
+.rowMedia img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.rowMedia:hover img {
+    transform: scale(1.03);
+}
+
+.mediaPill {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 13px;
+    font-weight: 600;
+    color: #0c0d17;
+    box-shadow: 0 10px 24px rgba(12, 13, 23, 0.12);
+}
+
+.checkList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.checkList li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #3a3f4b;
+}
+
+.checkList svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: #7a7f8c;
+}
+
+.productList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.productItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: #f5f6fa;
+}
+
+.productName {
+    font-family: var(--font-title), sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0c0d17;
+}
+
+.productDesc {
+    display: block;
+    font-size: 13px;
+    color: #5b5f6b;
+    margin-top: 2px;
+}
+
+.stage {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #3a3f4b;
+}
+
+.actions {
+    margin-top: 28px;
+}
+
+/* ---------- Dark numbers band ---------- */
+
+.numbers {
+    display: block;
+    padding: 80px 0;
+    background: #0c0d17;
+    color: #ffffff;
+    text-align: center;
+}
+
+.numbersTitle {
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 44px;
+}
+
+.numbersGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.numberValue {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.numberDot {
+    color: var(--primary);
+}
+
+.numberLabel {
+    margin: 12px auto 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 200px;
+}
+
+/* ---------- Values grid ---------- */
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px 40px;
+    margin-top: 56px;
+}
+
+.value {
+    text-align: center;
+}
+
+.valueIcon {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 22px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3a3f4b;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.value:hover .valueIcon {
+    transform: translateY(-6px) rotate(-4deg);
+}
+
+.valueIcon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.tonePeach    { background: linear-gradient(145deg, #ffe7da, #ffd3dd); }
+.toneMint     { background: linear-gradient(145deg, #dcf7ea, #cdeff3); }
+.toneLavender { background: linear-gradient(145deg, #ebe3ff, #dbe4ff); }
+.toneSky      { background: linear-gradient(145deg, #e0edff, #d6f0ff); }
+.toneRose     { background: linear-gradient(145deg, #ffe1ea, #f3dcff); }
+.toneButter   { background: linear-gradient(145deg, #fff3cc, #e8f4d6); }
+
+.valueTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.valueText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5f6b;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* ---------- Journey + road ahead cards ---------- */
+
+.cardGrid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 48px;
+}
+
+.cardGrid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 48px;
+}
+
+.journeyCard {
+    border-radius: 22px;
+    padding: 26px 24px 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journeyCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(40, 40, 90, 0.08);
+}
+
+.journeyYear {
+    font-family: var(--font-title), sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #0c0d17;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.journeyHead {
+    font-family: var(--font-title), sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin-bottom: 8px;
+}
+
+.journeyText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #3a3f4b;
+}
+
+.roadCard {
+    background: #ffffff;
+    border: 1px solid #e6e8ee;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.roadYear {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #f1f2f5;
+    color: #3a3f4b;
+    margin-bottom: 14px;
+}
+
+.roadTitle {
+    font-family: var(--font-title), sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #0c0d17;
+    margin-bottom: 8px;
+}
+
+.roadText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5f6b;
+}
+
+/* ---------- Vision ---------- */
+
+.vision {
+    display: block;
+    padding: 110px 0;
+    background: #f5f6fa;
+    text-align: center;
+}
+
+.visionQuote {
+    font-family: var(--font-title), sans-serif;
+    font-size: clamp(24px, 2.8vw, 36px);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: #0c0d17;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+/* ---------- Gradient CTA ---------- */
+
+.ctaWrap {
+    display: block;
+    padding: 0 16px 80px;
+    background: #ffffff;
+}
+
+.cta {
+    max-width: 1360px;
+    margin: 0 auto;
+    border-radius: 32px;
+    padding: 96px 32px;
+    text-align: center;
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(255, 190, 215, 0.9) 0%, rgba(255, 190, 215, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(150, 200, 255, 0.95) 0%, rgba(150, 200, 255, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(185, 160, 255, 0.9) 0%, rgba(185, 160, 255, 0) 70%),
+        linear-gradient(135deg, #f3e6ff 0%, #e4e8ff 50%, #dcefff 100%);
+}
+
+/* Alternative CTA gradients so each page's closing card differs.
+   The default .cta above is lavender / pink / sky. */
+.ctaPeach {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(255, 185, 150, 0.9) 0%, rgba(255, 185, 150, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(255, 170, 200, 0.85) 0%, rgba(255, 170, 200, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(255, 215, 150, 0.9) 0%, rgba(255, 215, 150, 0) 70%),
+        linear-gradient(135deg, #fff1e8 0%, #ffe9ec 50%, #fff4e0 100%);
+}
+
+.ctaMint {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(130, 225, 190, 0.9) 0%, rgba(130, 225, 190, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(120, 210, 240, 0.85) 0%, rgba(120, 210, 240, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(190, 235, 170, 0.85) 0%, rgba(190, 235, 170, 0) 70%),
+        linear-gradient(135deg, #e9faf2 0%, #e3f5fb 50%, #eef9e6 100%);
+}
+
+.ctaSky {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(140, 190, 255, 0.9) 0%, rgba(140, 190, 255, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(120, 220, 245, 0.85) 0%, rgba(120, 220, 245, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(170, 165, 255, 0.85) 0%, rgba(170, 165, 255, 0) 70%),
+        linear-gradient(135deg, #eaf2ff 0%, #e4f7ff 50%, #ecebff 100%);
+}
+
+.ctaButter {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(255, 220, 120, 0.9) 0%, rgba(255, 220, 120, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(255, 190, 150, 0.8) 0%, rgba(255, 190, 150, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(190, 230, 150, 0.85) 0%, rgba(190, 230, 150, 0) 70%),
+        linear-gradient(135deg, #fffae6 0%, #fff2e6 50%, #f2f9e4 100%);
+}
+
+.ctaRose {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(255, 160, 190, 0.9) 0%, rgba(255, 160, 190, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(215, 170, 255, 0.85) 0%, rgba(215, 170, 255, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(255, 200, 170, 0.85) 0%, rgba(255, 200, 170, 0) 70%),
+        linear-gradient(135deg, #fff0f4 0%, #f6ecff 50%, #fff2ea 100%);
+}
+
+.ctaAqua {
+    background:
+        radial-gradient(55% 70% at 10% 20%, rgba(100, 215, 235, 0.9) 0%, rgba(100, 215, 235, 0) 70%),
+        radial-gradient(55% 70% at 90% 15%, rgba(140, 170, 255, 0.85) 0%, rgba(140, 170, 255, 0) 70%),
+        radial-gradient(60% 70% at 50% 110%, rgba(130, 230, 200, 0.85) 0%, rgba(130, 230, 200, 0) 70%),
+        linear-gradient(135deg, #e6f9fd 0%, #e8eeff 50%, #e6f9f2 100%);
+}
+
+.ctaTitle {
+    font-size: clamp(30px, 3.6vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    color: #0c0d17;
+    margin: 0 0 16px;
+}
+
+.ctaText {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #3a3f4b;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+.ctaActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+    .row {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .rowReverse .rowMedia {
+        order: 0;
+    }
+
+    .row + .row {
+        margin-top: 72px;
+    }
+
+    .numbersGrid,
+    .cardGrid4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values,
+    .cardGrid3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .section,
+    .vision {
+        padding: 72px 0;
+    }
+
+    .values,
+    .cardGrid3,
+    .cardGrid4 {
+        grid-template-columns: 1fr;
+    }
+
+    .numbersGrid {
+        gap: 32px 16px;
+    }
+
+    .cta {
+        padding: 64px 22px;
+        border-radius: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rowMedia img,
+    .valueIcon,
+    .journeyCard {
+        transition: none;
+    }
+}

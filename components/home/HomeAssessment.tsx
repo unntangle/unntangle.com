@@ -25,7 +25,7 @@ export default function HomeAssessment() {
                 <div className={styles.docSplit}>
                     <div>
                         <span className={styles.eyebrow}>AI Workflow Assessment</span>
-                        <h2 className={styles.h2}>Start with your workflow, not with AI.</h2>
+                        <h2 className={styles.h2}>Start With Your Workflow, Not With AI.</h2>
                         <p className={styles.lead}>
                             We don&apos;t begin by selling you a predefined AI product. We first
                             understand how your business works, then agree with your team where AI

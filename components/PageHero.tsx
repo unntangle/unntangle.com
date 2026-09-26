@@ -31,8 +31,15 @@ export interface PageHeroProps {
     /** Optional secondary images for layouts that use multiple sources (collage, diamond-grid). */
     images?: string[];
     pills?: PageHeroPill[];
-    /** Override the default purple→pink gradient. */
-    gradient?: 'purple-pink' | 'blue-cyan' | 'orange-pink' | 'green-teal' | 'crimson-rose';
+    /** Override the default purple→pink gradient. The `soft-*` options are
+     *  subtle pastel gradients that switch the hero to dark text. */
+    gradient?:
+        | 'purple-pink' | 'blue-cyan' | 'orange-pink' | 'green-teal' | 'crimson-rose'
+        | 'soft-sky' | 'soft-peach' | 'soft-lilac' | 'soft-mint'
+        | 'soft-butter' | 'soft-rose' | 'soft-aqua';
+    /** Custom soft (light) background, e.g. from components/pastelPalette.
+     *  Overrides `gradient` and switches the hero to dark text. */
+    softBackground?: string;
     /** Visual layout for the right side.
      *  'circle' = single circular portrait (default)
      *  'stacked-strips' = three horizontal capsule strips with optional CTA pill
@@ -55,6 +62,35 @@ const gradientPresets: Record<NonNullable<PageHeroProps['gradient']>, string> = 
     // drifting orange, so it reads as distinct from 'orange-pink' on the
     // services page — and it's nowhere near uBIQ's purple.
     'crimson-rose': 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 40%, #f43f5e 75%, #fb7185 100%)',
+    // Subtle pastel meshes (light background, dark text — see .heroLight)
+    'soft-sky':
+        'radial-gradient(60% 80% at 92% 8%, rgba(130, 190, 255, 0.75) 0%, rgba(130, 190, 255, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(190, 165, 255, 0.6) 0%, rgba(190, 165, 255, 0) 70%), ' +
+        'linear-gradient(135deg, #eef4ff 0%, #e3edff 50%, #ede7ff 100%)',
+    'soft-peach':
+        'radial-gradient(60% 80% at 92% 8%, rgba(255, 185, 150, 0.8) 0%, rgba(255, 185, 150, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(255, 170, 195, 0.6) 0%, rgba(255, 170, 195, 0) 70%), ' +
+        'linear-gradient(135deg, #fff3ec 0%, #ffe9e5 50%, #fde8f1 100%)',
+    'soft-lilac':
+        'radial-gradient(60% 80% at 92% 8%, rgba(200, 170, 255, 0.8) 0%, rgba(200, 170, 255, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(255, 175, 215, 0.6) 0%, rgba(255, 175, 215, 0) 70%), ' +
+        'linear-gradient(135deg, #f5efff 0%, #efe7ff 50%, #fce9f4 100%)',
+    'soft-mint':
+        'radial-gradient(60% 80% at 92% 8%, rgba(130, 225, 190, 0.75) 0%, rgba(130, 225, 190, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(145, 205, 245, 0.6) 0%, rgba(145, 205, 245, 0) 70%), ' +
+        'linear-gradient(135deg, #ecfaf4 0%, #e3f6ef 50%, #e8f3fc 100%)',
+    'soft-butter':
+        'radial-gradient(60% 80% at 92% 8%, rgba(255, 220, 120, 0.75) 0%, rgba(255, 220, 120, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(185, 225, 150, 0.6) 0%, rgba(185, 225, 150, 0) 70%), ' +
+        'linear-gradient(135deg, #fffbea 0%, #fff6dc 50%, #f1f8e4 100%)',
+    'soft-rose':
+        'radial-gradient(60% 80% at 92% 8%, rgba(255, 160, 190, 0.75) 0%, rgba(255, 160, 190, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(255, 200, 170, 0.6) 0%, rgba(255, 200, 170, 0) 70%), ' +
+        'linear-gradient(135deg, #fff0f4 0%, #ffe6ee 50%, #fff0e8 100%)',
+    'soft-aqua':
+        'radial-gradient(60% 80% at 92% 8%, rgba(110, 215, 235, 0.75) 0%, rgba(110, 215, 235, 0) 70%), ' +
+        'radial-gradient(60% 80% at 4% 96%, rgba(150, 190, 255, 0.6) 0%, rgba(150, 190, 255, 0) 70%), ' +
+        'linear-gradient(135deg, #eafaff 0%, #e0f5fb 50%, #e8efff 100%)',
 };
 
 export default function PageHero({
@@ -71,15 +107,17 @@ export default function PageHero({
     imageLayout = 'circle',
     overlayCta,
     bottomLinks,
+    softBackground,
 }: PageHeroProps) {
     // Resolve image sources for multi-image layouts (fall back to primary if none provided)
     const img = (i: number) => images?.[i] ?? image;
+    const isLight = !!softBackground || gradient.startsWith('soft-');
 
     return (
         <section className={styles.hero}>
             <div
-                className={`${styles.heroInner} ${bottomLinks?.length ? styles.heroInnerWithLinks : ''}`}
-                style={{ background: gradientPresets[gradient] }}
+                className={`${styles.heroInner} ${bottomLinks?.length ? styles.heroInnerWithLinks : ''} ${isLight ? styles.heroLight : ''}`}
+                style={{ background: softBackground ?? gradientPresets[gradient] }}
             >
                 <div className={styles.gradientBg}>
                     <div className={styles.glowOrb1} />

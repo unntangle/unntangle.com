@@ -744,6 +744,72 @@
 }
 
 /* ============================================================
+   Light variant — used by the subtle `soft-*` gradients.
+   Switches text, eyebrow, accent and buttons to dark-on-light.
+============================================================ */
+.heroLight {
+    border: 0;
+}
+
+.heroLight .content,
+.heroLight .title {
+    color: #0c0d17;
+}
+
+.heroLight .eyebrow {
+    color: #3a3f4b;
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(12, 13, 23, 0.08);
+}
+
+.heroLight .titleAccent {
+    background: linear-gradient(90deg, #1f6bff 0%, #6b4dff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.heroLight .description {
+    color: #3a3f4b;
+}
+
+.heroLight .ctaPrimary:hover {
+    background: #1f6bff;
+    border-color: #1f6bff;
+    color: #ffffff;
+}
+
+.heroLight .ctaSecondary {
+    color: #0c0d17;
+    border-color: rgba(12, 13, 23, 0.2);
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.heroLight .ctaSecondary:hover {
+    background: #ffffff;
+    border-color: rgba(12, 13, 23, 0.3);
+}
+
+.heroLight .visualImage {
+    box-shadow: 0 24px 60px rgba(40, 40, 90, 0.16);
+}
+
+.heroLight .bottomLinks {
+    border-top-color: rgba(12, 13, 23, 0.12);
+}
+
+.heroLight .bottomLink {
+    color: #3a3f4b;
+}
+
+.heroLight .bottomLink + .bottomLink {
+    border-left-color: rgba(12, 13, 23, 0.12);
+}
+
+.heroLight .bottomLink:hover {
+    color: #1f6bff;
+}
+
+/* ============================================================
    Optional bottom link row (home page: the three service pillars)
 ============================================================ */
 .heroInnerWithLinks {

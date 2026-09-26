@@ -56,7 +56,7 @@ export default function HomePlatform() {
                     <div>
                         <span className={styles.eyebrow}>AI Implementation Partner</span>
                         <h2 className={styles.h2}>
-                            We don&apos;t just build AI. We deploy it inside your business.
+                            We Don&apos;t Just Build AI. We Deploy It Inside Your Business.
                         </h2>
                         <p className={styles.lead}>
                             Every business has repetitive workflows that consume valuable time. We

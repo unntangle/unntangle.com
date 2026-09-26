@@ -421,7 +421,7 @@ export default function CookiePreferencesPage() {
                 <LegalPage
                     eyebrow="Legal"
                     title="Cookie Preferences"
-                    lastUpdated="2026-05-10"
+                    lastUpdated="2026-09-26"
                     intro={
                         <p>
                             We use a small number of cookies to make this site

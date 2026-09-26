@@ -20,9 +20,9 @@ export default function HomeFinalCTA() {
 
             <div className={styles.container}>
                 <h2 className={styles.finalTitle}>
-                    Find where AI can work
+                    Find Where AI Can Work
                     <br />
-                    inside your business
+                    Inside Your Business
                 </h2>
                 <p className={styles.lead} style={{ margin: '0 auto' }}>
                     Bring us a workflow that&apos;s eating your team&apos;s time, or a website, app

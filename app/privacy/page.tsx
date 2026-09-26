@@ -32,10 +32,11 @@ export const metadata: Metadata = {
  *
  * Plain-English policy tailored to what Unntangle actually
  * collects and processes:
- *   - Marketing site form submissions (contact, project briefs,
- *     newsletter signups)
- *   - SaaS product usage (uVOIZ, future uDYLR / uSCRIBR)
- *   - uSYNQ smart-living hardware enquiries
+ *   - Website form submissions (contact, AI Workflow Assessment
+ *     requests, project enquiries, attached sample documents)
+ *   - Client data we handle while delivering AI, software and
+ *     integration projects (as a processor for the client)
+ *   - AI product usage (uVOIZ beta; uDYLR / uSCRIBR coming soon)
  *
  * Written to satisfy:
  *   - India's DPDPA 2023 (Digital Personal Data Protection Act)
@@ -54,17 +55,18 @@ const sections: LegalSection[] = [
         body: (
             <>
                 <p>
-                    Unntangle Technologies is a full-stack technology and digital company
-                    headquartered in Chennai, India. We build products, platforms,
-                    and brands for businesses across India and beyond — including
-                    our own SaaS suite (uVOIZ, uDYLR, uSCRIBR) and our smart-living
-                    hardware brand uSYNQ.
+                    Unntangle Technologies is an AI implementation and deployment
+                    company headquartered in Chennai, India. We help businesses
+                    identify repetitive workflows and deploy AI into the systems
+                    they already use, and we build websites, apps and custom
+                    software. We also develop our own AI products — uVOIZ (in
+                    beta), uDYLR and uSCRIBR (coming soon).
                 </p>
                 <p>
                     This policy explains what data we collect, why we collect it,
-                    and the choices you have. It applies to{' '}
-                    <strong>unntangle.com</strong> and any product or service that
-                    links to it.
+                    how we handle client data in the projects we deliver, and the
+                    choices you have. It applies to{' '}
+                    <strong>unntangle.com</strong> and any service that links to it.
                 </p>
             </>
         ),
@@ -74,26 +76,43 @@ const sections: LegalSection[] = [
         heading: 'What We Collect',
         body: (
             <>
-                <p>We collect data in three situations:</p>
+                <p>We collect data in four situations:</p>
 
-                <h3>1. When you contact us</h3>
+                <h3>1. When you contact us or request an assessment</h3>
                 <p>
-                    If you fill out a form on our website (contact, project
-                    enquiry, uSYNQ enquiry), we collect the fields you provide —
-                    typically your name, work email, phone number, company,
-                    project type, and any message you write.
+                    If you fill out a form on our website (contact, AI Workflow
+                    Assessment request, project enquiry), we collect the fields you
+                    provide — typically your name, work email, phone number,
+                    company, company size, the service you&apos;re interested in,
+                    a description of your workflow or project, and any document
+                    you choose to attach.
+                </p>
+                <p>
+                    Please don&apos;t attach documents containing sensitive
+                    personal data (for example health, financial or identity
+                    information about your customers or staff) at this stage. If a
+                    sample is needed, we&apos;ll agree a safe way to share it.
                 </p>
 
-                <h3>2. When you use our products</h3>
+                <h3>2. When we work with you on a project</h3>
                 <p>
-                    Our SaaS products collect operational data needed to run the
-                    service (account details, usage logs, content you create
-                    inside the product). Each product has its own privacy notice
-                    inside the product surface — those notices govern in-product
-                    data. This page covers only the marketing site.
+                    During an AI Workflow Assessment or a delivery project, you may
+                    share information about your workflows, systems, documents and
+                    data. How we handle that is covered in{' '}
+                    <a href="#client-data">Client Data in AI and Software Projects</a>{' '}
+                    below, and in the agreement for that engagement.
                 </p>
 
-                <h3>3. Automatically, when you visit</h3>
+                <h3>3. When you use our products</h3>
+                <p>
+                    Our AI products collect operational data needed to run the
+                    service (account details, usage logs, content processed by
+                    the product). Each product has its own privacy notice inside
+                    the product — those notices govern in-product data. This page
+                    covers the website and our services.
+                </p>
+
+                <h3>4. Automatically, when you visit</h3>
                 <p>
                     Like most websites, we collect basic technical data about
                     your visit: IP address, browser type, pages viewed, referrer,
@@ -136,6 +155,62 @@ const sections: LegalSection[] = [
         ),
     },
     {
+        id: 'client-data',
+        heading: 'Client Data in AI and Software Projects',
+        body: (
+            <>
+                <p>
+                    When we build or deploy AI workflows, integrations, apps or
+                    software for a client, we may need access to that client&apos;s
+                    business data — for example product and pricing data, customer
+                    records, documents, emails or messages. In these projects the
+                    client decides what data is used and why, and we process it on
+                    the client&apos;s behalf.
+                </p>
+                <p>Our approach in every engagement:</p>
+                <ul>
+                    <li>
+                        <strong>Agreed in writing first.</strong> What data the
+                        solution can access, where it is processed and stored, and
+                        how long it is kept are set out in the project agreement
+                        before any production data is used.
+                    </li>
+                    <li>
+                        <strong>Minimum access.</strong> Integrations use only the
+                        data a workflow needs, through credentials the client
+                        controls and can revoke.
+                    </li>
+                    <li>
+                        <strong>AI model providers.</strong> Where a solution uses
+                        AI models from third-party providers, which providers are
+                        used and on what data terms are agreed with the client in
+                        advance.
+                    </li>
+                    <li>
+                        <strong>Human oversight and logging.</strong> Workflows are
+                        designed with approval steps where appropriate, and actions
+                        are logged so they can be reviewed.
+                    </li>
+                    <li>
+                        <strong>No other use.</strong> We don&apos;t use a
+                        client&apos;s business data for our own marketing, and we
+                        don&apos;t share it with other clients.
+                    </li>
+                    <li>
+                        <strong>Return or deletion.</strong> At the end of an
+                        engagement, client data we hold is returned or deleted as
+                        set out in the agreement.
+                    </li>
+                </ul>
+                <p>
+                    If you are an individual whose data is held by one of our
+                    clients, please contact that business first — they decide how
+                    your data is used. We&apos;ll support them in responding.
+                </p>
+            </>
+        ),
+    },
+    {
         id: 'who-we-share-with',
         heading: 'Who We Share Data With',
         body: (
@@ -151,14 +226,19 @@ const sections: LegalSection[] = [
                         page requests.
                     </li>
                     <li>
-                        <strong>Email</strong> — Google Workspace. Form
+                        <strong>Email</strong> — Zoho Mail. Form
                         submissions and our internal team email run through
-                        Gmail.
+                        Zoho.
                     </li>
                     <li>
                         <strong>Analytics</strong> — Google Analytics 4 (privacy-
                         configured to anonymise IP addresses; see{' '}
                         <a href="/cookie-preferences">Cookie Preferences</a>).
+                    </li>
+                    <li>
+                        <strong>AI model providers</strong> — only within client
+                        projects and our AI products, and only as agreed (see{' '}
+                        <a href="#client-data">Client Data in AI and Software Projects</a>).
                     </li>
                 </ul>
                 <p>
@@ -180,9 +260,14 @@ const sections: LegalSection[] = [
                 </p>
                 <ul>
                     <li>
-                        <strong>Project enquiries:</strong> 24 months from your
-                        last interaction, then deleted unless we&apos;re actively
-                        working with you.
+                        <strong>Enquiries and assessment requests:</strong> 24
+                        months from your last interaction, then deleted unless
+                        we&apos;re actively working with you.
+                    </li>
+                    <li>
+                        <strong>Client project data:</strong> as set out in the
+                        project agreement, and returned or deleted when the
+                        engagement ends.
                     </li>
                     <li>
                         <strong>Customer records:</strong> 7 years after the
@@ -339,7 +424,7 @@ export default function PrivacyPage() {
                 <LegalPage
                     eyebrow="Legal"
                     title="Privacy Policy"
-                    lastUpdated="2026-05-10"
+                    lastUpdated="2026-09-26"
                     intro={
                         <p>
                             We respect the data you share with us. This page

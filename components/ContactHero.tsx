@@ -3,10 +3,41 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Globe, Upload, CheckCircle2, Mail, Phone } from 'lucide-react';
 import styles from './ContactHero.module.css';
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
+
+type Status = 'idle' | 'sending' | 'sent' | 'error';
+
+const CONTACT_EMAIL = 'gokul@unntangle.com';
 
 export default function ContactHero() {
     const [fileSlot, setFileSlot] = useState<string | null>(null);
+    const [status, setStatus] = useState<Status>('idle');
+    const [errorMsg, setErrorMsg] = useState('');
+
+    // Sends the form (including the optional attachment) to /api/contact,
+    // which emails it to the Unntangle inbox.
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        setStatus('sending');
+        setErrorMsg('');
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                body: new FormData(form),
+            });
+            const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+            if (!res.ok || !data.ok) {
+                throw new Error(data.error || 'Something went wrong.');
+            }
+            form.reset();
+            setFileSlot(null);
+            setStatus('sent');
+        } catch (err) {
+            setErrorMsg(err instanceof Error ? err.message : 'Something went wrong.');
+            setStatus('error');
+        }
+    };
 
     return (
         <section className={styles.heroSection}>
@@ -31,23 +62,49 @@ export default function ContactHero() {
                         <div className={styles.formCard}>
                             <h3 className={styles.formTitle}>Book an AI Workflow Assessment</h3>
 
-                            <form className={styles.contactForm}>
+                            {status === 'sent' ? (
+                                <div className={styles.formSuccess} role="status">
+                                    <CheckCircle2 size={40} strokeWidth={1.5} />
+                                    <h4>Thank you, we&apos;ve received your request.</h4>
+                                    <p>
+                                        We&apos;ve sent a confirmation to your inbox. An AI deployment
+                                        specialist will get back to you shortly.
+                                    </p>
+                                    <button
+                                        type="button"
+                                        className={styles.formAgain}
+                                        onClick={() => setStatus('idle')}
+                                    >
+                                        Send another enquiry
+                                    </button>
+                                </div>
+                            ) : (
+                            <form className={styles.contactForm} onSubmit={handleSubmit}>
+                                {/* Honeypot: hidden from people, catches spam bots */}
+                                <input
+                                    type="text"
+                                    name="company_website"
+                                    className={styles.honeypot}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                />
                                 <div className={styles.inputRow}>
                                     <div className={styles.inputGroup}>
-                                        <label>Full Name</label>
-                                        <input type="text" placeholder="John Doe" />
+                                        <label htmlFor="cf-name">Full Name</label>
+                                        <input id="cf-name" name="name" type="text" placeholder="John Doe" autoComplete="name" />
                                     </div>
                                     <div className={styles.inputGroup}>
-                                        <label>Work Email*</label>
-                                        <input type="email" placeholder="john@company.com" required />
+                                        <label htmlFor="cf-email">Work Email*</label>
+                                        <input id="cf-email" name="email" type="email" placeholder="john@company.com" autoComplete="email" required />
                                     </div>
                                 </div>
 
                                 <div className={styles.inputRow}>
                                     <div className={styles.inputGroup}>
-                                        <label>What can we help with?</label>
+                                        <label htmlFor="cf-interest">What can we help with?</label>
                                         <div className={styles.selectWrapper}>
-                                            <select defaultValue="">
+                                            <select id="cf-interest" name="interest" defaultValue="">
                                                 <option value="" disabled>Select an option</option>
                                                 <option value="assessment">AI Workflow Assessment</option>
                                                 <option value="deployment">AI agent / workflow deployment</option>
@@ -60,9 +117,9 @@ export default function ContactHero() {
                                         </div>
                                     </div>
                                     <div className={styles.inputGroup}>
-                                        <label>Company Size</label>
+                                        <label htmlFor="cf-size">Company Size</label>
                                         <div className={styles.selectWrapper}>
-                                            <select defaultValue="">
+                                            <select id="cf-size" name="size" defaultValue="">
                                                 <option value="" disabled>Select size</option>
                                                 <option value="under-50">Under 50 employees</option>
                                                 <option value="50-200">50 – 200 employees</option>
@@ -75,20 +132,39 @@ export default function ContactHero() {
                                 </div>
 
                                 <div className={styles.inputGroup}>
-                                    <label>Which workflow is taking up your team&apos;s time?</label>
-                                    <textarea placeholder="e.g. RFQs arrive by email and someone has to check ERP pricing and prepare a quotation by hand" rows={2} />
+                                    <label htmlFor="cf-workflow">Which workflow is taking up your team&apos;s time?</label>
+                                    <textarea id="cf-workflow" name="workflow" placeholder="e.g. RFQs arrive by email and someone has to check ERP pricing and prepare a quotation by hand" rows={2} />
                                 </div>
 
                                 <div className={styles.inputRow}>
                                     <div className={styles.inputGroup}>
-                                        <label>Contact Number*</label>
+                                        <label htmlFor="cf-phone">Contact Number*</label>
                                         <div className={styles.phoneInput}>
                                             <div className={styles.countryPicker}>
                                                 <img src="https://flagcdn.com/in.svg" alt="IN" width="18" />
                                                 <span>+91</span>
                                                 <ChevronDown size={12} />
                                             </div>
-                                            <input type="tel" placeholder="Phone Number" required />
+                                            <input
+                                                id="cf-phone"
+                                                name="phone"
+                                                type="tel"
+                                                placeholder="10-digit mobile number"
+                                                autoComplete="tel-national"
+                                                inputMode="numeric"
+                                                pattern="[0-9]{10}"
+                                                title="Please enter a 10-digit mobile number"
+                                                onInput={(e) => {
+                                                    // Digits only, max 10. Also cleans pasted numbers:
+                                                    // "+91 98765 43210" or "098765 43210" -> "9876543210"
+                                                    const el = e.currentTarget;
+                                                    let d = el.value.replace(/\D/g, '');
+                                                    if (d.length > 10 && d.startsWith('91')) d = d.slice(-10);
+                                                    else if (d.length > 10 && d.startsWith('0')) d = d.slice(1);
+                                                    el.value = d.slice(0, 10);
+                                                }}
+                                                required
+                                            />
                                         </div>
                                     </div>
                                     <div className={styles.inputGroup}>
@@ -97,23 +173,36 @@ export default function ContactHero() {
                                             <input
                                                 type="file"
                                                 id="file-upload"
+                                                name="attachment"
+                                                accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.png,.jpg,.jpeg"
                                                 className={styles.hiddenFile}
                                                 onChange={(e) => setFileSlot(e.target.files?.[0]?.name || null)}
                                             />
                                             <label htmlFor="file-upload" className={styles.fileLabel}>
-                                                <span>{fileSlot || 'Choose File'}</span>
+                                                <span>{fileSlot || 'Choose File (max 5 MB)'}</span>
                                                 <Upload size={16} />
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
+                                {status === 'error' && (
+                                    <p className={styles.formError} role="alert">
+                                        {errorMsg} Please check your details and try again in a moment.
+                                    </p>
+                                )}
+
                                 <div className={styles.formFooter}>
-                                    <button type="submit" className={styles.submitBtn}>
-                                        Request Assessment
+                                    <button
+                                        type="submit"
+                                        className={styles.submitBtn}
+                                        disabled={status === 'sending'}
+                                    >
+                                        {status === 'sending' ? 'Sending…' : 'Request Assessment'}
                                     </button>
                                 </div>
                             </form>
+                            )}
                         </div>
                     </motion.div>
 
@@ -137,12 +226,12 @@ export default function ContactHero() {
                             </p>
 
                             <div className={styles.contactDetails}>
-                                {/* HIDDEN-CONTACT: email + phone
+                                {/* HIDDEN-CONTACT: email + phone (hidden at the client's request)
                                 <div className={styles.contactItem}>
                                     <div className={styles.itemIcon}><Mail size={18} /></div>
                                     <div className={styles.itemText}>
                                         <span>Email</span>
-                                        <p><a href="mailto:gokul@unntangle.com">gokul@unntangle.com</a></p>
+                                        <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
                                     </div>
                                 </div>
                                 <div className={styles.contactItem}>

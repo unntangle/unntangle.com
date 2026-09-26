@@ -460,3 +460,156 @@
         max-width: 100%;
     }
 }
+
+/* ============================================================
+   LIGHT PASTEL THEME (Sep 2026)
+   Matches the site's soft aesthetic: a multi-tone "dawn" mesh
+   (peach, lilac, mint) that no other page hero uses, frosted white
+   glass panel with dark text, and softer shadows. Overrides the
+   original dark photo background above.
+============================================================ */
+.heroSection {
+    background:
+        radial-gradient(45% 60% at 8% 12%, rgba(255, 190, 160, 0.85) 0%, rgba(255, 190, 160, 0) 70%),
+        radial-gradient(50% 65% at 92% 18%, rgba(205, 180, 255, 0.85) 0%, rgba(205, 180, 255, 0) 70%),
+        radial-gradient(55% 60% at 70% 100%, rgba(160, 230, 200, 0.8) 0%, rgba(160, 230, 200, 0) 70%),
+        radial-gradient(40% 50% at 20% 95%, rgba(255, 215, 170, 0.7) 0%, rgba(255, 215, 170, 0) 70%),
+        linear-gradient(135deg, #fff6f0 0%, #f7f1ff 50%, #effaf5 100%);
+    color: #0c0d17;
+}
+
+.bgImageContainer {
+    display: none;
+}
+
+.glassPanel {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 24px 60px rgba(40, 40, 90, 0.08);
+}
+
+.title {
+    color: #0c0d17;
+}
+
+.subtitle {
+    color: #3a3f4b;
+}
+
+.profileInfo h5 {
+    color: #0c0d17;
+}
+
+.profileInfo p {
+    color: #5b5f6b;
+}
+
+.onlineBadge {
+    border-color: #ffffff;
+}
+
+.itemIcon {
+    background: #ffffff;
+    border-color: rgba(12, 13, 23, 0.06);
+    color: #3a3f4b;
+}
+
+.itemText span {
+    color: #8a8f9c;
+}
+
+.itemText p {
+    color: #0c0d17;
+}
+
+.itemText p a:hover {
+    color: #1f6bff;
+}
+
+.formCard {
+    box-shadow: 0 30px 70px rgba(40, 40, 90, 0.12);
+}
+
+/* ---------- Form states ---------- */
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.formError {
+    margin: 4px 0 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #fff1f1;
+    color: #9b1c1c;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.formError a {
+    color: inherit;
+    font-weight: 600;
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.formSuccess {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    padding: 40px 12px;
+    color: #0c0d17;
+}
+
+.formSuccess svg {
+    color: #16a34a;
+}
+
+.formSuccess h4 {
+    font-family: var(--font-title), sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.formSuccess p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5b5f6b;
+    max-width: 380px;
+    margin: 0;
+}
+
+.formSuccess a {
+    color: #1f6bff;
+    font-weight: 600;
+}
+
+.formAgain {
+    margin-top: 8px;
+    padding: 11px 20px;
+    border-radius: 999px;
+    border: 1px solid #e3e5eb;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0c0d17;
+    cursor: pointer;
+}
+
+.formAgain:hover {
+    background: #f5f6fa;
+}

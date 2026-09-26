@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import BlogGrid from "@/components/BlogGrid";
+import { heroGradientFor } from "@/components/pastelPalette";
 import { publishedBlogs as blogsData } from "@/data/blogs";
 
 const SITE_URL =
@@ -84,7 +85,7 @@ export default function BlogPage() {
                 <PageHero
                     eyebrow="Knowledge Hub"
                     titleParts={[
-                        'Practical ideas on ',
+                        'Practical Ideas on ',
                         { accent: 'AI' },
                         ' & ',
                         { accent: 'Software' },
@@ -99,7 +100,7 @@ export default function BlogPage() {
                         { text: 'In an Unntangled world', variant: 'cyan' },
                         { text: 'ideas ship faster', variant: 'dark', icon: true },
                     ]}
-                    gradient="crimson-rose"
+                    softBackground={heroGradientFor('blog')}
                 />
                 <div id="latest">
                     <BlogGrid />

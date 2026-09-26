@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactHero from "@/components/ContactHero";
+import HomeKnowledgeHub from "@/components/home/HomeKnowledgeHub";
 import FAQ from "@/components/FAQ";
 
 const SITE_URL =
@@ -75,6 +76,7 @@ export default function ContactPage() {
             />
             <Navbar />
             <ContactHero />
+            <HomeKnowledgeHub />
             <FAQ />
             <Footer />
         </main>

@@ -232,7 +232,7 @@
 }
 
 .serviceLink:hover .serviceLinkTitle {
-    color: #006b85;
+    color: #1f6bff;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -328,7 +328,7 @@
 }
 
 .promoTitleLink:hover .promoHeading {
-    color: var(--primary, #00b4db);
+    color: #1f6bff;
 }
 
 .promoHeading {
@@ -372,6 +372,7 @@
 
 .promoLink:hover {
     gap: 10px;
+    color: #1f6bff;
     text-decoration: underline;
     text-underline-offset: 3px;
 }

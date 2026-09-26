@@ -2,19 +2,21 @@ import type { Metadata } from "next";
 import { servicesData } from '@/data/services';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ServiceDetailHero from '@/components/ServiceDetailHero';
-import ServiceContent from '@/components/ServiceContent';
-import ServiceDeliverables from '@/components/ServiceDeliverables';
-import ServiceUseCases from '@/components/ServiceUseCases';
-import ServiceStack from '@/components/ServiceStack';
-import ServiceStats from '@/components/ServiceStats';
-import ServiceFAQ from '@/components/ServiceFAQ';
-import MarketingCTA from '@/components/MarketingCTA';
+import PageHero from '@/components/PageHero';
+// Service detail redesign (Sep 2026): the body is components/services/
+// ServiceDetailContent. The previous components (ServiceDetailHero,
+// ServiceContent, ServiceDeliverables, ServiceUseCases, ServiceStack,
+// ServiceStats, ServiceFAQ, MarketingCTA) are left on disk but unused here.
+import ServiceDetailContent from '@/components/services/ServiceDetailContent';
+import { heroGradientFor } from '@/components/pastelPalette';
 import { notFound } from 'next/navigation';
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
     "https://unntangle.com";
+
+// Every page has its own subtle hero colour and its own CTA colour, both
+// from components/pastelPalette.
 
 export async function generateStaticParams() {
     return servicesData.map((service) => ({
@@ -182,27 +184,23 @@ export default async function ServicePage(props: { params: Params }) {
                 />
             )}
             <Navbar />
-            <ServiceDetailHero service={service} />
-            <ServiceContent service={service} />
-            {service.deliverables && service.deliverables.length > 0 && (
-                <ServiceDeliverables deliverables={service.deliverables} />
-            )}
-            {service.useCases && service.useCases.length > 0 && (
-                <ServiceUseCases useCases={service.useCases} />
-            )}
-            {service.techStack && service.techStack.length > 0 && (
-                <ServiceStack
-                    serviceTitle={service.title}
-                    techStack={service.techStack}
+            <div style={{ paddingTop: '80px' }}>
+                <PageHero
+                    eyebrow={service.categoryLabel}
+                    titleParts={[service.title]}
+                    description={service.shortDescription}
+                    primaryCta={{
+                        label: service.categoryId === 'ai' ? 'Book an AI Workflow Assessment' : 'Discuss your project',
+                        href: '/contact',
+                    }}
+                    secondaryCta={{ label: 'All services', href: '/services' }}
+                    image={service.heroImage}
+                    imageAlt={service.title}
+                    imageLayout="circle"
+                    softBackground={heroGradientFor(service.id)}
                 />
-            )}
-            {service.stats && service.stats.length > 0 && (
-                <ServiceStats stats={service.stats} />
-            )}
-            {service.faqs && service.faqs.length > 0 && (
-                <ServiceFAQ faqs={service.faqs} serviceTitle={service.title} />
-            )}
-            <MarketingCTA />
+            </div>
+            <ServiceDetailContent service={service} />
             <Footer />
         </main>
     );
